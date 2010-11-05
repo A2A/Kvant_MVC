@@ -1,0 +1,152 @@
+div#InfoWindow
+{
+	display:block;
+	position: absolute;
+	right: 0px; 
+	
+}
+.CalendarWindow
+{
+	display:block;
+	position: absolute;
+	width: 150px;    
+}
+
+table.InfoWindow
+{  
+	width:300px;
+}
+
+td.BorderWindow
+{
+	width: 18px;
+}
+
+.InfoHeader
+{
+	background: url('../images/info-top.png');
+	font-size:18px;
+	padding-top:12px;
+	color: #2f536e;
+	font-weight: bold;
+	background: #e8f1ff;
+   
+   
+}
+.InfoBody
+{
+	background: #ffffff;
+	padding-right:5px;
+	padding-bottom:5px;
+}
+
+
+/*********************************/
+
+#ModalWindow, #ModalWindowTask, #ModalWindowTaskStatus,#ModalWindowNew 
+{
+	position: absolute; 
+	top:100; 
+	left: 200px; 
+	display:none;
+	z-index: 1002;
+}
+#ModalWindowTask p, #ModalWindowNew a
+{
+	font-size: 12px;
+}
+#ModalWindowNew
+{
+	width: 200px;
+}
+
+
+.WeekHederMonday,.WeekHederTuesday,.WeekHederWednesday,.WeekHederThursday,.WeekHederFriday, .WeekHederSaturday,.WeekHederSunday,
+.DayMonday,.DayTuesday,.DayWednesday,.DayThursday,.DayFriday, .DaySaturday,.DaySunday,.DayCurrent  
+{
+	border-right: 1px solid #e8f1ff;
+	border-bottom: 1px solid #e8f1ff;
+	color: #000000;
+	font-size: 12px;
+	text-align: center;
+	vertical-align: middle;
+}
+.WeekHederMonday, .DayCurrent, .DayMonday
+{
+	 border-left: 1px solid #e8f1ff;  
+}
+.WeekHederMonday,.WeekHederTuesday,.WeekHederWednesday,.WeekHederThursday,.WeekHederFriday, .WeekHederSaturday
+{
+	 border-top: 1px solid #e8f1ff;  
+	 border-right: 1px solid #ffffff;
+	
+}
+.WeekHederSaturday,.WeekHederSunday, .DaySaturday,.DaySunday
+{
+	color: #af0000;
+	text-align: center;  
+}
+.DayCurrent,.WeekHederMonday,.WeekHederTuesday,.WeekHederWednesday,.WeekHederThursday,.WeekHederFriday, .WeekHederSaturday,.WeekHederSunday 
+{
+	background: #e8f1ff;
+}
+
+/************** Прямоугольное всплывающие окно ****************/
+.Recttop
+{
+	background: url('../images/rect-top.png') repeat-x top;
+	font-size:4px;
+}
+
+.RectBottom
+{
+	background: url('../images/rect-bottom.png') repeat-x bottom;
+	font-size:4px;
+}
+
+.RectLeft
+{
+	background: url('../images/rect-left.png') repeat-y left;
+	font-size:4px;
+}
+
+.RectRight
+{
+	background: url('../images/rect-right.png') repeat-y right;
+	font-size:4px;
+}
+
+/**************************************************************/
+
+
+/************** С закругленными углами всплывающие окно ****************/
+.Roundtop
+{
+	background: url('../images/modal-top.png') repeat-x top;
+	font-size:4px;
+}
+
+.RoundBottom
+{
+	background: url('../images/modal-bottom.png') repeat-x bottom;
+	font-size:4px;
+}
+
+.RoundLeft
+{
+	background: url('../images/modal-left.png') repeat-y left;
+	font-size:4px;
+}
+
+.RoundRight
+{
+	background: url('../images/modal-right.png') repeat-y right;
+	font-size:4px;
+}
+
+/**************************************************************/
+
+div#Filter
+{
+	display: none;
+}

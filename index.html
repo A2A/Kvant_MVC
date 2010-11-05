@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<META http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+		<meta name="keywords" content="{?Object=system&Var=meta}">  
+
+		<link rel="stylesheet" type="text/css" href='css/style.css'>
+		<link rel="stylesheet" type="text/css" href='css/user.css'>
+		<link rel="stylesheet" type="text/css" href='css/window.css'>
+		<link rel="stylesheet" type="text/css" href='css/gant.css'>
+		 <!--[if IE ]>
+		 <link rel="stylesheet" type="text/css" href='css/ie/style.css'>
+		 <![endif]-->
+
+		<!--BASE href="http://www.a2a-consult.ru/"http://www.a2a-consult.ru/-->
+		<title>{?Object=system&Var=title}</title>
+
+	</head>
+	<body style="background: #e4eaf0;" onload="WarningMessageOnLoad('ErrorMessage');"> 
+		<script src="jscript/gant.js"></script>  
+		<script src="jscript/dateformat.js"></script>  
+		<script src="jscript/windows.js"></script>            
+		<script src="jscript/loadHtml.js"></script> 
+		<script src="jscript/form.js"></script>  
+		<div id="ErrorMessage" style="display:none;position: absolute;"><!--#error_field#--></div>
+
+		<div id="InfoWindow">
+			<div class="ButtonLightBlue" align="right" style="width:250px;"><nobr><img src="images/button-blue-1.png" class="img" align="left" hspace="0"><img src="images/button-blue-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonLightBlue" onClick="ShowAllMessage();" style="width:240px;">Показать все сообщения</a></nobr></div> 
+		</div>
+		<div id="ModalWindow"  onmousemove="this.style.display='block';" onMouseout="DivHide('ModalWindow');">
+		</div>
+		<div id="SelectAction"  onmousemove="this.style.display='block';" onMouseout="DivHide('SelectAction');">
+		</div>
+
+		<table border=0 cellspacing=0 cellpadding=0 width="1034" style="border-bottom:2px solid #e4eaf0;" align="center">
+			<tr>
+				<td valign="top" class="Header" colspan="2" width=1024px style="background: #123564 url('images/logo.png') no-repeat; ">
+					{?Object=System&Form=CurrentUser}
+				</td>
+				<td class="RightPole" style="background: #e4eaf0 url('images/fon-border-right.png');" rowspan="5">&nbsp;</td> 
+			</tr>
+			<tr>
+				<td valign="top" colspan="2" style="background: #102e52; width:1024px;">
+					<div id="ssp">
+						<a href="?Object=ssp">
+							<img src="images/button-ssp.png"  alt="Дерево Показателей" align="right" border=0 hspace="3" vspace="0">
+						</a>
+						<a href="?Object=ssp" class="TopMenu">
+						Система Сбалансированных Показателей
+						</a>
+					</div>
+					<div class="Role">{Object=system&Form=RoleListWithActive}</div>
+
+				</td>
+			</tr>
+			<tr>
+				<td valign="top" style="background: #f9fcff url('images/shade-1.png') repeat-x; width:230px; height:8px;"></td> 
+				<td valign="top" style="background: #ffffff url('images/shade-2.png') repeat-x; width:794px; height:8px;"></td>
+			</tr>
+			<tr>
+				<td valign="top" class="LeftMenu" style="background: #f9fcff url('images/fon-left.png');" >
+					<div class="LeftButtonProject"><a href="?Object=System&Form=gant" class="leftbuttom_project">Проекты</a></div>
+					{?Object=ProjectList&Form=list_menu}
+					<div class="LeftButtonTask"><a href="?Object=System&Form=gant" class="leftbuttom_task">Задачи</a></div>
+					{?Object=TaskList&Form=list_menu&Filter[0][Field]=ParentID&Filter[0][Oper]=eq&Filter[0][Val]=}
+					<div class="LeftButtonEvent"><a href="?Object=Event&form=Desktop" class="leftbuttom_event">События</a></div>
+					{?Object=EventList&Form=list_menu}
+					
+					
+					<div class="ButtonLightBlue" align="right" style="width:210px;"><nobr><img src="images/button-blue-1.png" class="img" align="left" hspace="0"><img src="images/button-blue-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonLightBlue" style="width:200px;" onClick="SendLogout();">
+								Выход из системы
+							</a></nobr></div> 
+				</td> 
+				<td class="Page" valign="top" id="PageMain1" align="left"> 
+					<div id="NoActionDesktop" align="center"> </div>
+					<div id="ActionDesktop" align="center"></div>  
+				<div id="PageMain" align="left"> 
+					<!--#work_field#-->
+				</div>
+				</td>
+
+			</tr>
+
+		</table>
+
+	</body>
+</html>

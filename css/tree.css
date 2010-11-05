@@ -1,0 +1,110 @@
+Div#menu
+{
+	position:fixed;
+	left:50px;
+	top:50px;
+	background: #ffffff;
+	z-index: 1000;
+}
+
+/*********************************/
+.GreenFork, .YellowFork, .RedFork, .RedForkVisible, .YellowForkVisible, .GreenForkVisible
+{
+	width:165px; 
+	height:50px;
+	display:block;
+	vertical-align:bottom;
+}
+.GreenFork, .YellowFork, .RedFork,
+{
+	
+}
+.GreenFork
+{
+	background: url('../images-tree/fork-green.png') left top no-repeat; 
+}
+
+.YellowFork
+{
+	background: url('../images-tree/fork-yellow.png') left top no-repeat; 
+}
+
+.RedFork
+{
+	background: url('../images-tree/fork-red.png') left top no-repeat; 
+}
+.RedForkVisible
+{
+	background: url('../images-tree/fork-red-open.png') left top no-repeat; 
+	height:40px;
+}
+.YellowForkVisible
+{
+	background: url('../images-tree/fork-yellow-open.png') left top no-repeat; 
+	height:40px;
+}
+.GreenForkVisible
+{
+	background: url('../images-tree/fork-green-open.png') left top no-repeat; 
+	height:40px;
+}
+.RedFork span, .YellowFork span, .GreenFork span, .RedForkVisible span , .YellowForkVisible span , .GreenForkVisible span 
+{
+	display:block;
+	color:#ffffff;
+	overflow: hidden; 
+	width:122px; 
+	height:25px;
+	cursor: pointer;
+	border:0px solid blue;
+	padding-top:10px;  
+}
+#menu div img
+{
+	float: left;
+}
+.Categor
+{
+	padding-left:8px;
+	width:120px;
+}
+.RightMenu
+{
+	width:20px;
+	padding-top:10px; 
+	padding-right:10px; 
+	vertical-align:top;
+}
+.ForkOpen
+{
+}
+
+td.ForkOpenBottom
+{
+	background: #ffffff;
+}
+.icon
+{
+	float:left;
+	margin-top:6px;
+	margin-left:8px;
+}
+
+
+.VerticalLineUnitUnit
+{
+	 background-image: url('../images-tree/line-unit-role.png') left top no-repeat;       
+}
+.LineUnitRole
+{
+	 background-image: url('../images-tree/line-unit-role.png');
+	 background-position: right=20px;
+	 background-repeat: no-repeat;       
+	 
+}
+#menuUnit,#menuUnitSmall
+{
+   background: #d0d0d0;
+   width:20px;
+   cursor: pointer; 
+}

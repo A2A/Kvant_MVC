@@ -1,0 +1,144 @@
+
+
+.ButtonRow, .ButtonRowTop  
+{
+	height: 29px;
+	text-align: center;
+	vertical-align: middle;
+	padding: 0px 3px;
+	border-bottom: 1px solid #e4ebf7;
+	border-right: 1px solid #ecf1fa;
+	background: #ffffff;
+   
+	width: 17px; 
+}
+.ButtonRowTop, .CenterRowTop  
+{
+	border-top: 1px solid #e4ebf7;
+}
+
+/* конец Событие */
+
+.ButtonCheckForm
+{
+	padding: 0px;
+	margin: 0px;
+	width: 17px;
+	cursor: pointer;  
+}
+
+.ButtonLightBlue, .ButtonOrange, .ButtonLightBlueBig, .ButtonBrose
+{
+	display:block;
+	margin: 2px; 
+	width: 82px;  
+	height:20px;
+}
+a.ButtonLightBlue:hover, a.ButtonOrange:hover, a.ButtonLightBlueBig:hover, a.ButtonBrose:hover
+{
+	text-decoration: none;  
+} 
+
+.ButtonLightBlue, .ButtonLightBlueBig
+{
+	background: #e8f1ff; 
+}
+.ButtonLightBlueBig
+{
+	width: 140px; 
+}
+.ButtonOrange
+{
+	background: #ffecb9;  
+}
+
+A.ButtonLightBlue, A.ButtonOrange, A.ButtonLightBlueBig
+{
+	color: #1f3652;
+	font-size: 10px;
+	font-family: Tahoma;
+	display:block;
+	height:12px;
+	padding-top:4px;
+	padding-bottom: 4px; 
+	margin:0px;
+	border-left: 0px;  
+	border-right: 0px;  
+	width:74px; 
+	text-align: center;
+	cursor: pointer;
+	
+}
+A.ButtonLightBlue, A.ButtonLightBlueBig
+{
+	color: #1f3652;
+	border-top:1px solid #b4cdeb;   
+	border-bottom:1px solid #b4cdeb; 
+}
+A.ButtonOrange
+{
+	color: #464646;
+	border-top:1px solid #e8d192;   
+	border-bottom:1px solid #e8d192; 
+}
+A.ButtonLightBlueBig
+{
+	width: 100px;
+}
+.BigButton
+{
+	width: 200px;
+}
+
+.ButtonBlackBlueSmall, .ButtonLightBlueSmall
+{
+	display:block; 
+	width:64px;  
+	height:17px;
+	padding:0px;
+	margin: 1px; 
+   
+	
+}
+.ButtonpassiveBlueSmall, .ButtonactiveBlueSmall
+{
+	display:block; 
+	width:53px;  
+	height:17px;
+	padding:0px;
+	margin-left: 1px; 
+	   
+   
+	
+}
+A.ButtonBlackBlueSmall, A.ButtonLightBlueSmall, A.ButtonpassiveBlueSmall, A.ButtonactiveBlueSmall
+{
+	color: #1f3652;
+	display:block;
+	height:13px;
+	padding-top:1px;
+	padding-bottom:2px;
+	margin:0px; 
+	margin-left: 1px;
+	margin-right: 2px; 
+	border-left: 0px;  
+	border-right: 0px;  
+	width:50px; 
+	text-align: center;
+	font-family: Tahoma;
+	font-size: 10px;    	
+}
+
+a.ButtonBlackBlueSmall, a.ButtonpassiveBlueSmall
+{
+	background: #99b3d8; 
+	border-top:1px solid #6f89b0;   
+	border-bottom:1px solid #6f89b0;
+	cursor: pointer;     
+} 
+a.ButtonLightBlueSmall, A.ButtonactiveBlueSmall
+{
+	background: #e8f1ff; 
+	border-top:1px solid #b4cdeb;   
+	border-bottom:1px solid #b4cdeb;
+}

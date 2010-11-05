@@ -1,0 +1,261 @@
+div#UserTop
+{
+	height: 80px;
+	margin-top: 1px;
+	margin-left: 7px;
+	border: 1px solid transparent;   
+}
+
+h1#FullName
+{
+	font-weight: 900;
+	font-family: Arial;
+	font-size: 24px;
+	color: #ffffff;
+	margin-top: 20px;
+	margin-bottom: 0px;
+	padding-left: 87px;
+	display: block;
+	
+   
+}
+
+div#Role, div#Role-, div#Role-green , div#Role-yellow , div#Role-red
+{
+	font-weight: 900;
+	font-family: Arial;
+	font-size: 15px;
+	color: #e5890d; 
+	padding: 1px 15px;
+	text-transform: lowercase;
+	display: inline;
+	/*background: #123564; */ 
+	
+}
+div#Role-green
+{   
+	color: #006415;
+}
+div#Role-yellow
+{   
+	color: #e5890d;
+}
+div#Role-red
+{   
+	color: #af0000;
+}   
+
+/* список роле */
+
+.Role
+{
+	font-weight: 100;
+	font-family: Verdana;
+	font-size: 11px;
+	color: #a4afbd;
+	padding-left: 5px;
+	margin-top: 2px;
+}
+
+.Role .NoAction
+{
+	text-decoration: underline;
+	color: #a4afbd; 
+} 
+.Role .Action
+{
+	text-decoration: none;
+	color: #a4afbd;  
+} 
+/* конец списока роле */
+
+.TextForm
+{
+	font-weight: 900;
+	font-size: 14px;
+	color: #46749f;
+}
+input
+{
+	color: #000000;
+}
+.input_text
+{
+	width: 146px;
+	height: 20px;
+	border: 1px solid #d6d6d6;
+	font-size: 12px;
+}
+.input_pass
+{
+	width: 146px;
+	height: 20px; 
+	border: 1px solid #d6d6d6;
+	font-size: 12px;    
+}
+.LabelText
+{
+	font-size: 14px;     
+}
+
+#ListUsers .Cell
+{
+	border-bottom: 1px solid #e4ebf7; 
+	border-right: 1px solid #ecf1fa;
+	text-align:center;
+}
+#ListUsers .CellTopDrak
+{
+	height: 29px;
+	width: 250px;  
+	text-align: left;
+	vertical-align: middle;
+	padding-left: 5px;
+	border-left: 1px solid #ecf1fa;
+	border-top: 1px solid #e4ebf7;
+	border-bottom: 1px solid #e4ebf7;
+	border-right: 1px solid #ecf1fa;
+	background: #e8f1ff;
+	color: #46749f;
+	font-weight: 900;
+}
+#ListUsers .CellTop
+{
+	border-top: 1px solid #e4ebf7; 
+	border-bottom: 1px solid #e4ebf7; 
+	border-right: 1px solid #ecf1fa;
+	background: #f9fbff;
+	color: #46749f;
+	font-weight: 900;
+}
+#ListUsers .CellTop50
+{
+	border-top: 1px solid #e4ebf7; 
+	border-bottom: 1px solid #e4ebf7; 
+	border-right: 1px solid #ecf1fa;
+	width: 50px;
+	background: #f9fbff;
+	color: #46749f;
+	font-weight: 900;
+}
+#ListUsers .CellLeft
+{
+	border-left: 1px solid #ecf1fa; 
+	border-bottom: 1px solid #e4ebf7; 
+	border-right: 1px solid #ecf1fa;
+	text-align:left;
+	padding-left: 5px;
+	cursor: pointer;
+}
+hr.modal
+{
+	border: 1px solid #ecf1fa;    
+}
+A.accessRole
+{
+	font-weight: 100;
+	display: block;
+	color: #000000;
+}
+.RoleBox
+{
+	width: 160px;
+	float: left;
+}
+.RoleBox .CaptionRoleDark
+{
+	border-left: 1px solid #ecf1fa; 
+	border-top: 1px solid #e4ebf7; 
+	border-bottom: 1px solid #e4ebf7; 
+	border-right: 1px solid #ecf1fa;
+	text-align:left;
+	padding-left: 5px;
+	background: #e8f1ff;
+	color: #35506f;
+	font-weight: 900;
+}
+.RoleBox .CaptionRoleLight
+{
+	border-left: 1px solid #ecf1fa; 
+	border-top: 1px solid #e4ebf7; 
+	border-bottom: 1px solid #e4ebf7; 
+	border-right: 1px solid #ecf1fa;
+	text-align:left;
+	padding-left: 5px;
+	background: #f3f8ff;
+	color: #35506f;
+	font-weight: 900;
+}
+.RoleBox .CaptionCategor
+{
+	border-left: 1px solid #ecf1fa; 
+	border-bottom: 1px solid #e4ebf7; 
+	border-right: 1px solid #ecf1fa;
+	text-align:left;
+	padding-left: 5px;
+	background: #f9fbff; 
+	color: #46749f;
+	font-weight: 900;
+}
+.RoleBox .Cell
+{
+	border-left: 1px solid #ecf1fa; 
+	border-bottom: 1px solid #e4ebf7; 
+	border-right: 1px solid #ecf1fa;
+	text-align:left;
+	padding-left: 5px;
+}
+
+/* индикатор катгорий и показателей */
+.IndicatorCategor-red, .IndicatorCategor-yellow, .IndicatorCategor-green
+{
+	display: inline;
+	float: left;
+	width: 12px;
+	height: 12px;
+	font-size: 4px;
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+
+.IndicatorFactor-red, .IndicatorFactor-yellow, .IndicatorFactor-green 
+{
+	display: inline;
+	float: left;
+	width: 6px;
+	height: 12px;
+	font-size: 4px;
+	margin-top: 4px;
+	margin-bottom: 4px;
+	margin-left: 6px;
+}
+.IndicatorCategor-red, .IndicatorFactor-red
+{ 
+	background: #e44343;   
+}
+.IndicatorCategor-yellow, .IndicatorFactor-yellow 
+{ 
+	background: #ffd45c;   
+}
+.IndicatorCategor-green, .IndicatorFactor-green 
+{ 
+	background: #6fda86;   
+} 
+.CategorName
+{
+	display: block;
+	padding: 0px;
+	margin: 0px;
+	height: 20px; 
+	cursor: pointer;
+	font-size:12px; 
+	padding-top: 2px;
+}
+.FactorList
+{
+	margin-left: 0px;
+	padding: 0px;
+	display: none;
+   
+}

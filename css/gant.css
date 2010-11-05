@@ -1,0 +1,281 @@
+/*******  гант  ********/
+.TimeLine, .Gant
+{
+	color: #46749f;
+	text-align: right;
+	font-size: 10px;
+	font-family: Tahoma;
+	vertical-align: top;     
+}
+.TimeLine td
+{ 
+	height: 20px;
+	vertical-align: top;  
+}  
+.Gant td 
+{
+	border-bottom: 1px solid #dce7f7; 
+	vertical-align: top;     
+} 
+
+/* красный */
+.Red-TimeLine-prev,.Red-TimeLine-prev-line 
+{
+	background: #e44343 url('../images/gant-line-red-ok.png') repeat-x;
+}
+
+td.Red-TimeLine-stop
+{
+	background: #ffffff url('../images/gant-line-red-stop.png') repeat-x right top;
+	border-right: 0px solid #194d86; 
+	text-align: right;
+	padding-right: 13px; 
+	padding-left: 0px; 
+	font-size: 9px;
+}
+.Red-TimeLine-next,.Red-TimeLine-next-line
+{
+	background: #e44343 url('../images/gant-line-red.png') repeat-x;
+}
+
+.Red-TimeLine-end
+{
+	background: #e44343 url('../images/gant-line-red-end.png') right top;
+}
+.Red-TimeLine-begin
+{
+	background: #e44343 url('../images/gant-line-red-begin.png') left top;
+	
+}
+/* Желтый */
+.Yellow-TimeLine-prev,.Yellow-TimeLine-prev-line
+{
+	background: #ffd45c url('../images/gant-line-yellow-ok.png') repeat-x;
+}
+.Yellow-TimeLine-stop,.Yellow-TimeLine-stop-line
+{
+	background: #ffffff url('../images/gant-line-yellow-stop.png') repeat-x right top;
+	border-right: 0px solid #194d86; 
+	text-align: right;
+	padding-right: 13px;
+	padding-left: 0px;  
+	font-size: 9px;  
+}
+.Yellow-TimeLine-next,.Yellow-TimeLine-next-line
+{
+	background: #ffd45c url('../images/gant-line-yellow.png') repeat-x;
+	
+}
+.Yellow-TimeLine-end
+{
+	background: #ffd45c url('../images/gant-line-yellow-end.png') right top;
+}
+.Yellow-TimeLine-begin
+{
+	background: #ffd45c url('../images/gant-line-yellow-begin.png') left top;
+}
+/* Зленый  */
+
+.Green-TimeLine-prev,.Green-TimeLine-prev-line
+{
+	background: #6fda86 url('../images/gant-line-green-ok.png') repeat-x;
+}
+.Green-TimeLine-stop,.Green-TimeLine-stop-line
+{
+	background: #ffffff url('../images/gant-line-green-stop.png') repeat-x right top;
+	border-right: 0px solid #194d86; 
+	text-align: right;
+	padding-right: 13px;
+	padding-left: 0px;  
+	font-size: 9px;  
+}
+.Green-TimeLine-next,.Green-TimeLine-next-line
+{
+	background: #6fda86 url('../images/gant-line-green.png') repeat-x;
+}
+.Green-TimeLine-end
+{
+	background: #6fda86 url('../images/gant-line-green-end.png') right top;
+}
+.Green-TimeLine-begin
+{
+	background: #6fda86 url('../images/gant-line-green-begin.png') left top;
+}
+/* нет цвета */
+.None-TimeLine-stop
+{
+	background: #ffffff;
+}
+.None-TimeLine-prev
+{
+	background: #ffffff;
+}
+.None-TimeLine-end
+{
+	background: #ffffff;
+}
+.None-TimeLine-begin
+{
+	background: #ffffff;
+}
+
+#FactorYellow .Red-TimeLine-prev, #FactorRed .Red-TimeLine-next, #FactorRed .Yellow-TimeLine-next, #FactorGreen .Red-TimeLine-prev, #FactorGreen .Yellow-TimeLine-prev, #FactorYellow .Yellow-TimeLine-next 
+{
+	border-right: 1px solid #ffffff;
+}
+
+td.HeaderTr 
+{
+	background: #c9daea;
+	color:#233c59; 
+	font-size:14px;
+	text-align:center; 
+	vertical-align: middle; 
+	font-weight: bold;
+	font-size: 11px;
+	font-family: Tahoma;
+	height: 20px;
+}
+
+
+.LeftTimeLine
+{
+	border-top: 1px solid #c0d3e9;
+	border-bottom: 1px solid #dce7f7;
+}
+td.TimeLine, td.PolsunokLeftTimeLine, td.PolsunokRightTimeLine
+{
+	background-color: #f3f8ff;
+	border-left: 1px solid #c7d7ef;
+	border-right: 1px solid #ffffff;
+	border-top: 1px solid #c7d7ef;
+	border-bottom: 1px solid #dce7f7;
+	color: #46749f;
+	text-align: center;
+	width: 50px;
+	height: 23px;
+	vertical-align: middle;
+	font-size: 10px;
+	font-family: Tahoma;	
+}
+td.PolsunokLeftTimeLine
+{
+	background: #f3f8ff url('../images/gant-polsunok-left.png') no-repeat right; 
+	border-right:0px;
+} 
+td.PolsunokRightTimeLine
+{
+	background: #f3f8ff url('../images/gant-polsunok-right.png') no-repeat left; 
+	border-left:0px;
+	padding-left: 2px;
+}
+
+td.PolsunokLeft
+{}
+ 
+td.PolsunokRight
+{
+	border-left: 1px solid #af2828; 
+}
+
+td.ProjectCaption, td.ProjectCaptionLine, td.ProjectCaptionStatus
+{
+	color: #35506f;
+	font-weight: bold;
+	font-size: 11px;
+	font-family: Tahoma;	
+	background: #e8f1ff;
+	border-bottom: 1px solid #dce7f7;
+	text-align: left;
+	height: 26px;
+	overflow: hidden;
+	vertical-align: middle; 
+	padding-left: 3px;
+	padding-right: 4px;
+	width: 160px;   
+}
+
+
+td.ProjectCaptionLine,
+	.Red-TimeLine-next-line,.Red-TimeLine-prev-line,.Red-TimeLine-stop-line,
+	.Yellow-TimeLine-next-line,.Yellow-TimeLine-prev-line,.Yellow-TimeLine-stop-line,
+	.Green-TimeLine-next-line,.Green-TimeLine-prev-line,.Green-TimeLine-stop-line,
+	.None-TimeLine-line
+{
+	border-left: 1px solid #af2828; 
+	border-right: 1px solid #ffffff; 
+}
+.Gant .Red-TimeLine-next, .Gant .Red-TimeLine-prev,  .Gant .Red-TimeLine-begin,
+.Gant .Yellow-TimeLine-next, .Gant .Yellow-TimeLine-prev,   .Gant .Yellow-TimeLine-begin,
+.Gant .Green-TimeLine-next, .Gant .Green-TimeLine-prev,   .Gant .Green-TimeLine-begin
+{
+	border-right: 1px solid #ffffff;    
+}
+
+td.Task-1, td.Task-2, td.Task-3, td.Task-4, td.Task-5, td.Task-6, td.Task-7, td.Task-8, td.Task-9, td.Task-10   
+{
+	font-size: 11px;
+	text-align: left;
+	font-family: Tahoma;	
+	vertical-align: middle;
+	color: #000000;  
+	overflow: hidden;
+	height: 26px;   
+	border-right: 1px solid #dce7f7; 
+} 
+.Task-1 span, .Task-2 span, .Task-3 span , .Task-4 span, .Task-5 span , .Task-6 span, .Task-7 span , .Task-8 span, .Task-9 span 
+{
+	display: block;
+	width: 140px;
+	height: 26px;
+	overflow: hidden;
+} 
+td.Task-1 
+{
+	background: #f3f8ff;
+	padding-left: 5px;
+	font-weight: 900; 
+	color: #46749f;  
+}
+td.Task-2 
+{
+	background: #fafcff;
+	padding-left: 17px;
+	font-weight: 100; 
+}
+td.Task-3, td.Task-4, td.Task-5, td.Task-6, td.Task-7, td.Task-8, td.Task-9, td.Task-10   
+{
+	background: #ffffff;
+	padding-left: 25px;
+	font-weight: 100; 
+}
+td.TaskStatus-1, td.TaskStatus-2, td.TaskStatus-3, td.TaskStatus-4, td.TaskStatus-5, td.TaskStatus-6, td.TaskStatus-7, 
+td.TaskStatus-8, td.TaskStatus-9, td.TaskStatus-10, td.ProjectCaptionStatus
+{
+	text-align: center;
+	vertical-align: middle;
+	width: 30px;
+	border-right: 1px solid #dce7f7; 
+	border-left: 1px solid #dce7f7; 
+}  
+td.TaskStatus-1
+{
+	background: #f3f8ff;
+}
+td.TaskStatus-2
+{
+	background: #fafcff;
+}
+td.TaskStatus-3, td.TaskStatus-4, td.TaskStatus-5, td.TaskStatus-6, td.TaskStatus-7, td.TaskStatus-8, td.TaskStatus-9, td.TaskStatus-10
+{
+	background: #ffffff;
+}
+
+
+.MarginLeft
+{
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+
