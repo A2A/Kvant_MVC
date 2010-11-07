@@ -2,6 +2,9 @@
 	class Object_template extends Entity
 	{
 		protected $DBTableName = 'role';
+		
+		public static $UnAuthForms = array('edit'=>true);
+		
 		public static $Forms = array(
 		'edit' => 'objects/model/object_template/edit.html',
 		'view' => 'objects/model/object_template/view.html',
@@ -20,7 +23,7 @@
 		
 		protected function __construct(&$ProcessData,$ID=null)  
 		{   
-			parent::__construct($ProcessData,$ViewData,$DataBase,$ID);
+			parent::__construct($ProcessData,$ID);
 			$this->Refresh();
 		}
 		

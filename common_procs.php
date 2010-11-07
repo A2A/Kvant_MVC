@@ -16,6 +16,7 @@
 			case 'BaseClass'            : $ClassFileName = 'objects/framework/baseclass.class.php'; break;
 			case 'Form'            		: $ClassFileName = 'objects/framework/form.class.php'; break;
 			case 'Entity'            		: $ClassFileName = 'objects/framework/entity.class.php'; break;
+			case  'DBMySQL'            		: $ClassFileName = 'objects/dbmysql.class.php'; break;
 			
 			
 			case 'Object_template'      : $ClassFileName = 'objects/model/object_template/object_template.class.php'; break;

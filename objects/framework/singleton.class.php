@@ -34,11 +34,11 @@
 
 				if (is_null($TmpID))
 				{
-					$Obj = new $ClassName($ProcessData,$ViewData,$DataBase,$TmpID);
+					$Obj = new $ClassName($ProcessData,$TmpID);
 				}
 				elseif ((!isset(self::$Cash[$ClassName])) or (!isset(self::$Cash[$ClassName][$TmpID])))
 				{
-					$Obj = new $ClassName($ProcessData,$ViewData,$DataBase,$TmpID);
+					$Obj = new $ClassName($ProcessData,$TmpID);
 				}
 				else
 				{

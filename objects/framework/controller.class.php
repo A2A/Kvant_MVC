@@ -221,16 +221,25 @@
 		{
 			$Controller = Controller::GetObject($_POST);
 			
-			if (count($_POST) > 0) $result = Controller::ProcessMessage($_POST);
+			if (count($_POST) > 0) 
+			{
+				$result = Controller::ProcessMessage($_POST);
+				$result = Controller::CreateView($_GET);
+			}
 			elseif ((!isset($_GET['Ajax'])) or ($_GET['Ajax'] == 0))
 			{ 
 				$Temp_GET = array('Object'=>'System','Form'=>'Default');
 				$Template = Controller::CreateView($Temp_GET);
 				if (!isset($_GET['Object'])) $_GET['Object'] = 'System';
 				if (!isset($_GET['Form'])) $_GET['Form'] = 'Default';
+				$result = Controller::CreateView($_GET);
+				$result = str_replace('<!--#work_field#-->',$result,$Template);  
 			}
-			$result = Controller::CreateView($_GET);
-			$result = str_replace('<!--#work_field#-->',$result,$Template);  
+			else
+			{
+				$result = Controller::CreateView($_GET);
+			}
+			
 
 			return $result;
 		}
