@@ -21,6 +21,7 @@
 		public static   $Forms			= array('default'=>'index.html');
 
 		public $title = "test";
+		public $CurrentUser;
 
 		static public function GetObject(&$ProcessData=null,$id=null)
 		{
@@ -30,22 +31,37 @@
 		{
 			switch ($FieldName)
 			{
-				case 'CurrentInt': return intval($_SESSION['CurrentInt']); break;
-				case 'CurrentWPTime': return intval($_SESSION['CurrentWPTime']); break;
-				case 'CurrentUserID': return isset($_SESSION['CurrentUserID'])?intval($_SESSION['CurrentUserID']):null; break;
+				case 'CurrentInt': return isset($_SESSION['CurrentInt'])?intval($_SESSION['CurrentInt']):null; break;
+				case 'CurrentWPTime': return isset($_SESSION['CurrentWPTime'])?intval($_SESSION['CurrentWPTime']):null; break;
+				case 'CurrentUserID': return (!is_null($this->CurrentUser))?$this->CurrentUser->ID:null; break;
+			}
+		}
+		public function __set($FieldName,$Value)
+		{
+			switch ($FieldName)
+			{
+				case 'CurrentInt': return isset($_SESSION['CurrentInt'])?intval($_SESSION['CurrentInt']):null; break;
+				case 'CurrentWPTime': return isset($_SESSION['CurrentWPTime'])?intval($_SESSION['CurrentWPTime']):null; break;
+				case 'CurrentUserID': $this->CurrentUser = User::GetObject($null,$Value); break;
+					// TODO 2 -o Molev -c СЕТ: Установка ИД при __СЕТ
 			}
 		}
 
 		public function IsUserAuthorized($ShowMessage=false)
 		{
-			$result = is_numeric($this->CurrentUserID);
+			$result = !is_null($this->CurrentUser);
 			if ($ShowMessage) ErrorHandle::ErrorHandle('Пользователь'.($result?' ':' не ').'авторизован.',0);
 			return $result;
 		}
 
 		public function InitCurrentUser()              
 		{
-			if(isset($_COOKIE['ssp_ssid_autoload_75483882827165']) and $_COOKIE['ssp_ssid_autoload_75483882827165'] != '')
+			if (is_numeric($_SESSION['CurrentUserID']))
+			{
+				$null = null;
+				$this->CurrentUserID = $_SESSION['CurrentUserID'];
+			}
+			elseif(isset($_COOKIE['ssp_ssid_autoload_75483882827165']) and $_COOKIE['ssp_ssid_autoload_75483882827165'] != '')
 			{
 				$Sql = 'select * from user_sessions where `SESSIONID` = "'.$_COOKIE['ssp_ssid_autoload_75483882827165'].'" LIMIT 1';
 				if ($SqlResult = $this->DataBase->Query($Sql))
@@ -53,21 +69,28 @@
 					if ($Rows = $this->DataBase->FetchArray($SqlResult) and is_numeric($Rows['USERID']))
 					{
 						$_SESSION['CurrentUserID'] = $Rows['USERID'];
+						$this->CurrentUserID = $_SESSION['CurrentUserID'];
 					}
 				}
 
 			}
+			else
+			{
+				$this->CurrentUser = null;
+				$this->CurrentRole = null;
+			}
+		}
 
-			if (is_numeric($this->CurrentUserID))
+		public function InitCurrentRole()              
+		{
+			if (is_numeric($_SESSION['CurrentRoleID']))
 			{
 				$null = null;
-				//$this->CurrentUser = User::GetObject($null,$this->CurrentUserID);
+				$this->CurrentUserID = $_SESSION['CurrentUserID'];
 			}
 			else
 			{
-				$this->CurrentUserID = null;
 				$this->CurrentUser = null;
-				$this->CurrentRoleID = null;
 				$this->CurrentRole = null;
 			}
 		}
@@ -132,7 +155,45 @@
 			ErrorHandle::ActionErrorHandle("Завершение работы прошло успешно.", 0); 
 			return true;
 		} 
-	
+
+		public function ChangePassword()
+		{
+			if (isset($this->ProcessData['UserEmail']))
+			{
+				ErrorHandle::ActionErrorHandle('Пароль будет выслан на ваш почтовый адрес.',0);
+				$result = true;
+			}
+			elseif (isset($this->ProcessData['UserName']))
+			{
+				ErrorHandle::ActionErrorHandle('Пароль будет выслан на ваш почтовый адрес.',0);
+				$result = true;
+			}
+			else
+			{
+				ErrorHandle::ActionErrorHandle('Недостаточно данных для запрошенной операции смены пароля.',0);
+				$result = false;
+			}
+			return $result;
+		}
+
+		public function SetInterval()
+		{
+			if (isset($this->ProcessData['ID']) and intval($this->ProcessData['ID'])>0)
+			{
+				$_SESSION['CurrentInt'] = $this->ProcessData['ID'];     
+
+				$int_new = Interval::GetObject($null,$this->CurrentInt);
+				$NewCurrentWPTime = $this->CurrentWPTime + 8 * $int_bak->Duration - 8 * $int_new->Duration;
+				$_SESSION['CurrentWPTime'] = $NewCurrentWPTime - ($NewCurrentWPTime % $int_new->Duration);
+
+				$result = true;
+			}
+			else
+			{
+				$result = false;
+			}
+		}
+
 
 
 	}
