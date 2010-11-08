@@ -141,7 +141,7 @@
 						}
 						else
 						{
-							$Result = false;
+							$Result = true;
 						}
 					}
 				}
@@ -209,6 +209,8 @@
 
 		public static function IsUserAuthorized()
 		{
+			$system = System::GetObject();
+			return $system->IsUserAuthorized();
 			return false;
 		}
 
@@ -224,7 +226,7 @@
 			if (count($_POST) > 0) 
 			{
 				$result = Controller::ProcessMessage($_POST);
-				$result = Controller::CreateView($_GET);
+				$result = ErrorHandle::SystemStatusOutput();
 			}
 			elseif ((!isset($_GET['Ajax'])) or ($_GET['Ajax'] == 0))
 			{ 

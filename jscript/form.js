@@ -19,7 +19,7 @@ function SendLogIn()
 
 function SendLogout()
 {
-	params = "Object=system&Action=logout";
+	params = "Object=System&Action=logout";
 	
 	Text = AjaxSendPOSTSync(params);
 	Res = ParseStatusXML(Text,'');
