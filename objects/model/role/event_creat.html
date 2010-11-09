@@ -1,0 +1,40 @@
+<table border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td><img src="images/rect-top-left.png" hspace="0" vspace="0" border="0"></td>
+		<td class="Recttop" valign="top">&nbsp;</td>
+		<td><img src="images/rect-top-right.png" hspace="0" vspace="0" border="0"></td>
+	</tr>
+	<tr>
+		<td class="RectLeft">&nbsp;</td>
+		<td  class="RectCenter" valign="top">
+			<table border="0" cellspacing="0" cellpadding="0"> 
+				<tr>                                        
+					<td class="TextForm" valign="top">
+						<h2>Сотрудник:</h2>
+						<p>{?Object=system&Form=currentuser}</p>
+						<hr class="modal">
+						<h2>Достуные роли:</h2><br>
+						<!-- Element Begin -->  
+						<a href="#" class="accessRole" onclick="CreateEvent('{?Object=this&Var=GET(ID)}','{?Object=this&Var=this(ID)}');">{?Object=this&Var=this(Description)}</a> 
+						<!-- Element End -->
+						<script>
+						// TODO 10 -o Natali -c Заглушка: создание списка ролей пользователя
+						</script>
+						<a href="#" class="accessRole" onclick="CreateEvent('{?Object=this&Var=GET(EventTypeId)}','2');">программист</a>
+						<a href="#" class="accessRole" onclick="CreateEvent('{?Object=this&Var=GET(EventTypeId)}','3');">директор</a>
+
+					</td>
+					<td align="right" valign="middle" width="90px"><img src="images/avatar-into.png"  vspace="0" hspace="5"></td>
+				</tr>
+
+			</table>        
+
+		</td>
+		<td class="RectRight">&nbsp;</td>
+	</tr>
+	<tr>
+		<td><img src="images/rect-bottom-left.png" hspace="0" vspace="0" border="0"></td>
+		<td  class="RectBottom">&nbsp;</td>
+		<td><img src="images/rect-bottom-right.png" hspace="0" vspace="0" border="0"></td>
+	</tr>
+			  </table>
