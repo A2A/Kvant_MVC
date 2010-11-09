@@ -230,12 +230,20 @@
 			}
 			elseif ((!isset($_GET['Ajax'])) or ($_GET['Ajax'] == 0))
 			{ 
-				$Temp_GET = array('Object'=>'System','Form'=>'Default');
+				$Temp_GET = array('Object'=>'System','Form'=>('Default'. (Controller::IsUserAuthorized()?'Auth':'UnAuth')));
 				$Template = Controller::CreateView($Temp_GET);
-				if (!isset($_GET['Object'])) $_GET['Object'] = 'System';
-				if (!isset($_GET['Form'])) $_GET['Form'] = 'Default';
-				$result = Controller::CreateView($_GET);
-				$result = str_replace('<!--#work_field#-->',$result,$Template);  
+				
+				if (isset($_GET['Object']) and isset($_GET['Form'])) $result = Controller::CreateView($_GET);
+				else $result = null;
+				
+				if (!is_null($Template) and ($Template !=''))
+				{
+					$result = str_replace('<!--#work_field#-->',$result,$Template);  
+				}
+				elseif (is_null($result) or ($result ==''))
+				{
+					$result = ErrorHandle::SystemStatusOutput();
+				}
 			}
 			else
 			{

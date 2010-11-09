@@ -12,7 +12,7 @@
 			case 'Singleton'            : $ClassFileName = 'objects/framework/singleton.class.php'; break;
 			case 'ErrorHandle'			: $ClassFileName = 'objects/framework/errorhandle.class.php'; break;
 			case 'Controller'			: $ClassFileName = 'objects/framework/controller.class.php'; break;
-			case 'System'               : $ClassFileName = 'objects/model/system.class.php'; break;
+			case 'System'               : $ClassFileName = 'objects/system/system.class.php'; break;
 			case 'BaseClass'            : $ClassFileName = 'objects/framework/baseclass.class.php'; break;
 			case 'Form'            		: $ClassFileName = 'objects/framework/form.class.php'; break;
 			case 'Entity'            		: $ClassFileName = 'objects/framework/entity.class.php'; break;
