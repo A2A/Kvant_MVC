@@ -14,7 +14,7 @@
 		protected $Email;
 
 
-		protected $Forms = array(
+		public static    $Forms = array(
 		'avatar' => 'objects/user/avatar.html',
 		'edit' => 'objects/user/edit.html',
 		'view' => 'objects/user/view.html',

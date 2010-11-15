@@ -10,7 +10,8 @@ function SendLogIn()
 	PasswordText = document.getElementById('Password').value;
 	SavePassFlag = (document.getElementById('Memor').value='On'?1:0);
 	
-	params = "Object=system&Action=login&Login="+LoginText+"&Password="+PasswordText+"&SavePass="+SavePassFlag+"";
+	params = "Object=System&DBGSESSID=404946024218800001;d=1,p=0,c=1&Action=login&Login="+LoginText+"&Password="+PasswordText+"&SavePass="+SavePassFlag+"";
+	alert(params);
 	
 	Text = AjaxSendPOSTSync(params);
 	Res = ParseStatusXML(Text,'');

@@ -15,8 +15,11 @@
 			case 'System'               : $ClassFileName = 'objects/system/system.class.php'; break;
 			case 'BaseClass'            : $ClassFileName = 'objects/framework/baseclass.class.php'; break;
 			case 'Form'            		: $ClassFileName = 'objects/framework/form.class.php'; break;
-			case 'Entity'            		: $ClassFileName = 'objects/framework/entity.class.php'; break;
-			case  'DBMySQL'            		: $ClassFileName = 'objects/dbmysql.class.php'; break;
+			case 'Entity'            	: $ClassFileName = 'objects/framework/entity.class.php'; break;
+			case 'DBMySQL'            	: $ClassFileName = 'objects/dbmysql.class.php'; break;
+			case 'Sysytem'            	: $ClassFileName = 'objects/system/system.class.php'; break;
+
+			case 'User'                 : $ClassFileName = 'objects/model/user/user.class.php'; break;
 			
 			
 			case 'Object_template'      : $ClassFileName = 'objects/model/object_template/object_template.class.php'; break;
@@ -35,8 +38,6 @@
 			case 'Event'                : $ClassFileName = 'objects/event/event.class.php'; break;
 			case 'EventList'            : $ClassFileName = 'objects/event/event_list.class.php'; break;
 
-			case 'User'                 : $ClassFileName = 'objects/user/user.class.php'; break;
-			case 'UserList'             : $ClassFileName = 'objects/user/user_list.class.php'; break;
 			case 'UserList'             : $ClassFileName = 'objects/user/user_list.class.php'; break;
 			
 			case 'Role'                 : $ClassFileName = 'objects/role/role.class.php'; break;

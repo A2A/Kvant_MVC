@@ -115,10 +115,10 @@
 		{
 			if (isset($this->ProcessData['Login']) and isset($this->ProcessData['Password']))
 			{
-				$Sql = "select ID from `users` where `LOGIN` = '".$this->ProcessData['Login']."' and `PASSWORD` = '".$this->ProcessData['Password']."'";
-				if ($SqlResult = $this->DataBase->Query($Sql))
+				$Sql = "select ID from `users` where `LOGIN` = '".$this->ProcessData['Login']."' and `PASSWORD` = MD5('".$this->ProcessData['Password']."')";
+				if ($SqlResult = DBMySQL::Query($Sql))
 				{
-					if ($Rows = $this->DataBase->FetchArray($SqlResult) and is_numeric($Rows['ID']))
+					if ($Rows = DBMySQL::FetchArray($SqlResult) and is_numeric($Rows['ID']))
 					{
 						ErrorHandle::ActionErrorHandle("Авторизациия пользователя прошла успешно.", 0); 
 						$_SESSION['CurrentUserID'] = $Rows['ID'];
@@ -129,7 +129,7 @@
 						if (isset($this->ProcessData['SavePass']))
 						{
 							$Sql = 'insert into user_sessions (`USERID`,`SESSIONID`,`EXPIREDATE`) values ('.$_SESSION['CurrentUserID'].',"'.$SessionID.'",now())';
-							$SqlResult = $this->DataBase->Query($Sql);
+							$SqlResult = DBMySQL::Query($Sql);
 							setcookie('ssp_ssid_autoload_75483882827165',$SessionID,time()+60*60*24*30);
 						}
 

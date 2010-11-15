@@ -1,44 +1,44 @@
 <table border="0" cellspacing="0" cellpadding="0"> 
-    <tr> 
-        <td><img src="images/info-top-left.png" hspace="0" vspace="0" border="0"></td> 
-        <td style="background: url('images/info-top.png');" class="InfoHeader" valign="top">Вход в систему</td> 
-        <td><img src="images/info-top-right.png" hspace="0" vspace="0" border="0"></td> 
-    </tr> 
-    <tr> 
-        <td style="background: url('images/info-left.png') repeat-y;font-size:4px;">&nbsp;</td> 
-        <td id="InfoBody" class="InfoBody" valign="top"> 
+	<tr> 
+		<td><img src="images/info-top-left.png" hspace="0" vspace="0" border="0"></td> 
+		<td style="background: url('images/info-top.png');" class="InfoHeader" valign="top">Вход в систему</td> 
+		<td><img src="images/info-top-right.png" hspace="0" vspace="0" border="0"></td> 
+	</tr> 
+	<tr> 
+		<td style="background: url('images/info-left.png') repeat-y;font-size:4px;">&nbsp;</td> 
+		<td id="InfoBody" class="InfoBody" valign="top"> 
 
-            <table border="0" cellspacing="0" cellpadding="0"> 
-                <form method="post" id='UserSend' name='UserSend'> 
-                    <input type=hidden name='Object' id='Object' value='System'> 
-                    <input type=hidden name='Action' id='Action' value='LogIn'> 
+			<table border="0" cellspacing="0" cellpadding="0"> 
+				<form method="post" id='UserSend' name='UserSend'> 
+					<input type=hidden name='Object' id='Object' value='System'> 
+					<input type=hidden name='Action' id='Action' value='LogIn'> 
 
-                    <tr>                                        
-                        <td colspan="2" class="TextForm"> 
-                            Логин<br> 
-                            <input type=text name='Login' id='Login' class='input_text' value=""><br> 
-                            Пароль<br> 
-                            <input type='password' name='Password' id='Password' class='input_pass' value=""> 
-                        </td> 
-                        <td rowspan="2" align="right" valign="middle" width="90px"><img src="images/avatar-into.png"  vspace="0" hspace="5"></td> 
-                    </tr> 
+					<tr>                                        
+						<td colspan="2" class="TextForm"> 
+							Логин<br> 
+							<input type=text name='Login' id='Login' class='input_text' value=""><br> 
+							Пароль<br> 
+							<input type='password' name='Password' id='Password' class='input_pass' value="" onkeypress="OnPressEnterLogIn(event);"> 
+						</td> 
+						<td rowspan="2" align="right" valign="middle" width="90px"><img src="images/avatar-into.png"  vspace="0" hspace="5"></td> 
+					</tr> 
 
-                    <tr> 
-                        <td align="left" valign="middle"><label class="LabelText"><input type="checkbox" name="Memor" id="Memor">Запомнить</label></td> 
-                        <td align="right"><img src="images/button-ok.png" alt="Вход" vspace="3" hspace="0" style="cursor:pointer;" onClick="SendLogIn();"></td> 
-                    </tr> 
-                    <tr>                                        
-                        <td colspan="2" align="center"><a href="#" onClick="UpdatePassword();">Получить пароль</a></td> 
-                        <td align="center"><a href="#" onClick="Help();">Помощь</a></td> 
-                    </tr>   
-                </form> 
-            </table>    
-        </td> 
-        <td style="background: url('images/info-right.png') repeat-y right;">&nbsp;</td> 
-    </tr> 
-    <tr> 
-        <td><img src="images/info-bottom-left.png" hspace="0" vspace="0" border="0"></td> 
-        <td style="background: url('images/info-bottom.png') bottom;font-size:4px;">&nbsp;</td> 
-        <td><img src="images/info-bottom-right.png" hspace="0" vspace="0" border="0"></td> 
-    </tr> 
-              </table> 
+					<tr> 
+						<td align="left" valign="middle"><label class="LabelText"><input type="checkbox" name="Memor" id="Memor">Запомнить</label></td> 
+						<td align="right"><img src="images/button-ok.png" alt="Вход" vspace="3" hspace="0" style="cursor:pointer;" onClick="SendLogIn();"></td> 
+					</tr> 
+					<tr>                                        
+						<td colspan="2" align="center"><a href="#" onClick="UpdatePassword();">Получить пароль</a></td> 
+						<td align="center"><a href="#" onClick="Help();">Помощь</a></td> 
+					</tr>   
+				</form> 
+			</table>    
+		</td> 
+		<td style="background: url('images/info-right.png') repeat-y right;">&nbsp;</td> 
+	</tr> 
+	<tr> 
+		<td><img src="images/info-bottom-left.png" hspace="0" vspace="0" border="0"></td> 
+		<td style="background: url('images/info-bottom.png') bottom;font-size:4px;">&nbsp;</td> 
+		<td><img src="images/info-bottom-right.png" hspace="0" vspace="0" border="0"></td> 
+	</tr> 
+			  </table> 

@@ -67,9 +67,10 @@
 
 		public function Query($Sql)
 		{
+			$Inst = DBMySQL::GetDB();
 			try
 			{   
-				$Resultat = mysql_query($Sql,$this->DB); 
+				$Resultat = mysql_query($Sql,$Inst->DB); 
 				return $Resultat;
 			}
 			catch (BasicException $excep)
