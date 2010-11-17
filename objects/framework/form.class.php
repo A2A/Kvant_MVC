@@ -63,8 +63,8 @@
 					$this->Content['footer'] = strstr($Content,'<!-- Element End -->',false); 
 
 					$ElementContent = strstr(strstr($Content,'<!-- Element End -->',true),'<!-- Element Begin -->',false);
-					$LoopBound = min($this->StartPos-1+$this->ElementCount,$this->count());
-					for ($i = $this->StartPos;$i<$LoopBound;$i++)
+					$LoopBound = $this->Object->count();
+					for ($i = 0;$i<$LoopBound;$i++)
 					{
 						$this->Content['element'][$i] = $ElementContent;
 					}

@@ -1,5 +1,5 @@
 <?php
-	class CollectionBasic extends AbstractBasicClass implements Countable, IteratorAggregate, ArrayAccess 
+	class CollectionBasic extends BaseClass implements Countable, IteratorAggregate, ArrayAccess 
 	{
 		protected $_ValueType;
 		protected $_Collection = array();
@@ -12,7 +12,7 @@
 		*/
 		protected function __construct($ProcessData,$valueType)
 		{
-			parent::__construct($ProcessData,$ViewData,$DataBase);
+			parent::__construct($ProcessData);
 			$this->_ValueType = $valueType;
 		}
 

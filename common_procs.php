@@ -12,19 +12,21 @@
 			case 'Singleton'            : $ClassFileName = 'objects/framework/singleton.class.php'; break;
 			case 'ErrorHandle'			: $ClassFileName = 'objects/framework/errorhandle.class.php'; break;
 			case 'Controller'			: $ClassFileName = 'objects/framework/controller.class.php'; break;
-			case 'System'               : $ClassFileName = 'objects/system/system.class.php'; break;
 			case 'BaseClass'            : $ClassFileName = 'objects/framework/baseclass.class.php'; break;
 			case 'Form'            		: $ClassFileName = 'objects/framework/form.class.php'; break;
 			case 'Entity'            	: $ClassFileName = 'objects/framework/entity.class.php'; break;
-			case 'DBMySQL'            	: $ClassFileName = 'objects/dbmysql.class.php'; break;
-			case 'Sysytem'            	: $ClassFileName = 'objects/system/system.class.php'; break;
+            case 'CollectionBasic'      : $ClassFileName = 'objects/framework/collection.basic.class.php'; break;
+            case 'CollectionDB'         : $ClassFileName = 'objects/framework/collection.db.class.php'; break;
 
+            case 'System'               : $ClassFileName = 'objects/system/system.class.php'; break;
+			case 'DBMySQL'            	: $ClassFileName = 'objects/dbmysql.class.php'; break;
+
+			case 'Role'            	    : $ClassFileName = 'objects/model/role/role.class.php'; break;
 			case 'User'                 : $ClassFileName = 'objects/model/user/user.class.php'; break;
 			
 			
 			case 'Object_template'      : $ClassFileName = 'objects/model/object_template/object_template.class.php'; break;
-			case 'AbstractRoot'         : $ClassFileName = 'objects/abstract/abstract.root.class.php'; break;
-			case 'AbstractTemplate'     : $ClassFileName = 'objects/abstract/abstract.template.class.php'; break;
+			case 'RoleList'            : $ClassFileName = 'objects/model/role/role.list.class.php'; break;
 			case 'CollectionBasic'      : $ClassFileName = 'objects/abstract/collection.basic.class.php'; break;
 			case 'CollectionDBTemplated': $ClassFileName = 'objects/abstract/collection.template.db.class.php'; break;
 			case 'CollectionTemplated'  : $ClassFileName = 'objects/abstract/collection.template.class.php'; break;

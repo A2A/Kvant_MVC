@@ -26,15 +26,32 @@
 		'defaultauth'=>'index.html',
 		'defaultunauth'=>'index_login.html',
 		'login'=>'objects/system/login_form.html',
+        'currentuser'=>'objects/system/current_user.html',
+        'rolelistwithactive'=>'objects/system/roles_list_with_active.html',
 		);
 
 		public $title = "test";
 		public $CurrentUser;
 
+        protected function __construct(&$ProcessData)  
+        {   
+            parent::__construct($ProcessData);
+            if (!isset($_SESSION['CurrentInt'])) $_SESSION['CurrentInt'] = 1;
+            $this->CurrentInt = intval($_SESSION['CurrentInt']);
+            if (!isset($_SESSION['CurrentWPTime'])) 
+            {
+/*                $int = Interval::GetObject($null,$null,$this->DataBase,$_SESSION['CurrentInt']);  
+                $_SESSION['CurrentWPTime'] =  time() - 8 * $int->Duration;
+*/            }                
+            $this->InitCurrentUser();
+        }
+
+
 		static public function GetObject(&$ProcessData=null,$id=null)
 		{
 			return static::GetObjectInstance($ProcessData,$id,__CLASS__);
 		}
+        
 		function __get($FieldName)
 		{
 			switch ($FieldName)
@@ -44,7 +61,8 @@
 				case 'CurrentUserID': return (!is_null($this->CurrentUser))?$this->CurrentUser->ID:null; break;
 			}
 		}
-		public function __set($FieldName,$Value)
+		
+        public function __set($FieldName,$Value)
 		{
 			switch ($FieldName)
 			{
@@ -75,16 +93,16 @@
 
 		public function InitCurrentUser()              
 		{
-			if (is_numeric($_SESSION['CurrentUserID']))
+			if (isset($_SESSION['CurrentUserID']) and is_numeric($_SESSION['CurrentUserID']))
 			{
 				$this->CurrentUserID = $_SESSION['CurrentUserID'];
 			}
 			elseif(isset($_COOKIE['ssp_ssid_autoload_75483882827165']) and $_COOKIE['ssp_ssid_autoload_75483882827165'] != '')
 			{
 				$Sql = 'select * from user_sessions where `SESSIONID` = "'.$_COOKIE['ssp_ssid_autoload_75483882827165'].'" LIMIT 1';
-				if ($SqlResult = $this->DataBase->Query($Sql))
+				if ($SqlResult = DBMySQL::Query($Sql))
 				{
-					if ($Rows = $this->DataBase->FetchArray($SqlResult) and is_numeric($Rows['USERID']))
+					if ($Rows = DBMySQL::FetchArray($SqlResult) and is_numeric($Rows['USERID']))
 					{
 						$_SESSION['CurrentUserID'] = $Rows['USERID'];
 						$this->CurrentUserID = $_SESSION['CurrentUserID'];
@@ -101,7 +119,7 @@
 
 		public function InitCurrentRole()              
 		{
-			if (is_numeric($_SESSION['CurrentRoleID']))
+			if (isset($_SESSION['CurrentRoleID']) and is_numeric($_SESSION['CurrentRoleID']))
 			{
 				$this->CurrentRoleID = $_SESSION['CurrentRoleID'];
 			}
@@ -137,7 +155,7 @@
 					}
 					else
 					{
-						ErrorHandle::ActionErrorHandle("Неверные имя пользователя или пароль. Авторизация не пройдена.", 0); 
+						ErrorHandle::ActionErrorHandle("Неверные имя пользователя или пароль. Авторизация не пройдена.", 1); 
 						$result = false; 
 					}
 				}
@@ -160,7 +178,7 @@
 			if(isset($_COOKIE['ssp_ssid_autoload_75483882827165']) and $_COOKIE['ssp_ssid_autoload_75483882827165'] != '')
 			{
 				$Sql = 'delete from user_sessions where `SESSIONID` = "'.$_COOKIE['ssp_ssid_autoload_75483882827165'].'"';
-				$SqlResult = $this->DataBase->Query($Sql);
+				$SqlResult = DBMySQL::Query($Sql);
 			}
 
 			setcookie('ssp_ssid_autoload_75483882827165','',time()-1);

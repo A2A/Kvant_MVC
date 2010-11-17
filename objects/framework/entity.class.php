@@ -27,10 +27,10 @@
 
 		protected function Refresh()
 		{
-			if (is_int($this->ID))
+			if (intval($this->ID) >0)
 			{
 				$this->Modified = false;
-				$sql = 'Select * from '.$this->DBTableName.' where ID = '.$this->ID;
+				$sql = 'Select * from '.$this->DBTableName.' where ID = '.intval($this->ID);
 				$hSql = $this->DataBase->Query($sql);
 				while ($fetch = $this->DataBase->FetchObject($hSql)) 
 				{

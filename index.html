@@ -15,17 +15,18 @@
 		<!--BASE href="http://www.a2a-consult.ru/"http://www.a2a-consult.ru/-->
 		<title>{?Object=system&Var=title}</title>
 
-	</head>
+	</head>     
+        <script src="jscript/gant.js"></script>  
+        <script src="jscript/dateformat.js"></script>  
+        <script src="jscript/windows.js"></script>            
+        <script src="jscript/loadHtml.js"></script> 
+        <script src="jscript/form.js"></script>  
+        
 	<body style="background: #e4eaf0;" onload="WarningMessageOnLoad('ErrorMessage');"> 
-		<script src="jscript/gant.js"></script>  
-		<script src="jscript/dateformat.js"></script>  
-		<script src="jscript/windows.js"></script>            
-		<script src="jscript/loadHtml.js"></script> 
-		<script src="jscript/form.js"></script>  
-		<div id="ErrorMessage" style="display:none;position: absolute;"><!--#error_field#--></div>
+	<div id="ErrorMessage" style="display:none;position: absolute;"><!--#error_field#--></div>
 
 		<div id="InfoWindow">
-			<div class="ButtonLightBlue" align="right" style="width:250px;"><nobr><img src="images/button-blue-1.png" class="img" align="left" hspace="0"><img src="images/button-blue-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonLightBlue" onClick="ShowAllMessage();" style="width:240px;">Показать все сообщения</a></nobr></div> 
+			<div class="ButtonLightBlue" align="right" style="width:250px;"><nobr><img src="images/button-blue-1.png" class="img" align="left" hspace="0"><img src="images/button-blue-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonLightBlue" onClick="ShowAllMessages();" style="width:240px;">Показать все сообщения</a></nobr></div> 
 		</div>
 		<div id="ModalWindow"  onmousemove="this.style.display='block';" onMouseout="DivHide('ModalWindow');">
 		</div>
@@ -49,7 +50,7 @@
 						Система Сбалансированных Показателей
 						</a>
 					</div>
-					<div class="Role">{Object=system&Form=RoleListWithActive}</div>
+					<div class="Role">{?Object=RoleList&Form=RoleListWithActive}</div>
 
 				</td>
 			</tr>

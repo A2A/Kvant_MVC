@@ -137,7 +137,7 @@
 						$Object = $ClassName::GetObject($Data,null);
 						if (!call_user_func(array($Object,$MethodName)))
 						{
-							ErrorHandle::ActionErrorHandle('Ошибка при вызове обработчика события '.$Action.' класса '.$ClassName.'.', 0);
+							ErrorHandle::ActionErrorHandle('Ошибка при вызове обработчика события '.$Action.' класса '.$ClassName.'.', 1);
 						}
 						else
 						{

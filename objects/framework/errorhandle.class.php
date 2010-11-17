@@ -30,7 +30,7 @@
 		public static function ActionErrorHandle($StringError, $State = 0)
 		{
 			$Eh = static::GetInstance();
-			$Eh->ActionStatus = false;
+			$Eh->ActionStatus = $Eh->ActionStatus and ($State==0);
 			$Eh->ErrorState = max($State, $Eh->ErrorState);   
 			$Eh->Errors[] = array('state' =>$State, 'message' => ($State==0 ? '' : (get_called_class().':')) .$StringError);
 		}

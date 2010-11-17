@@ -10,12 +10,17 @@ function SendLogIn()
 	PasswordText = document.getElementById('Password').value;
 	SavePassFlag = (document.getElementById('Memor').value='On'?1:0);
 	
-	params = "Object=System&DBGSESSID=404946024218800001;d=1,p=0,c=1&Action=login&Login="+LoginText+"&Password="+PasswordText+"&SavePass="+SavePassFlag+"";
-	alert(params);
-	
+	params = "Object=System&Action=login&Login="+LoginText+"&Password="+PasswordText+"&SavePass="+SavePassFlag+"";
 	Text = AjaxSendPOSTSync(params);
 	Res = ParseStatusXML(Text,'');
-	if (Res['ActionStatus'] == 0) location.reload();
+	if (Res['ActionStatus'] == 0) 
+    {
+        location.reload();
+    }
+    else
+    {
+    }
+        
 }
 
 function SendLogout()
@@ -59,22 +64,6 @@ function UpdatePassword()
 	AjaxSendGET(Url,DrowPassRequestWindow); 
 }
 
-/*=============================================================================
-	   
-/**************** Авто подсказка ***************************************/
-function SelectContractor(Text)
-{
-	document.getElementById('ContractorDiv').style.display = 'block'; 
-	document.getElementById('ContractorDiv').innerHTML = '<table border="0" cellspacing=0 cellpadding=0 id="ListUsers" width="100%">'+ 
-   '<tr><td class="CellLeft" id="td0"></td><tr><td id="ValueTd1">1</td><td class="CellLeft" id="td1" onclick="SetSelectValue(1,\'Contractor\')">Вася Васичкин</td> '+
-	'    <td class="Cell" onclick="SetSelectValue(1,\'Contractor\')">Программист, бухгалтер</td> </tr>'+ 
-	'<tr><td id="ValueTd2">2</td><td class="CellLeft" id="td2" onclick="SetSelectValue(2,\'Contractor\')">Молев Д.В.</td> '+
-	'    <td class="Cell" onclick="SetSelectValue(2,\'Contractor\')">разработчик</td></tr>    '+
-   ' <tr><td id="ValueTd3">3</td><td class="CellLeft" id="td3" onclick="SetSelectValue(3,\'Contractor\')">Куликов А.А,</td>   '+
-	'    <td class="Cell" onclick="SetSelectValue(3,\'Contractor\')">секретарь</td </tr>  </table> ' + Text;
-	//alert("form.js SelectContractor()");       
-}
-
 function SelectStaff(Text)
 {
 	document.getElementById('UserDiv').style.display = 'block'; 
@@ -84,6 +73,20 @@ function SelectStaff(Text)
 	//alert("form.js SelectContractor()");       
 }
 /**********************************************************************/
+
+/**************** Авто подсказка ***************************************/
+function SelectContractor(Text)
+{
+    document.getElementById('ContractorDiv').style.display = 'block'; 
+    document.getElementById('ContractorDiv').innerHTML = '<table border="0" cellspacing=0 cellpadding=0 id="ListUsers" width="100%">'+ 
+   '<tr><td class="CellLeft" id="td0"></td><tr><td id="ValueTd1">1</td><td class="CellLeft" id="td1" onclick="SetSelectValue(1,\'Contractor\')">Вася Васичкин</td> '+
+    '    <td class="Cell" onclick="SetSelectValue(1,\'Contractor\')">Программист, бухгалтер</td> </tr>'+ 
+    '<tr><td id="ValueTd2">2</td><td class="CellLeft" id="td2" onclick="SetSelectValue(2,\'Contractor\')">Молев Д.В.</td> '+
+    '    <td class="Cell" onclick="SetSelectValue(2,\'Contractor\')">разработчик</td></tr>    '+
+   ' <tr><td id="ValueTd3">3</td><td class="CellLeft" id="td3" onclick="SetSelectValue(3,\'Contractor\')">Куликов А.А,</td>   '+
+    '    <td class="Cell" onclick="SetSelectValue(3,\'Contractor\')">секретарь</td </tr>  </table> ' + Text;
+    //alert("form.js SelectContractor()");       
+}
 
 function AutoSelectInText(ObjId,event,ObjectName,Filtered)
 {
