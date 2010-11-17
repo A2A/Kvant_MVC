@@ -91,8 +91,7 @@ function GetTaskInfo(ID,event)
 
 function DivHide(DivId)
 {
-
-	document.getElementById('ModalWindow').style.display = 'none';   
+	document.getElementById(DivId).style.display = 'none';   
 }
 
 

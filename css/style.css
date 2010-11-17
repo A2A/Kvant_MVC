@@ -1,3 +1,17 @@
+@font-face {
+font-family: Verdana;
+src: url('css/verdana.ttf');
+font-weight: normal;
+font-style: normal;
+}
+
+@font-face {
+font-family: Tahoma;
+src: url('css/tahoma.ttf');
+font-weight: normal;
+font-style: normal;
+}
+
 BODY
 {
 	margin: 0px;
@@ -22,18 +36,28 @@ A:Hover
 	text-decoration: underline;   
 }
 
+
+h2, h1, h3
+{
+	color: #43586e;
+	font-size: 14px;
+	font-family: Tahoma;
+	font-weight: bold;
+	display: inline;
+}
 p
 {
+	padding: 0px;
+	margin: 0px;
+	color: #000000;
+	font-weight: 100;  
 	font-family: Arial,Verdana;
-	font-size: 12px;
+	font-size: 11px;
 }
 
-table.WorkPlace
-{
-	 width: 1044px;
-	 border-bottom: 2px solid #e4eaf0;
 
-}
+
+/***********************/
 
 td.Header
 {
@@ -119,7 +143,10 @@ a.left, a.left-red, a.left-green, a.left-yellow, a.event
 li.left, li.left-red, li.left-green, li.left-yellow
 {
 	margin: 0px;
-	padding: 0px;
+	padding: 0px;  
+	overflow: hidden;
+	width: 190px; 
+	height: 16px;                
 }
 
 .green, li.left-green, a.left-green
@@ -144,6 +171,9 @@ li.event
 	margin: 0px;
 	padding: 0px;
 	color: #000000;  
+	overflow: hidden;
+	width: 196px; 
+	height: 16px;
 }
  
 .leftcol
@@ -161,17 +191,23 @@ li.event
 div.level-1, div.level-
 {
 	margin-left: 0px;
-	
-	
+	overflow: hidden;
+	width: 196px; 
+	height: 16px;
 }
 div.level-2
 {
 	margin-left: 13px;
-	
+	overflow: hidden;
+	width: 183px; 
+	height: 16px;
 }
 div.level-3, div.level-4, div.level-5, div.level-6, div.level-7, div.level-8, div.level-9, div.level-10, div.level-11
 {
 	margin-left: 26px;
+	overflow: hidden;
+	width: 170px; 
+	height: 16px;
 }
 
 div.LeftButtonProject
@@ -203,7 +239,7 @@ div.LeftButtonEvent
 }
 a.leftbuttom_project, a.leftbuttom_task, a.leftbuttom_event
 {
-	width:208px; 
+	width:180px; 
 	height:30px;
 	display: block;
 	padding-left: 30px;
@@ -229,25 +265,6 @@ a.leftbuttom_event
 
 /* конец левая колонка */  
 
-h2, h1, h3
-{
-	color: #43586e;
-	font-size: 14px;
-	font-family: Tahoma;
-	font-weight: bold;
-	display: inline;
-}
-p
-{
-	padding: 0px;
-	margin: 0px;
-	color: #000000;
-	font-weight: 100;
-}
-
-
-
-/***********************/
 
 .img
 {
@@ -305,6 +322,8 @@ table.EventCaption
 	vertical-align: middle;
 	padding-left: 5px;
 	color: #325c84;
+	font-family: Tahoma;
+	font-size: 14px;
 	font-weight: 900;  
 	
 }
@@ -321,12 +340,18 @@ table.EventCaption .CaptionProperty
 {
 	color: #46749f;
 	font-weight: 100;
+	font-size: 11px;
+	font-family: Tahoma;
+
    
 }
 .RowData
 {
 	color: #af0000;
 	font-weight: 100;
+	font-size: 11px;
+	font-family: Tahoma;
+
 }
 
 table.Event
@@ -335,6 +360,8 @@ table.Event
 	margin-left: 5px;
 	margin-right: 5px;
 	margin-bottom: 10px;
+	font-family: Tahoma;
+	font-size: 11px;
 }
 .Event .LeftColDark,.EventView .LeftColDark, .Task .LeftColDark
 {
@@ -349,6 +376,8 @@ table.Event
 	border-right: 1px solid #ecf1fa;
 	background: #e8f1ff;
 	color: #46749f;
+	font-family: Tahoma;
+	font-size: 11px;
 	font-weight: 900;
 	
 }
@@ -365,6 +394,9 @@ table.Event
 	border-right: 1px solid #ecf1fa;
 	background: #f9fbff;
 	color: #46749f;
+	font-family: Tahoma;
+	font-size: 11px;
+	
 	font-weight: 900;
 	
 }
@@ -374,24 +406,35 @@ table.Event
 	width: 150px;
 }
 
-.Event .input_text, .Task .input_text, .input_timedate2   
+.Event .input_text,.EventCaption .input_text, .Task .input_text, .input_timedate2   
 {
-	height: 18px;
+	height: 17px;
 	text-align: left;
 	vertical-align: middle;
 	border: 1px solid #d8d8d8;
 	background: #ffffff;
-	color: #46749f;
+	color: #353535;
+	font-family: Tahoma;
+	font-size: 11px;
 	width: 314px;
+}
+.EventCaption .input_text
+{
+	background: #f9fbff;
+	color: #325c84;
+	
 }
 .input_timedate4
 {
-	height: 18px;
+	height: 17px;
 	text-align: left;
 	vertical-align: middle;
 	border: 1px solid #d8d8d8;
 	background: #ffffff;
-	color: #46749f;
+	color: #353535;
+	font-family: Tahoma;
+	font-size: 11px;
+	
 	width: 40px;
 }
 .Event .input_textarea, .Task .input_textarea
@@ -401,14 +444,16 @@ table.Event
 	vertical-align: middle;
 	border: 1px solid #d8d8d8;
 	background: #ffffff;
-	color: #46749f;
+	color: #353535;
+	font-family: Tahoma;
+	font-size: 11px;
 	width: 332px; 
 	height: 110px;
 	overflow: hidden;
 }
 .input_textfile
 {
-	height: 18px;
+	height: 17px;
 	text-align: left;
 	vertical-align: middle;
 	border: 1px solid #d8d8d8;
@@ -427,6 +472,7 @@ table.Event
 	width: 300px;  
 	cursor: pointer;
 }
+
 .input_timedate2
 {
 	width: 20px;
@@ -435,14 +481,16 @@ table.Event
 
 .CenterRow, .CenterRowTop
 {
-	height: 29px;
+	height: 28px;
 	text-align: left;
 	vertical-align: middle;
 	padding-left: 5px;
 	border-bottom: 1px solid #e4ebf7;
 	border-right: 0px solid #ecf1fa;
 	background: #ffffff;
-	color: #46749f;
+	color: #353535;
+	font-family: Tahoma;
+	font-size: 11px;
 	width: 314px; 
 } 
 
@@ -456,7 +504,10 @@ table.Event
 	border-bottom: 1px solid #e4ebf7;
 	border-right: 1px solid #ecf1fa;
 	background: #ffffff;
-	color: #000000;
+	color: #353535;
+	font-family: Tahoma;
+	font-size: 11px;
+	
 	font-weight: 100;
 	width: 337px; 
 	height: 130px;
@@ -483,17 +534,27 @@ table.Event
 	border-right: 1px solid #ecf1fa;
 	background: #e8f1ff;
 	color: #46749f;
+	font-family: Tahoma;
+	font-size: 11px;
 	font-weight: 900;
 }
-#EventList .CellTop
+#EventList .CellTop, #EventList .CellTopLeft
 {
+	border-left: 0px solid #ecf1fa;
 	border-top: 1px solid #e4ebf7; 
 	border-bottom: 1px solid #e4ebf7; 
 	border-right: 1px solid #ecf1fa;
 	background: #f9fbff;
 	color: #46749f;
+	font-family: Tahoma;
+	font-size: 11px;
 	font-weight: 900;
 }
+#EventList .CellTopLeft
+{
+	border-left: 1px solid #ecf1fa;
+}
+
 #EventList .CellTop50
 {
 	border-top: 1px solid #e4ebf7; 
@@ -502,23 +563,66 @@ table.Event
 	width: 50px;
 	background: #f9fbff;
 	color: #46749f;
+	font-family: Tahoma;
+	font-size: 11px;
 	font-weight: 900;
+	padding-left: 5px;
 }
 #EventList .CellLeft
 {
 	border-left: 1px solid #ecf1fa; 
 	border-bottom: 1px solid #e4ebf7; 
 	border-right: 1px solid #ecf1fa;
-	text-align:left;
-	padding-left: 5px;
+	text-align:center;
+	font-family: Tahoma;
+	font-size: 11px;
+	width: 30px;
 	cursor: pointer;
 }
-#EventList .Cell
+
+#EventList td.Cell
 {
 	border-bottom: 1px solid #e4ebf7; 
 	border-right: 1px solid #ecf1fa;
 	text-align:left;
-}   
+	font-family: Tahoma;
+	font-size: 11px;
+	padding-left: 5px;  
+	height: 20px;
+}  
+
+.TdWidth80
+{
+	overflow: hidden;
+	width: 80px; 
+	display: block;
+} 
+
+.TdWidth40
+{
+	overflow: hidden;
+	width: 40px; 
+	display: block;
+} 
+
+.TdWidth60
+{
+	overflow: hidden;
+	width: 80px; 
+	display: block;
+} 
+.TdWidth84
+{
+	overflow: hidden;
+	width: 84px; 
+	display: block;
+} 
+.TdWidth90
+{
+	overflow: hidden;
+	width: 90px; 
+	display: block;
+} 
 
 .ButtonRow, .ButtonRowTop  
 {
@@ -547,7 +651,7 @@ table.Event
 	cursor: pointer;  
 }
 
-.ButtonLightBlue, .ButtonOrange, .ButtonLightBlueBig, .ButtonBrose
+.ButtonLightBlue, .ButtonOrange, .ButtonOrange1, .ButtonLightBlueBig, .ButtonBrose
 {
 	display:block;
 	margin: 2px; 
@@ -571,8 +675,14 @@ a.ButtonLightBlue:hover, a.ButtonOrange:hover, a.ButtonLightBlueBig:hover, a.But
 {
 	background: #ffecb9;  
 }
+.ButtonOrange1
+{
+	background: url('../images/button-orange1-fon.png') repeat-x;
+	height:23px;
+	
+}
 
-A.ButtonLightBlue, A.ButtonOrange, A.ButtonLightBlueBig
+A.ButtonLightBlue, A.ButtonOrange, A.ButtonOrange1, A.ButtonLightBlueBig
 {
 	color: #1f3652;
 	font-size: 11px;
@@ -587,29 +697,34 @@ A.ButtonLightBlue, A.ButtonOrange, A.ButtonLightBlueBig
 	width:74px; 
 	text-align: center;
 	cursor: pointer;
-	
 }
+
 A.ButtonLightBlue, A.ButtonLightBlueBig
 {
 	color: #1f3652;
 	border-top:1px solid #b4cdeb;   
 	border-bottom:1px solid #b4cdeb; 
 }
-A.ButtonOrange
+
+A.ButtonOrange                                     
 {
 	color: #464646;
 	border-top:1px solid #e8d192;   
 	border-bottom:1px solid #e8d192; 
+}
+A.ButtonOrange1
+{
+	color: #464646;
+	width:70px;
+	padding-top: 6px; 
+	cursor:default;
+	text-decoration: none;   
 }
 A.ButtonLightBlueBig
 {
 	width: 100px;
 }
 
-.BigButton
-{
-	width: 200px;
-}
 
 .ButtonBlackBlueSmall, .ButtonLightBlueSmall
 {
@@ -618,9 +733,8 @@ A.ButtonLightBlueBig
 	height:17px;
 	padding:0px;
 	margin: 1px; 
-   
-	
 }
+
 .ButtonpassiveBlueSmall, .ButtonactiveBlueSmall
 {
 	display:block; 
@@ -628,10 +742,8 @@ A.ButtonLightBlueBig
 	height:17px;
 	padding:0px;
 	margin-left: 1px; 
-	   
-   
-	
 }
+
 A.ButtonBlackBlueSmall, A.ButtonLightBlueSmall, A.ButtonpassiveBlueSmall, A.ButtonactiveBlueSmall
 {
 	color: #1f3652;
@@ -664,6 +776,23 @@ a.ButtonLightBlueSmall, A.ButtonactiveBlueSmall
 	border-bottom:1px solid #b4cdeb;
 }
 
+
+.BigButton
+{
+	width: 205px;
+}
+
+div.BigButton
+{
+	margin-top: 2px;  
+	margin-bottom: 3px;  
+}
+
+A.BigButton
+{
+	width: 200px;
+}
+
 .DivSelectForm
 {
 	text-align: left;
@@ -684,6 +813,17 @@ td.EventType
 	text-align: center;
 	vertical-align: middle;
 	cursor: pointer;
+	color: #46749f;
+	font-size: 11px;
+	font-family: Tahoma;
+	font-weight: 900;
+}
+.FullListText
+{
+	color: #535353;
+	font-size: 11px;
+	font-family: Tahoma;
+	font-weight: 900;
 }
 
 .SelectForm
