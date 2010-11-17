@@ -1,5 +1,3 @@
-
-
 .ButtonRow, .ButtonRowTop  
 {
 	height: 29px;
@@ -55,12 +53,12 @@ a.ButtonLightBlue:hover, a.ButtonOrange:hover, a.ButtonLightBlueBig:hover, a.But
 A.ButtonLightBlue, A.ButtonOrange, A.ButtonLightBlueBig
 {
 	color: #1f3652;
-	font-size: 10px;
+	font-size: 11px;
 	font-family: Tahoma;
 	display:block;
 	height:12px;
 	padding-top:4px;
-	padding-bottom: 4px; 
+	padding-bottom: 3px; 
 	margin:0px;
 	border-left: 0px;  
 	border-right: 0px;  
@@ -84,10 +82,6 @@ A.ButtonOrange
 A.ButtonLightBlueBig
 {
 	width: 100px;
-}
-.BigButton
-{
-	width: 200px;
 }
 
 .ButtonBlackBlueSmall, .ButtonLightBlueSmall
@@ -123,7 +117,7 @@ A.ButtonBlackBlueSmall, A.ButtonLightBlueSmall, A.ButtonpassiveBlueSmall, A.Butt
 	margin-right: 2px; 
 	border-left: 0px;  
 	border-right: 0px;  
-	width:50px; 
+	width: 50px; 
 	text-align: center;
 	font-family: Tahoma;
 	font-size: 10px;    	
@@ -141,4 +135,23 @@ a.ButtonLightBlueSmall, A.ButtonactiveBlueSmall
 	background: #e8f1ff; 
 	border-top:1px solid #b4cdeb;   
 	border-bottom:1px solid #b4cdeb;
+}
+
+
+.BigButton
+{
+	width: 205px;
+}
+
+A.BigButton
+{
+	width: 195px;
+}
+
+.SelectCalendar
+{
+	width: 74px;
+	height: 17px;
+	padding-top: 2px;
+	padding-left: 4px;
 }

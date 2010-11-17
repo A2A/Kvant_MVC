@@ -16,17 +16,17 @@
 		<title>{?Object=system&Var=title}</title>
 
 	</head>     
-        <script src="jscript/gant.js"></script>  
-        <script src="jscript/dateformat.js"></script>  
-        <script src="jscript/windows.js"></script>            
-        <script src="jscript/loadHtml.js"></script> 
-        <script src="jscript/form.js"></script>  
-        
+		<script src="jscript/gant.js"></script>  
+		<script src="jscript/dateformat.js"></script>  
+		<script src="jscript/windows.js"></script>            
+		<script src="jscript/loadHtml.js"></script> 
+		<script src="jscript/form.js"></script>  
+		
 	<body style="background: #e4eaf0;" onload="WarningMessageOnLoad('ErrorMessage');"> 
 	<div id="ErrorMessage" style="display:none;position: absolute;"><!--#error_field#--></div>
 
 		<div id="InfoWindow">
-			<div class="ButtonLightBlue" align="right" style="width:250px;"><nobr><img src="images/button-blue-1.png" class="img" align="left" hspace="0"><img src="images/button-blue-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonLightBlue" onClick="ShowAllMessages();" style="width:240px;">Показать все сообщения</a></nobr></div> 
+			<div class="ButtonLightBlue BigButton" align="right"><nobr><img src="images/button-blue-1.png" class="img" align="left" hspace="0"><img src="images/button-blue-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonLightBlue BigButton" onClick="ShowAllMessages();">Показать все сообщения</a></nobr></div> 
 		</div>
 		<div id="ModalWindow"  onmousemove="this.style.display='block';" onMouseout="DivHide('ModalWindow');">
 		</div>
@@ -68,10 +68,10 @@
 					{?Object=EventList&Form=list_menu}
 					
 					
-					<div class="ButtonLightBlue" align="right" style="width:210px;"><nobr><img src="images/button-blue-1.png" class="img" align="left" hspace="0"><img src="images/button-blue-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonLightBlue" style="width:200px;" onClick="SendLogout();">
+					<div class="ButtonLightBlue BigButton" style="margin-left: 10px;" align="right"><nobr><img src="images/button-blue-1.png" class="img" align="left" hspace="0"><img src="images/button-blue-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonLightBlue BigButton" onClick="SendLogout();">
 								Выход из системы
 							</a></nobr></div> 
-				</td> 
+			</td> 
 				<td class="Page" valign="top" id="PageMain1" align="left"> 
 					<div id="NoActionDesktop" align="center"> </div>
 					<div id="ActionDesktop" align="center"></div>  
