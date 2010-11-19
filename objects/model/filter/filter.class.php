@@ -2,19 +2,19 @@
 	class Filter extends Entity 
 	{
 		protected $DBTableName = '';    
-		protected $Forms = array(
-		'entity' => 'objects/filter/entity.html'      
+		public static $Forms = array(
+		'entity' => 'objects/model/filter/entity.html'      
 		);
 
 		public $Dock = 'nodock'; 
-				   
-		protected static $SQLFields = array(
+
+		public static $SQLFields = array(
 		'ID' => 'ID',
 		'Description' => 'DESCRIPTION',
 		'TypeID' => 'TYPEID'
 		);
-		
-		protected static $SQLSubObjectTable = array(
+
+		public static $SQLSubObjectTable = array(
 		'event_types' => 'tpe_types',
 		'task_types' => 'tpe_types',
 		'project_types' => 'tpe_types',
@@ -22,22 +22,20 @@
 		'task' => 'tasks',
 		'project' => 'projects',
 		);
-		
-		public function __construct(&$ProcessData,&$ViewData,&$DataBase,$ID=null) 
-		{
-			$this->DBTableName = $ViewData['SubObject'];    
-			parent::__construct($ProcessData,$ViewData,$DataBase,$ID);
-			$this->Refresh();  
-			//print_r($this);
+
+		public function __construct(&$ProcessData,$ID=null)  
+		{   
+			//$this->DBTableName = $ViewData['SubObject'];   
+			$this->DBTableName = 'tpe_types';
+			parent::__construct($ProcessData,$ID);
+			$this->Refresh();     
+			
 		}
 
-	
-		static public function GetObject(&$ProcessData,&$ViewData,&$DataBase,$id=null)
+
+		static public function GetObject(&$ProcessData,$ID=null)
 		{
-			//return static::GetObjectInstance($ProcessData,$ViewData,$DataBase,$id,__CLASS__);
-			$ClassName = __CLASS__;
-			return new $ClassName($ProcessData,$ViewData,$DataBase,$id); 
+			return static::GetObjectInstance($ProcessData,$ID,__CLASS__);
 		}
-		
 	}  
 ?>

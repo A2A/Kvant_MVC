@@ -3,9 +3,9 @@
 	{
 		protected $DBTableName = 'roles';
 		public static $Forms = array(
-		'list' => 'objects/role/list_menu.html',
+		'list' => 'objects/model/role/list_menu.html',
 		'rolelistwithactive' => 'objects/model/role/roles_list_with_active.html',
-		'event_creat' => 'objects/role/event_creat.html',
+		'event_creat' => 'objects/model/role/event_creat.html',
 		);
 
 		public static $SQLFields = array(
@@ -58,36 +58,37 @@
 			}
 		}
 		*/
-        protected function Refresh()
-        {
-            $System = System::GetObject();
-            $null = null;
-            $sql = '
-SELECT 
-  `roles` .`ID`,
-  `roles`.`DESCRIPTION`
-FROM 
-  `roles` CROSS JOIN `dru` on `dru`.`ROLEID` = `roles`.`ID` and `dru`.`USERID`="'.$System->CurrentUserID.'"';
-            
-            if (isset($this->ViewData['Filter']) and is_array($this->ViewData['Filter']))
-            {
-                $Conditions = '';
-                foreach ($this->ViewData['Filter'] as $FilterRec)
-                {
-                    $Conditions = $Conditions.($Conditions==''?'':' and ').$this->CreateQueryFilter($FilterRec);
-                }
-                if ($Conditions != '') $sql .= ' where '.$Conditions;
-            }
-            // TODO 10 -o N -c Сообщение для отладки: SQL
-                ErrorHandle::ErrorHandle($sql);
+		
+		protected function Refresh()
+		{
+			$System = System::GetObject();
+			$null = null;
+			$sql = '
+				SELECT 
+				  `roles` .`ID`,
+				  `roles`.`DESCRIPTION`
+				FROM 
+				  `roles` CROSS JOIN `dru` on `dru`.`ROLEID` = `roles`.`ID` and `dru`.`USERID`="'.$System->CurrentUserID.'"';
+			
+			if (isset($this->ViewData['Filter']) and is_array($this->ViewData['Filter']))
+			{
+				$Conditions = '';
+				foreach ($this->ViewData['Filter'] as $FilterRec)
+				{
+					$Conditions = $Conditions.($Conditions==''?'':' and ').$this->CreateQueryFilter($FilterRec);
+				}
+				if ($Conditions != '') $sql .= ' where '.$Conditions;
+			}
+			// TODO 10 -o N -c Сообщение для отладки: SQL
+				ErrorHandle::ErrorHandle($sql);
 
-            $hSql = DBMySQL::Query($sql);
-            while ($fetch = DBMySQL::FetchObject($hSql)) 
-            {
-                $ClassName = $this->_ValueType;
-                $this->add($ClassName::GetObject($null,$fetch->ID));
-            }
-        }
+			$hSql = DBMySQL::Query($sql);
+			while ($fetch = DBMySQL::FetchObject($hSql)) 
+			{
+				$ClassName = $this->_ValueType;
+				$this->add($ClassName::GetObject($null,$fetch->ID));
+			}
+		}
 
 		public function __construct($ProcessData)
 		{

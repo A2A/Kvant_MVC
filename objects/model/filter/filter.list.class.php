@@ -1,31 +1,32 @@
 <?php
-	class FilterList extends CollectionDBTemplated
+	class FilterList extends CollectionDB
 	{
 		protected $DBTableName = '';    
-		protected $Forms = array(
-		'list_select' => 'objects/filter/select.html',
-		'tpe_types' => 'objects/filter/tpe_types.html',
-		'tpe_class' => 'objects/filter/tpe_class.html',
+		public static $Forms = array(
+		'list_select' => 'objects/model/filter/select.html',
+		'tpe_types' => 'objects/model/filter/tpe_types.html',
+		'tpe_class' => 'objects/model/filter/tpe_class.html',
 		);
 
 		
-		public function __construct($ProcessData,$ViewData,$DataBase)
-		{
-			parent::__construct($ProcessData,$ViewData,$DataBase,'Filter');
+		public function __construct(&$ProcessData,$ID=null)  
+		{   
+			parent::__construct($ProcessData,'Filter');
 			$this->Refresh();
+	 
 		}
 		
 		
-		static public function GetObject(&$ProcessData,&$ViewData,&$DataBase,$id=null)
+		static public function GetObject(&$ProcessData,$ID=null)
 		{
-			return static::GetObjectInstance($ProcessData,$ViewData,$DataBase,$id,__CLASS__);
+			return static::GetObjectInstance($ProcessData,$ID,__CLASS__);
 		}
-		
 		
 		protected function Refresh()
 		{
 			$null = null;
-			$this->DBTableName = $this->ViewData['SubObject'];
+			// TODO 1 -o Natali -c Функционал: не работает ФИЛЬТР, точнее не получить данные из  ViewData ($_GET)
+			$this->DBTableName = 'tpe_types';//$this->ViewData['SubObject'];
 			$sql = 'Select * from '.$this->DBTableName;
 			
 			if (isset($this->ViewData['Filter']) and is_array($this->ViewData['Filter']))
@@ -37,15 +38,11 @@
 				}
 				if ($Conditions != '') $sql .= ' where '.$Conditions;
 			}
-			// TODO 10 -o N -c Сообщение для отладки: SQL
-				$this->ErrorHandle($sql);    
 				
 			$hSql = $this->DataBase->Query($sql);   
 			$ClassName = $this->_ValueType;
-				 //$this->ErrorHandle($ClassName);    
 			while ($fetch = $this->DataBase->FetchObject($hSql)) 
 			{
-				//print_r($fetch);
 				$this->add($ClassName::GetObject($null,$this->ViewData,$this->DataBase,$fetch->ID));
 			}
 		}
