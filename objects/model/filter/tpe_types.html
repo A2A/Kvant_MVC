@@ -1,0 +1,31 @@
+<table  border="0" cellspacing="5" cellpadding="0" width="780px" align="center">       
+	<tr>
+		<td>&nbsp;</td>
+		<td class="FullListText">Полный список:</td>
+	</tr>
+	<tr>
+		<td>   
+			<table  border="0" cellspacing="5" cellpadding="0" width="580px" align="left">
+			<!-- Element Begin -->  
+					<tr>  
+					<td class="CaptionType">
+						{?Object=this&Var=this(Description)}
+					</td>
+					</tr>
+					<tr>  
+					<td>  
+						{?Object=TpeClassList&Form=list&Filter[0][Field]=TypeID&Filter[0][Oper]=eq&Filter[0][Val]=this(ID)}
+					</td>
+					</tr>
+					
+					<!-- Element End -->
+				
+			</table>
+		</td>
+		<td valign="top">  
+			  {?Object=FilterList&Form=list_select&SubObject=tpe_types}
+		
+		</td>
+	</tr>
+
+</table>
