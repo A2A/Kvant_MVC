@@ -284,7 +284,15 @@
 			$LoopBound =count($this->Content['element']);
 			for ($i = 0;$i<$LoopBound;$i++)
 			{
-				$Cont = $this->Content['element'][$i];
+                if (isset($this->Content['element'][$i]))
+                {
+				    $Cont = $this->Content['element'][$i];
+                }
+                else
+                {   $Cont = '';
+                    $qqq='test';
+                }
+                
 				foreach($this->RectCollection['element'][$i] as $Rect)
 				{
 					$Cont = str_replace($Rect["Pattern"], $Rect["Result"], $Cont);

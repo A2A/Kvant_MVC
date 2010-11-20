@@ -22,9 +22,11 @@
 			case 'DBMySQL'            	: $ClassFileName = 'objects/dbmysql.class.php'; break;
 
             case 'Division'             : $ClassFileName = 'objects/model/division/division.class.php'; break;
+            case 'DivisionList'         : $ClassFileName = 'objects/model/division/division.list.class.php'; break;
 			case 'Role'            	    : $ClassFileName = 'objects/model/role/role.class.php'; break;
             case 'User'                 : $ClassFileName = 'objects/model/user/user.class.php'; break;
-			case 'DRU'                  : $ClassFileName = 'objects/model/dru/dru.class.php'; break;
+            case 'DRU'                  : $ClassFileName = 'objects/model/dru/dru.class.php'; break;
+			case 'DRUList'                  : $ClassFileName = 'objects/model/dru/dru.list.class.php'; break;
 			
 			case 'Project'              : $ClassFileName = 'objects/model/project/project.class.php'; break;
 			case 'ProjectList'          : $ClassFileName = 'objects/model/project/project.list.class.php'; break;
