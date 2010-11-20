@@ -31,8 +31,8 @@
 			{
 				$this->Modified = false;
 				$sql = 'Select * from '.$this->DBTableName.' where ID = '.intval($this->ID);
-				$hSql = $this->DataBase->Query($sql);
-				while ($fetch = $this->DataBase->FetchObject($hSql)) 
+				$hSql = DBMySQL::Query($sql);
+				while ($fetch = DBMySQL::FetchObject($hSql)) 
 				{
 					$this->Description = $fetch->DESCRIPTION;
 				}
@@ -44,10 +44,10 @@
 			if (!is_int($this->ID))
 			{
 				$sql = 'insert into '.$this->DBTableName.' (ID, Description) values (NULL,"'.$this->Description.'")';
-				$hSql = $this->DataBase->Query($sql);
+				$hSql = DBMySQL::Query($sql);
 				if ($hSql)
 				{
-					$this->ID = $this->DataBase->InsertID($hSql);
+					$this->ID = DBMySQL::InsertID($hSql);
 					$this->ChangedFields[] = array('name' => 'ID','value' => $this->ID);
 					ErrorHandle::ActionErrorHandle('Объект типа '.get_class($this).' успешно сохранен.',0);
 					$Result = true;
@@ -61,7 +61,7 @@
 			else
 			{
 				$sql = 'update '.$this->DBTableName.' set Description="'.$this->Description.'" where ID = '.$this->ID;
-				$hSql = $this->DataBase->Query($sql);
+				$hSql = DBMySQL::Query($sql);
 				if ($hSql)
 				{
 					ErrorHandle::ActionErrorHandle('Объект типа '.get_class($this).' успешно сохранен.',0);
@@ -80,7 +80,7 @@
 			if (is_int($this->ID) and (!$this->SystemMark))
 			{
 				$sql = 'delete from '.$this->DBTableName.' where ID = '.$this->ID;
-				$hSql = $this->DataBase->Query($sql);
+				$hSql = DBMySQL::Query($sql);
 				if ($hSql)
 				{
 					ErrorHandle::ActionErrorHandle('Объект типа '.get_class($this).' успешно удален.',0);

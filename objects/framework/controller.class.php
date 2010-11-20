@@ -1,6 +1,7 @@
 <?php
 	class Controller extends Singleton
 	{
+        public static  $Cashable = true;
 
 		protected function __construct(&$ProcessData)  
 		{   

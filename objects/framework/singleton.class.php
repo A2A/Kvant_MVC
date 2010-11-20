@@ -3,23 +3,16 @@
 	{
 		private static $Cash;
 		protected $ProcessData;
+        public static  $Cashable = false;
 
 		protected function __construct(&$ProcessData,$id=null)  
 		{   
 			$this->ProcessData = &$ProcessData;
-			$this->DataBase = DBMySQL::GetDB();
 
 			if (property_exists(get_class($this),'ID'))
 			{
-
 				if (is_numeric($id)) $this->ID = $id;
 				elseif (isset($ProcessData['ID']) and is_numeric($ProcessData['ID'])) $this->ID = $ProcessData['ID'];
-
-				if (is_null($this->ID)) Singleton::$Cash[get_class($this)][$this->ID] = &$this;
-			}
-			else
-			{
-				Singleton::$Cash[get_class($this)][null] = &$this;
 			}
 		}    
 
@@ -36,16 +29,29 @@
 				{
 					$Obj = new $ClassName($ProcessData,$TmpID);
 				}
-				elseif ((!isset(self::$Cash[$ClassName])) or (!isset(self::$Cash[$ClassName][$TmpID])))
+				elseif ((!isset(Singleton::$Cash[$ClassName])) or (!isset(Singleton::$Cash[$ClassName][$TmpID])))
 				{
-					$Obj = new $ClassName($ProcessData,$TmpID);
+                    $Obj = new $ClassName($ProcessData,$TmpID);                    
+                    Singleton::$Cash[$ClassName][$TmpID] = &$Obj;
 				}
 				else
 				{
-					$Obj = self::$Cash[$ClassName][$TmpID];
+					$Obj = Singleton::$Cash[$ClassName][$TmpID];
 				}
 			}
-			else
+			elseif  ($ClassName::$Cashable)
+            {
+                if ((!isset(Singleton::$Cash[$ClassName])) or (!isset(Singleton::$Cash[$ClassName][null])))
+                {
+                    $Obj = new $ClassName($ProcessData);                    
+                    Singleton::$Cash[$ClassName][null] = &$Obj;
+                }
+                else
+                {
+                    $Obj = Singleton::$Cash[$ClassName][null];
+                }
+            }
+            else
 			{
 				$Obj = new $ClassName($ProcessData);
 			}

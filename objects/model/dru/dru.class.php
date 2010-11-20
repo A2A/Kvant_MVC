@@ -19,8 +19,8 @@
             {
                 $this->Modified = false;
                 $sql = 'SELECT `DIVISIONID`,`ROLEID`,`USERID`,`ID`,`COLOR` FROM '.$this->DBTableName.' where ID = '.intval($this->ID);
-                $hSql = $this->DataBase->Query($sql);
-                while ($fetch = $this->DataBase->FetchObject($hSql)) 
+                $hSql = DBMySQL::Query($sql);
+                while ($fetch = DBMySQL::FetchObject($hSql)) 
                 {
                     $this->ID = $fetch->ID;
                     $this->UserID = $fetch->USERID;

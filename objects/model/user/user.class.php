@@ -41,8 +41,8 @@
 			if (intval($this->ID) !=0)
 			{
 				$sql = 'Select * from '.$this->DBTableName.' where ID = '.$this->ID;
-				$hSql = $this->DataBase->Query($sql);
-				while ($fetch = $this->DataBase->FetchObject($hSql)) 
+				$hSql = DBMySQL::Query($sql);
+				while ($fetch = DBMySQL::FetchObject($hSql)) 
 				{
 					$this->Description = $fetch->DESCRIPTION;
 					$this->Login = $fetch->LOGIN;
@@ -56,10 +56,10 @@
 			if (!is_int($this->ID))
 			{
 				$sql = 'insert into '.$this->DBTableName.' (ID, DESCRIPTION,LOGIN,EMAIL) values (NULL,"'.$this->Description.'","'.$this->Login.'","'.$this->Email.'")';
-				$hSql = $this->DataBase->Query($sql);
+				$hSql = DBMySQL::Query($sql);
 				if ($hSql)
 				{
-					$this->ID = $this->DataBase->InsertID($hSql);
+					$this->ID = DBMySQL::InsertID($hSql);
 					$EH = ErrorHandle::GetInstance();
 					$EH->ChangedFields[] = array('name' => 'ID','value' => $this->ID);
 					$EH->ErrorHandle('Объект типа '.get_class($this).' успешно сохранен.',0);
@@ -78,7 +78,7 @@
 				LOGIN="'.$this->Login.'", 
 				EMAIL="'.$this->Email.'" 
 				where ID = '.$this->ID;
-				$hSql = $this->DataBase->Query($sql);
+				$hSql = DBMySQL::Query($sql);
 				if ($hSql)
 				{
 					ErrorHandle::ErrorHandle('Объект типа '.get_class($this).' успешно сохранен.',0);

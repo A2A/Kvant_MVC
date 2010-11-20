@@ -20,8 +20,8 @@
             {
                 $this->Modified = false;
                 $sql = 'Select * from '.$this->DBTableName.' where ID = '.intval($this->ID);
-                $hSql = $this->DataBase->Query($sql);
-                while ($fetch = $this->DataBase->FetchObject($hSql)) 
+                $hSql = DBMySQL::Query($sql);
+                while ($fetch = DBMySQL::FetchObject($hSql)) 
                 {
                     $this->Description = $fetch->DESCRIPTION;
                     $this->ParentID = $fetch->PARENTID;

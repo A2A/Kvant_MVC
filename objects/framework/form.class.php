@@ -191,7 +191,7 @@
 				$ClassName = &$Rect["ClassName"];
 				if (Controller::CheckClassAccess($ClassName))
 				{
-					$SubObject = $ClassName::GetObject($null,$Rect['Params']);
+					$SubObject = $ClassName::GetObject($Rect['Params'],null);
 					if (array_key_exists('Params',$Rect) and array_key_exists('Var',$Rect['Params'])) 
 					{
 						if (property_exists($SubObject,$Rect['Params']['Var'])) 
