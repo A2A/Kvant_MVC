@@ -521,6 +521,8 @@ table.Event
 	font-weight: 100;
    
 }
+
+
 #EventList .CellTopDrak
 {
 	height: 29px;
@@ -807,9 +809,11 @@ A.BigButton
 	float: left;
 }
 
-td.EventType
+.EventType
 {
-	width: 90px;
+	float: left;   
+	width: 95px;
+	height: 95px;
 	text-align: center;
 	vertical-align: middle;
 	cursor: pointer;
@@ -818,6 +822,28 @@ td.EventType
 	font-family: Tahoma;
 	font-weight: 900;
 }
+
+.CaptionType
+{
+	background: #f9fbff;
+	color: #46749f;
+	font-size: 13px;
+	font-family: Tahoma;
+	font-weight: 900;
+	padding: 5px;
+	
+}
+li.CaptionType
+{
+	width: 120px;
+	display: block;
+	height: 20px;
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+	padding-top: 2px;
+}
+
 .FullListText
 {
 	color: #535353;
@@ -858,6 +884,7 @@ td.EventType
 	width: 152px;
 	text-align: left;
 	padding-left: 5px;
+	margin-left: 0px;
 	background: #ffffff url('../images/select-fon-li.png') repeat-y right; 
 	
 }
@@ -869,15 +896,43 @@ td.EventType
 li.Dock
 {
 	border-bottom: 1px solid #bebebe; 
-	width: 120px;
+	width: 122px;
 	display: block;
 	height: 20px;
-	margin: 0px;
 	padding: 0px;
 	list-style-type: none;
 	padding-top: 2px;
 	cursor: pointer;
+	
+	margin-left: 0px;\
+	[margin-left: 0px;
+	margin-left: 0px;]
+	margin-left: -14px;
+	
+}
 
+li.CaptionType
+{
+	width: 122px;
+	margin-left: 0px;\
+	[margin-left: 0px;
+	margin-left: 0px;]
+	margin-left: -14px;
+}
+
+.Dock nobr, .CaptionType nobr
+{
+	display: block;
+	width: 96px;
+	height: 20px;
+	margin-top: 2px;
+	overflow: hidden;
+	font-size: 11px;
+	font-family: Tahoma;
+}
+ .CaptionType nobr
+{
+	width: 120px;
 }
 /* конец регистрации события */
 

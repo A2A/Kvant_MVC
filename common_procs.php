@@ -15,10 +15,10 @@
 			case 'BaseClass'            : $ClassFileName = 'objects/framework/baseclass.class.php'; break;
 			case 'Form'            		: $ClassFileName = 'objects/framework/form.class.php'; break;
 			case 'Entity'            	: $ClassFileName = 'objects/framework/entity.class.php'; break;
-            case 'CollectionBasic'      : $ClassFileName = 'objects/framework/collection.basic.class.php'; break;
-            case 'CollectionDB'         : $ClassFileName = 'objects/framework/collection.db.class.php'; break;
+			case 'CollectionBasic'      : $ClassFileName = 'objects/framework/collection.basic.class.php'; break;
+			case 'CollectionDB'         : $ClassFileName = 'objects/framework/collection.db.class.php'; break;
 
-            case 'System'               : $ClassFileName = 'objects/system/system.class.php'; break;
+			case 'System'               : $ClassFileName = 'objects/system/system.class.php'; break;
 			case 'DBMySQL'            	: $ClassFileName = 'objects/dbmysql.class.php'; break;
 
 			case 'Role'            	    : $ClassFileName = 'objects/model/role/role.class.php'; break;
@@ -26,13 +26,12 @@
 			
 			
 			case 'Object_template'      : $ClassFileName = 'objects/model/object_template/object_template.class.php'; break;
-			case 'RoleList'            : $ClassFileName = 'objects/model/role/role.list.class.php'; break;
 			case 'CollectionBasic'      : $ClassFileName = 'objects/abstract/collection.basic.class.php'; break;
 			case 'CollectionDBTemplated': $ClassFileName = 'objects/abstract/collection.template.db.class.php'; break;
 			case 'CollectionTemplated'  : $ClassFileName = 'objects/abstract/collection.template.class.php'; break;
 
-			case 'Project'              : $ClassFileName = 'objects/project/project.class.php'; break;
-			case 'ProjectList'          : $ClassFileName = 'objects/project/project_list.class.php'; break;
+			case 'Project'              : $ClassFileName = 'objects/model/project/project.class.php'; break;
+			case 'ProjectList'          : $ClassFileName = 'objects/model/project/project.list.class.php'; break;
 
 			case 'Task'                 : $ClassFileName = 'objects/task/task.class.php'; break;
 			case 'TaskList'             : $ClassFileName = 'objects/task/task_list.class.php'; break;
@@ -42,10 +41,19 @@
 
 			case 'UserList'             : $ClassFileName = 'objects/user/user_list.class.php'; break;
 			
-			case 'Role'                 : $ClassFileName = 'objects/role/role.class.php'; break;
-			case 'RoleUserList'         : $ClassFileName = 'objects/role/role.userlist.class.php'; break;
+			case 'Role'                 : $ClassFileName = 'objects/model/role/role.class.php'; break;
+		
+			case 'RolesUsers'           : $ClassFileName = 'objects/model/role/role_user_list.class.php'; break;
+			case 'RoleList'             : $ClassFileName = 'objects/model/role/role.list.class.php'; break;
+			case 'UsersAndRoles'        : $ClassFileName = 'objects/model/role/users.roles.class.php'; break;
 			
-			case 'UsersAndRoles'        : $ClassFileName = 'objects/role/users.roles.class.php'; break;
+			case 'Filter'        	    : $ClassFileName = 'objects/model/filter/filter.class.php'; break;
+			case 'FilterList'           : $ClassFileName = 'objects/model/filter/filter.list.class.php'; break;
+			
+			case 'TpeClass'        		: $ClassFileName = 'objects/model/tpe_class/tpe_class.class.php'; break;
+			case 'TpeClassList'         : $ClassFileName = 'objects/model/tpe_class/tpe_class.list.class.php'; break;
+		
+		
 			default                     : $ClassFileName = 'objects/'.strtolower($ClassName).'.class.php';
 		}
 		
@@ -99,6 +107,7 @@
 			case 'AbstractTemplate'     : $ClassFileName = 'objects/abstract/abstract.template.class.php'; break;
 			case 'CollectionBasic'      : $ClassFileName = 'objects/abstract/collection.basic.class.php'; break;
 			case 'CollectionDBTemplated': $ClassFileName = 'objects/abstract/collection.template.db.class.php'; break;
+			
 			default                     : $ClassFileName = 'objects/'.strtolower($ClassName).'.class.php';
 		}
 

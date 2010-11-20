@@ -2,7 +2,7 @@
 	class Project extends Entity
 	{
 		// TODO 4 -o Natali -c Замечание: форма edit и view_full, если запрошено форма редактирования, а пользователь не имеет рава редактировать этот проект, то надо отдавать форму view_full - полное описание 
-		protected $Forms = array(
+		public static $Forms = array(
 		'edit' => 'objects/project/edit.html',
 		'view_short' => 'objects/project/view_short.html',
 		'view_full' => 'objects/project/view_full.html',
@@ -26,7 +26,7 @@
 
 
 		// TODO 4 -o Natali -c Перенести: коректно работает  Refresh()
-		
+
 		protected function Refresh()
 		{
 			$null = null;
@@ -59,9 +59,9 @@
 				}
 			}
 		}
-		
+
 		// TODO 4 -o Natali -c Перенести: коректно работает  SetActionData()
-		
+
 		protected function SetActionData()
 		{
 			parent::SetActionData();
@@ -102,20 +102,20 @@
 			}
 			return $this->Modified; 
 		}
-		
+
 		// TODO 4 -o Natali -c Перенести: коректно работает  Save()
-		
+
 		public function Save()
 		{
 			if (!intval($this->ID))
 			{
 				// TODO 4 -o Natali -c Ошибка формирования SQL запроса: при создании если не установлен пользователь, надо получить текущего для $this->UserID
 				$sql = 'insert into '.$this->DBTableName.' (ID, DESCRIPTION,DATE_INIT,DATE_START,DATE_FINISH,
-							FULL_DESCR,USERID,READY_STATE) 
-						values (NULL,"'.$this->Description.'","'.DateTimeToMySQL($this->InitDate).'","'.DateTimeToMySQL($this->StartDate).'","'.DateTimeToMySQL($this->FinishDate).'",
-							"'.$this->FullDescription.'",'.(intval($this->UserID)?intval($this->UserID):'null').',"'.$this->ReadyState.'")';
+				FULL_DESCR,USERID,READY_STATE) 
+				values (NULL,"'.$this->Description.'","'.DateTimeToMySQL($this->InitDate).'","'.DateTimeToMySQL($this->StartDate).'","'.DateTimeToMySQL($this->FinishDate).'",
+				"'.$this->FullDescription.'",'.(intval($this->UserID)?intval($this->UserID):'null').',"'.$this->ReadyState.'")';
 				$this->ErrorHandle($sql);   // TODO 4 -o Natali -c сообщение для отладки: SQL   
-				
+
 				$hSql = $this->DataBase->Query($sql);
 				if ($hSql)
 				{
@@ -159,16 +159,10 @@
 		}
 
 		// TODO 4 -o Natali -c Сделать:  GetStatus() - установка издражения статуса
+
+
 		
-		
-		// TODO 4 -o Natali -c Не используется: 
-		public function __construct(&$ProcessData,&$ViewData,&$DataBase,$ID=null)  
-		{   
-			parent::__construct($ProcessData,$ViewData,$DataBase,$ID);
-			$this->Refresh();
-		}
-		
-		
+
 		public function ProcessMessage()
 		{
 			if (isset($this->ProcessData['Action']))
@@ -188,9 +182,9 @@
 			}
 			return $Result;
 		}
-		
 
-		
+
+
 		// TODO 4 -o Natali -c Не используется: 
 		public function GetDuration()
 		{
@@ -246,14 +240,14 @@
 			$TimeLine = $TimeLine . ($TimeLine = ''?'':'.');
 			return $TimeLine;
 		}
-		
+
 		public function CreateView()
 		{
 			$this->ErrorHandle("Project CreateView()");
 			return parent::CreateView();
 		}
-		
-		
+
+
 		public function GetState()
 		{
 			$FT = ($this->FinishDate - $this->StartDate);
@@ -304,11 +298,20 @@
 
 		}
 
-		static public function GetObject(&$ProcessData,&$ViewData,&$DataBase,$id=null)
-		{
-			return static::GetObjectInstance($ProcessData,$ViewData,$DataBase,$id,__CLASS__);
+		
+		
+		 
+		public function __construct(&$ProcessData,$ID=null)  
+		{   
+			parent::__construct($ProcessData,$ID);
+			$this->Refresh();     
 		}
-
+		
+		
+		static public function GetObject(&$ProcessData,$ID=null)
+		{
+			return static::GetObjectInstance($ProcessData,$ID,__CLASS__);
+		}
 
 	}
 ?>

@@ -1,0 +1,20 @@
+<div class="SelectForm" style="background: #ffffff url('images/select-button.png') no-repeat right;" onClick="VisibleControlBlock('FullListEventType');"></div>
+<div class="SelectList" id="FullListEventType">
+	<table border="0" cellpadding="0" cellspacing="0" class="SelectListRamka">
+		<tr>
+			<td class="SelectListHed" style="background: #ffffff url('images/select-fon-head.png') no-repeat right;font-size:4px;">&nbsp;</td>
+		</tr> 
+		<tr>
+			<td class="SelectListLi" style="background: #ffffff url('images/select-fon-li.png') repeat-y right;">
+				<!-- Element Begin -->  
+				<li class="CaptionType"><nobr>{?Object=this&Var=this(Description)} </nobr></li>  
+				{?Object=TpeClassList&Form=list_select&Filter[0][Field]=TypeID&Filter[0][Oper]=eq&Filter[0][Val]=this(ID)} 
+				<!-- Element End -->
+			</td>
+		</tr> 
+		<tr>
+			<td class="SelectListBottom" style="background: #ffffff url('images/select-fon-bottom.png') no-repeat right bottom;">&nbsp;</td>
+		</tr> 
+
+	</table>
+</div>
