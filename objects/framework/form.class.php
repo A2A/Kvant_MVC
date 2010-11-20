@@ -176,9 +176,7 @@
 						case "COUNT":   return $this->count();
 						case "THIS":    
 						{
-							if (property_exists($Object,$ArgName)) 
 								return $Object->$ArgName; 
-							else return '';
 						}
 						default :       return $ArgName;
 					}

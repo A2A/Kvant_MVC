@@ -1,0 +1,28 @@
+<table border=0 cellspacing=0 cellpadding=2 class="textform"> 
+    <form method="post">
+        <input type=hidden name='Object' value='DRU'>
+        <input type=hidden name='Action' value='Save'>
+        <tr>                                        
+            <td>ИД <input type=text name='Id' class='input_text' value="{?Object=this&Var=this(ID)}"></td>
+            <td>Description<input type=text name='Id' class='input_text' value="{?Object=this&Var=this(Description)}"></td>
+        </tr>
+        <tr>
+            <td>DivisionID<input type='text' name='DivisionID' class='input_pass' value="{?Object=this&Var=this(DivisionID)}"></td>
+            <td>Division<input type='text' name='Description' class='input_pass' value="{?Object=this&Var=this(DivDescr)}"></td>
+        </tr>
+        <tr>
+            <td>RoleID<input type='text' name='RoleID' class='input_pass' value="{?Object=this&Var=this(RoleID)}"></td>
+            <td>Role<input type='text' name='Description' class='input_pass' value="{?Object=this&Var=this(RoleDescr)}"></td>
+        </tr>
+        <tr>
+            <td>UserID<input type='text' name='UserID' class='input_pass' value="{?Object=this&Var=this(UserID)}"></td>
+            <td>User <input type='text' name='Description' class='input_pass' value="{?Object=this&Var=this(UserDescr)}"></td>
+        </tr>
+        <tr>
+            <td> <input type="submit" name="Defer" value="Отменить"> <input type="submit" name="Finish" value="Запписать"></td>
+        </tr>
+    </form>
+</table>         
+    
+ 
+    

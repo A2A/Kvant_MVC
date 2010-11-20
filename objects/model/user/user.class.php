@@ -38,7 +38,7 @@
 
 		protected function Refresh()
 		{
-			if (is_int($this->ID))
+			if (intval($this->ID) !=0)
 			{
 				$sql = 'Select * from '.$this->DBTableName.' where ID = '.$this->ID;
 				$hSql = $this->DataBase->Query($sql);
@@ -102,6 +102,7 @@
 		public function __construct(&$ProcessData,$ID=null)  
 		{   
 			parent::__construct($ProcessData,$ID);
+            $this->Refresh();
 			
 		}
 

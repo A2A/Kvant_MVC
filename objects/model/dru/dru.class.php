@@ -3,16 +3,14 @@
 	{
 		protected $DBTableName = 'dru'; 
         
-        protected $UserID;
-        protected $RoleID;
-        protected $DivisionID;
+        public $UserID;
+        public $RoleID;
+        public $DivisionID;
         
         public $Color;
         
 		public static $Forms = array(
-		'edit' => 'objects/model/dru/edit.html',
-		'view' => 'objects/model/dru/view.html',
-		'UserList' => 'objects/model/dru/userlist.html',
+		'edit' => 'objects/model/dru/edit.html'
 		);
 
         public function Refresh()
@@ -59,15 +57,16 @@
         
         public function __get($FieldName)
         {
+            $null = null;
             switch ($FieldName)
             {
-                case 'UserDescr': $result = is_null($this->UserID)      ?'Все сотрудники'   : (''.User::GetObject(null,$this->UserID)); break;
-                case 'RoleDescr': $result = is_null($this->RoleID)      ?'Все роли'         : (''.Role::GetObject(null,$this->RoleID)); break;
-                case 'DivDescr': $result = is_null($this->DivisionID)   ?'Все подразделения': (''.Division::GetObject(null,$this->DivisionID)); break;
+                case 'UserDescr': $result = is_null($this->UserID)      ?'Все сотрудники'   : (''.User::GetObject($null,$this->UserID)); break;
+                case 'RoleDescr': $result = is_null($this->RoleID)      ?'Все роли'         : (''.Role::GetObject($null,$this->RoleID)); break;
+                case 'DivDescr': $result = is_null($this->DivisionID)   ?'Все подразделения': (''.Division::GetObject($null,$this->DivisionID)); break;
 
-                case 'User': $result = is_null($this->UserID)      ?null: User::GetObject(null,$this->UserID); break;
-                case 'Role': $result = is_null($this->RoleID)      ?null: Role::GetObject(null,$this->RoleID); break;
-                case 'Div': $result = is_null($this->DivisionID)   ?null: Division::GetObject(null,$this->DivisionID); break;
+                case 'User': $result = is_null($this->UserID)      ?null: User::GetObject($null,$this->UserID); break;
+                case 'Role': $result = is_null($this->RoleID)      ?null: Role::GetObject($null,$this->RoleID); break;
+                case 'Div': $result = is_null($this->DivisionID)   ?null: Division::GetObject($null,$this->DivisionID); break;
                 
                 case 'DRUType': 
                 {
@@ -87,6 +86,7 @@
                 
                 default: $result = parent::__get($FieldName);
             }
+            return $result;
         }
         
 		static public function GetObject(&$ProcessData,$ID=null)
