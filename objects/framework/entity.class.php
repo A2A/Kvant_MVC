@@ -163,5 +163,13 @@
 		{
 			return $this->Description;
 		}
+        
+        public function __get($FieldName)
+        {
+            ErrorHandle::ErrorHandle('Обращение к несуществующему полю '.$FieldName.' объекта '.get_class($this).'.',2);
+        }
+        
+        
+        
 	}
 ?>

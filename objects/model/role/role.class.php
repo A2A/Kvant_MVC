@@ -17,9 +17,10 @@
         {
             switch ($FieldName)
             {
-                case 'Active': return ($this->ID == $_SESSION['CurrentRoleID']?'Active':'NoActive'); break;
-                default: parent::__get($FieldName);
+                case 'Active': $result = ($this->ID == $_SESSION['CurrentRoleID']?'Active':'NoActive'); break;
+                default: $result = parent::__get($FieldName);
             }
+            return $result;
         }
         
 		static public function GetObject(&$ProcessData,$ID=null)
