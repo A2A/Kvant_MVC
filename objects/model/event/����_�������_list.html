@@ -1,0 +1,51 @@
+<h2>Регистрация событий</h2>
+
+<table  border="0" cellspacing="5" cellpadding="0" width="780px" align="center">       
+	<tr>
+		<td>&nbsp;</td>
+		<td class="FullListText">Полный список событий:</td>
+	</tr>
+	<tr>
+		<td>   
+		
+		// TODO -o Natali -c Шаблоны: количество колонок в таблице не должно превышать 6 штук
+		
+			<table  border="0" cellspacing="5" cellpadding="0" width="100%" align="left">
+				<tr>
+					<!-- Element Begin -->  
+					 <td class="EventType" onClick="CreateEventType('{?Object=this&Var=this(ID)}')">
+						<img src="images/event-type-none.png"><br>
+						{?Object=this&Var=this(Description)}
+					</td>
+					<!-- Element End -->
+				</tr>
+			</table>
+		</td>
+		<td valign="top">     
+		
+		// TODO -o Natali -c Шаблоны: Второй список
+			<div class="SelectForm" style="background: #ffffff url('images/select-button.png') no-repeat right;" onClick="VisibleControlBlock('FullListEventType');"></div>
+			<div class="SelectList" id="FullListEventType">
+				<table border="0" cellpadding="0" cellspacing="0" class="SelectListRamka">
+					<tr>
+						<td class="SelectListHed" style="background: #ffffff url('images/select-fon-head.png') no-repeat right;font-size:4px;">&nbsp;</td>
+					</tr> 
+					<tr>
+						<td class="SelectListLi" style="background: #ffffff url('images/select-fon-li.png') repeat-y right;">
+							<!-- Element Begin -->  
+							 <li class="Dock"><img src="images/event-type-nodock.png" align="left" title="Закреписть на рабочем столе" OnClick="DesktopPosition('hand','{?Object=this&Var=this(ID)}')" hspace="3"><span onClick="CreateEventType('{?Object=this&Var=this(ID)}')">{?Object=this&Var=this(Description)} </span></li>  
+							<!-- Element End -->
+						</td>
+					</tr> 
+					<tr>
+						<td class="SelectListBottom" style="background: #ffffff url('images/select-fon-bottom.png') no-repeat right bottom;">&nbsp;</td>
+					</tr> 
+
+				</table>
+			</div>
+		</td>
+	</tr>
+
+</table>
+	
+	  

@@ -2,7 +2,7 @@
 	class System extends BaseClass
 	{
 		public static   $UnAuthUse      = true;
-        public static  $Cashable = true;
+		public static  $Cashable = true;
 
 		public static $Actions = array(
 		'login'=>'LogIn',
@@ -27,32 +27,39 @@
 		'defaultauth'=>'index.html',
 		'defaultunauth'=>'index_login.html',
 		'login'=>'objects/system/login_form.html',
-        'currentuser'=>'objects/system/current_user.html',
-        'rolelistwithactive'=>'objects/system/roles_list_with_active.html',
-		);
+		'currentuser'=>'objects/system/current_user.html',
+		'rolelistwithactive'=>'objects/system/roles_list_with_active.html',
+		
+		'gant' 					=> 'objects/system/gant/gant.html',
+		'gant_body'             => 'objects/system/gant/body.html',
+		'gant_header'           => 'objects/system/gant/header.html',
+		'calendar' 				=> 'objects/system/calendar.html',
+		'dru_menu' 				=> 'objects/system/dru_menu.html',
+		'ssp' 					=> 'objects/system/ssp.html',
+	);
 
 		public $title = "test";
 		public $CurrentUser;
 
-        protected function __construct(&$ProcessData)  
-        {   
-            parent::__construct($ProcessData);
-            if (!isset($_SESSION['CurrentInt'])) $_SESSION['CurrentInt'] = 1;
-            $this->CurrentInt = intval($_SESSION['CurrentInt']);
-            if (!isset($_SESSION['CurrentWPTime'])) 
-            {
+		protected function __construct(&$ProcessData)  
+		{   
+			parent::__construct($ProcessData);
+			if (!isset($_SESSION['CurrentInt'])) $_SESSION['CurrentInt'] = 1;
+			$this->CurrentInt = intval($_SESSION['CurrentInt']);
+			if (!isset($_SESSION['CurrentWPTime'])) 
+			{
 /*                $int = Interval::GetObject($null,$null,$this->DataBase,$_SESSION['CurrentInt']);  
-                $_SESSION['CurrentWPTime'] =  time() - 8 * $int->Duration;
+				$_SESSION['CurrentWPTime'] =  time() - 8 * $int->Duration;
 */            }                
-            $this->InitCurrentUser();
-        }
+			$this->InitCurrentUser();
+		}
 
 
 		static public function GetObject(&$ProcessData=null,$id=null)
 		{
 			return static::GetObjectInstance($ProcessData,$id,__CLASS__);
 		}
-        
+		
 		function __get($FieldName)
 		{
 			switch ($FieldName)
@@ -63,7 +70,7 @@
 			}
 		}
 		
-        public function __set($FieldName,$Value)
+		public function __set($FieldName,$Value)
 		{
 			switch ($FieldName)
 			{

@@ -21,30 +21,39 @@
 			case 'System'               : $ClassFileName = 'objects/system/system.class.php'; break;
 			case 'DBMySQL'            	: $ClassFileName = 'objects/dbmysql.class.php'; break;
 
-            case 'Division'             : $ClassFileName = 'objects/model/division/division.class.php'; break;
-            case 'DivisionList'         : $ClassFileName = 'objects/model/division/division.list.class.php'; break;
+			case 'Division'             : $ClassFileName = 'objects/model/division/division.class.php'; break;
+			case 'DivisionList'         : $ClassFileName = 'objects/model/division/division.list.class.php'; break;
 			case 'Role'            	    : $ClassFileName = 'objects/model/role/role.class.php'; break;
-            case 'User'                 : $ClassFileName = 'objects/model/user/user.class.php'; break;
-            case 'DRU'                  : $ClassFileName = 'objects/model/dru/dru.class.php'; break;
-			case 'DRUList'                  : $ClassFileName = 'objects/model/dru/dru.list.class.php'; break;
-			
+			case 'User'                 : $ClassFileName = 'objects/model/user/user.class.php'; break;
+			case 'DRU'                  : $ClassFileName = 'objects/model/dru/dru.class.php'; break;
+			case 'DRUList'              : $ClassFileName = 'objects/model/dru/dru.list.class.php'; break;
+
 			case 'Project'              : $ClassFileName = 'objects/model/project/project.class.php'; break;
 			case 'ProjectList'          : $ClassFileName = 'objects/model/project/project.list.class.php'; break;
 
 			case 'Task'                 : $ClassFileName = 'objects/task/task.class.php'; break;
 			case 'TaskList'             : $ClassFileName = 'objects/task/task_list.class.php'; break;
+			
+			case 'Event'                 : $ClassFileName = 'objects/model/event/event.class.php'; break;
+			case 'EventList'             : $ClassFileName = 'objects/model/event/event.list.class.php'; break;
 
 			case 'RoleList'             : $ClassFileName = 'objects/model/role/role.list.class.php'; break;
-			
+
 			case 'Filter'        	    : $ClassFileName = 'objects/model/filter/filter.class.php'; break;
+
+			case 'TPEClass'        		: $ClassFileName = 'objects/model/tpe_class/tpe_class.class.php'; break;
+			case 'TPEClassList'         : $ClassFileName = 'objects/model/tpe_class/tpe_class.list.class.php'; break;
 			
-			case 'TpeClass'        		: $ClassFileName = 'objects/model/tpe_class/tpe_class.class.php'; break;
-			case 'TpeClassList'         : $ClassFileName = 'objects/model/tpe_class/tpe_class.list.class.php'; break;
-		
-		
+			case 'Interval'        		: $ClassFileName = 'objects/model/interval/interval.class.php'; break;
+			case 'IntervalList'         : $ClassFileName = 'objects/model/interval/interval.list.class.php'; break;
+	
+			case 'WorkBlock'       		: $ClassFileName = 'objects/model/workblock/workblock.class.php'; break;
+			case 'WorkBlockList'        : $ClassFileName = 'objects/model/workblock/workblock.list.class.php'; break;
+
+
 			default                     : $ClassFileName = 'objects/'.strtolower($ClassName).'.class.php';
 		}
-		
+
 
 		if (!file_exists($ClassFileName))
 		{
@@ -95,7 +104,7 @@
 			case 'AbstractTemplate'     : $ClassFileName = 'objects/abstract/abstract.template.class.php'; break;
 			case 'CollectionBasic'      : $ClassFileName = 'objects/abstract/collection.basic.class.php'; break;
 			case 'CollectionDBTemplated': $ClassFileName = 'objects/abstract/collection.template.db.class.php'; break;
-			
+
 			default                     : $ClassFileName = 'objects/'.strtolower($ClassName).'.class.php';
 		}
 
@@ -130,7 +139,7 @@
 
 		return $result;
 	}
-	
+
 	function GetBeginOfDay($Date)
 	{
 		$D = 24*3600;
@@ -148,17 +157,17 @@
 		$D = 24*3600;
 		return ($Date - $Date % $D+ 18* 3600);        
 	}
-	
+
 	function AddDay($Date , $Count = 1)
 	{
 		return $Date + $Count * 24 * 3600;
 	}
-	
+
 	function DateTimeToStr($Date)
 	{
 		return date("d.m.Y H:i:s",$Date);
 	}
-	
+
 	function DateTimeToMySQL($Date)
 	{
 		return gmdate("Y-m-d H:i:s",$Date);

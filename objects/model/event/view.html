@@ -1,0 +1,56 @@
+<table border="0" cellspacing=0 cellpadding=0 align="center">
+	<tr>
+		<td><img src="images/modal-top-left.png" hspace="0" vspace="0" border="0"></td>
+		<td class="RoundTop">      
+			<img src="images/info-close.png" align="right" onClick="CloseModalWindow();"> 
+		</td>
+		<td><img src="images/modal-top-right.png" hspace="0" vspace="0" border="0"></td>
+	</tr>
+	<tr>
+		<td class="RoundLeft">&nbsp;</td>
+		<td class="RoundCenter" valign="top">
+
+			<table  border="0" cellspacing="5" cellpadding="0" class="EventCaption">       
+				<tr> 
+					<td class="LeftCol" rowspan="2"><img src="images/event-type-none.png" ></td> 
+					<td class="RightCol">{?Object=this&Var=this(Owner)}</td> 
+				</tr> 
+				<tr> 
+					<td class="CaptionProperty"> 
+						<span class="RowCaption">Время регистрации:</span>&nbsp;<span class="RowData">{?Object=this&Var=this(InitDateText)} <input type="hidden" id="InitDate" value="{?Object=this&Var=this(InitDate)}"></span><br> 
+						<span class="RowCaption">Время завершения:</span><small style="margin-right: 4px;">&nbsp;</small><span class="RowData">{?Object=this&Var=this(FinishDateText)}</span><br> 
+						<span class="RowCaption">Роль:</span>&nbsp;<span class="RowData">{?Object=DRU&Form=description&ID=this(DRUID)}</span> 
+					</td> 
+				</tr> 
+			</table> 
+			<table  border="0" cellspacing="0" cellpadding="0" class="EventView">       
+				<tr> 
+					<td class="LeftColDark">Проект</td> 
+					<td class="CenterRowTop">{?Object=this&Var=this(Project)}</td> 
+				</tr>  
+				<tr> 
+					<td class="LeftColLight">Задача</td> 
+					<td class="CenterRow">{?Object=this&Var=this(Task)}</td> 
+				</tr> 
+				<tr> 
+					<td class="LeftColLight">Контрагент</td> 
+					<td class="CenterRow"> {?Object=this&Var=this(Contractor)}
+					</td> 
+				</tr> 
+				<tr> 
+					<td class="LeftColLight">Описание</td> 
+					<td class="CellTextarea" colspan="2">{?Object=this&Var=this(Description)}</td> 
+				</tr> 
+			</table> 
+
+
+
+			</td>
+		<td class="RoundRight">&nbsp;</td>
+	</tr>
+	<tr>
+		<td><img src="images/modal-bottom-left.png" hspace="0" vspace="0" border="0"></td>
+		<td class="RoundBottom">&nbsp;</td>
+		<td><img src="images/modal-bottom-right.png" hspace="0" vspace="0" border="0"></td>
+	</tr>
+</table>  

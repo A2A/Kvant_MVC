@@ -1,0 +1,46 @@
+<table border="0" cellspacing="0" cellpadding="0"id="CurrentDRU" style="position: absolute;" onmousemove="this.style.display='block';" onMouseout="DivHide('CurrentDRU');">
+	<tr>
+		<td><img src="images/rect-top-left.png" hspace="0" vspace="0" border="0"></td>
+		<td class="Recttop" valign="top">&nbsp;</td>
+		<td><img src="images/rect-top-right.png" hspace="0" vspace="0" border="0"></td>
+	</tr>
+	<tr>
+		<td class="RectLeft">&nbsp;</td>
+		<td  class="RectCenter" valign="top">
+			<table border="0" cellspacing="0" cellpadding="4"> 
+				<tr>                                        
+					<td class="TextForm" valign="top">
+						<div id="DRUCurrentUser">
+						<p>Свои роли</p>
+							{?Object=DRUList&Form=menu_current_user}
+						</div>
+						<hr class="modal">   
+						<div id="DRUUser">
+						<p>Сотрудники</p> 
+							{?Object=DRUList&Form=menu_user}
+						</div>
+						<hr class="modal">   
+						<div id="DRUDivision">
+						<p>Подразделния</p> 
+							{?Object=DRUList&Form=menu_division}
+						</div>
+						<hr class="modal">   
+						<div id="DRURole">
+						<p>Роли</p> 
+							{?Object=DRUList&Form=menu_role}
+						</div>
+						<hr class="modal">   
+					</td>
+				</tr>
+
+			</table>        
+
+		</td>
+		<td class="RectRight">&nbsp;</td>
+	</tr>
+	<tr>
+		<td><img src="images/rect-bottom-left.png" hspace="0" vspace="0" border="0"></td>
+		<td  class="RectBottom">&nbsp;</td>
+		<td><img src="images/rect-bottom-right.png" hspace="0" vspace="0" border="0"></td>
+	</tr>
+</table>

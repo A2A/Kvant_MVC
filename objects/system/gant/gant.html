@@ -1,0 +1,26 @@
+
+
+<div id="ModalWindowTaskStatus"  onmousemove="this.style.display='block';" onMouseout="DivHide('ModalWindowTaskStatus');">
+</div>
+
+<div class="MarginLeft"> 
+	<table width="780px" border=0  cellspacing=0 cellpadding=0 style="margin-bottom: 4px;">
+		<tr>
+			<td>
+				<h2>Список задач</h2>
+			</td>
+			<td align="right">
+				<div class="ButtonLightBlue" onClick="FilterGant();"><nobr><img src="images/button-blue-1.png" class="img" align="left" hspace="0"><img src="images/button-blue-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonLightBlue">Фильтр</a></nobr></div>
+			</td>
+			<td width="210px">
+				<div class="ButtonOrange BigButton" style="margin-right: 6px;"><nobr><img src="images/button-orange-1.png" class="img" align="left" hspace="0"><img src="images/button-orange-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonOrange BigButton"  onClick="VisibleNewProject(event);">Создать новую задачу / проект</a></nobr></div>
+			</td>
+		</tr>
+	</table>
+	<div id="Filter">
+		Фильтр по ганту
+	</div>
+	{?Object=System&Form=gant_header}
+	{?Object=System&Form=gant_body}
+
+</div>
