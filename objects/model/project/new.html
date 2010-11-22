@@ -1,0 +1,105 @@
+<table border="0" cellspacing=0 cellpadding=0 align="center">
+	<tr>
+		<td><img src="images/modal-top-left.png" hspace="0" vspace="0" border="0"></td>
+		<td class="RoundTop">      
+			<img src="images/info-close.png" align="right" onClick="CloseModalWindow();"> 
+		</td>
+		<td><img src="images/modal-top-right.png" hspace="0" vspace="0" border="0"></td>
+	</tr>
+	<tr>
+		<td class="RoundLeft">&nbsp;</td>
+		<td class="RoundCenter" valign="top">
+			<table width="100%" border="0"  cellspacing=0 cellpadding=0>
+				<tr>
+					<td>
+						<h2>Создание нового проекта</h2>
+					</td>
+					<td width="80px">
+						<div class="ButtonOrange"><nobr><img src="images/button-orange-1.png" class="img" align="left" hspace="0"><img src="images/button-orange-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonOrange" onClick="NewTask();">Задача</a></nobr></div>
+					</td>
+					<td width="80px">
+						<div class="ButtonOrange1"><nobr><img src="images/button-orange1-left.png" class="img" align="left" hspace="0"><img src="images/button-orange1-right.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonOrange1">Проект</a></nobr></div>
+					</td>
+				</tr>
+			</table>
+
+			<table  border="0" cellspacing="0" cellpadding="0" class="Task">       
+				<tr>
+					<td class="LeftColDark">Постановщик</td>
+					<td class="CenterRowTop">{?Object=this&Var=this(User)}&nbsp;</td>
+					<td class="ButtonRowTop">&nbsp;</td>
+				</tr>  
+				<tr>
+					<td class="LeftColLight">Название</td>
+					<td class="CenterRow">
+						<input class="input_text"  id="Description" value="{?Object=this&Var=this(Description)}"><br>
+						<div id='ContractorDiv' class="DivSelectForm"></div>
+					</td>
+					<td class="ButtonRow">&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="LeftColLight">Заказчик</td>
+					<td class="CenterRow">
+						<input type=hidden name='ContractorID' id='ContractorID' value="{?Object=this&Var=this(ContractorID)}"> 
+						<input class="input_text"  onkeyup="AutoSelectInText(this,event,'Contractor',this.value);" id="Contractor" onBlur="CloseWindow('ContractorDiv');" value="{?Object=this&Var=this(Contractor)}"><br> 
+						<div id='ContractorDiv' class="DivSelectForm"></div> 
+					</td>
+					<td class="ButtonRow"><img src="images/button-forms-select.png" OnClick="AutoSelectInText(document.getElementById('Contractor'),event,'Contractor');"  class="ButtonCheckForm"></td>
+				</tr>
+				<tr> 
+					<td class="LeftColLight">Время создания</td> 
+					<td class="CenterRow">
+						<input type=hidden value="{?Object=this&Var=this(InitDate)}" id='InitDateValue'> 
+						<span id="InitDate">&nbsp;</span>
+					</td> 
+					<td class="ButtonRow">&nbsp;</td> 
+				</tr> 
+
+				<tr> 
+					<td class="LeftColLight">Начало работ</td> 
+					<td class="CenterRow">
+						<input type=hidden value="{?Object=this&Var=this(StartDate)}" id='StartDateValue'>   
+						<span id="StartDate">&nbsp;</span>
+					</td>
+					<td class="ButtonRow"><img src="images/button-forms-calendar.png" OnClick="Calendar(event, 'StartDateValue');" class="ButtonCheckForm"></td> 
+				</tr> 
+				<tr> 
+					<td class="LeftColLight">Конец работ</td> 
+					<td class="CenterRow">
+						<input type=hidden value="{?Object=this&Var=this(FinishDate)}" id='FinishDateValue'>
+						<span id="FinishDate">&nbsp;</span>
+					</td> 
+					<td class="ButtonRow"><img src="images/button-forms-calendar.png" OnClick="Calendar(event, 'FinishDateValue');" class="ButtonCheckForm"></td> 
+				</tr> 
+				<tr> 
+					<td class="LeftColLight">Длительность</td> 
+					<td class="CenterRow"><input class="input_text" id="Duration" value="{?Object=this&Var=this(Duration)}"></td> 
+					<td class="ButtonRow"><img src="images/button-forms-timeline.png" OnClick="alert('Установка длительности')" class="ButtonCheckForm"></td> 
+				</tr> 
+				<tr> 
+					<td class="LeftColLight">Описание</td> 
+					<td class="CellTextarea" colspan="2"><textarea class="input_textarea" id="FullDescription">{?Object=this&Var=this(FullDescription)}</textarea></td> 
+				</tr> 
+			</table>
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">  
+				<tr>
+					<td align="right">
+						<div class="ButtonLightBlue"><nobr><img src="images/button-blue-1.png" class="img" align="left" hspace="0"><img src="images/button-blue-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonLightBlue"  onClick="CloseModalWindow();">Отмена</a></nobr></div>
+					</td>
+					<td align="right" width="80px">
+						<div class="ButtonOrange"><nobr><img src="images/button-orange-1.png" class="img" align="left" hspace="0"><img src="images/button-orange-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonOrange"  onClick="SaveProject();">Сохранить</a></nobr></div>
+					</td>
+				</tr>
+			</table>
+
+
+
+		</td>
+		<td class="RoundRight">&nbsp;</td>
+	</tr>
+	<tr>
+		<td><img src="images/modal-bottom-left.png" hspace="0" vspace="0" border="0"></td>
+		<td class="RoundBottom">&nbsp;</td>
+		<td><img src="images/modal-bottom-right.png" hspace="0" vspace="0" border="0"></td>
+	</tr>
+</table>  

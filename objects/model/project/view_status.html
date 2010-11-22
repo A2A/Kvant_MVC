@@ -1,0 +1,36 @@
+<table border="0" cellspacing=0 cellpadding=0>
+	<tr>
+		<td><img src="images/rect-top-left.png" hspace="0" vspace="0" border="0"></td>
+		<td  class="RectTop">&nbsp;</td>
+		<td><img src="images/rect-top-right.png" hspace="0" vspace="0" border="0"></td>
+	</tr>
+	<tr>
+		<td class="RectLeft">&nbsp;</td>
+		<td class="InfoBody" valign="top">
+			<h2>{?Object=this&Var=this(Description)}</h2>
+			<p>Статус:</p>
+			<img src="images/status-1.png" onclick="SetStatusProject(1,{?Object=this&Var=this(ID)});" hspase="0" vspase="0">
+			<img src="images/status-2.png" onclick="SetStatusProject(2,{?Object=this&Var=this(ID)});" hspase="0" vspase="0">
+			<img src="images/status-3.png" onclick="SetStatusProject(3,{?Object=this&Var=this(ID)});" hspase="0" vspase="0">
+			<img src="images/status-4.png" onclick="SetStatusProject(4,{?Object=this&Var=this(ID)});" hspase="0" vspase="0">
+			<img src="images/status-5.png" onclick="SetStatusProject(5,{?Object=this&Var=this(ID)});" hspase="0" vspase="0">
+			<img src="images/status-6.png" onclick="SetStatusProject(6,{?Object=this&Var=this(ID)});" hspase="0" vspase="0">
+
+			<p>Процент:</p>
+			<table>
+				<tr>
+					<td><input type="text" class="input_text" id="Procent" name="Procent" style="width:40px; height:17px;" value="{?Object=this&Var=this(ReadyState)}"></td>
+					<td><img src="images/button-ok.png" vspace="3" hspace="0" style="cursor:pointer;" onclick="SetProcentProject(document.getElementById('Procent').value,{?Object=this&Var=this(ID)})"></td>
+				</tr>
+			</table>
+
+
+		</td>
+		<td class="RectRight">&nbsp;</td>
+	</tr>
+	<tr>
+		<td><img src="images/rect-bottom-left.png" hspace="0" vspace="0" border="0"></td>
+		<td class="RectBottom">&nbsp;</td>
+		<td><img src="images/rect-bottom-right.png" hspace="0" vspace="0" border="0"></td>
+	</tr>
+</table>
