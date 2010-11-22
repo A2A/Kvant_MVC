@@ -89,6 +89,14 @@ function GetTaskInfo(ID,event)
 	AjaxSendGET(Url,CatchProjectInfo);
 }
 
+function GetEventInfo(ID,event)
+{
+	Url = "?Ajax=1&Object=Event&Form=view_short&ID=" + ID;
+	SetEvent(event.clientX + document.body.scrollLeft, event.clientY + document.body.scrollTop) ;
+	AjaxSendGET(Url,CatchProjectInfo);
+}
+
+
 function DivHide(DivId)
 {
 	document.getElementById(DivId).style.display = 'none';   

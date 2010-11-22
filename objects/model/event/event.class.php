@@ -33,6 +33,8 @@
 		'new' 		=> 'objects/model/event/new.html',
 		'shortinfo' => 'objects/model/event/short_info.html',
 		'desktop' 	=> 'objects/model/event/list_type_page.html',
+		'view_short' => 'objects/model/event/view_short.html',
+		
 		);
 
 		public static $SQLFields = array(

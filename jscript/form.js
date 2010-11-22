@@ -459,7 +459,7 @@ function EventConfirm()
 function EventBlockRefresh()
 {
 	// TODO 10 -o Natali -c JS: подумать над тем, что перегружаем при создании события, нужен ли полный рефрешь страницы.
-	//location.href="?Object=Event&Form=desktop"; 
+	location.href="?Object=Event&Form=desktop"; 
 }
 
 function ClickEvent(ID,Continue)
