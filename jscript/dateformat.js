@@ -200,7 +200,7 @@ function SetYearValue()
 	}
 	else
 	{
-		YearDiv.value =  NowDay.getYear();
+		YearDiv.value =  NowDay.getFullYear();
 	}			
 }						
 
