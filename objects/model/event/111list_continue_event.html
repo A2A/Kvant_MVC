@@ -25,19 +25,5 @@
 	<tr>
 		<td class="CellTopLeft" colspan="10" style="font-size: 5px;">&nbsp;</td>
 	</tr>
-	 <!-- Element Begin --> 
-	<tr>
-		<td class="CellLeft"><img src="images/status-{?Object=this&Var=this(CurrentStatusID)}.png"></td>
-		<td class="Cell"><nobr class="TdWidth80" onClick="OpenEvent({?Object=this&Var=this(ID)})">{?Object=this&Var=this(Owner)}</nobr></td>
-		<td class="Cell"><nobr class="TdWidth40">{?Object=this&Var=this(Time)}</nobr></td>
-		<td class="Cell"><nobr class="TdWidth60">{?Object=this&Var=this(Date)}</nobr></td>
-		<td class="Cell"><nobr class="TdWidth40">{?Object=this&Var=this(Duration)}</nobr></td>
-		<td class="Cell"><nobr class="TdWidth84">{?Object=this&Var=this(UserRole)}</nobr></td>
-		<td class="Cell"><nobr class="TdWidth90">{?Object=this&Var=this(User)}</nobr></td>
-		<td class="Cell"><nobr class="TdWidth90">{?Object=this&Var=this(Project)}</nobr></td>
-		<td class="Cell"><nobr class="TdWidth90">{?Object=this&Var=this(Task)}</nobr></td>
-		<td class="Cell"><nobr class="TdWidth90">{?Object=this&Var=this(Contractor)}</nobr></td>
-	</tr>
-	   <!-- Element End --> 
-
+		{?Object=EventList&Form=list_block&Filter[0][Field]=Continue&Filter[0][Oper]=eq&Filter[0][Val]=1}  
 </table>           

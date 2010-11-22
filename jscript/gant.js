@@ -32,8 +32,8 @@ function VisibleNewProject(event)
 	'<tr>'+
 	'<td class="RoundLeft">&nbsp;</td> '+
 	'<td style="background: #ffffff;" valign="top" width="180px">'+
-	'<li><a href="#" onclick="DivHide(\'ModalWindow\');">Новую задачу</a></li>'+
-	'<li><a href="#" onclick="DivHide(\'ModalWindow\');">Новый проект</a></li>'+
+	'<li><a href="#" onclick="NewTask();">Новую задачу</a></li>'+
+	'<li><a href="#" onclick="NewProject();">Новый проект</a></li>'+
 	'</td>'+
 	'<td class="RoundRight" >&nbsp;</td>'+
 	'</tr>'+

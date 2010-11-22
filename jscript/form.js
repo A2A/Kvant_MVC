@@ -254,6 +254,11 @@ function ClickTask(ID)
 	}
 } 
 
+function NewTask()
+{
+	location.href ="?Object=System&Form=task";
+}
+
 function SaveTask()
 {
 	params = "Object=Task&Action=save&ID=" + document.getElementById('ID').value;
@@ -331,6 +336,11 @@ function ClickProject(ID)
 	}
 }
 
+function NewProject()
+{
+	location.href = "?Object=System&Form=project";
+}
+
 function FillFieldProject(ID)
 {
 	 Url = "?Ajax=1&Object=Project&Form=ShortInfo&ID=" + ID;
@@ -371,14 +381,13 @@ function CatchTPECreate(Text)
 	document.getElementById('PageMain').style.height = heig+"px"; 
 }
 
-function CreateEventType(EventTypeId)
+function CreateNewElement(EventTypeId)
 {
-	ModalWindowOpen = 'Event';    
 	TPETypeId = EventTypeId;
-	AjaxSendGET("?Ajax=1&Object=DRUList&Form=tpe_creat",CatchTPECreate);   
+	AjaxSendGET("?Ajax=1&Object=DRUList&Form=tpe_create",CatchTPECreate);   
 }
 
-function SetDRU(DRUID)
+function ChangeDRU(DRUID)
 {
 	if (ModalWindowOpen == 'Event')
 	{
@@ -392,6 +401,8 @@ function SetDRU(DRUID)
 	{
 		AjaxSendGET("?Ajax=1&Object=Task&Form=new&&DRUID="+DRUID+"&TypeID="+TPETypeId,CatchTPECreate); 
 	}
+		alert(ModalWindowOpen);
+	
 }
 
 function EventDelete()
@@ -459,7 +470,7 @@ function EventConfirm()
 function EventBlockRefresh()
 {
 	// TODO 10 -o Natali -c JS: подумать над тем, что перегружаем при создании события, нужен ли полный рефрешь страницы.
-	location.href="?Object=Event&Form=desktop"; 
+	//location.href="?Object=Event&Form=desktop"; 
 }
 
 function ClickEvent(ID,Continue)

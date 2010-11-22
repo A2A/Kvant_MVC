@@ -31,8 +31,8 @@
 			case 'Project'              : $ClassFileName = 'objects/model/project/project.class.php'; break;
 			case 'ProjectList'          : $ClassFileName = 'objects/model/project/project.list.class.php'; break;
 
-			case 'Task'                 : $ClassFileName = 'objects/task/task.class.php'; break;
-			case 'TaskList'             : $ClassFileName = 'objects/task/task_list.class.php'; break;
+			case 'Task'                 : $ClassFileName = 'objects/model/task/task.class.php'; break;
+			case 'TaskList'             : $ClassFileName = 'objects/model/task/task.list.class.php'; break;
 			
 			case 'Event'                 : $ClassFileName = 'objects/model/event/event.class.php'; break;
 			case 'EventList'             : $ClassFileName = 'objects/model/event/event.list.class.php'; break;
@@ -41,6 +41,9 @@
 
 			case 'Filter'        	    : $ClassFileName = 'objects/model/filter/filter.class.php'; break;
 
+			case 'TPEType'        		: $ClassFileName = 'objects/model/tpe_type/tpe_type.class.php'; break;
+			case 'TPETypeList'          : $ClassFileName = 'objects/model/tpe_type/tpe_type.list.class.php'; break;
+			
 			case 'TPEClass'        		: $ClassFileName = 'objects/model/tpe_class/tpe_class.class.php'; break;
 			case 'TPEClassList'         : $ClassFileName = 'objects/model/tpe_class/tpe_class.list.class.php'; break;
 			
@@ -170,7 +173,7 @@
 
 	function DateTimeToMySQL($Date)
 	{
-		return gmdate("Y-m-d H:i:s",$Date);
+		return date("Y-m-d H:i:s",$Date);
 	}
 
 ?>

@@ -1,5 +1,5 @@
 <?php
-	class WorkBlock extends Entity
+	class WorkBlock extends BaseClass
 	{
 		public $ID;
 		public $ProjectID;

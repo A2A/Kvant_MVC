@@ -1,5 +1,5 @@
 <?php
-	class IntervalList extends CollectionDB
+	class IntervalList extends CollectionBasic
 	{
 		protected $DBTableName = '';
 		public static $Forms = array(

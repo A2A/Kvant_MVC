@@ -18,7 +18,7 @@
 
 		public $StartDateText = null;
 
-		public $FullDescription = '';
+		public $Pause = 0;
 		public $ClassID;
 		public $Continue = 1; // 1 - не завершено, 0 - завершено
 
@@ -32,21 +32,19 @@
 		'view' 		=> 'objects/model/event/view.html',
 		'new' 		=> 'objects/model/event/new.html',
 		'shortinfo' => 'objects/model/event/short_info.html',
-		'desktop' 	=> 'objects/model/event/list_type_page.html',
 		'view_short' => 'objects/model/event/view_short.html',
 		
 		);
 
 		public static $SQLFields = array(
-		'ID' => 'ID',
-		'Description' => 'DESCRIPTION',
-		'ClassID' => 'CLASSID',
-		'TaskID' => 'TASKID',
-		'ProjectID' => 'PROJECTID',
-		'Continue' => 'CONTINUE'
+		'ID' => '`ID`',
+		'Description' => '`DESCRIPTION`',
+		'ClassID' => '`CLASSID`',
+		'TaskID' => '`TASKID`',
+		'ProjectID' => '`PROJECTID`',
+		'Continue' => '`CONTINUE`',
 		);
 
-		// TODO 3 -o Natali -c Функционал: переписать SetActionData() 
 		protected function SetActionData()
 		{
 			parent::SetActionData();
@@ -104,7 +102,7 @@
 			return $this->Modified;
 
 		}
-		// TODO 3 -o Natali -c Функционал: переписать  Refresh()
+		// TODO 3 -o Natali -c Функционал: заполнение проета и задачи  Refresh()
 		public function Refresh()
 		{
 			$null = null;
@@ -176,7 +174,8 @@
 							$this->DRU = null;
 						}
 					}
-					$this->Continue = $fetch->CONTINUE; 
+					$this->Continue = $fetch->CONTINUE;   
+					$this->Pause = $fetch->DURATION_PAUSE + (mktime() - $this->FinishDate);  
 				}
 				
 			}
@@ -184,12 +183,13 @@
 			{
 				$this->InitDate = mktime();
 				$this->InitDateText = DateTimeToStr($this->InitDate);
-				$this->FinishDate = mktime();  
+				$this->FinishDate = mktime(); 
 				   
 			}
 			$this->FinishDateText = DateTimeToStr($this->FinishDate);  
 		
-			$this->CurrentTime =  DateTimeToStr(mktime());  
+			$this->CurrentTime =  DateTimeToStr(mktime());   
+			  
 			$this->SetActionData();   
 		}
 
@@ -206,6 +206,7 @@
 				"'.DateTimeToMySQL($this->InitDate).'","'.DateTimeToMySQL($this->FinishDate).'",
 				'.(is_numeric($this->DRUID)?$this->DRUID:'null').',
 				'.($this->Pause=0).','.(is_numeric($this->TaskID)?$this->TaskID:'null').','.$this->Continue.')';
+				
 				// TODO 10 -o N -c Сообщение для отладки: SQL
 				ErrorHandle::ErrorHandle($sql);
 
@@ -225,16 +226,18 @@
 			}
 			else
 			{
+				//$this->Pause = (mktime() - $this->FinishDate);  
+		
 				$sql = 'update '.$this->DBTableName.' set 
-				DESCRIPTION="'.$this->Description.'",
-				PARENTID='.(intval($this->ParentID)?intval($this->ParentID):'null').',
-				PROJECTID='.(intval($this->ProjectID)?intval($this->ProjectID):'null').',
-				DATE_INIT="'.DateTimeToMySQL($this->InitDate).'",
-				DATE_START="'.DateTimeToMySQL($this->StartDate).'",
-				DATE_FINISH="'.DateTimeToMySQL($this->FinishDate).'",
-				FULL_DESCR="'.$this->FullDescr.'", 
-				MANAGERID='.(intval($this->OwnerID)?intval($this->OwnerID):'null').', 
-				USERID='.(intval($this->UserID)?intval($this->UserID):'null').' 
+				`DESCRIPTION`		= "'.$this->Description.'",
+				`CLASSID`			= '.$this->ClassID.',
+				`PROJECTID`		= '.(intval($this->ProjectID)?intval($this->ProjectID):'null').',
+				`DATE_INIT`		= "'.DateTimeToMySQL($this->InitDate).'",
+				`DATE_FINISH`		= "'.DateTimeToMySQL($this->FinishDate).'",
+				`DRUID`			= '.$this->DRUID.', 
+				`DURATION_PAUSE`	= '.(intval($this->Pause)?intval($this->Pause):'0').',
+				`TASKID`			= '.(intval($this->TaskID)?intval($this->TaskID):'null').',
+				`CONTINUE`		= '.$this->Continue.' 
 				where ID = '.$this->ID;
 				// TODO 10 -o N -c Сообщение для отладки: SQL
 				ErrorHandle::ErrorHandle($sql);
@@ -251,24 +254,38 @@
 					$Result = true;
 				}
 			}
+			
+			if ($this->Continue == 0 and intval($this->ID))
+			{
+				$Sql="Select GET_HANDLER(".$this->ID.",'Event') as Result";
+				$hSql = DBMySQL::Query($sql); 
+			}
 		}      
 
 		public function __get($FieldName)
 		{
 			switch ($FieldName)
 			{
-				case 'Time' :	return date('H:i',$this->InitDate);
-				case 'Date' : 	return date('d.m.Y',$this->InitDate);
-				case 'Duration' : return gmdate('H:i',($this->FinishDate-$this->InitDate));
-				case 'UserRole' : return $this->DRU->RoleDescr;
-				case 'User' 	: return $this->DRU->UserDescr;
+				case 'Time' 	:	return date('H:i',$this->InitDate);
+				case 'TimePause':	
+									$Hour = intval($this->Pause / 3600);
+									$Min = intval(($this->Pause - $Hour*3600) / 60);
+									if ($Hour > 0)
+										return $Hour.' ч. '.$Min.' мин.';
+									else
+										return $Min.' мин.';
+									
+				case 'Date' 	: 	return date('d.m.Y',$this->InitDate);
+				case 'Duration' : 	return gmdate('H:i',($this->FinishDate-$this->InitDate));
+				case 'UserRole' : 	return $this->DRU->RoleDescr;
+				case 'User' 	: 	return $this->DRU->UserDescr;
 			}
 
 		}
 
 		static public function GetSQLField($Field)
 		{
-			return Event::$SQLField[$Field];
+			return Event::$SQLFields[$Field];
 		}
 
 		public function __construct(&$ProcessData,$ID=null)  

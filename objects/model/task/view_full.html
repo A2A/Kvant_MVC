@@ -1,0 +1,112 @@
+<table border="0" cellspacing=0 cellpadding=0 align="center">
+	<tr>
+		<td><img src="images/modal-top-left.png" hspace="0" vspace="0" border="0"></td>
+		<td class="RoundTop">      
+			<img src="images/info-close.png" align="right" onClick="CloseModalWindow();"> 
+		</td>
+		<td><img src="images/modal-top-right.png" hspace="0" vspace="0" border="0"></td>
+	</tr>
+	<tr>
+		<td class="RoundLeft">&nbsp;</td>
+		<td class="RoundCenter" valign="top">
+
+			<img src="images/status-{?Object=this&Var=this(CurrentStatusID)}.png" class="img" alt="{?Object=this&Var=this(CurrentStatus)}" hspace="3" align="left">
+			<h2 class="{?Object=this&Var=this(State)}">
+				<input type=hidden name='ID' id='ID' value="{?Object=this&Var=this(ID)}">{?Object=this&Var=this(Description)}</h2> 
+			<br>
+			<br>
+			<table  border="0" cellspacing="0" cellpadding="0" class="Task">       
+				<tr>
+					<td class="LeftColDark">Постановщик</td>
+					<td class="CenterRowTop">
+						{?Object=this&Var=this(User)}&nbsp; 
+					</td>
+					<td class="ButtonRowTop">&nbsp;</td>
+				</tr>  
+				<tr> 
+					<td class="LeftColLight">Проект</td> 
+					<td class="CenterRow">                          
+						{?Object=this&Var=this(Project)}
+					</td> 
+					<td class="ButtonRow">&nbsp;</td> 
+				</tr>  
+				<tr> 
+					<td class="LeftColLight">Задача-владелец</td> 
+					<td class="CenterRow">
+						{?Object=this&Var=this(Parent)}
+					</td> 
+					<td class="ButtonRow">&nbsp;</td> 
+				</tr> 
+				<tr> 
+				<tr>
+					<td class="LeftColLight">Контрагент</td>
+					<td class="CenterRow">
+						{?Object=this&Var=this(Contractor)}
+					</td>
+					<td class="ButtonRow">&nbsp;</td>
+				</tr>
+				<tr> 
+					<td class="LeftColLight">Время создания</td> 
+					<td class="CenterRow">
+						<input type=hidden value="{?Object=this&Var=this(InitDate)}" id='InitDateValue'> 
+						<span id="InitDate">&nbsp;</span>
+					</td> 
+					<td class="ButtonRow">&nbsp;</td> 
+				</tr> 
+
+				<tr> 
+					<td class="LeftColLight">Начало работ</td> 
+					<td class="CenterRow">
+						<input type=hidden value="{?Object=this&Var=this(StartDate)}" id='StartDateValue'>   
+						<span id="StartDate">&nbsp;</span>
+					</td>
+					<td class="ButtonRow">&nbsp;</td> 
+				</tr> 
+				<tr> 
+					<td class="LeftColLight">Конец работ</td> 
+					<td class="CenterRow">
+						<input type=hidden value="{?Object=this&Var=this(FinishDate)}" id='FinishDateValue'>
+						<span id="FinishDate">&nbsp;</span>
+					</td> 
+					<td class="ButtonRow">&nbsp;</td> 
+				</tr> 
+				<tr> 
+					<td class="LeftColLight">Длительность</td> 
+					<td class="CenterRow"><input class="input_text" id="Duration" value="{?Object=this&Var=this(Duration)}"></td> 
+					<td class="ButtonRow">&nbsp;</td> 
+				</tr> 
+				<tr> 
+					<td class="LeftColLight">Исполнено</td> 
+					<td class="CenterRow">{?Object=this&Var=this(ReadyState)}%</td> 
+					<td class="ButtonRow">&nbsp;</td> 
+				</tr> 
+				<tr> 
+					<td class="LeftColLight">Описание</td> 
+					<td class="CellTextarea" colspan="2">{?Object=this&Var=this(FullDescr)}</td> 
+				</tr> 
+			</table>
+
+
+			<table width="505px" border="0">  
+				<tr>
+					<td align="left">
+						<p>{?Object=StatusList&Form=Change&TaskID=this(ID)}</p>
+					</td>
+					<td align="right" width="210px">
+						<div class="ButtonLightBlue BigButton"><nobr><img src="images/button-blue-1.png" class="img" align="left" hspace="0"><img src="images/button-blue-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonLightBlue BigButton"  onClick="ListTaskEvent({?Object=this&Var=this(ID)});">Список событий по задаче</a></nobr></div>
+						<div class="ButtonOrange BigButton"><nobr><img src="images/button-orange-1.png" class="img" align="left" hspace="0"><img src="images/button-orange-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonOrange BigButton"  onClick="NewTaskEvent({?Object=this&Var=this(ID)});">Добавить событие к задаче</a></nobr></div>
+						<div class="ButtonOrange BigButton"><nobr><img src="images/button-orange-1.png" class="img" align="left" hspace="0"><img src="images/button-orange-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonOrange BigButton"  onClick="NewTask({?Object=this&Var=this(ID)});">Создать новую задачу</a></nobr></div>
+					</td>
+				</tr>
+			</table>
+
+
+		</td>
+		<td class="RoundRight">&nbsp;</td>
+	</tr>
+	<tr>
+		<td><img src="images/modal-bottom-left.png" hspace="0" vspace="0" border="0"></td>
+		<td class="RoundBottom">&nbsp;</td>
+		<td><img src="images/modal-bottom-right.png" hspace="0" vspace="0" border="0"></td>
+	</tr>
+</table> 

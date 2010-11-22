@@ -1,4 +1,4 @@
-<table border="0" cellspacing=0 cellpadding=0 onclick="ClickEvent({?Object=this&Var=this(ID)},{?Object=this&Var=this(Continue)});" class="CursorHand">
+<table border="0" cellspacing=0 cellpadding=0 onclick="ClickTaskView({?Object=this&Var=This(ID)});" class="CursorHand">
 	<tr>
 		<td><img src="images/rect-top-left.png" hspace="0" vspace="0" border="0"></td>
 		<td  class="RectTop">&nbsp;</td>
@@ -7,11 +7,12 @@
 	<tr>
 		<td class="RectLeft">&nbsp;</td>
 		<td class="ViewShort" valign="top">
-			<h2>{?Object=this&Var=This(Owner)}</h2>
-			<p>Контрагент: {?Object=this&Var=This(Contractor)}</p>
+			<h2>{?Object=this&Var=This(Description)}</h2>
+			<p>Сроки: {?Object=this&Var=This(InitDateText)} - {?Object=this&Var=This(FinishDateText)}</p>
+			<p>Статус: {?Object=this&Var=This(CurrentStatus)} ({?Object=this&Var=this(ReadyState)}<small>%</small>)</p>
 			<hr>
 			<h2 class="red">Комментарий:</h2> 
-			<p>{?Object=this&Var=This(Description)}</p>
+			<p>{?Object=this&Var=This(FullDescription)}</p>
 		</td>
 		<td class="RectRight">&nbsp;</td>
 	</tr>

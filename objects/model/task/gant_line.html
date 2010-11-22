@@ -1,0 +1,10 @@
+<!-- Element Begin -->
+<tr>
+	<td class="TaskStatus-{?Object=this&Var=this(Level)}"  onMouseOver="VisibleStatusEditTask('{?Object=this&Var=this(ID)}',event);"><img src="images/status-{?Object=this&Var=this(CurrentStatusID)}.png" class="img" alt="{?Object=this&Var=this(CurrentStatus)}" hspace="0"></td> 
+	<td class="Task-{?Object=this&Var=this(Level)}">{?Object=this&Var=this(Description)}</td>
+	<td class="None-TimeLine-begin">&nbsp;</td>
+	{?Object=WorkBlockList&Form=task_status&TaskID=This(ID)}
+	<td class="None-TimeLine-end">&nbsp;</td>
+</tr>
+{?Object=TaskList&Form=gant_line&Filter[0][Field]=ParentID&Filter[0][Oper]=eq&Filter[0][Val]=this(ID)}
+<!-- Element End -->

@@ -33,6 +33,14 @@
 		'gant' 					=> 'objects/system/gant/gant.html',
 		'gant_body'             => 'objects/system/gant/body.html',
 		'gant_header'           => 'objects/system/gant/header.html',
+		
+		'event'         		=> 'objects/system/event/desktop.html',
+		'event_list'       		=> 'objects/system/event/list.html',
+		
+		'task'         			=> 'objects/system/task/desktop.html',
+		'project'         		=> 'objects/system/project/desktop.html',
+		
+		
 		'calendar' 				=> 'objects/system/calendar.html',
 		'dru_menu' 				=> 'objects/system/dru_menu.html',
 		'ssp' 					=> 'objects/system/ssp.html',
