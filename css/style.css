@@ -128,8 +128,8 @@ td.LeftMenu
 .Page
 {
 	 background: #ffffff;
-	 min-height: 200px;
-	 height: 200px;
+	 min-height: 500px;
+	 height: 500px;
 }
 
 /* левая колонка */
@@ -861,6 +861,7 @@ li.CaptionType
 	border: 1px solid #bebebe;
 	background: #ffffff url('../images/select-button.png') no-repeat right;
 	cursor: pointer; 
+
 }
 
 .SelectList

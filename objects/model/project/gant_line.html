@@ -3,7 +3,7 @@
 	<td class="ProjectCaptionStatus"  onMouseOver="VisibleStatusEditProject('{?Object=this&Var=this(ID)}',event);"><img src="images/status-{?Object=this&Var=this(CurrentStatusID)}.png" class="img" alt="{?Object=this&Var=this(CurrentStatus)}" hspace="0"></td> 
 	<td class="ProjectCaption"><nobr>{?Object=this&Var=this(Description)}</nobr></td>
 	<td class="{?Object=this&Var=this(StateBegin)}">&nbsp;</td>
-	{?Object=WorkBlock_list&Form=project_status&ProjectID=This(ID)}
+	{?Object=WorkBlockList&Form=project_status&ProjectID=This(ID)}
 	<td class="{?Object=this&Var=this(StateEnd)}">&nbsp;</td>
 </tr>
 {?Object=TaskList&Form=gant_line&Filter[0][Field]=ProjectID&Filter[0][Oper]=eq&Filter[0][Val]=this(ID)&Filter[1][Field]=ParentID&Filter[1][Oper]=eq&Filter[1][Val]=}

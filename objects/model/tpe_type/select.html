@@ -7,7 +7,8 @@
 		<tr>
 			<td class="SelectListLi" style="background: #ffffff url('images/select-fon-li.png') repeat-y right;">
 				<!-- Element Begin -->  
-				<li class="Dock"><img src="images/event-type-{?Object=this&Var=this(Dock)}.png" align="left" title="Закреписть на рабочем столе" OnClick="DesktopPosition('hand','{?Object=this&Var=this(ID)}')" hspace="3"><span onClick="CreateEventType('{?Object=this&Var=this(ID)}')">{?Object=this&Var=this(Description)} </span></li>  
+				<li class="CaptionType"><nobr>{?Object=this&Var=this(Description)} </nobr></li>  
+				{?Object=TPEClassList&Form=list_select&Filter[0][Field]=GET(ElementType)&Filter[0][Oper]=eq&Filter[0][Val]=1&Filter[1][Field]=TypeID&Filter[1][Oper]=eq&Filter[1][Val]=this(ID)}
 				<!-- Element End -->
 			</td>
 		</tr> 
@@ -17,4 +18,3 @@
 
 	</table>
 </div>
-	

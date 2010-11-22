@@ -1,0 +1,125 @@
+<table border="0" cellspacing=0 cellpadding=0 align="center"> 
+	<tr> 
+		<td><img src="images/modal-top-left.png" hspace="0" vspace="0" border="0"></td> 
+		<td style="background: url('images/modal-top.png');font-size:4px;">      
+			<img src="images/info-close.png" align="right" onClick="CloseModalWindow();"> 
+		</td> 
+		<td><img src="images/modal-top-right.png" hspace="0" vspace="0" border="0"></td> 
+	</tr> 
+	<tr> 
+		<td style="background: url('images/modal-left.png') repeat-y;font-size:4px;">&nbsp;</td> 
+		<td style="background: #ffffff;padding-right:5px;padding-bottom:5px;" valign="top"> 
+			<table width="100%"> 
+				<tr> 
+					<td> 
+						<h2 class="{?Object=this&Var=this(State)}"><input type=hidden name='ID' id='ID' value="{?Object=this&Var=this(ID)}">{?Object=this&Var=this(Description)}</h2> <br />
+					</td> 
+				</tr> 
+			</table> 
+
+			<table  border="0" cellspacing="0" cellpadding="0" class="Task">       
+				<tr> 
+					<td class="LeftColDark">Постановщик</td> 
+					<td class="CenterRowTop">{?Object=this&Var=this(Owner)}&nbsp;</td> 
+					<td class="ButtonRowTop">&nbsp;</td> 
+				</tr>  
+				<tr> 
+					<td class="LeftColLight">Испольнитель</td> 
+					<td class="CenterRow"> 
+						<input type=hidden name='UserID' id='UserID' value="{?Object=this&Var=this(UserID)}"> 
+						<input class="input_text"  onkeyup="AutoSelectInText(this,event,'User',true);" id="User" onBlur="CloseWindow('UserDiv');" value="{?Object=this&Var=this(User)}"><br> 
+						<div id='UserDiv' class="DivSelectForm"></div> 
+					</td> 
+					<td class="ButtonRow"><img src="images/button-forms-select.png" OnClick="AutoSelectInText(document.getElementById('User'),event,'User');"  class="ButtonCheckForm"></td> 
+				</tr>  
+				<tr> 
+					<td class="LeftColLight">Проект</td> 
+					<td class="CenterRow">
+						<input type=hidden name='ProjectID' id='ProjectID' value="{?Object=this&Var=this(ProjectID)}"> 
+						<input class="input_text" id="Project" value="{?Object=this&Var=this(Project)}">
+					</td> 
+					<td class="ButtonRow"><img src="images/button-forms-close.png" OnClick="FieldClear('ParentProject');"  class="ButtonCheckForm" onmouseup="ButtonPres(this);"></td> 
+				</tr>  
+				<tr> 
+					<td class="LeftColLight">Задача-владелец</td> 
+					<td class="CenterRow">
+						<input type=hidden name='ParentID' id='ParentID' value="{?Object=this&Var=this(ParentID)}"> 
+						<input class="input_text" id="Parent" value="{?Object=this&Var=this(Parent)}">
+					</td> 
+					<td class="ButtonRow"><img src="images/button-forms-close.png" OnClick="FieldClear('ParentTask');" class="ButtonCheckForm"></td> 
+				</tr> 
+				<tr> 
+					<td class="LeftColLight">Контрагент</td> 
+					<td class="CenterRow"> 
+						<input type=hidden name='ContractorID' id='ContractorID' value="{?Object=this&Var=this(ContractorID)}"> 
+						<input class="input_text"  onkeyup="AutoSelectInText(this,event,'Contractor');" id="Contractor" onBlur="CloseWindow('ContractorDiv');" value="{?Object=this&Var=this(Contractor)}"><br> 
+						<div id='ContractorDiv' class="DivSelectForm"></div> 
+					</td> 
+					<td class="ButtonRow"><img src="images/button-forms-select.png" OnClick="AutoSelectInText(this,event,'Contractor');"  class="ButtonCheckForm"></td> 
+				</tr> 
+
+
+				<tr> 
+					<td class="LeftColLight">Время постановки</td> 
+					<td class="CenterRow">
+						<input type=hidden value="{?Object=this&Var=this(InitDate)}" id='InitDateValue'> 
+						<span id="InitDate">&nbsp;</span>
+					</td> 
+					<td class="ButtonRow">&nbsp;</td> 
+				</tr> 
+
+				<tr> 
+					<td class="LeftColLight">Начало выполнения</td> 
+					<td class="CenterRow">
+						<input type=hidden1 value="{?Object=this&Var=this(StartDate)}" id='StartDateValue'>   
+						<span id="StartDate">&nbsp;</span>
+					</td>
+					<td class="ButtonRow"><img src="images/button-forms-calendar.png"  OnClick="Calendar(event, 'StartDateValue');"  class="ButtonCheckForm"></td> 
+				</tr> 
+				<tr> 
+					<td class="LeftColLight">Конец выполнения</td> 
+					<td class="CenterRow">
+						<input type=hidden1 value="{?Object=this&Var=this(FinishDate)}" id='FinishDateValue'>
+						<span id="FinishDate">&nbsp;</span>
+					</td> 
+					<td class="ButtonRow"><img src="images/button-forms-calendar.png"  OnClick="Calendar(event, 'FinishDateValue');"  class="ButtonCheckForm"></td> 
+				</tr> 
+				<tr> 
+					<td class="LeftColLight">Длительность</td> 
+					<td class="CenterRow"><input class="input_text" id="TimeLine" value="{?Object=this&Var=this(Duration)}"></td> 
+					<td class="ButtonRow">&nbsp;</td> 
+				</tr> 
+				<tr> 
+					<td class="LeftColLight">Исполнено</td> 
+					<td class="CenterRow"><input class="input_timedate4" id="ReadyState" value="{?Object=this&Var=this(ReadyState)}">%</td> 
+					<td class="ButtonRow">&nbsp;</td> 
+				</tr> 
+
+
+
+				<tr> 
+					<td class="LeftColLight">Описание</td> 
+					<td class="CellTextarea" colspan="2"><textarea class="input_textarea" id="TaskFullDescr">{?Object=this&Var=this(FullDescr)}</textarea></td> 
+				</tr> 
+			</table> 
+			<table width="100%" border="0">  
+				<tr> 
+					<td align="right"> 
+						<div class="ButtonLightBlue"><nobr><img src="images/button-blue-1.png" class="img" align="left" hspace="0"><img src="images/button-blue-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonLightBlue" onClick="CloseModalWindow();">Отмена</a></nobr></div> 
+					</td> 
+					<td align="right" width="90px"> 
+						<div class="ButtonOrange"><nobr><img src="images/button-orange-1.png" class="img" align="left" hspace="0"><img src="images/button-orange-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonOrange" onClick="SaveTask();">Сохранить</a></nobr></div> 
+					</td> 
+				</tr> 
+			</table> 
+
+			{?Object=task_status&Form=&ID=this(ID)}
+		</td> 
+		<td style="background: url('images/modal-right.png') repeat-y right;">&nbsp;</td> 
+	</tr> 
+	<tr> 
+		<td><img src="images/modal-bottom-left.png" hspace="0" vspace="0" border="0"></td> 
+		<td style="background: url('images/modal-bottom.png') bottom;font-size:4px;">&nbsp;</td> 
+		<td><img src="images/modal-bottom-right.png" hspace="0" vspace="0" border="0"></td> 
+	</tr> 
+		</table>   

@@ -33,14 +33,24 @@
 		'gant' 					=> 'objects/system/gant/gant.html',
 		'gant_body'             => 'objects/system/gant/body.html',
 		'gant_header'           => 'objects/system/gant/header.html',
+		
+		'event'         		=> 'objects/system/event/desktop.html',
+		'event_list'       		=> 'objects/system/event/list.html',
+		
+		'task'         			=> 'objects/system/task/desktop.html',
+		'project'         		=> 'objects/system/project/desktop.html',
+		
+		
 		'calendar' 				=> 'objects/system/calendar.html',
 		'dru_menu' 				=> 'objects/system/dru_menu.html',
 		'ssp' 					=> 'objects/system/ssp.html',
 	);
 
-		public $title = "test";
-		public $CurrentUser;
+		public $meta = '';
+		public $title = 'Система сбалансированных показателей. ООО "Квант"';
 
+		public $CurrentUser;
+		
 		protected function __construct(&$ProcessData)  
 		{   
 			parent::__construct($ProcessData);
@@ -48,9 +58,9 @@
 			$this->CurrentInt = intval($_SESSION['CurrentInt']);
 			if (!isset($_SESSION['CurrentWPTime'])) 
 			{
-/*                $int = Interval::GetObject($null,$null,$this->DataBase,$_SESSION['CurrentInt']);  
+				$int = Interval::GetObject($null,$null,$this->DataBase,$_SESSION['CurrentInt']);  
 				$_SESSION['CurrentWPTime'] =  time() - 8 * $int->Duration;
-*/            }                
+			}                
 			$this->InitCurrentUser();
 		}
 
@@ -64,7 +74,7 @@
 		{
 			switch ($FieldName)
 			{
-				case 'CurrentInt': return isset($_SESSION['CurrentInt'])?intval($_SESSION['CurrentInt']):null; break;
+				case 'CurrentInt'	: return isset($_SESSION['CurrentInt'])?intval($_SESSION['CurrentInt']):null; break;
 				case 'CurrentWPTime': return isset($_SESSION['CurrentWPTime'])?intval($_SESSION['CurrentWPTime']):null; break;
 				case 'CurrentUserID': return (!is_null($this->CurrentUser))?$this->CurrentUser->ID:null; break;
 			}

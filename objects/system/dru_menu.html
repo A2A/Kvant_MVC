@@ -12,7 +12,7 @@
 					<td class="TextForm" valign="top">
 						<div id="DRUCurrentUser">
 						<p>Свои роли</p>
-							{?Object=DRUList&Form=menu_current_user}
+							{?Object=DRUList&Form=menu_role&Filter[0][Field]=UserID&Filter[0][Oper]=eq&Filter[0][Val]=system(CurrentUserID)}
 						</div>
 						<hr class="modal">   
 						<div id="DRUUser">

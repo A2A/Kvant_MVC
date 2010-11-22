@@ -1,5 +1,5 @@
 <?php
-	class WorkBlockList extends CollectionDB
+	class WorkBlockList extends CollectionBasic
 	{
 		public static  $Forms = array(
 		'gant_header' => 'objects/model/workblock/gh_wblist.html',

@@ -3,11 +3,11 @@
 	{
 		// TODO 4 -o Natali -c Замечание: форма edit и view_full, если запрошено форма редактирования, а пользователь не имеет рава редактировать этот проект, то надо отдавать форму view_full - полное описание 
 		public static $Forms = array(
-		'edit' => 'objects/project/edit.html',
-		'view_short' => 'objects/project/view_short.html',
-		'view_full' => 'objects/project/view_full.html',
-		'new' => 'objects/project/new.html',
-		'view_status' => 'objects/project/view_status.html',
+		'edit' 			=> 'objects/model/project/edit.html',
+		'view_short' 	=> 'objects/model/project/view_short.html',
+		'view_full' 	=> 'objects/model/project/view_full.html',
+		'new' 			=> 'objects/model/project/new.html',
+		'view_status' 	=> 'objects/model/project/view_status.html',
 		);
 
 		protected $DBTableName = 'projects';

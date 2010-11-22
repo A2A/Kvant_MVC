@@ -8,7 +8,7 @@
 		'menu_user' => 'objects/model/dru/menu_user.html',
 		'menu_division' => 'objects/model/dru/menu_division.html',
 		'menu_role' => 'objects/model/dru/menu_role.html',
-		'tpe_creat' => 'objects/model/dru/tpe_creat.html',
+		'tpe_create' => 'objects/model/dru/tpe_create.html',
 		);
 
 		public static $SQLFields = array(

@@ -1,5 +1,5 @@
 <?php
-	class Interval extends Entity
+	class Interval extends BaseClass
 	{
 		public $ID;
 		public $Duration;

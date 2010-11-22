@@ -1,0 +1,49 @@
+<script>ModalWindowOpen = 'Event'; </script>
+<table  border="0" cellspacing="5" cellpadding="0" width="780px" align="center">       
+	<tr>
+		<td style="width: 600px;"><h2>Регистрация событий</h2></td>
+		<td class="FullListText" style="width: 160px;">Полный список: {?Object=TPETypeList&Form=list_select&Filter[0][Field]=EventUse&Filter[0][Oper]=eq&Filter[0][Val]=1&ElementType=EventUse}</td>
+	</tr>
+	<tr>
+		<td colspan="2">   
+			{?Object=TPETypeList&Form=list&Filter[0][Field]=EventUse&Filter[0][Oper]=eq&Filter[0][Val]=1&ElementType=EventUse}   
+
+		</td>
+	</tr>
+
+	<tr>
+		<td colspan="2">   
+			<table width="774px" align="center" border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 2px;">
+				<tr>
+					<td>
+						<h2>Список  событий</h2>
+					</td>
+					<td width="120px">
+						<div class="ButtonLightBlueBig BigButton"><nobr><img src="images/button-blue-1.png" class="img" align="left" hspace="0"><img src="images/button-blue-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonLightBlueBig BigButton" href="?Object=System&Form=event_list">Перейти к списоку событий</a></nobr></div>
+					</td>
+				</tr>
+			</table>
+
+			<table border="0" cellspacing=0 cellpadding=0 width="770px" id="EventList" align="center">
+				<tr>
+					<td class="CellTopDrak" style="width:20px;">&nbsp;</td>
+					<td class="CellTopDrak" style="width:120px;">Название <div id="EventListName"></div></td>
+					<td class="CellTop50">Время<div id="EventListTime"></div></td>
+					<td class="CellTop50">Дата<div id="EventListDate"></div></td>
+					<td class="CellTop50">Длит.<div id="EventListTimeLine"></div></td>
+					<td class="CellTop50">Роль<div id="EventListRole"></div></td>
+					<td class="CellTop50">Сотрудник<div id="EventListStaff"></div></td>
+					<td class="CellTop50">Проект<div id="EventListProject"></div></td>
+					<td class="CellTop50">Задача<div id="EventListTask"></div></td>
+					<td class="CellTop50">Контрагент<div id="EventListContractor"></div></td>
+				</tr>
+				<tr>
+					<td class="CellTopLeft" colspan="10" style="font-size: 5px;">&nbsp;</td>
+				</tr>
+				{?Object=EventList&Form=list_block&Filter[0][Field]=Continue&Filter[0][Oper]=eq&Filter[0][Val]=1}  
+			</table>           
+
+		</td>
+	</tr>
+
+</table>

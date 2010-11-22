@@ -8,22 +8,22 @@
 		<link rel="stylesheet" type="text/css" href='css/user.css'>
 		<link rel="stylesheet" type="text/css" href='css/window.css'>
 		<link rel="stylesheet" type="text/css" href='css/gant.css'>
-		 <!--[if IE ]>
-		 <link rel="stylesheet" type="text/css" href='css/ie/style.css'>
-		 <![endif]-->
+		<!--[if IE ]>
+		<link rel="stylesheet" type="text/css" href='css/ie/style.css'>
+		<![endif]-->
 
 		<!--BASE href="http://www.a2a-consult.ru/"http://www.a2a-consult.ru/-->
 		<title>{?Object=system&Var=title}</title>
 
 	</head>     
-		<script src="jscript/gant.js"></script>  
-		<script src="jscript/dateformat.js"></script>  
-		<script src="jscript/windows.js"></script>            
-		<script src="jscript/loadHtml.js"></script> 
-		<script src="jscript/form.js"></script>  
-		
+	<script src="jscript/gant.js"></script>  
+	<script src="jscript/dateformat.js"></script>  
+	<script src="jscript/windows.js"></script>            
+	<script src="jscript/loadHtml.js"></script> 
+	<script src="jscript/form.js"></script>  
+
 	<body style="background: #e4eaf0;" onload="WarningMessageOnLoad('ErrorMessage');"> 
-	<div id="ErrorMessage" style="display:none;position: absolute;"><!--#error_field#--></div>
+		<div id="ErrorMessage" style="display:none;position: absolute;"><!--#error_field#--></div>
 
 		<div id="InfoWindow">
 			<div class="ButtonLightBlue BigButton" align="right"><nobr><img src="images/button-blue-1.png" class="img" align="left" hspace="0"><img src="images/button-blue-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonLightBlue BigButton" onClick="ShowAllMessages();">Показать все сообщения</a></nobr></div> 
@@ -32,6 +32,7 @@
 		</div>
 		<div id="SelectAction"  onmousemove="this.style.display='block';" onMouseout="DivHide('SelectAction');">
 		</div>
+		<div id="Calendar" style="position: absolute;z-index:1002;"  onmousemove="this.style.display='block';"></div>
 
 		<table border=0 cellspacing=0 cellpadding=0 width="1034" style="border-bottom:2px solid #e4eaf0;" align="center">
 			<tr>
@@ -47,7 +48,7 @@
 							<img src="images/button-ssp.png"  alt="Дерево Показателей" align="right" border=0 hspace="3" vspace="0">
 						</a>
 						<a href="?Object=ssp" class="TopMenu">
-						Система Сбалансированных Показателей
+							Система Сбалансированных Показателей
 						</a>
 					</div>
 					<div class="Role">{?Object=RoleList&Form=RoleListWithActive}</div>
@@ -64,20 +65,20 @@
 					{?Object=ProjectList&Form=list_menu}
 					<div class="LeftButtonTask"><a href="?Object=System&Form=gant" class="leftbuttom_task">Задачи</a></div>
 					{?Object=TaskList&Form=list_menu&Filter[0][Field]=ParentID&Filter[0][Oper]=eq&Filter[0][Val]=}
-					<div class="LeftButtonEvent"><a href="?Object=Event&Form=desktop" class="leftbuttom_event">События</a></div>
-					{?Object=EventList&Form=list_menu}
-					
-					
+					<div class="LeftButtonEvent"><a href="?Object=System&Form=event" class="leftbuttom_event">События</a></div>
+					{?Object=EventList&Form=list_menu&Filter[0][Field]=Continue&Filter[0][Oper]=eq&Filter[0][Val]=1}
+
+
 					<div class="ButtonLightBlue BigButton" style="margin-left: 10px;" align="right"><nobr><img src="images/button-blue-1.png" class="img" align="left" hspace="0"><img src="images/button-blue-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonLightBlue BigButton" onClick="SendLogout();">
 								Выход из системы
 							</a></nobr></div> 
-			</td> 
+				</td> 
 				<td class="Page" valign="top" id="PageMain1" align="left"> 
 					<div id="NoActionDesktop" align="center"> </div>
 					<div id="ActionDesktop" align="center"></div>  
-				<div id="PageMain" align="left"> 
-					<!--#work_field#-->
-				</div>
+					<div id="PageMain" align="left"> 
+						<!--#work_field#-->
+					</div>
 				</td>
 
 			</tr>

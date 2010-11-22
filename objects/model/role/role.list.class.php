@@ -80,7 +80,7 @@
 				if ($Conditions != '') $sql .= ' where '.$Conditions;
 			}
 			// TODO 10 -o N -c Сообщение для отладки: SQL
-				ErrorHandle::ErrorHandle($sql);
+			//	ErrorHandle::ErrorHandle($sql);
 
 			$hSql = DBMySQL::Query($sql);
 			while ($fetch = DBMySQL::FetchObject($hSql)) 
