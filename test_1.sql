@@ -1,5 +1,22 @@
-﻿
-# Structure for the `cards` table :
+﻿# SQL Manager 2007 Lite for MySQL 4.2.1.1
+# ---------------------------------------
+# Host     : localhost
+# Port     : 3306
+# Database : test
+
+
+SET FOREIGN_KEY_CHECKS=0;
+
+DROP DATABASE IF EXISTS `test`;
+
+CREATE DATABASE `test`
+    CHARACTER SET 'utf8'
+    COLLATE 'utf8_general_ci';
+
+USE `test`;
+
+#
+# Structure for the `cards` table : 
 #
 
 CREATE TABLE `cards` (
@@ -10,464 +27,10 @@ CREATE TABLE `cards` (
 ) ENGINE=MyISAM AUTO_INCREMENT=107 DEFAULT CHARSET=utf8;
 
 #
-# Structure for the `cards_types` table :
-#
-
-CREATE TABLE `cards_types` (
-  `ID` int(11) unsigned NOT NULL auto_increment,
-  `DESCRIPTION` text,
-  PRIMARY KEY  (`ID`),
-  UNIQUE KEY `ID` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
-#
-# Structure for the `contractors` table :
-#
-
-CREATE TABLE `contractors` (
-  `ID` int(11) NOT NULL,
-  `DESCRIPTION` text,
-  PRIMARY KEY  (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-#
-# Structure for the `division` table :
-#
-
-CREATE TABLE `division` (
-  `ID` int(11) default NULL,
-  `MANAGERID` int(11) default NULL,
-  `DESCRIPTION` blob,
-  `PARENTID` int(11) default NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-#
-# Structure for the `dru` table :
-#
-
-CREATE TABLE `dru` (
-  `DIVISIONID` int(11) default NULL,
-  `ROLEID` int(11) default NULL,
-  `USERID` int(11) default NULL,
-  `ID` int(11) unsigned NOT NULL auto_increment,
-  `COLOR` smallint(6) default NULL,
-  PRIMARY KEY  (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=128 DEFAULT CHARSET=utf8;
-
-#
-# Structure for the `dru_sc` table :
-#
-
-CREATE TABLE `dru_sc` (
-  `ID` int(11) default NULL,
-  `DRUID` int(11) default NULL,
-  `CARDID` int(11) default NULL,
-  `COLOR` set('1','2','3') default NULL,
-  `COUNTABLE` tinyint(1) default '0',
-  `RY` double(15,3) default NULL,
-  `YG` double(15,3) default NULL,
-  `VALUE` double(15,3) default NULL,
-  `PARENTID` int(11) unsigned default NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-#
-# Structure for the `dru_sc_tl` table :
-#
-
-CREATE TABLE `dru_sc_tl` (
-  `DRU_SC_ID` int(11) default NULL,
-  `VALUE` double(15,3) default NULL,
-  `INTERVAL` datetime default NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 3072 kB';
-
-#
-# Structure for the `event_log` table :
-#
-
-CREATE TABLE `event_log` (
-  `DRUID` int(11) default NULL,
-  `WHEN` datetime default NULL,
-  `DESCRIPRION` blob,
-  `CLASS` int(11) default '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-#
-# Structure for the `event_status_tl` table :
-#
-
-CREATE TABLE `event_status_tl` (
-  `EVENTID` int(11) default NULL,
-  `STATUS` tinyint(4) default NULL,
-  `CHANGEDATE` datetime default NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 3072 kB';
-
-#
-# Structure for the `events` table :
-#
-
-CREATE TABLE `events` (
-  `ID` int(11) NOT NULL auto_increment,
-  `DESCRIPTION` text,
-  `CLASSID` int(11) default NULL,
-  `PROJECTID` int(11) default NULL,
-  `DATE_INIT` datetime default NULL,
-  `DATE_FINISH` datetime default NULL,
-  `DRUID` int(11) default NULL,
-  `DURATION_PAUSE` int(11) default NULL,
-  `TASKID` int(11) default NULL,
-  `CONTINUE` tinyint(1) default '1',
-  PRIMARY KEY  (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
-
-#
-# Structure for the `project_status_tl` table :
-#
-
-CREATE TABLE `project_status_tl` (
-  `PROJECTID` int(11) default NULL,
-  `STATUSID` int(11) default NULL,
-  `CHANGEDATE` datetime default NULL,
-  `USERID` int(11) default NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 3072 kB';
-
-#
-# Structure for the `projects` table :
-#
-
-CREATE TABLE `projects` (
-  `ID` int(11) NOT NULL auto_increment,
-  `CLASSID` int(11) default NULL,
-  `STATUSID` int(11) default NULL,
-  `DESCRIPTION` blob,
-  `DATE_INIT` datetime default NULL,
-  `DATE_START` datetime default NULL,
-  `DATE_FINISH` datetime default NULL,
-  `FULL_DESCR` text,
-  `USERID` int(11) default NULL,
-  `READY_STATE` int(11) default NULL,
-  PRIMARY KEY  (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
-#
-# Structure for the `roles` table :
-#
-
-CREATE TABLE `roles` (
-  `ID` int(11) NOT NULL auto_increment,
-  `DESCRIPTION` blob,
-  PRIMARY KEY  (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
-
-#
-# Structure for the `task_status` table :
-#
-
-CREATE TABLE `task_status` (
-  `ID` int(11) NOT NULL auto_increment,
-  `DESCRIPTION` char(20) default NULL,
-  PRIMARY KEY  (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-
-#
-# Structure for the `task_status_tl` table :
-#
-
-CREATE TABLE `task_status_tl` (
-  `TASKID` int(11) default NULL,
-  `STATUSID` int(11) default NULL,
-  `CHANGEDATE` datetime default NULL,
-  `USERID` int(11) default NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-#
-# Structure for the `task_tstatus` table :
-#
-
-CREATE TABLE `task_tstatus` (
-  `TASKID` int(11) default NULL,
-  `STATUSID` int(11) default NULL,
-  `CHANGEDATE` datetime default NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-#
-# Structure for the `tasks` table :
-#
-
-CREATE TABLE `tasks` (
-  `ID` int(11) NOT NULL auto_increment,
-  `DESCRIPTION` blob,
-  `PARENTID` int(11) default NULL,
-  `PROJECTID` int(11) default NULL,
-  `DATE_INIT` datetime default NULL,
-  `DATE_START` datetime default NULL,
-  `DATE_FINISH` datetime default NULL,
-  `FULL_DESCR` text,
-  `MANAGERID` int(11) default NULL,
-  `USERID` int(11) default NULL,
-  `READY_STATE` int(11) default NULL,
-  `STATUSID` int(11) default NULL,
-  `CLASSID` int(11) default NULL,
-  PRIMARY KEY  (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-
-#
-# Structure for the `tp_status` table :
-#
-
-CREATE TABLE `tp_status` (
-  `ID` int(11) NOT NULL auto_increment,
-  `DESCRIPTION` text,
-  PRIMARY KEY  (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
-
-#
-# Structure for the `tpe_class` table :
-#
-
-CREATE TABLE `tpe_class` (
-  `ID` int(11) NOT NULL auto_increment,
-  `DESCRIPTION` blob,
-  `PROJECTUSE` tinyint(1) default NULL,
-  `TASKUSE` tinyint(1) default NULL,
-  `EVENTUSE` tinyint(1) default NULL,
-  `TYPEID` int(11) default NULL,
-  `CONSTRUCTOR` char(40) default NULL,
-  `ONCREATE` char(40) default NULL,
-  `ONCLOSE` char(40) default NULL,
-  `ONCHANGE` char(40) default NULL,
-  PRIMARY KEY  (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
-
-#
-# Structure for the `tpe_types` table :
-#
-
-CREATE TABLE `tpe_types` (
-  `ID` int(11) NOT NULL auto_increment,
-  `DESCRIPTION` blob,
-  `PROJECTUSE` tinyint(1) default NULL,
-  `TASKUSE` tinyint(1) default NULL,
-  `EVENTUSE` tinyint(1) default NULL,
-  PRIMARY KEY  (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-
-#
-# Structure for the `user_sessions` table :
-#
-
-CREATE TABLE `user_sessions` (
-  `USERID` int(11) default NULL,
-  `SESSIONID` char(40) default NULL,
-  `EXPIREDATE` datetime default NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-#
-# Structure for the `users` table :
-#
-
-CREATE TABLE `users` (
-  `ID` int(11) NOT NULL auto_increment,
-  `LOGIN` char(50) default NULL,
-  `PASSWORD` char(36) default NULL,
-  `EMAIL` char(255) default NULL,
-  `DESCRIPTION` blob,
-  `MARK` smallint(1) default NULL,
-  `OWNERID` int(11) default NULL,
-  `PARENTID` int(11) default NULL,
-  `CODE` int(11) default NULL,
-  PRIMARY KEY  (`ID`),
-  UNIQUE KEY `ID` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=1598 DEFAULT CHARSET=utf8;
-
-#
-# Definition for the `GET_HANDLER` function :
-#
-
-CREATE DEFINER = 'root'@'localhost' FUNCTION `GET_HANDLER`(ElementID_ BIGINT, ElementType_ CHAR(20))
-    RETURNS char(40) CHARSET utf8
-    NOT DETERMINISTIC
-    CONTAINS SQL
-    SQL SECURITY DEFINER
-    COMMENT ''
-BEGIN
-  declare Constructor_ char(40);
-  declare OnCreate_ char(40);
-
-  CASE ElementType_
-  	WHEN 'Event' THEN
-    	BEGIN
-        	select `tpe_class`.CONSTRUCTOR, `tpe_class`.ONCREATE into Constructor_,OnCreate_
-            from `events`
-            left join `tpe_class` on `tpe_class`.ID = `events`.CLASSID and `tpe_class`.EVENTUSE = 1
-            where `events`.ID = ElementID_;
-    	END;
-
-    WHEN 'Task' THEN
-    	BEGIN
-    	END;
-
-  	WHEN 'Project' THEN
-    	BEGIN
-    	END;
-
-  END CASE;
-  RETURN Constructor_;
-END;
-
-#
-# Definition for the `SET_DRUSC_STATUS` function :
-#
-
-CREATE DEFINER = 'root'@'localhost' FUNCTION `SET_DRUSC_STATUS`(
-        ID INTEGER(11),
-        STATUS TINYINT(4)
-    )
-    RETURNS tinyint(4)
-    NOT DETERMINISTIC
-    CONTAINS SQL
-    SQL SECURITY DEFINER
-    COMMENT ''
-BEGIN
-
-REPLACE INTO
-`event_status_tl`  (`EVENTID`,`STATUS`,`CHANGEDATE`)
-VALUE
-(ID,STATUS,NOW());
-
-UPDATE
-	`events`
-SET
-	`events`.`STATUSID` =
-	(SELECT `STATUS` FROM `event_status_tl` WHERE `EVENTID` = ID AND `CHANGEDATE` =
-		(SELECT MAX(`CHANGEDATE`) FROM `event_status_tl` WHERE `EVENTID`= ID))
-WHERE
-	`events`.`ID` = ID ;
-
-RETURN 1;
-
-END;
-
-#
-# Definition for the `SET_EVENT_STATUS` function :
-#
-
-CREATE DEFINER = 'root'@'localhost' FUNCTION `SET_EVENT_STATUS`(
-        ID INTEGER(11),
-        STATUS TINYINT(4)
-    )
-    RETURNS tinyint(4)
-    NOT DETERMINISTIC
-    CONTAINS SQL
-    SQL SECURITY DEFINER
-    COMMENT ''
-BEGIN
-
-REPLACE INTO
-`event_status_tl`  (`EVENTID`,`STATUS`,`CHANGEDATE`)
-VALUE
-(ID,STATUS,NOW());
-
-UPDATE
-	`events`
-SET
-	`events`.`STATUSID` =
-	(SELECT `STATUS` FROM `event_status_tl` WHERE `EVENTID` = ID AND `CHANGEDATE` =
-		(SELECT MAX(`CHANGEDATE`) FROM `event_status_tl` WHERE `EVENTID`= ID))
-WHERE
-	`events`.`ID` = ID ;
-
-RETURN 1;
-
-END;
-
-#
-# Definition for the `SET_PROJECT_STATUS` function :
-#
-
-CREATE DEFINER = 'root'@'localhost' FUNCTION `SET_PROJECT_STATUS`(
-        PROJECTID INTEGER(11),
-        STATUSID INTEGER(11),
-        USERID INTEGER(11)
-    )
-    RETURNS tinyint(4)
-    NOT DETERMINISTIC
-    CONTAINS SQL
-    SQL SECURITY DEFINER
-    COMMENT ''
-BEGIN
-
-REPLACE INTO
-`project_status_tl`  (`PROJECTID`,`STATUSID`,`CHANGEDATE`,`USERID`)
-VALUE
-(PROJECTID,STATUSID,NOW(),USERID);
-
-UPDATE
-	`projects`
-SET
-	`projects`.`STATUSID` =
-	(SELECT `project_status_tl`.`STATUSID` FROM `project_status_tl` WHERE `project_status_tl`.`PROJECTID` =PROJECTID AND `project_status_tl`.`CHANGEDATE` =
-	(SELECT MAX(`project_status_tl`.`CHANGEDATE`) FROM `project_status_tl` WHERE `project_status_tl`.`PROJECTID`=PROJECTID))
-WHERE
-	`projects`.`ID` = PROJECTID ;
-
-RETURN 1;
-
-END;
-
-#
-# Definition for the `SET_TASK_STATUS` function :
-#
-
-CREATE DEFINER = 'root'@'localhost' FUNCTION `SET_TASK_STATUS`(
-        TASKID INTEGER(11),
-        STATUSID INTEGER(11),
-        USERID INTEGER(11)
-    )
-    RETURNS tinyint(4)
-    NOT DETERMINISTIC
-    CONTAINS SQL
-    SQL SECURITY DEFINER
-    COMMENT ''
-BEGIN
-
-REPLACE INTO
-`task_status_tl`  (`TASKID`,`STATUSID`,`CHANGEDATE`,`USERID`)
-VALUE
-(TASKID,STATUSID,NOW(),USERID);
-
-UPDATE
-	`tasks`
-SET
-	`tasks`.`STATUSID` =
-	(SELECT `task_status_tl`.`STATUSID` FROM `task_status_tl` WHERE `task_status_tl`.`TASKID`=TASKID AND `task_status_tl`.`CHANGEDATE` =
-	(SELECT MAX(`task_status_tl`.`CHANGEDATE`) FROM `task_status_tl` WHERE `task_status_tl`.`TASKID`=TASKID))
-WHERE
-	`tasks`.`ID` = TASKID ;
-
-RETURN 1;
-
-END;
-
-#
-# Definition for the `current_task_status` view :
-#
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `current_task_status` AS
-  select
-    `tasks`.`DESCRIPTION` AS `DESCRIPTION`,
-    `task_status`.`DESCRIPTION` AS `TSTATUS`,
-    max(`task_tstatus`.`CHANGEDATE`) AS `currentdate`,
-    `task_tstatus`.`TASKID` AS `TASKID`
-  from
-    ((`task_tstatus` join `tasks` on((`task_tstatus`.`TASKID` = `tasks`.`ID`))) join `task_status` on((`task_status`.`ID` = `task_tstatus`.`STATUSID`)))
-  group by
-    `task_tstatus`.`TASKID`;
-
-#
 # Data for the `cards` table  (LIMIT 0,500)
 #
 
-INSERT INTO `cards` (`ID`, `DESCRIPTION`, `CATID`) VALUES
+INSERT INTO `cards` (`ID`, `DESCRIPTION`, `CATID`) VALUES 
   (1,'Архив баг-листов',NULL),
   (2,'Архив документации',NULL),
   (3,'Архив проектной документации по ПО',NULL),
@@ -578,19 +141,51 @@ INSERT INTO `cards` (`ID`, `DESCRIPTION`, `CATID`) VALUES
 COMMIT;
 
 #
+# Structure for the `cards_types` table : 
+#
+
+CREATE TABLE `cards_types` (
+  `ID` int(11) unsigned NOT NULL auto_increment,
+  `DESCRIPTION` text,
+  PRIMARY KEY  (`ID`),
+  UNIQUE KEY `ID` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+#
 # Data for the `cards_types` table  (LIMIT 0,500)
 #
 
-INSERT INTO `cards_types` (`ID`, `DESCRIPTION`) VALUES
+INSERT INTO `cards_types` (`ID`, `DESCRIPTION`) VALUES 
   (1,'Качество');
 
 COMMIT;
 
 #
+# Structure for the `contractors` table : 
+#
+
+CREATE TABLE `contractors` (
+  `ID` int(11) NOT NULL,
+  `DESCRIPTION` text,
+  PRIMARY KEY  (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#
+# Structure for the `division` table : 
+#
+
+CREATE TABLE `division` (
+  `ID` int(11) default NULL,
+  `MANAGERID` int(11) default NULL,
+  `DESCRIPTION` blob,
+  `PARENTID` int(11) default NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#
 # Data for the `division` table  (LIMIT 0,500)
 #
 
-INSERT INTO `division` (`ID`, `MANAGERID`, `DESCRIPTION`, `PARENTID`) VALUES
+INSERT INTO `division` (`ID`, `MANAGERID`, `DESCRIPTION`, `PARENTID`) VALUES 
   (10,10,0xD09AD0BED0BCD0BFD0B0D0BDD0B8D18F,NULL),
   (100,11,0xD0A3D0BFD180D0B0D0B2D0BBD0B5D0BDD0B8D0B5,10),
   (101,12,0xD09FD180D0BED0B4D0B0D0B6D0B8,100),
@@ -609,10 +204,23 @@ INSERT INTO `division` (`ID`, `MANAGERID`, `DESCRIPTION`, `PARENTID`) VALUES
 COMMIT;
 
 #
+# Structure for the `dru` table : 
+#
+
+CREATE TABLE `dru` (
+  `DIVISIONID` int(11) default NULL,
+  `ROLEID` int(11) default NULL,
+  `USERID` int(11) default NULL,
+  `ID` int(11) unsigned NOT NULL auto_increment,
+  `COLOR` smallint(6) default NULL,
+  PRIMARY KEY  (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=128 DEFAULT CHARSET=utf8;
+
+#
 # Data for the `dru` table  (LIMIT 0,500)
 #
 
-INSERT INTO `dru` (`DIVISIONID`, `ROLEID`, `USERID`, `ID`, `COLOR`) VALUES
+INSERT INTO `dru` (`DIVISIONID`, `ROLEID`, `USERID`, `ID`, `COLOR`) VALUES 
   (10,4,10,1,NULL),
   (100,7,11,2,NULL),
   (101,9,11,3,NULL),
@@ -742,10 +350,75 @@ INSERT INTO `dru` (`DIVISIONID`, `ROLEID`, `USERID`, `ID`, `COLOR`) VALUES
 COMMIT;
 
 #
+# Structure for the `dru_sc` table : 
+#
+
+CREATE TABLE `dru_sc` (
+  `ID` int(11) default NULL,
+  `DRUID` int(11) default NULL,
+  `CARDID` int(11) default NULL,
+  `COLOR` set('1','2','3') default NULL,
+  `COUNTABLE` tinyint(1) default '0',
+  `RY` double(15,3) default NULL,
+  `YG` double(15,3) default NULL,
+  `VALUE` double(15,3) default NULL,
+  `PARENTID` int(11) unsigned default NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#
+# Structure for the `dru_sc_tl` table : 
+#
+
+CREATE TABLE `dru_sc_tl` (
+  `DRU_SC_ID` int(11) default NULL,
+  `VALUE` double(15,3) default NULL,
+  `INTERVAL` datetime default NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 3072 kB';
+
+#
+# Structure for the `event_log` table : 
+#
+
+CREATE TABLE `event_log` (
+  `DRUID` int(11) default NULL,
+  `WHEN` datetime default NULL,
+  `DESCRIPRION` blob,
+  `CLASS` int(11) default '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#
+# Structure for the `event_status_tl` table : 
+#
+
+CREATE TABLE `event_status_tl` (
+  `EVENTID` int(11) default NULL,
+  `STATUS` tinyint(4) default NULL,
+  `CHANGEDATE` datetime default NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 3072 kB';
+
+#
+# Structure for the `events` table : 
+#
+
+CREATE TABLE `events` (
+  `ID` int(11) NOT NULL auto_increment,
+  `DESCRIPTION` text,
+  `CLASSID` int(11) default NULL,
+  `PROJECTID` int(11) default NULL,
+  `DATE_INIT` datetime default NULL,
+  `DATE_FINISH` datetime default NULL,
+  `DRUID` int(11) default NULL,
+  `DURATION_PAUSE` int(11) default NULL,
+  `TASKID` int(11) default NULL,
+  `CONTINUE` tinyint(1) default '1',
+  PRIMARY KEY  (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+
+#
 # Data for the `events` table  (LIMIT 0,500)
 #
 
-INSERT INTO `events` (`ID`, `DESCRIPTION`, `CLASSID`, `PROJECTID`, `DATE_INIT`, `DATE_FINISH`, `DRUID`, `DURATION_PAUSE`, `TASKID`, `CONTINUE`) VALUES
+INSERT INTO `events` (`ID`, `DESCRIPTION`, `CLASSID`, `PROJECTID`, `DATE_INIT`, `DATE_FINISH`, `DRUID`, `DURATION_PAUSE`, `TASKID`, `CONTINUE`) VALUES 
   (1,'Ð—Ð²Ð¾Ð½Ð¾Ðº 1   3 Ð´Ð½Ñ',2,1,'2010-11-18 22:05:00','2010-11-22 12:25:54',101,21704,1,0),
   (2,'??????? 2 Ð¸Ñ‚Ñ‚ÑÑ‚Ð¼Ñ',8,1,'2010-11-19 09:00:00','2010-11-22 11:59:21',3,11118,3,0),
   (5,'hdryey',3,NULL,'2010-11-21 09:32:24','2010-11-22 12:28:13',29,21896,NULL,1),
@@ -758,19 +431,58 @@ INSERT INTO `events` (`ID`, `DESCRIPTION`, `CLASSID`, `PROJECTID`, `DATE_INIT`, 
 COMMIT;
 
 #
+# Structure for the `project_status_tl` table : 
+#
+
+CREATE TABLE `project_status_tl` (
+  `PROJECTID` int(11) default NULL,
+  `STATUSID` int(11) default NULL,
+  `CHANGEDATE` datetime default NULL,
+  `USERID` int(11) default NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 3072 kB';
+
+#
+# Structure for the `projects` table : 
+#
+
+CREATE TABLE `projects` (
+  `ID` int(11) NOT NULL auto_increment,
+  `CLASSID` int(11) default NULL,
+  `STATUSID` int(11) default NULL,
+  `DESCRIPTION` blob,
+  `DATE_INIT` datetime default NULL,
+  `DATE_START` datetime default NULL,
+  `DATE_FINISH` datetime default NULL,
+  `FULL_DESCR` text,
+  `USERID` int(11) default NULL,
+  `READY_STATE` int(11) default NULL,
+  PRIMARY KEY  (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+#
 # Data for the `projects` table  (LIMIT 0,500)
 #
 
-INSERT INTO `projects` (`ID`, `CLASSID`, `STATUSID`, `DESCRIPTION`, `DATE_INIT`, `DATE_START`, `DATE_FINISH`, `FULL_DESCR`, `USERID`, `READY_STATE`) VALUES
+INSERT INTO `projects` (`ID`, `CLASSID`, `STATUSID`, `DESCRIPTION`, `DATE_INIT`, `DATE_START`, `DATE_FINISH`, `FULL_DESCR`, `USERID`, `READY_STATE`) VALUES 
   (1,NULL,NULL,0xD0BFD180D0BED0B5D0BAD182,'1969-12-31 18:00:00','2010-11-17 15:46:15','2010-11-24 15:00:44','Ð²Ð°Ð¿Ð²Ñ‹Ð¿Ð²Ñ‹Ð¿',NULL,56);
 
 COMMIT;
 
 #
+# Structure for the `roles` table : 
+#
+
+CREATE TABLE `roles` (
+  `ID` int(11) NOT NULL auto_increment,
+  `DESCRIPTION` blob,
+  PRIMARY KEY  (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+
+#
 # Data for the `roles` table  (LIMIT 0,500)
 #
 
-INSERT INTO `roles` (`ID`, `DESCRIPTION`) VALUES
+INSERT INTO `roles` (`ID`, `DESCRIPTION`) VALUES 
   (-1,0xD090D0B4D0BCD0B8D0BDD0B8D181D182D180D0B0D182D0BED180),
   (1,0xD091D183D185D0B3D0B0D0BBD182D0B5D180),
   (2,0xD092D0BED0B4D0B8D182D0B5D0BBD18C),
@@ -806,10 +518,20 @@ INSERT INTO `roles` (`ID`, `DESCRIPTION`) VALUES
 COMMIT;
 
 #
+# Structure for the `task_status` table : 
+#
+
+CREATE TABLE `task_status` (
+  `ID` int(11) NOT NULL auto_increment,
+  `DESCRIPTION` char(20) default NULL,
+  PRIMARY KEY  (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+#
 # Data for the `task_status` table  (LIMIT 0,500)
 #
 
-INSERT INTO `task_status` (`ID`, `DESCRIPTION`) VALUES
+INSERT INTO `task_status` (`ID`, `DESCRIPTION`) VALUES 
   (1,'Назначена'),
   (2,'Начата'),
   (3,'Не подтверждении'),
@@ -819,10 +541,21 @@ INSERT INTO `task_status` (`ID`, `DESCRIPTION`) VALUES
 COMMIT;
 
 #
+# Structure for the `task_status_tl` table : 
+#
+
+CREATE TABLE `task_status_tl` (
+  `TASKID` int(11) default NULL,
+  `STATUSID` int(11) default NULL,
+  `CHANGEDATE` datetime default NULL,
+  `USERID` int(11) default NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#
 # Data for the `task_status_tl` table  (LIMIT 0,500)
 #
 
-INSERT INTO `task_status_tl` (`TASKID`, `STATUSID`, `CHANGEDATE`, `USERID`) VALUES
+INSERT INTO `task_status_tl` (`TASKID`, `STATUSID`, `CHANGEDATE`, `USERID`) VALUES 
   (1,1,'2010-11-01',1),
   (1,2,'2010-11-02',3),
   (1,3,'2010-11-15 17:05:47',1);
@@ -830,20 +563,51 @@ INSERT INTO `task_status_tl` (`TASKID`, `STATUSID`, `CHANGEDATE`, `USERID`) VALU
 COMMIT;
 
 #
+# Structure for the `task_tstatus` table : 
+#
+
+CREATE TABLE `task_tstatus` (
+  `TASKID` int(11) default NULL,
+  `STATUSID` int(11) default NULL,
+  `CHANGEDATE` datetime default NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#
 # Data for the `task_tstatus` table  (LIMIT 0,500)
 #
 
-INSERT INTO `task_tstatus` (`TASKID`, `STATUSID`, `CHANGEDATE`) VALUES
+INSERT INTO `task_tstatus` (`TASKID`, `STATUSID`, `CHANGEDATE`) VALUES 
   (1,1,'2009-10-10'),
   (1,2,'2010-11-01');
 
 COMMIT;
 
 #
+# Structure for the `tasks` table : 
+#
+
+CREATE TABLE `tasks` (
+  `ID` int(11) NOT NULL auto_increment,
+  `DESCRIPTION` blob,
+  `PARENTID` int(11) default NULL,
+  `PROJECTID` int(11) default NULL,
+  `DATE_INIT` datetime default NULL,
+  `DATE_START` datetime default NULL,
+  `DATE_FINISH` datetime default NULL,
+  `FULL_DESCR` text,
+  `MANAGERID` int(11) default NULL,
+  `USERID` int(11) default NULL,
+  `READY_STATE` int(11) default NULL,
+  `STATUSID` int(11) default NULL,
+  `CLASSID` int(11) default NULL,
+  PRIMARY KEY  (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+#
 # Data for the `tasks` table  (LIMIT 0,500)
 #
 
-INSERT INTO `tasks` (`ID`, `DESCRIPTION`, `PARENTID`, `PROJECTID`, `DATE_INIT`, `DATE_START`, `DATE_FINISH`, `FULL_DESCR`, `MANAGERID`, `USERID`, `READY_STATE`, `STATUSID`, `CLASSID`) VALUES
+INSERT INTO `tasks` (`ID`, `DESCRIPTION`, `PARENTID`, `PROJECTID`, `DATE_INIT`, `DATE_START`, `DATE_FINISH`, `FULL_DESCR`, `MANAGERID`, `USERID`, `READY_STATE`, `STATUSID`, `CLASSID`) VALUES 
   (1,0x4446535344464B3B4C564E4B53,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL),
   (2,0xD097D0B0D0B4D0B0D187D0B02031,NULL,1,NULL,NULL,NULL,'ывывыфвы',NULL,NULL,NULL,NULL,NULL),
   (3,0xD097D0B0D0B4D0B0D187D0B02032,2,1,NULL,NULL,NULL,'авапопаврпар',NULL,NULL,NULL,NULL,NULL),
@@ -852,10 +616,20 @@ INSERT INTO `tasks` (`ID`, `DESCRIPTION`, `PARENTID`, `PROJECTID`, `DATE_INIT`, 
 COMMIT;
 
 #
+# Structure for the `tp_status` table : 
+#
+
+CREATE TABLE `tp_status` (
+  `ID` int(11) NOT NULL auto_increment,
+  `DESCRIPTION` text,
+  PRIMARY KEY  (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+#
 # Data for the `tp_status` table  (LIMIT 0,500)
 #
 
-INSERT INTO `tp_status` (`ID`, `DESCRIPTION`) VALUES
+INSERT INTO `tp_status` (`ID`, `DESCRIPTION`) VALUES 
   (1,'Поставлено'),
   (2,'Принято к исполнению'),
   (3,'Выполнено, требует подтверждения'),
@@ -866,10 +640,28 @@ INSERT INTO `tp_status` (`ID`, `DESCRIPTION`) VALUES
 COMMIT;
 
 #
+# Structure for the `tpe_class` table : 
+#
+
+CREATE TABLE `tpe_class` (
+  `ID` int(11) NOT NULL auto_increment,
+  `DESCRIPTION` blob,
+  `PROJECTUSE` tinyint(1) default NULL,
+  `TASKUSE` tinyint(1) default NULL,
+  `EVENTUSE` tinyint(1) default NULL,
+  `TYPEID` int(11) default NULL,
+  `CONSTRUCTOR` char(40) default NULL,
+  `ONCREATE` char(40) default NULL,
+  `ONCLOSE` char(40) default NULL,
+  `ONCHANGE` char(40) default NULL,
+  PRIMARY KEY  (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+
+#
 # Data for the `tpe_class` table  (LIMIT 0,500)
 #
 
-INSERT INTO `tpe_class` (`ID`, `DESCRIPTION`, `PROJECTUSE`, `TASKUSE`, `EVENTUSE`, `TYPEID`, `CONSTRUCTOR`, `ONCREATE`, `ONCLOSE`, `ONCHANGE`) VALUES
+INSERT INTO `tpe_class` (`ID`, `DESCRIPTION`, `PROJECTUSE`, `TASKUSE`, `EVENTUSE`, `TYPEID`, `CONSTRUCTOR`, `ONCREATE`, `ONCLOSE`, `ONCHANGE`) VALUES 
   (2,0xD097D0B2D0BED0BDD0BED0BA,0,0,1,1,'cccc1','dfdsfsdf',NULL,NULL),
   (3,0xD09FD0B8D181D18CD0BCD0BE,0,0,1,1,NULL,NULL,NULL,NULL),
   (4,0xD0A4D0B0D0BAD181,0,0,1,1,NULL,NULL,NULL,NULL),
@@ -889,10 +681,23 @@ INSERT INTO `tpe_class` (`ID`, `DESCRIPTION`, `PROJECTUSE`, `TASKUSE`, `EVENTUSE
 COMMIT;
 
 #
+# Structure for the `tpe_types` table : 
+#
+
+CREATE TABLE `tpe_types` (
+  `ID` int(11) NOT NULL auto_increment,
+  `DESCRIPTION` blob,
+  `PROJECTUSE` tinyint(1) default NULL,
+  `TASKUSE` tinyint(1) default NULL,
+  `EVENTUSE` tinyint(1) default NULL,
+  PRIMARY KEY  (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+#
 # Data for the `tpe_types` table  (LIMIT 0,500)
 #
 
-INSERT INTO `tpe_types` (`ID`, `DESCRIPTION`, `PROJECTUSE`, `TASKUSE`, `EVENTUSE`) VALUES
+INSERT INTO `tpe_types` (`ID`, `DESCRIPTION`, `PROJECTUSE`, `TASKUSE`, `EVENTUSE`) VALUES 
   (1,0xD0A0D0B0D0B1D0BED182D0B020D18120D0BAD0BBD0B8D0B5D0BDD182D0BED0BC,NULL,1,1),
   (2,0xD094D0BED0B3D0BED0B2D0BED180,1,1,1),
   (3,0xD09FD180D0BED186D0B5D181D181D18B,1,1,1),
@@ -901,10 +706,20 @@ INSERT INTO `tpe_types` (`ID`, `DESCRIPTION`, `PROJECTUSE`, `TASKUSE`, `EVENTUSE
 COMMIT;
 
 #
+# Structure for the `user_sessions` table : 
+#
+
+CREATE TABLE `user_sessions` (
+  `USERID` int(11) default NULL,
+  `SESSIONID` char(40) default NULL,
+  `EXPIREDATE` datetime default NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#
 # Data for the `user_sessions` table  (LIMIT 0,500)
 #
 
-INSERT INTO `user_sessions` (`USERID`, `SESSIONID`, `EXPIREDATE`) VALUES
+INSERT INTO `user_sessions` (`USERID`, `SESSIONID`, `EXPIREDATE`) VALUES 
   (1596,'50759a95aaa41412ae6d65d1ed0bc9a8','2010-11-16 12:53:37'),
   (1596,'76868c553872a5dde24d9cd11549b636','2010-11-16 13:20:35'),
   (1596,'65583c42d783353998aacedc52609ff4','2010-11-16 15:30:16'),
@@ -914,10 +729,28 @@ INSERT INTO `user_sessions` (`USERID`, `SESSIONID`, `EXPIREDATE`) VALUES
 COMMIT;
 
 #
+# Structure for the `users` table : 
+#
+
+CREATE TABLE `users` (
+  `ID` int(11) NOT NULL auto_increment,
+  `LOGIN` char(50) default NULL,
+  `PASSWORD` char(36) default NULL,
+  `EMAIL` char(255) default NULL,
+  `DESCRIPTION` blob,
+  `MARK` smallint(1) default NULL,
+  `OWNERID` int(11) default NULL,
+  `PARENTID` int(11) default NULL,
+  `CODE` int(11) default NULL,
+  PRIMARY KEY  (`ID`),
+  UNIQUE KEY `ID` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=1598 DEFAULT CHARSET=utf8;
+
+#
 # Data for the `users` table  (LIMIT 0,500)
 #
 
-INSERT INTO `users` (`ID`, `LOGIN`, `PASSWORD`, `EMAIL`, `DESCRIPTION`, `MARK`, `OWNERID`, `PARENTID`, `CODE`) VALUES
+INSERT INTO `users` (`ID`, `LOGIN`, `PASSWORD`, `EMAIL`, `DESCRIPTION`, `MARK`, `OWNERID`, `PARENTID`, `CODE`) VALUES 
   (10,'kubasov','687904b66b2b64ae5e1a9ebb0273e7f4','kubasov.v.a@kvant-pkf.ru',0xD09AD183D0B1D0B0D181D0BED0B220D092D0B0D0BBD0B5D180D0B8D0B920D090D0BDD0B4D180D0B5D0B5D0B2D0B8D187,0,NULL,NULL,NULL),
   (11,'krasnoperov','be22c9ffff572441ec8544608e2c3464','krasnoperov.a.g@kvant-pkf.ru',0xD09AD180D0B0D181D0BDD0BED0BFD0B5D180D0BED0B220D090D0BDD0B4D180D0B5D0B920D093D0B5D0BDD0BDD0B0D0B4D18CD0B5D0B2D0B8D187,0,NULL,NULL,NULL),
   (12,'lubimcev','66cf62cd274dca218b498ae264e4e41d','lubimcev.v.v@kvant-pkf.ru',0xD09BD18ED0B1D0B8D0BCD186D0B5D0B220D092D0BBD0B0D0B4D0B8D181D0BBD0B0D0B220D092D0BBD0B0D0B4D0B8D0BCD0B8D180D0BED0B2D0B8D187,0,NULL,NULL,NULL),
@@ -952,4 +785,188 @@ INSERT INTO `users` (`ID`, `LOGIN`, `PASSWORD`, `EMAIL`, `DESCRIPTION`, `MARK`, 
   (1597,'sasa','sasa',NULL,NULL,NULL,NULL,NULL,NULL);
 
 COMMIT;
+
+#
+# Definition for the `GET_HANDLER` function : 
+#
+
+CREATE DEFINER = 'root'@'localhost' FUNCTION `GET_HANDLER`(ElementID_ BIGINT, ElementType_ CHAR(20))
+    RETURNS char(40) CHARSET utf8
+    NOT DETERMINISTIC
+    CONTAINS SQL
+    SQL SECURITY DEFINER
+    COMMENT ''
+BEGIN
+  declare Constructor_ char(40);
+  declare OnCreate_ char(40);
+  
+  CASE ElementType_ 
+  	WHEN 'Event' THEN 
+    	BEGIN        
+        	select `tpe_class`.CONSTRUCTOR, `tpe_class`.ONCREATE into Constructor_,OnCreate_
+            from `events` 
+            left join `tpe_class` on `tpe_class`.ID = `events`.CLASSID and `tpe_class`.EVENTUSE = 1
+            where `events`.ID = ElementID_;
+    	END;
+    
+    WHEN 'Task' THEN 
+    	BEGIN
+    	END;
+  	
+  	WHEN 'Project' THEN 
+    	BEGIN
+    	END;
+  
+  END CASE;
+  RETURN Constructor_;
+END;
+
+#
+# Definition for the `SET_DRUSC_STATUS` function : 
+#
+
+CREATE DEFINER = 'root'@'localhost' FUNCTION `SET_DRUSC_STATUS`(
+        ID INTEGER(11),
+        STATUS TINYINT(4)
+    )
+    RETURNS tinyint(4)
+    NOT DETERMINISTIC
+    CONTAINS SQL
+    SQL SECURITY DEFINER
+    COMMENT ''
+BEGIN
+
+REPLACE INTO
+`event_status_tl`  (`EVENTID`,`STATUS`,`CHANGEDATE`)
+VALUE 
+(ID,STATUS,NOW());
+
+UPDATE 
+	`events` 
+SET 
+	`events`.`STATUSID` = 
+	(SELECT `STATUS` FROM `event_status_tl` WHERE `EVENTID` = ID AND `CHANGEDATE` = 
+		(SELECT MAX(`CHANGEDATE`) FROM `event_status_tl` WHERE `EVENTID`= ID)) 
+WHERE
+	`events`.`ID` = ID ;
+    
+RETURN 1;
+
+END;
+
+#
+# Definition for the `SET_EVENT_STATUS` function : 
+#
+
+CREATE DEFINER = 'root'@'localhost' FUNCTION `SET_EVENT_STATUS`(
+        ID INTEGER(11),
+        STATUS TINYINT(4)
+    )
+    RETURNS tinyint(4)
+    NOT DETERMINISTIC
+    CONTAINS SQL
+    SQL SECURITY DEFINER
+    COMMENT ''
+BEGIN
+
+REPLACE INTO
+`event_status_tl`  (`EVENTID`,`STATUS`,`CHANGEDATE`)
+VALUE 
+(ID,STATUS,NOW());
+
+UPDATE 
+	`events` 
+SET 
+	`events`.`STATUSID` = 
+	(SELECT `STATUS` FROM `event_status_tl` WHERE `EVENTID` = ID AND `CHANGEDATE` = 
+		(SELECT MAX(`CHANGEDATE`) FROM `event_status_tl` WHERE `EVENTID`= ID)) 
+WHERE
+	`events`.`ID` = ID ;
+    
+RETURN 1;
+
+END;
+
+#
+# Definition for the `SET_PROJECT_STATUS` function : 
+#
+
+CREATE DEFINER = 'root'@'localhost' FUNCTION `SET_PROJECT_STATUS`(
+        PROJECTID INTEGER(11),
+        STATUSID INTEGER(11),
+        USERID INTEGER(11)
+    )
+    RETURNS tinyint(4)
+    NOT DETERMINISTIC
+    CONTAINS SQL
+    SQL SECURITY DEFINER
+    COMMENT ''
+BEGIN
+
+REPLACE INTO
+`project_status_tl`  (`PROJECTID`,`STATUSID`,`CHANGEDATE`,`USERID`)
+VALUE 
+(PROJECTID,STATUSID,NOW(),USERID);
+
+UPDATE 
+	`projects` 
+SET 
+	`projects`.`STATUSID` = 
+	(SELECT `project_status_tl`.`STATUSID` FROM `project_status_tl` WHERE `project_status_tl`.`PROJECTID` =PROJECTID AND `project_status_tl`.`CHANGEDATE` = 
+	(SELECT MAX(`project_status_tl`.`CHANGEDATE`) FROM `project_status_tl` WHERE `project_status_tl`.`PROJECTID`=PROJECTID)) 
+WHERE
+	`projects`.`ID` = PROJECTID ;
+    
+RETURN 1;
+
+END;
+
+#
+# Definition for the `SET_TASK_STATUS` function : 
+#
+
+CREATE DEFINER = 'root'@'localhost' FUNCTION `SET_TASK_STATUS`(
+        TASKID INTEGER(11),
+        STATUSID INTEGER(11),
+        USERID INTEGER(11)
+    )
+    RETURNS tinyint(4)
+    NOT DETERMINISTIC
+    CONTAINS SQL
+    SQL SECURITY DEFINER
+    COMMENT ''
+BEGIN
+
+REPLACE INTO
+`task_status_tl`  (`TASKID`,`STATUSID`,`CHANGEDATE`,`USERID`)
+VALUE 
+(TASKID,STATUSID,NOW(),USERID);
+
+UPDATE 
+	`tasks` 
+SET 
+	`tasks`.`STATUSID` = 
+	(SELECT `task_status_tl`.`STATUSID` FROM `task_status_tl` WHERE `task_status_tl`.`TASKID`=TASKID AND `task_status_tl`.`CHANGEDATE` = 
+	(SELECT MAX(`task_status_tl`.`CHANGEDATE`) FROM `task_status_tl` WHERE `task_status_tl`.`TASKID`=TASKID)) 
+WHERE
+	`tasks`.`ID` = TASKID ;
+    
+RETURN 1;
+
+END;
+
+#
+# Definition for the `current_task_status` view : 
+#
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `current_task_status` AS 
+  select 
+    `tasks`.`DESCRIPTION` AS `DESCRIPTION`,
+    `task_status`.`DESCRIPTION` AS `TSTATUS`,
+    max(`task_tstatus`.`CHANGEDATE`) AS `currentdate`,
+    `task_tstatus`.`TASKID` AS `TASKID` 
+  from 
+    ((`task_tstatus` join `tasks` on((`task_tstatus`.`TASKID` = `tasks`.`ID`))) join `task_status` on((`task_status`.`ID` = `task_tstatus`.`STATUSID`))) 
+  group by 
+    `task_tstatus`.`TASKID`;
 
