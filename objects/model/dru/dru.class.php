@@ -13,6 +13,18 @@
 		'edit' => 'objects/model/dru/edit.html',
 		'description' => 'objects/model/dru/description.html'      
 		);
+	   
+		public static  $SQLFields = array(
+		'ID' => 'ID',
+		'Division' => 'DIVISIONID',
+		'Role' => 'ROLEID',
+		'User' => 'USERID'
+		);
+
+		static public function GetSQLField($Field)
+		{
+			return Task::$SQLFields[$Field];
+		}
 
 		public function Refresh()
 		{

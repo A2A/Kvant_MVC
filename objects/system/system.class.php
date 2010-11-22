@@ -46,9 +46,11 @@
 		'ssp' 					=> 'objects/system/ssp.html',
 	);
 
-		public $title = "test";
-		public $CurrentUser;
+		public $meta = '';
+		public $title = 'Система сбалансированных показателей. ООО "Квант"';
 
+		public $CurrentUser;
+		
 		protected function __construct(&$ProcessData)  
 		{   
 			parent::__construct($ProcessData);
@@ -56,9 +58,9 @@
 			$this->CurrentInt = intval($_SESSION['CurrentInt']);
 			if (!isset($_SESSION['CurrentWPTime'])) 
 			{
-/*                $int = Interval::GetObject($null,$null,$this->DataBase,$_SESSION['CurrentInt']);  
+				$int = Interval::GetObject($null,$null,$this->DataBase,$_SESSION['CurrentInt']);  
 				$_SESSION['CurrentWPTime'] =  time() - 8 * $int->Duration;
-*/            }                
+			}                
 			$this->InitCurrentUser();
 		}
 
@@ -72,7 +74,7 @@
 		{
 			switch ($FieldName)
 			{
-				case 'CurrentInt': return isset($_SESSION['CurrentInt'])?intval($_SESSION['CurrentInt']):null; break;
+				case 'CurrentInt'	: return isset($_SESSION['CurrentInt'])?intval($_SESSION['CurrentInt']):null; break;
 				case 'CurrentWPTime': return isset($_SESSION['CurrentWPTime'])?intval($_SESSION['CurrentWPTime']):null; break;
 				case 'CurrentUserID': return (!is_null($this->CurrentUser))?$this->CurrentUser->ID:null; break;
 			}
