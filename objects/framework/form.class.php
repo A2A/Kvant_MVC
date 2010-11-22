@@ -10,7 +10,7 @@
 
         protected $Body;                                                                    // Результат шаблонирования
 
-        protected $Content = array('header'=>'','element'=>'','footer'=>'');          // Содержимое шаблона
+        protected $Content = array('header'=>'','element'=>array(),'footer'=>'');          // Содержимое шаблона
         protected $RectCollection = array('header'=>array(),'element'=>array(),'footer'=>array());   // Коллекция прямоугольных областей в шаблоне
 
         public $Forms = array();
@@ -362,26 +362,23 @@
             $this->Form = $RequestedForm;
 
 
-            if (isset($ViewData['ID']) and is_numeric($ViewData['ID'])) $this->ObjectID = $ViewData['ID'];
+            if (isset($this->ViewData['ID']) and is_numeric($this->ViewData['ID'])) $this->ObjectID = $this->ViewData['ID'];
 
             if (class_exists($ClassName))
             {
-                if (is_subclass_of($ClassName, 'CollectionDB'))
+                if (is_subclass_of($ClassName, 'CollectionDB') and isset($this->ViewData['Filter']) and is_array($this->ViewData['Filter']))
                 {
-                    if (isset($this->ProcessData['Filter']) and is_array($this->ProcessData['Filter']))
-                    {
-                        $PD['Filter'] = $this->ProcessData['Filter'];
-                        $this->Object = $ClassName::GetObject($PD,$this->ObjectID);
-                    }
-                    else
-                    {
-                        $this->Object = $ClassName::GetObject($PD,$this->ObjectID);
-                    }
+                    $PD['Filter'] = $this->ViewData['Filter'];
+                    $this->Object = $ClassName::GetObject($PD,$this->ObjectID);
                 }
                 else
                 {
                     $this->Object = $ClassName::GetObject($null,$this->ObjectID);
                 }
+            }
+            else
+            {
+                
             }
         }    
 
