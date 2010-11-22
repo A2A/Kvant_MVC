@@ -1,5 +1,5 @@
 <?php
-	class TpeClassList extends CollectionDB
+	class TPEClassList extends CollectionDB
 	{
 		protected $DBTableName = 'tpe_class';    
 		public static $Forms = array(
@@ -9,9 +9,9 @@
 
 		
 		
-			public function __construct(&$ProcessData,$ID=null)  
+		public function __construct(&$ProcessData,$ID=null)  
 		{   
-			parent::__construct($ProcessData,'TpeClass');
+			parent::__construct($ProcessData,'TPEClass');
 			$this->Refresh();
 	 
 		}

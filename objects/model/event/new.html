@@ -1,0 +1,84 @@
+<table border="0" cellspacing=0 cellpadding=0 align="center">
+	<tr>
+		<td><img src="images/modal-top-left.png" hspace="0" vspace="0" border="0"></td>
+		<td class="RoundTop">      
+			<img src="images/info-close.png" align="right" onClick="CloseModalWindow();"> 
+		</td>
+		<td><img src="images/modal-top-right.png" hspace="0" vspace="0" border="0"></td>
+	</tr>
+	<tr>
+		<td class="RoundLeft">&nbsp;</td>
+		<td class="RoundCenter" valign="top">
+
+			<h2>Регистрация события</h2> 
+			<div class="AlignRight"> 
+				<table  border="0" cellspacing="5" cellpadding="0" class="EventCaption">       
+					<tr> 
+						<td class="LeftCol" rowspan="2"><img src="images/event-small.png"></td> 
+						<td class="RightCol">{?Object=TPEClass&Form=description&ID=GET(TypeID)} <input type="hidden" id="EventTypeID" value="{?Object=this&Var=GET(TypeID)}"></td> 
+					</tr> 
+					<tr> 
+						<td class="CaptionProperty"> 
+							<span class="RowCaption">Время регистрации:</span>&nbsp;<span class="RowData">{?Object=this&Var=this(InitDateText)} <input type="hidden" id="InitDate" value="{?Object=this&Var=this(InitDate)}"></span><br> 
+							<span class="RowCaption">Текущее время:</span>&nbsp;<span class="RowData" id="CurrentTime">{?Object=this&Var=this(CurrentTime)}</span><br> 
+							<span class="RowCaption">Роль:</span>&nbsp;<span class="RowData">
+							
+							{?Object=DRU&Form=description&ID=GET(DRUID)}  <input type="hidden" id="DRUID" value="{?Object=this&Var=GET(DRUID)}"> </span> 
+						</td> 
+					</tr> 
+				</table> 
+				<table  border="0" cellspacing="0" cellpadding="0" class="Event">       
+					<tr> 
+						<td class="LeftColDark">Проект</td> 
+						<td class="CenterRowTop">	
+							<input type=hidden name='ProjectID' id='ProjectID' value="{?Object=this&Var=this(ProjectID)}"> 
+							<input class="input_text" id="Project" value="{?Object=this&Var=this(Project)}">
+						</td> 
+						<td class="ButtonRowTop"><img src="images/button-forms-close.png" OnClick="FieldClear('ParentProject');"  class="ButtonCheckForm" onmouseup="ButtonPres(this);"></td> 
+					</tr>  
+					<tr> 
+						<td class="LeftColLight">Задача</td>
+						<td class="CenterRow">	 
+							<input type=hidden name='ParentID' id='ParentID' value="{?Object=this&Var=this(ParentID)}"> 
+							<input class="input_text" id="Parent" value="{?Object=this&Var=this(Parent)}">
+						</td> 
+						<td class="ButtonRow"><img src="images/button-forms-close.png" OnClick="FieldClear('ParentTask');" class="ButtonCheckForm"></td> 
+					</tr> 
+					<tr> 
+						<td class="LeftColLight">Контрагент</td> 
+						<td class="CenterRow"> 
+							<input type=hidden name='ContractorID' id='ContractorID' value="{?Object=this&Var=this(ContractorID)}"> 
+							<input class="input_text"  onkeyup="AutoSelectInText(this,event,'Contractor',this.value);" id="Contractor" onBlur="CloseWindow('ContractorDiv');" value="{?Object=this&Var=this(Contractor)}"><br> 
+							<div id='ContractorDiv' class="DivSelectForm"></div> 
+						</td>
+						<td class="ButtonRow"><img src="images/button-forms-select.png" OnClick="AutoSelectInText(document.getElementById('Contractor'),event,'Contractor');"  class="ButtonCheckForm"></td>
+					</tr> 
+					<tr> 
+						<td class="LeftColLight">Описание</td> 
+						<td class="CellTextarea" colspan="2"><textarea class="input_textarea" id="Description"></textarea></td> 
+					</tr> 
+				</table> 
+				<table class="EventCaption" border="0">  
+					<tr> 
+						<td> 
+							<div class="ButtonLightBlue"><nobr><img src="images/button-blue-1.png" class="img" align="left" hspace="0"><img src="images/button-blue-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonLightBlue" onClick="EventDelete();">Отменить</a></nobr></div> 
+						</td> 
+						<td align="right"> 
+							<div class="ButtonLightBlue"><nobr><img src="images/button-blue-1.png" class="img" align="left" hspace="0"><img src="images/button-blue-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonLightBlue" onClick="EventStayBy();">Отложить</a></nobr></div> 
+						</td> 
+						<td align="right" width="90px"> 
+							<div class="ButtonOrange"><nobr><img src="images/button-orange-1.png" class="img" align="left" hspace="0"><img src="images/button-orange-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonOrange" onClick="EventConfirm();">Подтвердить</a></nobr></div> 
+						</td> 
+					</tr> 
+				</table> 
+
+			</div> 
+		</td>
+		<td class="RoundRight">&nbsp;</td>
+	</tr>
+	<tr>
+		<td><img src="images/modal-bottom-left.png" hspace="0" vspace="0" border="0"></td>
+		<td class="RoundBottom">&nbsp;</td>
+		<td><img src="images/modal-bottom-right.png" hspace="0" vspace="0" border="0"></td>
+	</tr>
+						</table>  

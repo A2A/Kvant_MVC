@@ -1,0 +1,95 @@
+	<table border="0" cellspacing="0" cellpadding="0" class="CalendarWindow" id="CalendarWindow">
+		<tr>
+			<td class="BorderWindow"><img src="images/info-top-left.png" hspace="0" vspace="0" border="0"></td>
+			<td style="background: url('images/info-top.png') top;"  class="InfoHeader" valign="top">
+				<img src="images/info-close.png" align="right" style="margin-top:-8px;" onClick="CloseWindow('Calendar');">
+				<nobr><img src="images/calendar-date.png" hspace="3" vspace="0" border="0" align="left">Дата</nobr>
+			</td>
+			<td class="BorderWindow"><img src="images/info-top-right.png" hspace="0" vspace="0" border="0"></td>
+		</tr>
+		<tr>
+			<td style="background: url('images/info-left.png') repeat-y;font-size:4px;">&nbsp;</td>
+			<td class="InfoBody" valign="top" style="width:80px;">
+				<!-- Календарь -->
+				<table border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td colspan="4" id="MonthDiv" style="padding-bottom: 5px;">
+							<div class="SelectCalendar" id="SelectCalendarMonth" onClick="VisibleControlBlock('FullListEventType');">&nbsp;</div>
+							<div class="SelectListMonte" id="FullListEventType">
+								<span onClick="SetMonth('1')" id="Month_1">Январь</span>
+								<span onClick="SetMonth('2')" id="Month_2">Февраль</span>
+								<span onClick="SetMonth('3')" id="Month_3">Март</span>
+								<span onClick="SetMonth('4')" id="Month_4">Апрель</span>
+								<span onClick="SetMonth('5')" id="Month_5">Май </span>
+								<span onClick="SetMonth('6')" id="Month_6">Июнь</span>
+								<span onClick="SetMonth('7')" id="Month_7">Июль </span>
+								<span onClick="SetMonth('8')" id="Month_8">Август </span>
+								<span onClick="SetMonth('9')" id="Month_9">Сентябрь </span>
+								<span onClick="SetMonth('10')" id="Month_10">Октябрь </span>
+								<span onClick="SetMonth('11')" id="Month_11">Ноябрь </span>
+								<span onClick="SetMonth('12')" id="Month_12">Декабрь </span>
+							</div>
+
+						</td>
+						<td colspan="3" id="YearDiv" style="padding-bottom: 5px;text-align: right;">
+							<map name="Year">
+								<AREA HREF="javascript:SetYear(1);" ALT="увеличить" SHAPE="rect" COORDS="0,0,16,8"> 
+								<AREA HREF="javascript:SetYear(-1);" ALT="уменьшить" SHAPE="rect" COORDS="0,8,16,16"> 
+							</map>
+							<table border="0" cellspacing="0" cellpadding="0" style="height: 16px; width: 64px; border: 1px solid #ffffff;"><tr>
+									<td><input type="text" class="YearSelect" id='YearSelect' onchange="SetYearValue()" onkeypress="if(event.keyCode==13) SetYearValue();" onblur="SetYearValue()" value="2010" size="4"></td>
+									<td><img border="0" src="images/calendar-tumbler.png" vspace="0" hspace="0"  usemap="#Year"></td>
+								</tr>
+							</table> 
+						</td> 
+					</tr>
+				</table>  
+				<table border="0" cellspacing="0" cellpadding="0" width="140px">
+					<tr>               
+						<td class="WeekHederMonday">П</td>
+						<td class="WeekHederTuesday">В</td>
+						<td class="WeekHederWednesday">С</td>
+						<td class="WeekHederThursday">Ч</td>
+						<td class="WeekHederFriday">П</td>
+						<td class="WeekHederSaturday">С</td>
+						<td class="WeekHederSunday">В</td>
+					</tr>
+				</table> 
+				<div  id="WeekList" style="margin: 0; padding: 0px;">
+				</div>
+
+			</td>
+			<td style="background: url('images/info-right.png') repeat-y right;">&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="background: url('images/info-left-blue.png') left repeat-y;">&nbsp;</td>
+			<td style="background: #f5f7fc;padding:5px 0px;" class="InfoHeader"><nobr><img src="images/calendar-time.png" hspace="3" vspace="0" border="0" align="left">Время</nobr>  </td>
+			<td style="background: url('images/info-right-blue.png') right repeat-y;">&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="background: url('images/info-left.png') repeat-y;font-size:4px;">&nbsp;</td>
+			<td class="InfoBody" valign="top" style="padding:5px 0px;" >
+				<!-- Время -->
+				<map name="Time">
+					<AREA HREF="javascript:SetTime(5);" ALT="увеличить" SHAPE="rect" COORDS="0,0,16,8"> 
+					<AREA HREF="javascript:SetTime(-5);" ALT="уменьшить" SHAPE="rect" COORDS="0,8,16,16"> 
+				</map>
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border: 1px solid #ffffff;"><tr>
+						<td style="width:46px;"><input type="text" class="YearSelect"  onchange="SetTimeValue();" onkeypress="if(event.keyCode==13) SetTimeValue();"  onblur="SetTimeValue();" id='TimeSelect' value="12:00" size="4"></td>
+						<td style="width:16px;"><img border="0" src="images/calendar-tumbler.png" vspace="0" hspace="0"  usemap="#Time"></td>
+						<td><img border="0" onclick="SendDateForm()" src="images/button-ok.png" vspace="0" hspace="0" align="right"></td>
+					</tr>
+				</table> 
+
+
+			</td>
+			<td style="background: url('images/info-right.png') repeat-y right;">&nbsp;</td>
+		</tr>
+
+		<tr>
+			<td><img src="images/info-bottom-left.png" hspace="0" vspace="0" border="0"></td>
+			<td style="background: url('images/info-bottom.png') bottom;font-size:4px;">&nbsp;</td>
+			<td><img src="images/info-bottom-right.png" hspace="0" vspace="0" border="0"></td>
+		</tr>
+	</table>
+  

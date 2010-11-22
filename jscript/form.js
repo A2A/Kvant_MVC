@@ -357,46 +357,130 @@ function SaveProject()
 
 //===============================================================================
 
+var TPETypeId;
 
+function CatchTPECreate(Text)
+{
+	document.getElementById('NoActionDesktop').style.display = "block"; 
+	document.getElementById('ActionDesktop').style.display = "block"; 
+	document.getElementById('ActionDesktop').innerHTML = Text;
+	
+   
+	heig = ( (typeof window.innerHeight != 'undefined')? window.innerHeight : document.body.offsetHeight) - 100;
+	
+	document.getElementById('PageMain').style.height = heig+"px"; 
+}
 
 function CreateEventType(EventTypeId)
 {
-	document.getElementById('NoActionDesktop').style.display = "block"; 
-	document.getElementById('123Desktop321').style.opacity = 0.4;
-	
-	// IE только для фона document.getElementById('123Desktop321').style.filter = 'alpha(opacity=10)';
-	AjaxSendGETLocol("users_check_role.html",'ActionDesktop');   
-														  
-	alert("form.js CreateEventType(ИД типа события)");  
-	
+	ModalWindowOpen = 'Event';    
+	TPETypeId = EventTypeId;
+	AjaxSendGET("?Ajax=1&Object=DRUList&Form=tpe_creat",CatchTPECreate);   
 }
 
-function CreateEvent(Type,Role)
+function SetDRU(DRUID)
 {
-	AjaxSendGETLocol("new_event.html",'ActionDesktop'); 
-	ModalWindowOpen = 'event';
-	alert("form.js CreateEvent(ИД типа события, Ид роли сотрудника)");   
+	if (ModalWindowOpen == 'Event')
+	{
+		AjaxSendGET("?Ajax=1&Object=Event&Form=new&DRUID="+DRUID+"&TypeID="+TPETypeId,CatchTPECreate); 
+	}
+	else if (ModalWindowOpen == 'Project')
+	{
+		AjaxSendGET("?Ajax=1&Object=Project&Form=new&DRUID="+DRUID+"&TypeID="+TPETypeId,CatchTPECreate); 
+	}
+	else if (ModalWindowOpen == 'Task')
+	{
+		AjaxSendGET("?Ajax=1&Object=Task&Form=new&&DRUID="+DRUID+"&TypeID="+TPETypeId,CatchTPECreate); 
+	}
 }
-
-
-
 
 function EventDelete()
 {
-	alert("form.js EventDelete()");
 	CloseModalWindow();
 }
 
 function EventStayBy()
 {
-	alert("form.js EventStayBy()");
+	params = "?Ajax=1&Object=Event&Action=save";
+	if (document.getElementById('ID')) 		
+		params = params + "&ID="  				+ document.getElementById('ID').value;
+	if (document.getElementById('EventTypeID')) 		
+		params = params + "&EventTypeID="  		+ document.getElementById('EventTypeID').value;
+	if (document.getElementById('DRUID')) 
+		params = params + "&DRUID="            	+ document.getElementById('DRUID').value;
+	params = params  + "&ProjectID="       		+ document.getElementById('ProjectID').value;
+	params = params  + "&TaskID="      		 	+ document.getElementById('ParentID').value;
+	params = params  + "&ContractorID="       	+ document.getElementById('ContractorID').value;
+	params = params  + "&InitDate="      		+ document.getElementById('InitDate').value;
+	params = params  + "&Continue=1";
+	if (document.getElementById('Description')) 
+		params = params  + "&Description="	+ document.getElementById('Description').value;
+	params = params  + "";
+ 
+	
+	Text = AjaxSendPOSTSync(params);     
+	
+	Res = ParseStatusXML(Text,'Сохранение события');
+	
+	CloseModalWindow();
+	EventBlockRefresh();    
+	return 1;  
 }
 
 function EventConfirm()
 {
-	alert("form.js EventConfirm()");
+	params = "?Ajax=1&Object=Event&Action=Save";
+	if (document.getElementById('ID')) 		
+		params = params + "&ID="  				+ document.getElementById('ID').value;
+	if (document.getElementById('EventTypeID')) 		
+		params = params + "&EventTypeID="  		+ document.getElementById('EventTypeID').value;
+	if (document.getElementById('DRUID')) 
+		params = params + "&DRUID="            	+ document.getElementById('DRUID').value;
+	params = params  + "&ProjectID="       		+ document.getElementById('ProjectID').value;
+	params = params  + "&TaskID="      		 	+ document.getElementById('ParentID').value;
+	params = params  + "&ContractorID="       	+ document.getElementById('ContractorID').value;
+	params = params  + "&InitDate="      		+ document.getElementById('InitDate').value;
+	params = params  + "&Continue=0";
+	
+	if (document.getElementById('Description')) 
+		params = params  + "&Description="      + document.getElementById('Description').value;
+	params = params  + "";
+ 
+	
+	Text = AjaxSendPOSTSync(params);     
+ 
+	Res = ParseStatusXML(Text,'Сохранение события');
+	
 	CloseModalWindow();
+	EventBlockRefresh();  
+	return 1;  
 }
+
+function EventBlockRefresh()
+{
+	// TODO 10 -o Natali -c JS: подумать над тем, что перегружаем при создании события, нужен ли полный рефрешь страницы.
+	//location.href="?Object=Event&Form=desktop"; 
+}
+
+function ClickEvent(ID,Continue)
+{
+	
+	if (Continue == 1) 
+	{
+		Url = "?Ajax=1&Object=Event&Form=edit&ID=" + ID;
+		AjaxSendGET(Url,CatchTPECreate);
+		ModalWindowOpen = 'Event';    
+		return 1;
+	}
+	else
+	{
+		Url = "?Ajax=1&Object=Event&Form=view&ID=" + ID;
+		
+		AjaxSendGET(Url,CatchTPECreate);
+		return 1;
+	}
+} 
+
 
 
 function VisibleControlBlock(BlockId)

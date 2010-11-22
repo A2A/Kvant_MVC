@@ -1,0 +1,46 @@
+<table width="754px" align="center" border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 2px;">
+	<tr>
+		<td>
+			<h2>Список  событий</h2>
+		</td>
+		<td align="right">
+			<div class="ButtonLightBlue"><nobr><img src="images/button-blue-1.png" class="img" align="left" hspace="0"><img src="images/button-blue-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonLightBlue" onClick="FiltrEvent();">Фильтр</a></nobr></div>
+		</td>
+		<td width="120px">
+			<div class="ButtonLightBlueBig BigButton"><nobr><img src="images/button-blue-1.png" class="img" align="left" hspace="0"><img src="images/button-blue-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonLightBlueBig BigButton"  href="?Object=Event&Form=desktop">Создать новое событие</a></nobr></div>
+		</td>
+	</tr>
+</table>
+
+<table border="0" cellspacing=0 cellpadding=0 width="750px" id="EventList" align="center">
+	<tr>
+		<td class="CellTopDrak" style="width:20px;">&nbsp;</td>
+		<td class="CellTopDrak" style="width:120px;">Название <div id="EventListName"></div></td>
+		<td class="CellTop50">Время<div id="EventListTime"></div></td>
+		<td class="CellTop50">Дата<div id="EventListDate"></div></td>
+		<td class="CellTop50">Длит.<div id="EventListTimeLine"></div></td>
+		<td class="CellTop50">Роль<div id="EventListRole"></div></td>
+		<td class="CellTop50">Сотрудник<div id="EventListStaff"></div></td>
+		<td class="CellTop50">Проект<div id="EventListProject"></div></td>
+		<td class="CellTop50">Задача<div id="EventListTask"></div></td>
+		<td class="CellTop50">Контрагент<div id="EventListContractor"></div></td>
+	</tr>
+	<tr>
+		<td class="CellTopLeft" colspan="10" style="font-size: 5px;">&nbsp;</td>
+	</tr>
+	 <!-- Element Begin --> 
+	<tr onclick="ClickEvent({?Object=this&Var=this(ID)},{?Object=this&Var=this(Continue)});">
+		<td class="CellLeft"><img src="images/status-{?Object=this&Var=this(CurrentStatusID)}.png"></td>
+		<td class="Cell"><nobr class="TdWidth80">{?Object=this&Var=this(Owner)}</nobr></td>
+		<td class="Cell"><nobr class="TdWidth40">{?Object=this&Var=this(Time)}</nobr></td>
+		<td class="Cell"><nobr class="TdWidth60">{?Object=this&Var=this(Date)}</nobr></td>
+		<td class="Cell"><nobr class="TdWidth40">{?Object=this&Var=this(Duration)}</nobr></td>
+		<td class="Cell"><nobr class="TdWidth84">{?Object=this&Var=this(UserRole)}</nobr></td>
+		<td class="Cell"><nobr class="TdWidth90">{?Object=this&Var=this(User)}</nobr></td>
+		<td class="Cell"><nobr class="TdWidth90">{?Object=this&Var=this(Project)}</nobr></td>
+		<td class="Cell"><nobr class="TdWidth90">{?Object=this&Var=this(Task)}</nobr></td>
+		<td class="Cell"><nobr class="TdWidth90">{?Object=this&Var=this(Contractor)}</nobr></td>
+	</tr>
+	   <!-- Element End --> 
+
+</table>           
