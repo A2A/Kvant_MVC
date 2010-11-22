@@ -13,7 +13,6 @@
 		{   
 			parent::__construct($ProcessData,'Filter');
 			$this->Refresh();
-	 
 		}
 		
 		

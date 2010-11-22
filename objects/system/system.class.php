@@ -2,7 +2,7 @@
 	class System extends BaseClass
 	{
 		public static   $UnAuthUse      = true;
-		public static  $Cashable = true;
+		public static  $Cashable = false;
 
 		public static $Actions = array(
 		'login'=>'LogIn',
