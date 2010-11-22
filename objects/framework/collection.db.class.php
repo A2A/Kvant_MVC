@@ -58,10 +58,10 @@
             $null = null;
             $sql = 'Select ID from '.$this->DBTableName;
             
-            if (isset($this->ViewData['Filter']) and is_array($this->ViewData['Filter']))
+            if (isset($this->ProcessData['Filter']) and is_array($this->ProcessData['Filter']))
             {
                 $Conditions = '';
-                foreach ($this->ViewData['Filter'] as $FilterRec)
+                foreach ($this->ProcessData['Filter'] as $FilterRec)
                 {
                     $Conditions = $Conditions.($Conditions==''?'':' and ').$this->CreateQueryFilter($FilterRec);
                 }
