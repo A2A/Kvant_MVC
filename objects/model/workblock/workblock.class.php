@@ -211,7 +211,7 @@
 		
 		static public function GetObject(&$ProcessData,$id=null)
 		{
-			return static::GetObjectInstance($ProcessData,$id,__CLASS__);
+			return new WorkBlock($ProcessData,$id);
 		}
 
 	} 
