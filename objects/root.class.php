@@ -29,12 +29,12 @@
 				}
 				else
 				{
-					$this->ErrorHandle('Класс - '.$ClassName.' не имеет функции обработки событий.',3);
+					ErrorHandle::ErrorHandle('Класс - '.$ClassName.' не имеет функции обработки событий.',3);
 				}
 			}
 			else
 			{
-				$this->ErrorHandle('Не передан объект для обработки запроса.',3);
+				ErrorHandle::ErrorHandle('Не передан объект для обработки запроса.',3);
 			}
 
 			$result = $this->SystemStatusOutput();
@@ -60,19 +60,19 @@
 						}
 						else
 						{
-							$this->ErrorHandle('Класс - '.$ClassName.' не имеет функции обработки запроса.',3);
+							ErrorHandle::ErrorHandle('Класс - '.$ClassName.' не имеет функции обработки запроса.',3);
 							$result = $this->SystemStatusOutput();
 						}
 					}
 					else
 					{
-						$this->ErrorHandle('Класс - '.$ClassName.' не может использоваться неавторизованным пользователем.',3);
+						ErrorHandle::ErrorHandle('Класс - '.$ClassName.' не может использоваться неавторизованным пользователем.',3);
 						$result = $this->SystemStatusOutput();
 					}
 				}
 				else
 				{
-					$this->ErrorHandle('Не передан объект для обработки запроса.',3);
+					ErrorHandle::ErrorHandle('Не передан объект для обработки запроса.',3);
 					$result = $this->SystemStatusOutput();
 				}
 			}
@@ -90,7 +90,7 @@
 					}
 					else
 					{
-						$this->ErrorHandle('Класс - '.$ClassName.' не имеет функции построения отображения.',3);
+						ErrorHandle::ErrorHandle('Класс - '.$ClassName.' не имеет функции построения отображения.',3);
 						$this->Request = $this->SystemStatusOutput();
 					}
 				}

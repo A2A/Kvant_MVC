@@ -171,11 +171,12 @@
 		public function Refresh()
 		{
 			$null = null;
-			if (is_int($this->ID))
+			if (intval($this->ID))
 			{
 				$sql = 'Select * from '.$this->DBTableName.' where ID = '.$this->ID;
-				$hSql = $this->DataBase->Query($sql);
-				while ($fetch = $this->DataBase->FetchObject($hSql)) 
+				
+				$hSql = DBMySQL::Query($sql);
+				while ($fetch = DBMySQL::FetchObject($hSql)) 
 				{
 					$this->Description = $fetch->DESCRIPTION;
 					if ($this->ParentID != intval($fetch->PARENTID))
@@ -262,19 +263,22 @@
 							FULL_DESCR,USERID,MANAGERID,READY_STATE) 
 						values (NULL,"'.$this->Description.'","'.DateTimeToMySQL($this->InitDate).'","'.DateTimeToMySQL($this->StartDate).'","'.DateTimeToMySQL($this->FinishDate).'",
 							"'.$this->FullDescription.'",'.(intval($this->Owner)?intval($this->Owner):'null').',"'.(intval($this->UserID)?intval($this->UserID):'null').',"'.$this->ReadyState.'")';
-				$this->ErrorHandle($sql);   // TODO 4 -o Natali -c сообщение для отладки: SQL   
+			   
+				// TODO 4 -o Natali -c сообщение для отладки: SQL  
+				ErrorHandle::ErrorHandle($sql);   
+				
 				$sql = 'insert into '.$this->DBTableName.' (ID, DESCRIPTION) values (NULL,"'.$this->Description.'")';
-				$hSql = $this->DataBase->Query($sql);
+				$hSql = DBMySQL::Query($sql);
 				if ($hSql)
 				{
-					$this->ID = $this->DataBase->InsertID($hSql);
+					$this->ID = DBMySQL::InsertID($hSql);
 					$this->ChangedFields[] = array('name' => 'ID','value' => $this->ID);
-					$this->ErrorHandle('Объект типа '.get_class($this).' успешно сохранен.',0);
+					ErrorHandle::ErrorHandle('Объект типа '.get_class($this).' успешно сохранен.',0);
 					$Result = true;
 				}
 				else
 				{
-					$this->ErrorHandle('Ошибка сохранения объекта типа '.get_class($this).'.',2);
+					ErrorHandle::ErrorHandle('Ошибка сохранения объекта типа '.get_class($this).'.',2);
 					$Result = true;
 				}
 			}
@@ -293,16 +297,16 @@
 				USERID='.(intval($this->UserID)?intval($this->UserID):'null').' 
 				where ID = '.$this->ID;
 
-				$this->ErrorHandle($sql);
-				$hSql = $this->DataBase->Query($sql);
+				ErrorHandle::ErrorHandle($sql);
+				$hSql = DBMySQL::Query($sql);
 				if ($hSql)
 				{
-					$this->ErrorHandle('Объект типа '.get_class($this).' успешно сохранен.',0);
+					ErrorHandle::ErrorHandle('Объект типа '.get_class($this).' успешно сохранен.',0);
 					$Result = true;
 				}
 				else
 				{
-					$this->ErrorHandle('Ошибка сохранения объекта типа '.get_class($this).'.',2);
+					ErrorHandle::ErrorHandle('Ошибка сохранения объекта типа '.get_class($this).'.',2);
 					$Result = true;
 				}
 			}
