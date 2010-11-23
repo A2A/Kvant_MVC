@@ -217,7 +217,7 @@ function CloseModalWindow()
 	//MainPage
 }
 
-function CatchTaskOpen(Text)
+		  function CatchTaskOpen(Text)
 {
 	ModalWindowOpen = 'Task';
 	document.getElementById('NoActionDesktop').style.display = "block"; 
@@ -236,6 +236,15 @@ function CatchTaskShortInfo(Text)
 {
 	ParseStatusXML(Text,'');
 }
+function ClickTaskView(ID)
+{
+	
+	ModalWindowOpen = 'none';
+	Url = "?Ajax=1&Object=Task&Form=view_full&ID=" + ID;
+	AjaxSendGET(Url,CatchTaskOpen);
+	return 1;
+	
+}
 
 function ClickTask(ID)
 {
@@ -252,8 +261,7 @@ function ClickTask(ID)
 		AjaxSendGET(Url,CatchTaskShortInfo);
 		return 1;
 	}
-} 
-
+}
 function NewTask()
 {
 	location.href ="?Object=System&Form=task";
@@ -268,7 +276,8 @@ function SaveTask()
 	params = params  + "&ContractorID="       + document.getElementById('ContractorID').value;
 	params = params  + "&StartDateValue="     + document.getElementById('StartDateValue').value;
 	params = params  + "&FinishDateValue="    + document.getElementById('FinishDateValue').value;
-	params = params  + "&FullDescr="      + document.getElementById('TaskFullDescr').value;
+	params = params  + "&FullDescription="      + document.getElementById('TaskFullDescr').value;
+	params = params  + "&ReadyState="      + document.getElementById('ReadyState').value;
 	params = params  + "";
  
 	Text = AjaxSendPOSTSync(params);
@@ -294,6 +303,15 @@ function CatchProjectOpen(Text)
 function CatchProjectShortInfo(Text)
 {
 	ParseStatusXML(Text,'');
+}
+
+function ClickProjectView(ID)
+{
+	ModalWindowOpen = 'none';
+	Url = "?Ajax=1&Object=Project&Form=view_full&ID=" + ID;
+	AjaxSendGET(Url,CatchProjectOpen);
+	return 1;
+	
 }
 
 function ClickProject(ID)
@@ -341,6 +359,7 @@ function NewProject()
 	location.href = "?Object=System&Form=project";
 }
 
+
 function FillFieldProject(ID)
 {
 	 Url = "?Ajax=1&Object=Project&Form=ShortInfo&ID=" + ID;
@@ -350,17 +369,20 @@ function FillFieldProject(ID)
 
 function SaveProject()
 {
-	params = "Object=Project&Action=save&ID=" + document.getElementById('ID').value;
-	params = params + "&UserID="            + document.getElementById('UserID').value;
+	params = "?Ajax=1&Object=Project&Action=save";
+	if (document.getElementById('ID')) params = params + "&ID="            + document.getElementById('ID').value;
+	if (document.getElementById('UserID')) params = params + "&UserID="            + document.getElementById('UserID').value;
 	params = params  + "&ContractorID="       + document.getElementById('ContractorID').value;
 	params = params  + "&StartDateValue="     + document.getElementById('StartDateValue').value;
 	params = params  + "&FinishDateValue="    + document.getElementById('FinishDateValue').value;
-	params = params  + "&FullDescr="      + document.getElementById('FullDescr').value;
+	params = params  + "&FullDescription="      + document.getElementById('FullDescription').value;
+	if (document.getElementById('ReadyState')) params = params  + "&ReadyState="      + document.getElementById('ReadyState').value;
+	if (document.getElementById('Description')) params = params  + "&Description="      + document.getElementById('Description').value;
 	params = params  + "";
  
 	
 	Text = AjaxSendPOSTSync(params);     
-	alert(Text);
+	
 	Res = ParseStatusXML(Text,'Сохранение проекта');
 	return 1;
 }
@@ -415,7 +437,7 @@ function EventDelete()
 
 function EventStayBy()
 {
-	params = "?Ajax=1&Object=Event&Action=save";
+	params = "?Ajax=1&Object=Event&Action=Save";
 	if (document.getElementById('ID')) 		
 		params = params + "&ID="  				+ document.getElementById('ID').value;
 	if (document.getElementById('EventTypeID')) 		

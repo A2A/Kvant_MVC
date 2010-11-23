@@ -79,6 +79,12 @@
 				$this->Owner = null;
 				$this->Modified = true;
 			}
+			if (isset($this->ProcessData['ContractorID']) and ($this->ProcessData['ContractorID'] != $this->ContractorID))
+			{
+				$this->ContractorID = $this->ProcessData['ContractorID'];
+				$this->Contractor = null;
+				$this->Modified = true;
+			}
 
 			// TODO 1 -o Nat -c Заменить: UserID and RoleID -> DRUID
 			if (isset($this->ProcessData['DRUID']) and ($this->ProcessData['DRUID'] != $this->DRUID))
@@ -102,7 +108,7 @@
 			return $this->Modified;
 
 		}
-		// TODO 3 -o Natali -c Функционал: заполнение проета и задачи  Refresh()
+		
 		public function Refresh()
 		{
 			$null = null;
@@ -132,7 +138,6 @@
 						$this->ProjectID = intval($fetch->PROJECTID);
 						if (!is_null($this->ProjectID))
 						{
-							// TODO 1 -o Nata -c Project: не функционален
 							$this->Project = Project::GetObject($null,$this->ProjectID);
 						}
 						else
@@ -146,7 +151,6 @@
 						$this->TaskID = intval($fetch->TASKID);
 						if (!is_null($this->TaskID))
 						{
-								// TODO 1 -o Nata -c Task: не функционален
 							$this->Task = Task::GetObject($null,$this->TaskID);
 						}
 						else
@@ -166,12 +170,24 @@
 						if (!is_null($this->DRUID))
 						{
 							$ClassName = 'DRU';
-							// TODO 2 -o Natali -c Связь с БД: создание DRU для события
-							$this->DRU = DRU::GetObject($null,$this->DRUID);
+							$this->DRU = $ClassName::GetObject($null,$this->DRUID);
 						}
 						else
 						{
 							$this->DRU = null;
+						}
+					}
+					if ($this->ContractorID != intval($fetch->CONTRACTORID))
+					{
+						$this->ContractorID = intval($fetch->CONTRACTORID);
+						if (!is_null($this->ContractorID))
+						{
+							$ClassName = 'Contractor';
+							$this->Contractor = $ClassName::GetObject($null,$this->ContractorID);
+						}
+						else
+						{
+							$this->Contractor = null;
 						}
 					}
 					$this->Continue = $fetch->CONTINUE;   
@@ -193,34 +209,33 @@
 			$this->SetActionData();   
 		}
 
-		// TODO 3 -o Natali -c Функционал: переписать update в Save()  
 		public function SaveAction()
 		{
 			if (!intval($this->ID))
 			{
 				$sql = 'insert into '.$this->DBTableName.' (ID, DESCRIPTION,
 				`CLASSID`,`PROJECTID`,`DATE_INIT`,`DATE_FINISH`,
-				`DRUID`,`DURATION_PAUSE`,`TASKID`,`CONTINUE`)
+				`DRUID`,`DURATION_PAUSE`,`TASKID`,`CONTINUE`,`CONTRACTORID`)
 				values (NULL,"'.$this->Description.'"
 				,"'.$this->ClassID.'",'.(is_numeric($this->ProjectID)?$this->ProjectID:'null').',
 				"'.DateTimeToMySQL($this->InitDate).'","'.DateTimeToMySQL($this->FinishDate).'",
 				'.(is_numeric($this->DRUID)?$this->DRUID:'null').',
-				'.($this->Pause=0).','.(is_numeric($this->TaskID)?$this->TaskID:'null').','.$this->Continue.')';
+				'.($this->Pause=0).','.(is_numeric($this->TaskID)?$this->TaskID:'null').','.$this->Continue.','.(intval($this->ContractorID)?intval($this->ContractorID):'null').')';
 				
 				// TODO 10 -o N -c Сообщение для отладки: SQL
-				ErrorHandle::ErrorHandle($sql);
+				//ErrorHandle::ErrorHandle($sql);
 
 				$hSql = DBMySQL::Query($sql);
 				if ($hSql)
 				{
 					$this->ID = DBMySQL::InsertID($hSql);
 					$this->ChangedFields[] = array('name' => 'ID','value' => $this->ID);
-					ErrorHandle::ErrorHandle('Объект типа '.get_class($this).' успешно сохранен.',0);
+					ErrorHandle::ActionErrorHandle('Объект типа '.get_class($this).' успешно сохранен.',0);
 					$Result = true;
 				}
 				else
 				{
-					ErrorHandle::ErrorHandle('Ошибка сохранения объекта типа '.get_class($this).'.',2);
+					ErrorHandle::ActionErrorHandle('Ошибка сохранения объекта типа '.get_class($this).'.',2);
 					$Result = true;
 				}
 			}
@@ -237,20 +252,21 @@
 				`DRUID`			= '.$this->DRUID.', 
 				`DURATION_PAUSE`	= '.(intval($this->Pause)?intval($this->Pause):'0').',
 				`TASKID`			= '.(intval($this->TaskID)?intval($this->TaskID):'null').',
+				`CONTRACTORID`			= '.(intval($this->ContractorID)?intval($this->ContractorID):'null').',
 				`CONTINUE`		= '.$this->Continue.' 
 				where ID = '.$this->ID;
 				// TODO 10 -o N -c Сообщение для отладки: SQL
-				ErrorHandle::ErrorHandle($sql);
+				//ErrorHandle::ErrorHandle($sql);
 
 				$hSql = DBMySQL::Query($sql);
 				if ($hSql)
 				{
-					ErrorHandle::ErrorHandle('Объект типа '.get_class($this).' успешно сохранен.',0);
+					ErrorHandle::ActionErrorHandle('Объект типа '.get_class($this).' успешно сохранен.',0);
 					$Result = true;
 				}
 				else
 				{
-					ErrorHandle::ErrorHandle('Ошибка сохранения объекта типа '.get_class($this).'.',2);
+					ErrorHandle::ActionErrorHandle('Ошибка сохранения объекта типа '.get_class($this).'.',2);
 					$Result = true;
 				}
 			}
@@ -260,6 +276,7 @@
 				$Sql="Select GET_HANDLER(".$this->ID.",'Event') as Result";
 				$hSql = DBMySQL::Query($sql); 
 			}
+			return $Result;
 		}      
 
 		public function __get($FieldName)
