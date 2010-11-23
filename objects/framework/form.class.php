@@ -96,8 +96,7 @@
                     {
                         $ParamArr[$ParamKey] = $this->EvalExpr($ParamValue,$Object);
                     }
-
-                    $Record = array();
+                    
                     if ($ParamArr['Object'] != 'this')
                     {
                         $Record['ClassName']       =$ParamArr['Object'];    // название класса объектов
@@ -105,8 +104,8 @@
                     }
                     else
                     {
-                        $Record['Var']             =$ParamArr["Var"];   // параметры метода
-                        $Record['Params']          = NULL;              // параметры метода
+                        $Record['Var']             =$ParamArr["Var"].'';   // параметры метода
+                        $Record['Params']          = null;              // параметры метода
                     }  
                     $Record['Pattern']         	=$BlocksList[$_BlockIndex][$key];   // параметры метода
                     $BlockRecords[]             = $Record;
@@ -192,9 +191,10 @@
                 if (Controller::CheckClassAccess($ClassName))
                 {
                     $SubObject = $ClassName::GetObject($Rect['Params'],null);
-                    if (array_key_exists('Params',$Rect) and array_key_exists('Var',$Rect['Params'])) 
+                    if (isset($Rect['Params']) and isset($Rect['Params']['Var'])) 
                     {
-                        if (property_exists($SubObject,$Rect['Params']['Var'])) 
+                        $result = $SubObject->$Rect['Params']['Var'];
+/*                        if (property_exists($SubObject,$Rect['Params']['Var'])) 
                         {
                             $result = $SubObject->$Rect['Params']['Var'];
                         }
@@ -202,7 +202,7 @@
                         {
                             $result = '';
                         }
-
+*/
                     }
                     else
                     {

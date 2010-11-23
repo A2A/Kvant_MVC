@@ -22,7 +22,7 @@
 
 		public static function ErrorHandle($StringError, $State = 0)
 		{
-			$Eh = static::GetInstance();
+			$Eh = static::GetInstance();                         
 			$Eh->ErrorState = max($State, $Eh->ErrorState);   
 			$Eh->Errors[] = array('state' =>$State, 'message' => ($State==0 ? '' : (get_called_class().':')) .$StringError);
 		}
