@@ -1,13 +1,13 @@
 @font-face {
 font-family: Verdana;
-src: url('css/verdana.ttf');
+src: url('verdana.ttf');
 font-weight: normal;
 font-style: normal;
 }
 
 @font-face {
 font-family: Tahoma;
-src: url('css/tahoma.ttf');
+src: url('tahoma.ttf');
 font-weight: normal;
 font-style: normal;
 }
@@ -144,11 +144,13 @@ a.left, a.left-red, a.left-green, a.left-yellow, a.event
 
 li.left, li.left-red, li.left-green, li.left-yellow
 {
-	margin: 0px;
-	padding: 0px;  
 	overflow: hidden;
 	width: 190px; 
-	height: 16px;                
+	height: 16px;
+	margin: 0px;
+	padding: 0px;  
+	list-style-type: disc;    
+				   
 }
 
 .green, li.left-green, a.left-green
@@ -171,7 +173,7 @@ a.event
 li.event
 {
 	margin: 0px;
-	padding: 0px;
+	padding: 0px;     
 	color: #000000;  
 	overflow: hidden;
 	width: 196px; 
@@ -196,6 +198,8 @@ div.level-1, div.level-
 	overflow: hidden;
 	width: 196px; 
 	height: 16px;
+	list-style-type: disc; 
+	
 }
 div.level-2
 {
@@ -203,6 +207,8 @@ div.level-2
 	overflow: hidden;
 	width: 183px; 
 	height: 16px;
+	list-style-type: disc; 
+	
 }
 div.level-3, div.level-4, div.level-5, div.level-6, div.level-7, div.level-8, div.level-9, div.level-10, div.level-11
 {
@@ -210,6 +216,7 @@ div.level-3, div.level-4, div.level-5, div.level-6, div.level-7, div.level-8, di
 	overflow: hidden;
 	width: 170px; 
 	height: 16px;
+	list-style-type: disc; 
 }
 
 div.LeftButtonProject

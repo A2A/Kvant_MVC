@@ -384,22 +384,25 @@ function CatchTPECreate(Text)
 function CreateNewElement(EventTypeId)
 {
 	TPETypeId = EventTypeId;
-	AjaxSendGET("?Ajax=1&Object=DRUList&Form=tpe_create",CatchTPECreate);   
+	Param = "&Filter[0][Field]=UserID&Filter[0][Oper]=eq&Filter[0][Val]=SESSION(CurrentUserID)";
+	Param = Param + "&Filter[1][Field]=RoleID&Filter[1][Oper]=!eq&Filter[1][Val]=";
+	AjaxSendGET("?Ajax=1&Object=DRUList&Form=tpe_create" + Param,CatchTPECreate);   
 }
 
 function ChangeDRU(DRUID)
 {
+	ModalWindowOpen = document.getElementById('Desktop').value;
 	if (ModalWindowOpen == 'Event')
 	{
 		AjaxSendGET("?Ajax=1&Object=Event&Form=new&DRUID="+DRUID+"&TypeID="+TPETypeId,CatchTPECreate); 
 	}
 	else if (ModalWindowOpen == 'Project')
 	{
-		AjaxSendGET("?Ajax=1&Object=Project&Form=new&DRUID="+DRUID+"&TypeID="+TPETypeId,CatchTPECreate); 
+		AjaxSendGET("?Ajax=1&Object=Project&Form=new&DRUID="+DRUID+"&TypeID="+TPETypeId,CatchProjectOpen); 
 	}
 	else if (ModalWindowOpen == 'Task')
 	{
-		AjaxSendGET("?Ajax=1&Object=Task&Form=new&&DRUID="+DRUID+"&TypeID="+TPETypeId,CatchTPECreate); 
+		AjaxSendGET("?Ajax=1&Object=Task&Form=new&&DRUID="+DRUID+"&TypeID="+TPETypeId,CatchTaskOpen); 
 	}
 		alert(ModalWindowOpen);
 	

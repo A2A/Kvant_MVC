@@ -133,7 +133,7 @@
 						if (!is_null($this->ProjectID))
 						{
 							// TODO 1 -o Nata -c Project: не функционален
-							//$this->Project = Project::GetObject($null,$this->ProjectID);
+							$this->Project = Project::GetObject($null,$this->ProjectID);
 						}
 						else
 						{
@@ -147,7 +147,7 @@
 						if (!is_null($this->TaskID))
 						{
 								// TODO 1 -o Nata -c Task: не функционален
-								//$this->Task = Task::GetObject($null,$this->TaskID);
+							$this->Task = Task::GetObject($null,$this->TaskID);
 						}
 						else
 						{

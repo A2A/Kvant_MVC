@@ -56,7 +56,6 @@
 
 		protected function Refresh()
 		{
-			//if (isset($this->ProcessData['Filter'])) $this->ViewData['Filter'] = $_GET['Filter'];
 			
 			$null = null;
 			$sql = 'Select ID from '.$this->DBTableName;
@@ -65,19 +64,14 @@
 				$Conditions = '';
 				foreach ($this->ProcessData['Filter'] as $FilterRec)
 				{
-					$Conditions1 = $Conditions.($Conditions==''?'':' and ').$this->CreateQueryFilter($FilterRec);
-					// TODO 10 -o N -c Сообщение для отладки: SQL  
-					if ($this->DBTableName == 'tpe_class')  ErrorHandle::ErrorHandle($Conditions."||".$Conditions1 );     
-					$Conditions = $Conditions1;
+					$Conditions = $Conditions.($Conditions==''?'':' and ').$this->CreateQueryFilter($FilterRec);
 				}
 				if ($Conditions != '') $sql .= ' where '.$Conditions; 
-				
-				
 			
 			}
 			
 			// TODO 10 -o N -c Сообщение для отладки: SQL  
-			if ($this->DBTableName == 'tpe_class') ErrorHandle::ErrorHandle($sql);     
+			 ErrorHandle::ErrorHandle($sql);     
 			//$sql .= " limit 4";
 			$hSql = DBMySQL::Query($sql);
 			while ($fetch = DBMySQL::FetchObject($hSql)) 

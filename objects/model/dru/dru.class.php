@@ -16,14 +16,14 @@
 	   
 		public static  $SQLFields = array(
 		'ID' => 'ID',
-		'Division' => 'DIVISIONID',
-		'Role' => 'ROLEID',
-		'User' => 'USERID'
+		'DivisionID' => 'DIVISIONID',
+		'RoleID' => 'ROLEID',
+		'UserID' => 'USERID'
 		);
 
 		static public function GetSQLField($Field)
 		{
-			return Task::$SQLFields[$Field];
+			return DRU::$SQLFields[$Field];
 		}
 
 		public function Refresh()

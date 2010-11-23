@@ -11,6 +11,8 @@
 
 		public function __construct(&$ProcessData,$ID)
 		{
+			if ($ID <= 2) print_R($ProcessData);
+			
 			parent::__construct($ProcessData,$ID);
 		
 			if (isset($ID) and (intval($ID)>0)) $this->ID = intval($ID);
@@ -18,9 +20,9 @@
 			else
 				$this->ID = 1;
 
-			if (isset($this->ProcessData['ProjectID'])) $this->ProjectID = $this->ProcessData['ProjectID'];
+			if (isset($ProcessData['ProjectID'])) $this->ProjectID = $ProcessData['ProjectID'];
 			if (isset($this->ProcessData['TaskID'])) $this->TaskID = $this->ProcessData['TaskID'];
-
+			//print_r($this);
 		}
 
 

@@ -27,7 +27,7 @@
 
 
 		// TODO 4 -o Natali -c Замечание: форма edit и view_full, если запрошено форма редактирования, а пользователь не имеет рава редактировать этот проект, то надо отдавать форму view_full - полное описание 
-		
+
 		public static  $Forms = array(
 		'edit' => 'objects/model/task/edit.html',
 		'ShortInfo' => 'objects/model/task/short_info.html',
@@ -36,7 +36,7 @@
 		'view_full' => 'objects/model/task/view_full.html',
 		'new' => 'objects/model/task/new.html',
 		);
-		
+
 		public static  $SQLFields = array(
 		'ID' => 'ID',
 		'Description' => 'DESCRIPTION',
@@ -153,7 +153,7 @@
 				$this->FinishDate = $this->ProcessData['FinishDateValue'];
 				$this->Modified = true;
 			}
-					if (isset($this->ProcessData['FullDescription']) and ($this->ProcessData['FullDescription'] != $this->FullDescription))
+			if (isset($this->ProcessData['FullDescription']) and ($this->ProcessData['FullDescription'] != $this->FullDescription))
 			{
 				$this->FullDescription = $this->ProcessData['FullDescription'];
 				$this->Modified = true;
@@ -163,7 +163,7 @@
 				$this->ReadyState = $this->ProcessData['ReadyState'];
 				$this->Modified = true;
 			}
-	
+
 			return $this->Modified;
 
 		}
@@ -174,7 +174,7 @@
 			if (intval($this->ID))
 			{
 				$sql = 'Select * from '.$this->DBTableName.' where ID = '.$this->ID;
-				
+
 				$hSql = DBMySQL::Query($sql);
 				while ($fetch = DBMySQL::FetchObject($hSql)) 
 				{
@@ -184,7 +184,7 @@
 						$this->ParentID = intval($fetch->PARENTID);
 						if (!is_null($this->ParentID))
 						{
-							$this->Parent = Task::GetObject($null,$null,$this->DataBase,$this->ParentID);
+							$this->Parent = Task::GetObject($null,$this->ParentID);
 						}
 						else
 						{
@@ -196,7 +196,7 @@
 						$this->ProjectID = intval($fetch->PROJECTID);
 						if (!is_null($this->ProjectID))
 						{
-							$this->Project = Project::GetObject($null,$null,$this->DataBase,$this->ProjectID);
+							$this->Project = Project::GetObject($null,$this->ProjectID);
 						}
 						else
 						{
@@ -216,7 +216,7 @@
 
 					$this->FullDescription = $fetch->FULL_DESCR;
 
-
+					/*
 					if ($this->OwnerID != intval($fetch->MANAGERID))
 					{
 						$this->OwnerID = intval($fetch->MANAGERID);
@@ -244,6 +244,7 @@
 							$this->User = null;
 						}
 					}
+					*/
 					if (is_null($fetch->READY_STATE) or $fetch->READY_STATE == "")
 						$this->ReadyState = 0;
 					else
@@ -252,6 +253,22 @@
 
 				}
 			}
+			else
+			{
+				$this->Manager = User::GetObject($null,$this->CurrentUserID);
+				$this->ManagerID = $this->CurrentUserID;
+				
+				$tmpDate = mktime();
+				$this->InitDate = $tmpDate;
+				$this->InitDateText = DateTimeToStr($this->InitDate);
+
+				$this->StartDate = $tmpDate ;
+
+				$this->FinishDate = $tmpDate ; 
+				//print_r($this); 
+
+			}
+			
 		}
 
 		public function Save()
@@ -260,13 +277,13 @@
 			{
 				// TODO 4 -o Natali -c Ошибка формирования SQL запроса: при создании если не установлен пользователь, надо получить текущего для $this->UserID
 				$sql = 'insert into '.$this->DBTableName.' (ID, DESCRIPTION,DATE_INIT,DATE_START,DATE_FINISH,
-							FULL_DESCR,USERID,MANAGERID,READY_STATE) 
-						values (NULL,"'.$this->Description.'","'.DateTimeToMySQL($this->InitDate).'","'.DateTimeToMySQL($this->StartDate).'","'.DateTimeToMySQL($this->FinishDate).'",
-							"'.$this->FullDescription.'",'.(intval($this->Owner)?intval($this->Owner):'null').',"'.(intval($this->UserID)?intval($this->UserID):'null').',"'.$this->ReadyState.'")';
-			   
+				FULL_DESCR,DRUID,MANAGERID,READY_STATE) 
+				values (NULL,"'.$this->Description.'","'.DateTimeToMySQL($this->InitDate).'","'.DateTimeToMySQL($this->StartDate).'","'.DateTimeToMySQL($this->FinishDate).'",
+				"'.$this->FullDescription.'",'.(intval($this->Owner)?intval($this->Owner):'null').',"'.(intval($this->UserID)?intval($this->UserID):'null').',"'.$this->ReadyState.'")';
+
 				// TODO 4 -o Natali -c сообщение для отладки: SQL  
 				ErrorHandle::ErrorHandle($sql);   
-				
+
 				$sql = 'insert into '.$this->DBTableName.' (ID, DESCRIPTION) values (NULL,"'.$this->Description.'")';
 				$hSql = DBMySQL::Query($sql);
 				if ($hSql)
@@ -294,7 +311,7 @@
 				FULL_DESCR="'.$this->FullDescription.'", 
 				READY_STATE="'.$this->ReadyState.'", 
 				MANAGERID='.(intval($this->OwnerID)?intval($this->OwnerID):'null').', 
-				USERID='.(intval($this->UserID)?intval($this->UserID):'null').' 
+				DRUID='.(intval($this->DRUID)?intval($this->DRUID):'null').' 
 				where ID = '.$this->ID;
 
 				ErrorHandle::ErrorHandle($sql);
@@ -325,23 +342,23 @@
 		}
 
 
-		
+
 		public function __get($FieldName)
 		{
 			switch (strtolower($FieldName))
 			{
-				case 'state' :return $this->GetState();
-				case 'level' : return $this->GetLevel();
-				case 'duration' : return $this->GetDuration();
+				case 'state' 		: return $this->GetState();
+				case 'level' 		: return $this->GetLevel();
+				case 'duration' 	: return $this->GetDuration();
 				case 'startdatetext': return date('H.i d.m.y',$this->StartDate);
 				case 'finishdatetext': return date('H.i d.m.y',$this->FinishDate);
-				case 'initdatetext': return date('H.i d.m.y',$this->InitDate);
+				case 'initdatetext'	: return date('H.i d.m.y',$this->InitDate);
 				default : return null;
 			}
 
 		}
 
-		 static public function GetSQLField($Field)
+		static public function GetSQLField($Field)
 		{
 			return Task::$SQLFields[$Field];
 		}
@@ -349,6 +366,9 @@
 		public function __construct(&$ProcessData,$ID=null)  
 		{   
 			parent::__construct($ProcessData,$ID);
+			$System = System::GetObject();
+			$this->CurrentUserID = $System->CurrentUserID;
+			unset($System);
 			$this->Refresh();     
 		}
 

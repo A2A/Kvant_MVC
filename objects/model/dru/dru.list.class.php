@@ -14,12 +14,15 @@
 		public static $SQLFields = array(
 		'ID' => 'ID',
 		'Description' => 'DESCRIPTION',
-		'ParentID' => 'PARENTID'
+		'ParentID' => 'PARENTID',
+		'DivisionID' => 'DIVISIONID',
+		'RoleID' => 'ROLEID',
+		'UserID' => 'USERID'
+		
 		);
 		
 		public function __construct($ProcessData)
 		{
-
 			parent::__construct($ProcessData,'DRU');
 			$this->Refresh();
 		}

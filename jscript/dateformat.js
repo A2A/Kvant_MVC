@@ -26,7 +26,10 @@ function SetDate(dateObj)
 function EchoDate(DateVal, ElementId)
 {                        
 
-	dateObj = new Date(DateVal*1000); 
+	if (DateVal*1 > 1000000)  
+		dateObj = new Date(DateVal*1000);
+	else
+		dateObj = new Date();
 
 	DateW = SetDate(dateObj);   
 
@@ -38,42 +41,46 @@ function EchoDate(DateVal, ElementId)
 
 function EchoFormDate(DateVal, ElementId)
 {                        
-	dateObj = new Date(DateVal*1000);   
-	DateW = SetDate(dateObj);
-	OutDate = '<input class="input_timedate2" maxlength=2 value="' + DateW['Hour'] + '">:<input class="input_timedate2" value="' + DateW['Minutes'] + '">' + 
-	'&nbsp;&nbsp;&nbsp;&nbsp;<input class="input_timedate2" value="' + DateW['Day'] + '">' + 
-	'.<input class="input_timedate2" value="' + DateW['Month'] + '">' + 
-	'.<input class="input_timedate4" value="' + DateW['Year'] + '">';
+	if (DateVal*1 > 1000000)  
+	{
+		dateObj = new Date(DateVal*1000);
 
-	document.getElementById(ElementId).innerHTML = OutDate;
+		DateW = SetDate(dateObj);
+		OutDate = '<input class="input_timedate2" maxlength=2 value="' + DateW['Hour'] + '">:<input class="input_timedate2" value="' + DateW['Minutes'] + '">' + 
+		'&nbsp;&nbsp;&nbsp;&nbsp;<input class="input_timedate2" value="' + DateW['Day'] + '">' + 
+		'.<input class="input_timedate2" value="' + DateW['Month'] + '">' + 
+		'.<input class="input_timedate4" value="' + DateW['Year'] + '">';
+
+		document.getElementById(ElementId).innerHTML = OutDate;
+	}
 }
 
 function EchoDuration(Duration, StartDate, FinishDate)
 {
-	
+
 	if (StartDate >= 0 && FinishDate >=0 && FinishDate > StartDate) 
-	{
+		{
 		var Duration = FinishDate - StartDate;
 		dayDuration = Math.floor(Duration / (3600*24));
 		S = "";  
-		
+
 		Duration1 = Duration - dayDuration * (3600*24);
 		HoursDuration = Math.floor(Duration1 / (3600));
-		
+
 		Duration2 = Duration1 - HoursDuration * 3600;
-		
-		
+
+
 		MinutDuration = Math.floor(Duration2 / (60));
-		
+
 		if (dayDuration>0)
 			S = S + dayDuration + " д. ";
-			
+
 		if (dayDuration>0 || HoursDuration>0)
 			S = S + HoursDuration + " ч. ";
-			
+
 		if (MinutDuration>0)
 			S = S + MinutDuration + " мин. ";
-			
+
 		document.getElementById('Duration').value = S;
 	}
 	else
@@ -84,22 +91,22 @@ function EchoDuration(Duration, StartDate, FinishDate)
 function TraceDate()
 {
 	if (document.getElementById('InitDate'))
-	{
+		{
 		EchoDate(document.getElementById('InitDateValue').value, 'InitDate'); 
 	}
 
 	if (document.getElementById('StartDate'))
-	{  
+		{  
 		EchoFormDate(document.getElementById('StartDateValue').value, 'StartDate'); 
 	}
 
 	if (document.getElementById('FinishDate'))
-	{  
+		{  
 		EchoFormDate(document.getElementById('FinishDateValue').value, 'FinishDate'); 
 	}
 
 	if (document.getElementById('Duration'))
-	{  
+		{  
 		EchoDuration(document.getElementById('Duration').value, document.getElementById('StartDateValue').value, document.getElementById('FinishDateValue').value); 
 	}
 }
@@ -127,7 +134,7 @@ function Calendar(event, IdField)
 	Div =  document.getElementById('Calendar');	
 	ReturnValue = IdField; 
 	if (Div.innerHTML == "")
-	{
+		{
 		Url = "?Object=System&Form=calendar&Ajax=1";
 		AjaxSendGET(Url,OpenClendar); 
 	}
@@ -137,21 +144,21 @@ function Calendar(event, IdField)
 
 function OpenClendar(Text)
 {
-	
+
 	document.getElementById('Calendar').innerHTML = Text;
-	
+
 	MonthDiv = document.getElementById('SelectCalendarMonth');			
 	YearDiv = document.getElementById('YearSelect');			
 	WeekList = document.getElementById('WeekList');			
 	TimeDiv = document.getElementById('TimeSelect');     						
-	if (document.getElementById(ReturnValue).value*1 < 1000000) 
-		NowDay = new Date();
+	if (document.getElementById(ReturnValue).value*1 > 1000000)  
+		NowDay = new Date(document.getElementById(ReturnValue).value*1000);
 	else
-		NowDay = new Date(document.getElementById(ReturnValue).value*1000);  			
-   
+		NowDay = new Date();
+
 	YearDiv.value = NowDay.getFullYear();			
 	SetMonth(NowDay.getMonth()*1 + 1);			
-	SetTime(0)  ; 
+	SetTime(0); 
 	document.getElementById('Calendar').style.display = "block";
 	document.getElementById('Calendar').style.top = T_eventY;
 	document.getElementById('Calendar').style.left = T_eventX - 100;
@@ -162,13 +169,13 @@ function SendDateForm()
 {				
 	SetTimeValue();
 	DateUn = NowDay.getTime();	
-	
+
 	document.getElementById(ReturnValue).value = Math.round(DateUn / 1000);
-				
+
 	TraceDate() ;	
 	document.getElementById('Calendar').style.display = "none";     						
 }
-								
+
 function SetDateForm(DaySet)			
 {				
 	NowDay.setDate(DaySet);				
@@ -194,12 +201,12 @@ function SetYearValue()
 {	
 	// DONE 1000 -o Natali -c JS: 2000 < Year < 9000			
 	if (YearDiv.value*1 > 2000 && YearDiv.value*1 < 9000 )
-	{
+		{
 		NowDay.setYear(YearDiv.value); 				
 		DrawWeekList();
 	}
 	else
-	{
+		{
 		YearDiv.value =  NowDay.getFullYear();
 	}			
 }						
@@ -218,23 +225,23 @@ function DrawWeekList()
 		WeekCount = Math.round(WeekCount);				
 	DrawDay = new Date(YearDiv.value, NowDay.getMonth(), -(WeekDay-1));								
 	for (i=-(WeekDay-2);i<= (WeekCount*7 - WeekDay + 1 );i++)				
-	{					
+		{					
 		DrawDay.setDate(DrawDay.getDate()  + 1);					
 		if ( DrawDay.getDay() == 1) 						
 			OutHtml = OutHtml + "<tr>";  									
 		if (i > 0 && i<=DayCount)  					
-		{   												 						
+			{   												 						
 			OutHtml = OutHtml + '<td class="Day' + WeekClass[DrawDay.getDay()];						
 			if( DrawDay.toDateString() == NowDay.toDateString())  						
-			{							
+				{							
 				OutHtml = OutHtml + ' Day' + WeekClass[100];						
 			}						
-			
+
 			OutHtml = OutHtml + '" onClick="SetDateForm(' + i + ')">' + i + '</td>';    					
 		}
 		else  
 			OutHtml = OutHtml + '<td class="Day' + WeekClass[DrawDay.getDay()] + '">&nbsp;</td>'; 
-			
+
 		if (DrawDay.getDay() == 0) 						
 			OutHtml = OutHtml + "</tr>"; 					   				
 	}				
@@ -253,26 +260,26 @@ function SetTime(Delta)
 function SetTimeValue()			
 {				
 	if (TimeDiv.value.charAt(1) == ":")
-	{
+		{
 		Hours = TimeDiv.value.charAt(0);
 		Minutes = TimeDiv.value.charAt(2) + TimeDiv.value.charAt(3); 
 	}  
 	else
-	{
+		{
 		Hours = TimeDiv.value.charAt(0) + TimeDiv.value.charAt(1);    
 		Minutes = TimeDiv.value.charAt(3) + TimeDiv.value.charAt(4); 
 	}
-	
+
 	if (Minutes * 1 >=0 && Minutes * 1 <= 59)
-	{    
+		{    
 		NowDay.setMinutes(Minutes * 1);	 
 	}
-	
+
 	if (Hours * 1 >=0 && Hours * 1 <= 23)
-	{
-		
+		{
+
 		NowDay.setHours(Hours *1);	
 	}
-		
+
 	SetTime(0);	
 }

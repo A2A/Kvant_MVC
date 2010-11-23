@@ -9,7 +9,7 @@
 		<td class="RectLeft">&nbsp;</td>
 		<td  class="RectCenter" valign="top">
 			<h2>Сотрудник:</h2>
-			<p>{?Object=user&ID=system(CurrentUserID)&Var=Description}</p>
+			<p>{?Object=User&ID=SESSION(CurrentUserID)&Var=Description}</p>
 		</td>
 		<td class="RectRight">&nbsp;</td>
 	</tr>
@@ -22,7 +22,8 @@
 					<hr class="modal">
 					<h2>Достуные роли:</h2><br>
 						<!-- Element Begin -->  
-						<a href="#" class="accessRole" onClick="ChangeDRU({?Object=this&Var=this(ID)});">{?Object=this&Var=this(DivDescr)} \ {?Object=this&Var=this(RoleDescr)}</a>
+						<a href="#" class="accessRole" onClick="ChangeDRU({?Object=this&Var=this(ID)});">{?Object=this&Var=this(DivDescr)} \ {?Object=this&Var=this(RoleDescr)}
+						</a>
 						<!-- Element End -->
 				
 					</td>
@@ -38,7 +39,7 @@
 	</tr>
 	<tr>
 		<td><img src="images/rect-bottom-left.png" hspace="0" vspace="0" border="0"></td>
-		<td  class="RectBottom">&nbsp;</td>
+		<td  class="RectBottom" colspan="2">&nbsp;</td>
 		<td><img src="images/rect-bottom-right.png" hspace="0" vspace="0" border="0"></td>
 	</tr>
 </table>

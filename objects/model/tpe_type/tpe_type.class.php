@@ -19,8 +19,6 @@
 
 		public static function GetSQLField($Field)
 		{
-			// TODO 100 -o N -c Test SQL: delete
-			ErrorHandle::ErrorHandle($Field."==".TPEType::$SQLFields[$Field]); 
 			return TPEType::$SQLFields[$Field];
 		}
 		

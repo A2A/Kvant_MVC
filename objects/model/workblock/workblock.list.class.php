@@ -10,23 +10,27 @@
 		public function __construct(&$ProcessData,$ID=null)  
 		{   
 			parent::__construct($ProcessData,'WorkBlock');
-		
-			$this->add(WorkBlock::GetObject($null,1));
-			$this->add(WorkBlock::GetObject($null,2));
-			$this->add(WorkBlock::GetObject($null,3));
-			$this->add(WorkBlock::GetObject($null,4));
-			$this->add(WorkBlock::GetObject($null,5));
-			$this->add(WorkBlock::GetObject($null,6));
-			$this->add(WorkBlock::GetObject($null,7));
-			$this->add(WorkBlock::GetObject($null,8));
-			$this->add(WorkBlock::GetObject($null,9));
-			$this->add(WorkBlock::GetObject($null,10));
-			$this->add(WorkBlock::GetObject($null,11));
-			$this->add(WorkBlock::GetObject($null,12));
-			$this->add(WorkBlock::GetObject($null,13));
-			$this->add(WorkBlock::GetObject($null,14));
-			$this->add(WorkBlock::GetObject($null,15));
-			$this->add(WorkBlock::GetObject($null,16));
+			print_R($ProcessData);                //
+			$Data = array();
+			@ $Data['ProjectID'] = 1; //$ProcessData['ProjectID'];
+			@ $Data['TaskID'] = $ProcessData['TaskID'];
+			echo "<hr>";
+			$this->add(WorkBlock::GetObject($Data,1));
+			$this->add(WorkBlock::GetObject($Data,2));
+			$this->add(WorkBlock::GetObject($Data,3));
+			$this->add(WorkBlock::GetObject($Data,4));
+			$this->add(WorkBlock::GetObject($Data,5));
+			$this->add(WorkBlock::GetObject($Data,6));
+			$this->add(WorkBlock::GetObject($Data,7));
+			$this->add(WorkBlock::GetObject($Data,8));
+			$this->add(WorkBlock::GetObject($Data,9));
+			$this->add(WorkBlock::GetObject($Data,10));
+			$this->add(WorkBlock::GetObject($Data,11));
+			$this->add(WorkBlock::GetObject($Data,12));
+			$this->add(WorkBlock::GetObject($Data,13));
+			$this->add(WorkBlock::GetObject($Data,14));
+			$this->add(WorkBlock::GetObject($Data,15));
+			$this->add(WorkBlock::GetObject($Data,16));
 		}
 
 		static public function GetObject(&$ProcessData,$id=null)
