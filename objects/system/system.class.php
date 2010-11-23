@@ -44,6 +44,8 @@
 		'calendar' 				=> 'objects/system/calendar.html',
 		'dru_menu' 				=> 'objects/system/dru_menu.html',
 		'ssp' 					=> 'objects/system/ssp.html',
+		'' 						=> 'objects/system/all_url.html',
+		'all_url' 				=> 'objects/system/all_url.html',
 	);
 
 		public $meta = '';
