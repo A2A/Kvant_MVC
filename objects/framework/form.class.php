@@ -91,22 +91,24 @@
                 {
                     $BlockStr = str_replace($WhiteSpaces,"",$BlocksList[$_RectIndex][$key]);
                     parse_str($BlockStr,$ParamArr);
-
+                    $Record = array();
+                    $Record['Params']          = array();              // параметры метода
+                    
                     foreach ($ParamArr as $ParamKey => $ParamValue)
                     {
-                        $ParamArr[$ParamKey] = $this->EvalExpr($ParamValue,$Object);
+                        switch ($ParamKey)
+                        {
+                            case 'Var'      : $Record['FieldName']          = $this->EvalExpr($ParamValue,$Object); break;      // название получаемого поля объектов
+                            case 'Object'   : $Record['ClassName']          = $ParamValue; break;        // название класса объектов
+                            default         : $Record['Params'][$ParamKey]  = $this->EvalExpr($ParamValue,$Object);
+                        }
                     }
                     
-                    if ($ParamArr['Object'] != 'this')
+                    if ($Record['ClassName'] == 'this')
                     {
-                        $Record['ClassName']       =$ParamArr['Object'];    // название класса объектов
-                        $Record['Params']          =$ParamArr;              // параметры метода
+                        unset($Record['Params']);
+                        unset($Record['ClassName']);
                     }
-                    else
-                    {
-                        $Record['Var']             =$ParamArr["Var"].'';   // параметры метода
-                        $Record['Params']          = null;              // параметры метода
-                    }  
                     $Record['Pattern']         	=$BlocksList[$_BlockIndex][$key];   // параметры метода
                     $BlockRecords[]             = $Record;
                 }
@@ -163,51 +165,51 @@
                 }
                 else
                 {
-                    $FuncName   = strtoupper(substr($Expr,0,$OpenBracketPos));
+                    $FuncName   = substr($Expr,0,$OpenBracketPos);
                     $ArgName    = substr($Expr,$OpenBracketPos+1,$CloseBracketPos-$OpenBracketPos-1);
-                    switch ($FuncName)
+                    switch (strtoupper($FuncName))
                     {
-                        case "POST":    return $this->ProcessData[$ArgName]; 
-                        case "GET":     return $this->ViewData[$ArgName];
+                        case "POST":    return $_POST[$ArgName]; 
+                        case "GET":     return $_GET[$ArgName];
                         case "COOKIE":  return $_COOKIE[$ArgName];
                         case "SESSION": return $_SESSION[$ArgName];
                         case "INDEX":   return $this->Index;
                         case "COUNT":   return $this->count();
-                        case "THIS":    
+                        case "THIS":    return $Object->$ArgName; 
+                        default :      
                         {
-                            return $Object->$ArgName; 
+                            if (Controller::CheckClassAccess($FuncName))
+                            {
+                                $null = '';
+                                $SubObject = $FuncName::GetObject($null,null);
+                                return  $SubObject->$ArgName; 
+                            }
+                            else
+                            {
+                                return $ArgName;
+                            }
                         }
-                        default :       return $ArgName;
                     }
                 }
             }
         }
 
-        protected function GetRectResult(&$Rect)	
+        protected function GetRectResult(&$Record)	
         {
-            if (isset($Rect["ClassName"]) and (!is_null($Rect["ClassName"])) and ($Rect["ClassName"]!= ""))
+            if (isset($Record["ClassName"]) and (!is_null($Record["ClassName"])) and ($Record["ClassName"]!= ""))
             {
-                $ClassName = &$Rect["ClassName"];
+                $ClassName = &$Record["ClassName"];
                 if (Controller::CheckClassAccess($ClassName))
                 {
-                    $SubObject = $ClassName::GetObject($Rect['Params'],null);
-                    if (isset($Rect['Params']) and isset($Rect['Params']['Var'])) 
+                    $SubObject = $ClassName::GetObject($Record['Params'],null);
+                    if (isset($Record['FieldName'])) 
                     {
-                        $result = $SubObject->$Rect['Params']['Var'];
-/*                        if (property_exists($SubObject,$Rect['Params']['Var'])) 
-                        {
-                            $result = $SubObject->$Rect['Params']['Var'];
-                        }
-                        else 
-                        {
-                            $result = '';
-                        }
-*/
+                        $result = $SubObject->$Record['FieldName'];
                     }
                     else
                     {
-                        $result = Controller::CreateView($Rect['Params']);
-
+                        $Record['Params']['Object'] = $ClassName;
+                        $result = Controller::CreateView($Record['Params']);
                     }
                 }
                 else
@@ -218,7 +220,7 @@
             }
             else
             {
-                $result = $Rect["Var"];
+                $result = $Record["FieldName"];
             }
             return $result;
         }
@@ -236,22 +238,22 @@
         protected function FillRectResults()
         {
 
-            foreach($this->RectCollection['header'] as $key => $Rect)
+            foreach($this->RectCollection['header'] as $key => $Record)
             {
-                $this->RectCollection['header'][$key]["Result"] = $this->GetRectResult($Rect);
+                $this->RectCollection['header'][$key]["Result"] = $this->GetRectResult($Record);
             }
 
-            foreach($this->RectCollection['footer'] as $key => $Rect)
+            foreach($this->RectCollection['footer'] as $key => $Record)
             {
-                $this->RectCollection['footer'][$key]["Result"] = $this->GetRectResult($Rect);
+                $this->RectCollection['footer'][$key]["Result"] = $this->GetRectResult($Record);
             }
 
             $LoopBound =count($this->RectCollection['element']);
             for ($i = 0;$i<$LoopBound;$i++)
             {
-                foreach($this->RectCollection['element'][$i] as $key => $Rect)
+                foreach($this->RectCollection['element'][$i] as $key => $Record)
                 {
-                    $this->RectCollection['element'][$i][$key]["Result"] = $this->GetRectResult($Rect);
+                    $this->RectCollection['element'][$i][$key]["Result"] = $this->GetRectResult($Record);
                 }
             }
         } 
