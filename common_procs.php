@@ -49,6 +49,9 @@
 			
 			case 'Interval'        		: $ClassFileName = 'objects/model/interval/interval.class.php'; break;
 			case 'IntervalList'         : $ClassFileName = 'objects/model/interval/interval.list.class.php'; break;
+			
+			case 'Contractor'        	: $ClassFileName = 'objects/model/contractor/contractor.class.php'; break;
+			case 'ContractorList'       : $ClassFileName = 'objects/model/contractor/contractor.list.class.php'; break;
 	
 			case 'WorkBlock'       		: $ClassFileName = 'objects/model/workblock/workblock.class.php'; break;
 			case 'WorkBlockList'        : $ClassFileName = 'objects/model/workblock/workblock.list.class.php'; break;

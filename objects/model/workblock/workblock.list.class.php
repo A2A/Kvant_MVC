@@ -7,12 +7,14 @@
 		'project_status' => 'objects/model/workblock/project_status.html',
 		);
 
+		public $ProjectID;
+		
 		public function __construct(&$ProcessData,$ID=null)  
 		{   
 			parent::__construct($ProcessData,'WorkBlock');
 			//print_R($ProcessData);                //
 			$Data = array();
-			@ $Data['ProjectID'] = $ProcessData['ProjectID'];
+			@ $this->ProjectID = $Data['ProjectID'] = $ProcessData['ProjectID'];
 			@ $Data['TaskID'] = $ProcessData['TaskID'];
 			//echo "<hr>";
 			$this->add(WorkBlock::GetObject($Data,1));
