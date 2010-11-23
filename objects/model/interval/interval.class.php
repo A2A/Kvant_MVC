@@ -13,7 +13,7 @@
 		{
 			parent::__construct($ProcessData,$ID);
 			if      (isset($ID))                $this->ID = $ID;
-			elseif  (isset($ViewData['ID']))    $this->ID = $ViewData['ID'];
+			elseif  (isset($ProcessData['ID']))    $this->ID = $ProcessData['ID'];
 			else                            $this->ID = 1;
 
 			switch (intval($this->ID))
