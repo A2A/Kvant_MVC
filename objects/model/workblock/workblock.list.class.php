@@ -10,11 +10,11 @@
 		public function __construct(&$ProcessData,$ID=null)  
 		{   
 			parent::__construct($ProcessData,'WorkBlock');
-			print_R($ProcessData);                //
+			//print_R($ProcessData);                //
 			$Data = array();
-			@ $Data['ProjectID'] = 1; //$ProcessData['ProjectID'];
+			@ $Data['ProjectID'] = $ProcessData['ProjectID'];
 			@ $Data['TaskID'] = $ProcessData['TaskID'];
-			echo "<hr>";
+			//echo "<hr>";
 			$this->add(WorkBlock::GetObject($Data,1));
 			$this->add(WorkBlock::GetObject($Data,2));
 			$this->add(WorkBlock::GetObject($Data,3));
