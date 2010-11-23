@@ -1,19 +1,12 @@
 <table border=0 cellspacing=0 cellpadding=2 class="textform"> 
-    <form method="post">
-        <input type=hidden name='Object' value='role'>
+    <form method="post" >
+        <input type=hidden name='Object' value='Division'>
         <input type=hidden name='Action' value='save'>
-        <tr>                                        
-            <td>ИД <input type=text name='Id' class='input_text' value="{object=this?Var=this(ID)}"></td>
-        </tr>
-        <tr>                                        
-            <td>Родитель <input type=text name='Id' class='input_text' value="{object=this?Var=this(Parent)}"></td>
-        </tr>
-        <tr>
-            <td>Название<input type='text' name='Description' class='input_pass' value="{object=this?Var=this(Description)}"></td>
-        </tr>
-        <tr>
-            <td> <input type="submit" name="Defer" value="Отменить"> <input type="submit" name="Finish" value="Записать"></td>
-        </tr>
+        <tr><td>ИД <input type=text name='Id' class='input_text' value="{Object=this?Var=this(ID)}"></td></tr>
+        <tr><td>Родитель <input type=text name='ParentID' class='input_text' value="{Object=this?Var=this(Parent)}"></td></tr>
+        <tr><td>Название<input type='text' name='Description' class='input_pass' value="{Object=this?Var=this(Description)}"></td></tr>
+        <tr><td>Руководитель<input type=text name='ParentID' class='input_text' value="{Object=this?Var=this(Manager)}"></td></tr>
+        <tr><td> <input type="submit" name="Defer" value="Отменить"> <input type="submit" name="Finish" value="Записать"></td></tr>
     </form>
 </table>         
     

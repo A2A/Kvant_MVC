@@ -9,7 +9,8 @@
 		public static $SQLFields = array(
 		'ID' => 'ID',
         'Description' => 'DESCRIPTION',
-        'ParentID' => 'PARENTID'
+        'ParentID' => 'PARENTID',
+        'ManagerID' => 'MANAGERID'
 		);
 		
 		public function __construct($ProcessData)
