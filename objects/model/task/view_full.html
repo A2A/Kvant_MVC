@@ -10,7 +10,7 @@
 		<td class="RoundLeft">&nbsp;</td>
 		<td class="RoundCenter" valign="top">
 
-			<img src="images/status-{?Object=this&Var=this(CurrentStatusID)}.png" class="img" alt="{?Object=this&Var=this(CurrentStatus)}" hspace="3" align="left">
+			<img src="images/status-{?Object=this&Var=this(CurrentStatusID)}.png" class="img" alt="{?Object=this&Var=this(CurrentStatus)}" hspace="3" align="left">&nbsp;
 			<h2 class="{?Object=this&Var=this(State)}">
 				<input type=hidden name='ID' id='ID' value="{?Object=this&Var=this(ID)}">{?Object=this&Var=this(Description)}</h2> 
 			<br>
@@ -19,7 +19,7 @@
 				<tr>
 					<td class="LeftColDark">Постановщик</td>
 					<td class="CenterRowTop">
-						{?Object=this&Var=this(User)}&nbsp; 
+						{?Object=this&Var=this(Manager)}&nbsp; 
 					</td>
 					<td class="ButtonRowTop">&nbsp;</td>
 				</tr>  
@@ -33,7 +33,7 @@
 				<tr> 
 					<td class="LeftColLight">Задача-владелец</td> 
 					<td class="CenterRow">
-						{?Object=this&Var=this(Parent)}
+						{?Object=this&Var=this(Parent)}&nbsp;
 					</td> 
 					<td class="ButtonRow">&nbsp;</td> 
 				</tr> 
@@ -41,10 +41,18 @@
 				<tr>
 					<td class="LeftColLight">Контрагент</td>
 					<td class="CenterRow">
-						{?Object=this&Var=this(Contractor)}
+						{?Object=this&Var=this(Contractor)}&nbsp;
 					</td>
 					<td class="ButtonRow">&nbsp;</td>
 				</tr>
+				<tr>
+					<td class="LeftColLight">Исполнитель</td>
+					<td class="CenterRow">
+						{?Object=this&Var=this(DRU)}&nbsp; 
+					</td>
+					<td class="ButtonRow"><img src="images/button-forms-select.png" OnClick="AutoSelectInText(document.getElementById('User'),event,'User');"  class="ButtonCheckForm"></td>
+				</tr>
+			
 				<tr> 
 					<td class="LeftColLight">Время создания</td> 
 					<td class="CenterRow">
@@ -82,7 +90,7 @@
 				</tr> 
 				<tr> 
 					<td class="LeftColLight">Описание</td> 
-					<td class="CellTextarea" colspan="2">{?Object=this&Var=this(FullDescr)}</td> 
+					<td class="CellTextarea" colspan="2">{?Object=this&Var=this(FullDescr)}&nbsp;</td> 
 				</tr> 
 			</table>
 

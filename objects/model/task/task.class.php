@@ -29,12 +29,12 @@
 		// TODO 4 -o Natali -c Замечание: форма edit и view_full, если запрошено форма редактирования, а пользователь не имеет рава редактировать этот проект, то надо отдавать форму view_full - полное описание 
 
 		public static  $Forms = array(
-		'edit' => 'objects/model/task/edit.html',
-		'ShortInfo' => 'objects/model/task/short_info.html',
-		'view_short' => 'objects/model/task/view_short.html',
-		'view_status' => 'objects/model/task/view_status.html',
-		'view_full' => 'objects/model/task/view_full.html',
-		'new' => 'objects/model/task/new.html',
+		'edit' 			=> 'objects/model/task/edit.html',
+		'shortinfo' 	=> 'objects/model/task/short_info.html',
+		'view_short' 	=> 'objects/model/task/view_short.html',
+		'view_status' 	=> 'objects/model/task/view_status.html',
+		'view_full' 	=> 'objects/model/task/view_full.html',
+		'new' 			=> 'objects/model/task/new.html',
 		);
 
 		public static  $SQLFields = array(
@@ -216,35 +216,49 @@
 
 					$this->FullDescription = $fetch->FULL_DESCR;
 
-					/*
-					if ($this->OwnerID != intval($fetch->MANAGERID))
+
+					if ($this->ManagerID != intval($fetch->MANAGERID))
 					{
-						$this->OwnerID = intval($fetch->MANAGERID);
-						if (!is_null($this->OwnerID))
+						$this->ManagerID = intval($fetch->MANAGERID);
+						if (!is_null($this->ManagerID))
 						{
-							$ClassName =  $this->OwnerType;
-							$this->Owner = $ClassName::GetObject($null,$null,$this->DataBase,$this->OwnerID);
+							$ClassName =  'User';
+							$this->Manager = $ClassName::GetObject($null,$this->ManagerID);
 						}
 						else
 						{
-							$this->Owner = null;
+							$this->Manager = null;
 						}
 					}
 
-					if ($this->UserID != intval($fetch->USERID))
+					if ($this->ContractorID != intval($fetch->CONTRCTORID))
 					{
-						$this->UserID = intval($fetch->USERID);
-						if (!is_null($this->UserID))
+						$this->ContractorID = intval($fetch->CONTRCTORID);
+						if (!is_null($this->ContractorID))
 						{
-							$ClassName = $this->OwnerType;
-							$this->User = $ClassName::GetObject($null,$null,$this->DataBase,$this->UserID);
+							$ClassName =  'Contractor';
+							$this->Contractor = $ClassName::GetObject($null,$this->ContractorID);
 						}
 						else
 						{
-							$this->User = null;
+							$this->Contractor = null;
 						}
 					}
-					*/
+					
+					if ($this->DRUID != intval($fetch->DRUID))
+					{
+						$this->DRUID = intval($fetch->DRUID);
+						if (!is_null($this->DRUID))
+						{
+							$ClassName = "DRU";
+							$this->DRU = $ClassName::GetObject($null,$this->DRUID);
+						}
+						else
+						{
+							$this->DRU = null;
+						}
+					}
+
 					if (is_null($fetch->READY_STATE) or $fetch->READY_STATE == "")
 						$this->ReadyState = 0;
 					else
@@ -257,7 +271,7 @@
 			{
 				$this->Manager = User::GetObject($null,$this->CurrentUserID);
 				$this->ManagerID = $this->CurrentUserID;
-				
+
 				$tmpDate = mktime();
 				$this->InitDate = $tmpDate;
 				$this->InitDateText = DateTimeToStr($this->InitDate);
@@ -268,7 +282,7 @@
 				//print_r($this); 
 
 			}
-			
+
 		}
 
 		public function Save()

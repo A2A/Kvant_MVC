@@ -267,6 +267,11 @@ function NewTask()
 	location.href ="?Object=System&Form=task";
 }
 
+function ListTaskEvent(TaskID)
+{
+	 location.href ="?Object=System&Form=event_list&Filter[0][Field]=TaskID&Filter[0][Oper]=eq&Filter[0][Val]="+TaskID;   
+}
+
 function SaveTask()
 {
 	params = "Object=Task&Action=save&ID=" + document.getElementById('ID').value;
@@ -406,9 +411,8 @@ function CatchTPECreate(Text)
 function CreateNewElement(EventTypeId)
 {
 	TPETypeId = EventTypeId;
-	Param = "&Filter[0][Field]=UserID&Filter[0][Oper]=eq&Filter[0][Val]=SESSION(CurrentUserID)";
-	Param = Param + "&Filter[1][Field]=RoleID&Filter[1][Oper]=!eq&Filter[1][Val]=";
-	AjaxSendGET("?Ajax=1&Object=DRUList&Form=tpe_create" + Param,CatchTPECreate);   
+	AjaxSendGET("?Ajax=1&Object=System&Form=current_list_role",CatchTPECreate);  
+	document.getElementById('FullListEventType').style.display = 'none';   
 }
 
 function ChangeDRU(DRUID)
@@ -426,7 +430,7 @@ function ChangeDRU(DRUID)
 	{
 		AjaxSendGET("?Ajax=1&Object=Task&Form=new&&DRUID="+DRUID+"&TypeID="+TPETypeId,CatchTaskOpen); 
 	}
-		alert(ModalWindowOpen);
+	//	alert(ModalWindowOpen);
 	
 }
 
