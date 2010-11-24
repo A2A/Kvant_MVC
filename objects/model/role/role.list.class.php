@@ -31,12 +31,9 @@
 				if ($Conditions != '') $sql .= ' where '.$Conditions;
 			}
 
-            $sql = '
-            Select temp_buf.* 
-            from ('.$sql_base.' ) as temp_buf 
-                cross join  (select OBJECTID from ur_roles where ID = "'.$System->CurrentUserID.'") as right_filter
-                on   temp_buf.ID =  right_filter.OBJECTID
-            ';          
+            $sql_filter = 'select OBJECTID from ur_roles where ID = "'.$System->CurrentUserID.'" and `READ`';
+            
+            $sql = 'Select buf.* from ('.$sql_base.') as buf cross join  ('.$sql_filter.') as perms on buf.ID =  perms.OBJECTID';          
             
             if (!($hSql = DBMySQL::Query($sql)))
             {

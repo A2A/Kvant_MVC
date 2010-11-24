@@ -97,15 +97,23 @@
         {
             if (intval($this->ID) >0)
             {
+            $System = System::GetObject();
+                
                 $this->Modified = false;
-                $sql = '
-                Select division.* from 
-                division cross join 
-                ( select OBJECTID from ur_division where ID = "'.intval($_SESSION['CurrentUserID']).'" and ur_division.`WRITE`) as FLTR  
-                on division.ID = FLTR.OBJECTID
-                where ID = '.intval($this->ID);
-                $hSql = DBMySQL::Query($sql);
-                if ($fetch = DBMySQL::FetchObject($hSql)) 
+
+                $sql_base = 'Select * from division  where ID = '.intval($this->ID);
+                $sql_filter = 'select OBJECTID from ur_division where ID = "'.$System->CurrentUserID.'" and `READ` and OBJECTID = '.intval($this->ID);
+                $sql = 'Select buf.* from ('.$sql_base.') as buf cross join  ('.$sql_filter.') as perms on buf.ID =  perms.OBJECTID';          
+
+                if (!($hSql = DBMySQL::Query($sql)))
+                {
+                    ErrorHandle::ErrorHandle('Ошибка при получении данных о подразделении № '.$this->ID,1);
+                }
+                elseif (!($fetch = DBMySQL::FetchObject($hSql)))
+                {
+                    ErrorHandle::ErrorHandle('Попытка получения несуществующего подразделения или недостаточно прав на просмотр получаемого подразделения №'.$this->ID,1);
+                }
+                else
                 {
                     $this->Description = $fetch->DESCRIPTION;
                     $this->ParentID = $fetch->PARENTID;
