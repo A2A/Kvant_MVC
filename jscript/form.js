@@ -26,7 +26,7 @@ function OnPressKeyBody(event)
 
 		
 	}
-		alert(event.keyCode);
+		
 }
 
 function SendLogIn()
@@ -268,7 +268,7 @@ function ClickTaskView(ID)
 
 function ClickTask(ID,event)
 {
-	alert(ModalWindowOpen);
+	//alert(ModalWindowOpen);
 	if (ModalWindowOpen == 'none') 
 	{
 		Url = "?Ajax=1&Object=Task&Form=edit&ID=" + ID;
