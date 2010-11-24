@@ -137,12 +137,14 @@
 				$this->Project = null;
 				$this->Modified = true;
 			}
-			if (isset($this->ProcessData['UserID']) and ($this->ProcessData['UserID'] != $this->UserID))
+			
+			if (isset($this->ProcessData['UserID']) and isset($this->ProcessData['RoleID']))
 			{
-				$this->UserID = $this->ProcessData['UserID'];
-				$this->User = null;
-				$this->Modified = true;
+				// TODO 10 -o Natali -c Функцианал: получить ДРУ в js или в пхп, сейчас берется просто от выбраной роли исполнителя.
+				$this->DRUID = $this->ProcessData['RoleID'];
 			}
+			
+			
 			if (isset($this->ProcessData['StartDateValue']) and ($this->ProcessData['StartDateValue'] != $this->StartDate))
 			{
 				$this->StartDate = $this->ProcessData['StartDateValue'];
@@ -163,7 +165,17 @@
 				$this->ReadyState = $this->ProcessData['ReadyState'];
 				$this->Modified = true;
 			}
-
+			if (isset($this->ProcessData['TPEClass']) and ($this->ProcessData['TPEClass'] != $this->TPEClass))
+			{
+				$this->TPEClass = $this->ProcessData['TPEClass'];
+				$this->Modified = true;
+			}
+			if (isset($this->ProcessData['StatusID']) and ($this->ProcessData['StatusID'] != $this->StatusID))
+			{
+				$this->StatusID = $this->ProcessData['StatusID'];
+				$this->Modified = true;
+			}
+			
 			return $this->Modified;
 
 		}
@@ -278,7 +290,8 @@
 
 				$this->StartDate = $tmpDate ;
 
-				$this->FinishDate = $tmpDate ; 
+				$this->FinishDate = $tmpDate ;
+				$this->ReadyState = 0; 
 				//print_r($this); 
 
 			}
@@ -303,15 +316,21 @@
 			{
 				// TODO 4 -o Natali -c Ошибка формирования SQL запроса: при создании если не установлен пользователь, надо получить текущего для $this->UserID
 				// TODO 4 -o Natali -c Ошибка формирования SQL запроса: при создании если указываем в поле Manager выбранное DRU текущего пользователя
-				$sql = 'insert into '.$this->DBTableName.' (ID, DESCRIPTION,DATE_INIT,DATE_START,DATE_FINISH,
-				FULL_DESCR,DRUID,MANAGERID,READY_STATE,CONTRACTORID) 
-				values (NULL,"'.$this->Description.'","'.DateTimeToMySQL($this->InitDate).'","'.DateTimeToMySQL($this->StartDate).'","'.DateTimeToMySQL($this->FinishDate).'",
-				"'.$this->FullDescription.'",'.(intval($this->Owner)?intval($this->Owner):'null').',"'.(intval($this->UserID)?intval($this->UserID):'null').',"'.$this->ReadyState.'",'.(intval($this->ContractorID)?intval($this->ContractorID):'null').')';
-	
+				$sql = 'insert into '.$this->DBTableName.' (
+				`ID`,`DESCRIPTION`,`PARENTID`,`PROJECTID`,
+				`DATE_INIT`,`DATE_START`,`DATE_FINISH`,
+				`FULL_DESCR`,`MANAGERID`,`DRUID`,
+				`READY_STATE`,`STATUSID`,`CLASSID`,`CONTRACTORID`) 
+				values 
+				(NULL,"'.$this->Description.'",'.((intval($this->ParentID)>0)?intval($this->ParentID):'null').', '.(intval($this->ProjectID)?intval($this->ProjectID):'null').',
+				"'.DateTimeToMySQL($this->InitDate).'","'.DateTimeToMySQL($this->StartDate).'","'.DateTimeToMySQL($this->FinishDate).'",
+				"'.$this->FullDescription.'",'.(intval($this->ManagerID)?intval($this->ManagerID):'null').','.(intval($this->DRUID)?intval($this->DRUID):'null').',
+				"'.$this->ReadyState.'",1,'.(intval($this->StatusID)?intval($this->StatusID):'null').','.(intval($this->ContractorID)?intval($this->ContractorID):'null').')';
+				 
+
 				// TODO 4 -o Natali -c сообщение для отладки: SQL  
 				ErrorHandle::ErrorHandle($sql);   
 
-				$sql = 'insert into '.$this->DBTableName.' (ID, DESCRIPTION) values (NULL,"'.$this->Description.'")';
 				$hSql = DBMySQL::Query($sql);
 				if ($hSql)
 				{

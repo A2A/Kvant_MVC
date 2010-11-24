@@ -4,6 +4,31 @@ function OnPressEnterLogIn(event)
 	   SendLogIn(); 
 }
 
+function OnPressKeyBody(event)
+{
+	if(event.keyCode==27)  
+	{
+		if (document.getElementById('Calendar').style.display == 'block')
+		{
+			DivHide('Calendar');
+			return 1;
+		} 
+		if (document.getElementById('CurrentDRU').style.display == 'block')
+		{
+			DivHide('CurrentDRU');
+			return 1;
+		} 
+		if (document.getElementById('NoActionDesktop').style.display == 'block')
+		{
+			CloseModalWindow();
+			return 1;
+		} 
+
+		
+	}
+		alert(event.keyCode);
+}
+
 function SendLogIn()
 {
 	LoginText = document.getElementById('Login').value;
@@ -312,10 +337,14 @@ function SaveTask()
 	params = params  + "&FullDescription="      + document.getElementById('FullDescription').value;
 	if (document.getElementById('ReadyState')) params = params  + "&ReadyState="      + document.getElementById('ReadyState').value;
 	if (document.getElementById('Description')) params = params  + "&Description="      + document.getElementById('Description').value;
+	if (document.getElementById('RoleID')) params = params  + "&RoleID="      + document.getElementById('RoleID').value;
+	if (document.getElementById('UserID')) params = params  + "&UserID="      + document.getElementById('UserID').value;
 	params = params  + "";
    
 	Text = AjaxSendPOSTSync(params);
 	Res = ParseStatusXML(Text,'Сохранение задачи');
+	if(Res)
+		GantRefresh();
 	return 1;
 }
 
@@ -394,7 +423,6 @@ function NewProject()
 	location.href = "?Object=System&Form=project";
 }
 
-
 function FillFieldProject(ID)
 {
 	 Url = "?Ajax=1&Object=Project&Form=ShortInfo&ID=" + ID;
@@ -425,9 +453,16 @@ function SaveProject()
 	Text = AjaxSendPOSTSync(params);     
 	
 	Res = ParseStatusXML(Text,'Сохранение проекта');
+	if(Res)
+		GantRefresh();
 	return 1;
 }
 
+function GantRefresh()
+{
+	// TODO 10 -o Natali -c JS: подумать над тем, что перегружаем при создании события, нужен ли полный рефрешь страницы.
+	//location.href="?Object=System&Form=gant"; 
+}
 //===============================================================================
 
 var TPETypeId;
