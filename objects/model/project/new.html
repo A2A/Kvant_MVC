@@ -26,13 +26,13 @@
 			<table  border="0" cellspacing="0" cellpadding="0" class="Task">       
 				<tr>
 					<td class="LeftColDark">Постановщик</td>
-					<td class="CenterRowTop">{?Object=this&Var=this(User)}&nbsp;</td>
+					<td class="CenterRowTop">{?Object=this&Var=this(Manager)}&nbsp;</td>
 					<td class="ButtonRowTop">&nbsp;</td>
 				</tr>  
 				<tr>
 					<td class="LeftColLight">Название</td>
 					<td class="CenterRow">
-						<input type="hidden1" id="TPEClass" value="{?Object=this&Var=GET(TypeID)}">
+						<input type="hidden" id="TPEClass" value="{?Object=this&Var=GET(TypeID)}">
 						<input class="input_text"  id="Description" value="{?Object=TPEClass&Form=description&ID=GET(TypeID)}"><br>
 				</td>
 					<td class="ButtonRow">&nbsp;</td>

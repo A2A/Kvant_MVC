@@ -231,9 +231,9 @@
 						}
 					}
 
-					if ($this->ContractorID != intval($fetch->CONTRCTORID))
+					if (isset($fetch->CONTRACTORID) and $this->ContractorID != intval($fetch->CONTRACTORID))
 					{
-						$this->ContractorID = intval($fetch->CONTRCTORID);
+						$this->ContractorID = intval($fetch->CONTRACTORID);
 						if (!is_null($this->ContractorID))
 						{
 							$ClassName =  'Contractor';
@@ -245,7 +245,7 @@
 						}
 					}
 					
-					if ($this->DRUID != intval($fetch->DRUID))
+					if (isset($fetch->DRUID) and  $this->DRUID != intval($fetch->DRUID))
 					{
 						$this->DRUID = intval($fetch->DRUID);
 						if (!is_null($this->DRUID))
@@ -302,13 +302,12 @@
 			if (!intval($this->ID))
 			{
 				// TODO 4 -o Natali -c Ошибка формирования SQL запроса: при создании если не установлен пользователь, надо получить текущего для $this->UserID
+				// TODO 4 -o Natali -c Ошибка формирования SQL запроса: при создании если указываем в поле Manager выбранное DRU текущего пользователя
 				$sql = 'insert into '.$this->DBTableName.' (ID, DESCRIPTION,DATE_INIT,DATE_START,DATE_FINISH,
 				FULL_DESCR,DRUID,MANAGERID,READY_STATE) 
 				values (NULL,"'.$this->Description.'","'.DateTimeToMySQL($this->InitDate).'","'.DateTimeToMySQL($this->StartDate).'","'.DateTimeToMySQL($this->FinishDate).'",
 				"'.$this->FullDescription.'",'.(intval($this->Owner)?intval($this->Owner):'null').',"'.(intval($this->UserID)?intval($this->UserID):'null').',"'.$this->ReadyState.'")';
-	/*    `ID`  `DESCRIPTION``PARENTID` `PROJECTID`  `DATE_INIT`  `DATE_START``DATE_FINISH`
-`FULL_DESCR`  `MANAGERID` `DRUID`   `READY_STATE`  `STATUSID` `CLASSID` `CONTRCTORID`
-*/
+	
 				// TODO 4 -o Natali -c сообщение для отладки: SQL  
 				ErrorHandle::ErrorHandle($sql);   
 
