@@ -29,6 +29,17 @@ function OnPressKeyBody(event)
 		
 }
 
+function OnClickBody(event)
+{
+	if (document.getElementById('FullListEventType').style.display == 'block')
+	{
+		alert('FullListEventType');
+		//DivHide('FullListEventType');
+		return 1;
+	} 
+	
+}
+
 function SendLogIn()
 {
 	LoginText = document.getElementById('Login').value;
