@@ -93,6 +93,9 @@ function SelectContractor(Text)
 	//alert("form.js SelectContractor()");       
 }
 
+var TdNum = -1;
+var MaxTdNum = 3;
+
 function AutoSelectInText(ObjId,event,ObjectName,Filtered)
 {
 	if(event.keyCode==38 || event.keyCode==40 || event.keyCode==37 || event.keyCode==39 || event.keyCode==32 || event.keyCode==13)
@@ -132,24 +135,24 @@ function AutoSelectInText(ObjId,event,ObjectName,Filtered)
 	} 
 }
 
-var TdNum = 0;
-var MaxTdNum = 3;
 
 function SelectScroll(event,ObjectName)
 { 
 
 	if(event.keyCode==38 || event.keyCode==40 || event.keyCode==37 || event.keyCode==39 || event.keyCode==32 || event.keyCode==13)
 	{ 
+		MaxTdNum = document.getElementById('tdCount').innerHTML; 
+	
 		if(event.keyCode==40) 
 		{  
 			i = TdNum;
-			if(i >= 0) document.getElementById('td'+i).style.background="#ffffff"; 
-			if (i + 1 <= MaxTdNum) 
+			if(i >= 0 && (i + 1 < MaxTdNum)) document.getElementById('td'+i).style.background="#ffffff"; 
+			if (i + 1 < MaxTdNum) 
 				{
 					document.getElementById('td'+(i+1)).style.background="#f9fbff"; 
 					document.getElementById(ObjectName).value = document.getElementById('td'+(i+1)).innerHTML; 
 				}
-			if (i + 1 > MaxTdNum)
+			if (i + 1 >= MaxTdNum)
 				TdNum = MaxTdNum; 
 			else
 				TdNum = i + 1; 
@@ -157,14 +160,14 @@ function SelectScroll(event,ObjectName)
 		if(event.keyCode==38) 
 		{  
 			i = TdNum; 
-			if(i <= MaxTdNum) document.getElementById('td'+i).style.background="#ffffff"; 
-			if(i >= 0) 
+			if(i < MaxTdNum && i >= 0) document.getElementById('td'+i).style.background="#ffffff"; 
+			if(i > 0) 
 				{
 					document.getElementById('td'+(i-1)).style.background="#f9fbff"; 
 					document.getElementById(ObjectName).value = document.getElementById('td'+(i-1)).innerHTML;  
 				} 
 			
-			if (i - 1 < 0)      
+			if (i - 1 <= 0)      
 				TdNum = 0;
 			else
 				TdNum = i - 1;     
@@ -187,6 +190,7 @@ function SelectScroll(event,ObjectName)
 function SetSelectValue(ElementId,ObjectName)
 {
 	document.getElementById(ObjectName).value = document.getElementById('td'+ElementId).innerHTML;   
+	alert(ObjectName);
 	document.getElementById(ObjectName+'ID').value = document.getElementById('ValueTd'+ElementId).innerHTML;   
 	document.getElementById(ObjectName+'Div').style.display = 'none'; 
 	document.getElementById(ObjectName+'Div').innerHTML = ""; 
@@ -369,17 +373,23 @@ function FillFieldProject(ID)
 function SaveProject()
 {
 	params = "?Ajax=1&Object=Project&Action=save";
-	if (document.getElementById('ID')) params = params + "&ID="            + document.getElementById('ID').value;
-	if (document.getElementById('UserID')) params = params + "&UserID="            + document.getElementById('UserID').value;
-	params = params  + "&ContractorID="       + document.getElementById('ContractorID').value;
-	params = params  + "&StartDateValue="     + document.getElementById('StartDateValue').value;
-	params = params  + "&FinishDateValue="    + document.getElementById('FinishDateValue').value;
+	if (document.getElementById('ID')) 
+		params = params + "&ID="            	+ document.getElementById('ID').value;
+	if (document.getElementById('DRUID')) 
+		params = params + "&DRUID="           	+ document.getElementById('DRUID').value;
+	params = params  + "&ContractorID="       	+ document.getElementById('ContractorID').value;
+	params = params  + "&StartDateValue="    	+ document.getElementById('StartDateValue').value;
+	params = params  + "&FinishDateValue="    	+ document.getElementById('FinishDateValue').value;
 	params = params  + "&FullDescription="      + document.getElementById('FullDescription').value;
-	if (document.getElementById('ReadyState')) params = params  + "&ReadyState="      + document.getElementById('ReadyState').value;
-	if (document.getElementById('Description')) params = params  + "&Description="      + document.getElementById('Description').value;
+	if (document.getElementById('ReadyState')) 
+		params = params  + "&ReadyState="      	+ document.getElementById('ReadyState').value;
+	if (document.getElementById('TPEClass')) 
+		params = params  + "&TPEClass="      	+ document.getElementById('TPEClass').value;
+	if (document.getElementById('Description')) 
+		params = params  + "&Description="      + document.getElementById('Description').value;
 	params = params  + "";
  
-	
+	//alert(params);
 	Text = AjaxSendPOSTSync(params);     
 	
 	Res = ParseStatusXML(Text,'Сохранение проекта');

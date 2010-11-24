@@ -146,9 +146,9 @@ function SetProcentTask(Procent,TaskID)
 	return 1;
 } 
 
-function SetProcentProject(StatusID,ProjectID)
+function SetProcentProject(Procent,ProjectID)
 {
-	Url = "?Ajax=1&Object=Project&Action=SetProcent&ProjectID=" + ProjectID + "&Procent=" + Procent;
+	params = "?Ajax=1&Object=Project&Action=Save&ID=" + ProjectID + "&ReadyState=" + Procent;
 	Text = AjaxSendPOSTSync(params);
 	Res = ParseStatusXML(Text,'');
 	return 1;
