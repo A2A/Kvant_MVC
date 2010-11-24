@@ -88,21 +88,12 @@
         {
             switch ($FieldName)
             {
-                case 'CurrentInt': return isset($_SESSION['CurrentInt'])?intval($_SESSION['CurrentInt']):null; break;
-                case 'CurrentWPTime': return isset($_SESSION['CurrentWPTime'])?intval($_SESSION['CurrentWPTime']):null; break;
-                case 'CurrentUserID': 
-                {
-                    $_SESSION['CurrentUserID'] = $Value;
-                    $this->CurrentUser = User::GetObject($null,$Value);
-                    break;
-                }
-                case 'CurrentRoleID': 
-                {
-                    $_SESSION['CurrentRoleID'] = $Value;
-                    $this->CurrentRole = Role::GetObject($null,$Value);
-                    break;
-                }
-                // TODO 2 -o Molev -c СЕТ: Установка ИД при __СЕТ
+                case 'CurrentInt'   : $_SESSION['CurrentInt'] = $Value; break;
+                case 'CurrentWPTime': $_SESSION['CurrentWPTime'] = $Value; break;
+                case 'CurrentUserID': $_SESSION['CurrentUserID'] = $Value; break;
+                case 'CurrentRoleID': $_SESSION['CurrentRoleID'] = $Value; break;
+                case 'CurrentDRUID' : $this->SetDRUID($Value); break;
+                case 'CurrentDRU'   : $this->SetDRU($Value); break;
             }
         }
 
@@ -250,14 +241,32 @@
             }
         }
 
-        public function SetDRU()
+        public function SetDRUAction()
         {
             $result = false;
-            if (!(isset($this->ProcessData['ID']) and intval($this->ProcessData['ID'])>0))
+            if (!isset($this->ProcessData['ID'])) 
             {
                 ErrorHandle::ActionErrorHandle('Передано недостаточно данных для смены текущего элемента Подразделение/Роль/Сотрудник',2);
             }
-            elseif (!($hsql = DBMySQL::Query('Select ObjectID from ur_dru where ID = '.$_SESSION['CurrentUserID'].' and OBJECTID = '.intval($this->ProcessData['ID']).' and `READ`')))
+            elseif (intval($this->ProcessData['ID'])<=0)
+            {
+                ErrorHandle::ActionErrorHandle('Переданs неверные данные для смены текущего элемента Подразделение/Роль/Сотрудник',2);
+            }
+            else
+            {
+                $result = SetDRU($this->ProcessData['ID']);
+            }
+            return $result;
+        }
+        
+        protected function SetDRUID($ID)
+        {
+            $result = false;
+            if (intval($ID) <= 0)
+            {
+                ErrorHandle::ActionErrorHandle('Передан неверный параметр для выбора элемента Подразделение/Роль/Сотрудник',2);
+            }
+            elseif (!($hsql = DBMySQL::Query('Select ObjectID from ur_dru where ID = '.$this->CurrentUserID.' and OBJECTID = '.$ID.' and `READ`')))
             {
                 ErrorHandle::ActionErrorHandle('Ошибка при проверке прав на чтение элемента Подразделение/Роль/Сотрудник',2);
             }
@@ -265,7 +274,7 @@
             {
                 ErrorHandle::ActionErrorHandle('Не хватает прав для использования выбранного элемента Подразделение/Роль/Сотрудник',2);
             }
-            elseif (!($hsql = DBMySQL::Query('Select ID from dru where ID = '.intval($this->ProcessData['ID']))))
+            elseif (!($hsql = DBMySQL::Query('Select ID from dru where ID = '.$ID)))
             {
                 ErrorHandle::ActionErrorHandle('Ошибка при проверке существования элемента Подразделение/Роль/Сотрудник',2);
             }
@@ -279,6 +288,21 @@
                 $result = true;
             }
         }
+        
+        protected function SetDRU($DRU)
+        {
+            if (get_class($DRU) != 'DRU')
+            {
+                ErrorHandle::ActionErrorHandle('Неверный тип объекта для установки текущего значение Подразделение/Роль/Сотрудник',2);
+                $result = false;
+            }
+            else
+            {
+                $result = $this->SetDRUID($DRU->ID);
+            }
+            return $result;
+        }
+
     }
 
 ?>
