@@ -34,10 +34,8 @@ function SendLogout()
 
 function SetDRU(ID)
 {
-	params = "Object=System&Action=dru&ID="+ID;
+	params = "Object=System&Action=SetDRU&DRUID="+ID;
 	
-	// TODO 100 -c Natali -o Сообщение для отладки: alert()
-	alert("form.js SetDRU(ID) " + params);
 	Text = AjaxSendPOSTSync(params);
 	Res = ParseStatusXML(Text,'');
 	//if (Res['ActionStatus'] == 0) location.reload();
