@@ -53,8 +53,6 @@
         public $meta = '';
         public $title = 'Система сбалансированных показателей. ООО "Квант"';
 
-        public $CurrentUser;
-
         protected function __construct(&$ProcessData)  
         {   
             parent::__construct($ProcessData);
@@ -76,11 +74,17 @@
 
         function __get($FieldName)
         {
+            $null = null;
             switch ($FieldName)
             {
                 case 'CurrentInt'	: return isset($_SESSION['CurrentInt'])?intval($_SESSION['CurrentInt']):null; break;
                 case 'CurrentWPTime': return isset($_SESSION['CurrentWPTime'])?intval($_SESSION['CurrentWPTime']):null; break;
-                case 'CurrentUserID': return (!is_null($this->CurrentUser))?$this->CurrentUser->ID:null; break;
+                case 'CurrentUserID': return (isset($_SESSION['CurrentUserID']) and intval($_SESSION['CurrentUserID']) >0)?$_SESSION['CurrentUserID']:null; break;
+                case 'CurrentUser'  : return is_null($this->CurrentUserID)?null:(User::GetObject($null,$_SESSION['CurrentUserID'])); 
+                case 'CurrentRoleID': return (isset($_SESSION['CurrentRoleID']) and intval($_SESSION['CurrentRoleID']) >0)?$_SESSION['CurrentRoleID']:null; break;
+                case 'CurrentRole'  : return is_null($this->CurrentRoleID)?null:(User::GetObject($null,$_SESSION['CurrentRoleID'])); 
+                case 'CurrentDRUID' : return (isset($_SESSION['CurrentDRUID']) and intval($_SESSION['CurrentDRUID']) >0)?$_SESSION['CurrentDRUID']:null; break;
+                case 'CurrentDRU'   : return is_null($this->CurrentDRUID)?null:(User::GetObject($null,$_SESSION['CurrentDRUID'])); 
             }
         }
 
@@ -91,7 +95,9 @@
                 case 'CurrentInt'   : $_SESSION['CurrentInt'] = $Value; break;
                 case 'CurrentWPTime': $_SESSION['CurrentWPTime'] = $Value; break;
                 case 'CurrentUserID': $_SESSION['CurrentUserID'] = $Value; break;
+                case 'CurrentUser'  : $_SESSION['CurrentUserID'] = $Value->ID; break;
                 case 'CurrentRoleID': $_SESSION['CurrentRoleID'] = $Value; break;
+                case 'CurrentRole'  : $_SESSION['CurrentRoleID'] = $Value->ID; break;
                 case 'CurrentDRUID' : $this->SetDRUID($Value); break;
                 case 'CurrentDRU'   : $this->SetDRU($Value); break;
             }
@@ -132,14 +138,6 @@
 
         public function InitCurrentRole()              
         {
-            if (isset($_SESSION['CurrentRoleID']) and is_numeric($_SESSION['CurrentRoleID']))
-            {
-                $this->CurrentRoleID = $_SESSION['CurrentRoleID'];
-            }
-            else
-            {
-                $this->CurrentRole = null;
-            }
         }
 
         public function LogIn()
