@@ -1,8 +1,8 @@
  <table border="0" cellspacing=0 cellpadding=0 id="ListUsers" width="100%">
-   <tr><td class="CellLeft" id="td0" style="display: none;">{?Object=this&Var=this(count)}</td></tr>
+   <tr><td class="CellLeft" id="tdCount" style="display: none;">{?Object=this&Var=this(count)}</td></tr>
 <!-- Element Begin --> 
    <tr>
-		<td id="ValueTd{?Object=this&Var=this(ID)}" style="display: 1none;">{?Object=this&Var=this(ID)} | {?Object=this&Var=Index()}</td><td class="CellLeft" id="td{?Object=this&Var=this(ID)}" onclick="SetSelectValue({?Object=this&Var=this(ID)},'Contractor')">{?Object=this&Var=this(Description)}</td>
+		<td id="ValueTd{?Object=this&Var=Index()}" style="display: none;">{?Object=this&Var=this(ID)}</td><td class="CellLeft" id="td{?Object=this&Var=Index()}" onclick="SetSelectValue({?Object=this&Var=Index()},'Contractor')">{?Object=this&Var=this(Description)}</td>
    </tr>
 <!-- Element End --> 	
 </table>        

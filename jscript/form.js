@@ -93,6 +93,9 @@ function SelectContractor(Text)
 	//alert("form.js SelectContractor()");       
 }
 
+var TdNum = -1;
+var MaxTdNum = 3;
+
 function AutoSelectInText(ObjId,event,ObjectName,Filtered)
 {
 	if(event.keyCode==38 || event.keyCode==40 || event.keyCode==37 || event.keyCode==39 || event.keyCode==32 || event.keyCode==13)
@@ -132,24 +135,24 @@ function AutoSelectInText(ObjId,event,ObjectName,Filtered)
 	} 
 }
 
-var TdNum = 0;
-var MaxTdNum = 3;
 
 function SelectScroll(event,ObjectName)
 { 
 
 	if(event.keyCode==38 || event.keyCode==40 || event.keyCode==37 || event.keyCode==39 || event.keyCode==32 || event.keyCode==13)
 	{ 
+		MaxTdNum = document.getElementById('tdCount').innerHTML; 
+	
 		if(event.keyCode==40) 
 		{  
 			i = TdNum;
-			if(i >= 0) document.getElementById('td'+i).style.background="#ffffff"; 
-			if (i + 1 <= MaxTdNum) 
+			if(i >= 0 && (i + 1 < MaxTdNum)) document.getElementById('td'+i).style.background="#ffffff"; 
+			if (i + 1 < MaxTdNum) 
 				{
 					document.getElementById('td'+(i+1)).style.background="#f9fbff"; 
 					document.getElementById(ObjectName).value = document.getElementById('td'+(i+1)).innerHTML; 
 				}
-			if (i + 1 > MaxTdNum)
+			if (i + 1 >= MaxTdNum)
 				TdNum = MaxTdNum; 
 			else
 				TdNum = i + 1; 
@@ -157,14 +160,14 @@ function SelectScroll(event,ObjectName)
 		if(event.keyCode==38) 
 		{  
 			i = TdNum; 
-			if(i <= MaxTdNum) document.getElementById('td'+i).style.background="#ffffff"; 
-			if(i >= 0) 
+			if(i < MaxTdNum && i >= 0) document.getElementById('td'+i).style.background="#ffffff"; 
+			if(i > 0) 
 				{
 					document.getElementById('td'+(i-1)).style.background="#f9fbff"; 
 					document.getElementById(ObjectName).value = document.getElementById('td'+(i-1)).innerHTML;  
 				} 
 			
-			if (i - 1 < 0)      
+			if (i - 1 <= 0)      
 				TdNum = 0;
 			else
 				TdNum = i - 1;     

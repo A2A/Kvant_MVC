@@ -141,6 +141,11 @@
 				$this->TPEClass = $this->ProcessData['TPEClass'];
 				$this->Modified = true;
 			}
+			if (isset($this->ProcessData['StatusID']) and ($this->ProcessData['StatusID'] != $this->StatusID))
+			{
+				$this->StatusID = $this->ProcessData['StatusID'];
+				$this->Modified = true;
+			}
 			
 			return $this->Modified; 
 		}
@@ -149,6 +154,9 @@
 
 		public function SaveAction()
 		{
+			print_r($this);
+			echo "<hr>";
+			print_r($this);
 			$this->SetActionData();
 			if (!intval($this->ID))
 			{
@@ -178,13 +186,14 @@
 			}
 			else
 			{
+				
 				$sql = 'update '.$this->DBTableName.' set 
-					`STATUSID` = "'.$this->StatusID.'",
+					`STATUSID` = "'.((intval($this->StatusID) and $this->StatusID>0 and $this->StatusID<7)?intval($this->StatusID):'1').'",
 					`DESCRIPTION` = "'.$this->Description.'",
 					`DATE_START` = "'.DateTimeToMySQL($this->StartDate).'",
 					`DATE_FINISH` = "'.DateTimeToMySQL($this->FinishDate).'",
 					`FULL_DESCR` = "'.$this->FullDescription.'", 
-					`READY_STATE` = "'.$this->ReadyState.'", 
+					`READY_STATE` = "'.intval($this->ReadyState).'", 
 					`CONTRACTORID` '.(intval($this->ContractorID)?"=".intval($this->ContractorID):'is null').' 
 					where ID = '.$this->ID;
 					
@@ -207,33 +216,7 @@
 
 		}
 
-		// TODO 4 -o Natali -c Сделать:  GetStatus() - установка издражения статуса
-
-
 		
-
-		public function ProcessMessage()
-		{
-			if (isset($this->ProcessData['Action']))
-			{
-				switch ($this->ProcessData['Action'])
-				{
-					default : 
-					{
-						$Result = parent::ProcessMessage();
-					}
-				}
-			}
-			else
-			{
-				ErrorHandle::ErrorHandle('Переданы неверные параметры для события.',2);
-				$Result = false;
-			}
-			return $Result;
-		}
-
-
-
 		// TODO 4 -o Natali -c Не используется: 
 		public function GetDuration()
 		{
@@ -289,13 +272,6 @@
 			$TimeLine = $TimeLine . ($TimeLine = ''?'':'.');
 			return $TimeLine;
 		}
-
-		public function CreateView()
-		{
-			ErrorHandle::ErrorHandle("Project CreateView()");
-			return parent::CreateView();
-		}
-
 
 		public function GetState()
 		{
