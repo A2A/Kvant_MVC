@@ -51,7 +51,7 @@
 			$CT = mktime() - $this->StartDate;
 			//echo $FT." секунды = (".$this->FinishDate." - ".$this->StartDate.")<hr>";
 
-			$Status = $this->ReadyState * $FT / $CT;
+			@ $Status = $this->ReadyState * $FT / $CT;
 			if ( $Status > 110 ) 
 				return 'green';
 			elseif ( $Status > 98 ) 

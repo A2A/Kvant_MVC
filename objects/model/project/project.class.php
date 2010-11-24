@@ -41,8 +41,8 @@
 				while ($fetch = DBMySQL::FetchObject($hSql)) 
 				{
 					$DRU = DRU::GetObject($null,$fetch->DRUID);
-					$this->ManagerID = $fetch->USERID;
-					$this->Manager = new User($null,$null,$this->DataBase,$this->UserID);
+					$this->ManagerID = $DRU->UserID;
+					$this->Manager = new User($null,$this->ManagerID);
 					$this->Manager->Refresh();
 
 					$this->Description = $fetch->DESCRIPTION;
