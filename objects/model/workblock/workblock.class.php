@@ -24,7 +24,10 @@
 			else
 				$this->ID = 1;
 
-			if (isset($ProcessData['ProjectID'])) $this->ProjectID = $this->ProcessData['ProjectID'] = $ProcessData['ProjectID'];
+			if (isset($ProcessData['ProjectID']) and (intval($ProcessData['ProjectID'])>0)) 
+            {
+                $this->ProjectID = intval($ProcessData['ProjectID']);
+            }
 			if (isset($ProcessData['TaskID'])) $this->TaskID = $this->ProcessData['TaskID'] = $ProcessData['TaskID'];
 			//print_r($this);
 		}
@@ -43,13 +46,13 @@
 			{
 				case 'duration' : 
 				{
-					$int = Interval::GetObject($null,$_SESSION['CurrentInt']);
+					$int = Interval::GetObject($null,$_SESSION['CurrentIntID']);
 					$res = $int->Duration;
 					break;
 				}
 				case 'start' : 
 				{
-					$int = Interval::GetObject($null,$_SESSION['CurrentInt']);  
+					$int = Interval::GetObject($null,$_SESSION['CurrentIntID']);  
 
 					if (isset($_SESSION['CurrentWPTime'])) $StartWPTime = $_SESSION['CurrentWPTime'];
 					else $StartWPTime = time() - 8*$int->Duration;
@@ -58,7 +61,7 @@
 				}
 				case 'finish' : 
 				{
-					$int = Interval::GetObject($null,$_SESSION['CurrentInt']);  
+					$int = Interval::GetObject($null,$_SESSION['CurrentIntID']);  
 
 					if (isset($_SESSION['CurrentWPTime'])) $StartWPTime = $_SESSION['CurrentWPTime'];
 					else $StartWPTime = time() - 8*$int->Duration;
@@ -81,14 +84,14 @@
 
 				case 'text' : 
 				{
-					$int = Interval::GetObject($null,$_SESSION['CurrentInt']);  
+					$int = Interval::GetObject($null,$_SESSION['CurrentIntID']);  
 
 					if (isset($_SESSION['CurrentWPTime'])) 
 						$StartWPTime = $_SESSION['CurrentWPTime'];
 					else 
 						$StartWPTime = time() - 8*$int->Duration;
 
-					if ($_SESSION['CurrentInt'] <= 3)
+					if ($_SESSION['CurrentIntID'] <= 3)
 						$res = date('H:i',$StartWPTime + $int->Duration*($this->ID-1));
 					else
 						$res = date('d.m',$StartWPTime + $int->Duration*($this->ID-1));
@@ -99,7 +102,7 @@
 				{   // все правильно расчитывает
 					//echo "state - ".$this->ProjectID."=".$this->ProcessData['TaskID']."="; 
 					
-					if (is_numeric($this->ProjectID))
+					if (intval($this->ProjectID)>0)
 					{   
 						$Obj = Project::GetObject($null,intval($this->ProcessData['ProjectID']));
 						//print_r($Obj);
@@ -150,7 +153,7 @@
 
 					if (!is_null($Obj))
 					{
-						//$int = new Interval($null,$null,$this->DataBase,$_SESSION['CurrentInt']);  
+						//$int = new Interval($null,$null,$this->DataBase,$_SESSION['CurrentIntID']);  
 
 						$Step = $this->Duration;
 						$StartInt = 0;

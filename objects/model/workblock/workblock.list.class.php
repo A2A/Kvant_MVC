@@ -6,7 +6,7 @@
 		'task_status' => 'objects/model/workblock/task_status.html',
 		'project_status' => 'objects/model/workblock/project_status.html',
 		);
-
+        public static  $Cashable = false;      
 		public $ProjectID;
 		
 		public function __construct(&$ProcessData,$ID=null)  

@@ -201,9 +201,9 @@
 				$ClassName = &$Record["ClassName"];
 				if (Controller::CheckClassAccess($ClassName))
 				{
-					$SubObject = $ClassName::GetObject($Record['Params'],null);
 					if (isset($Record['FieldName'])) 
 					{
+                        $SubObject = $ClassName::GetObject($Record['Params'],null);
 						$result = $SubObject->$Record['FieldName'];
 					}
 					else
@@ -373,7 +373,11 @@
 					$PD['Filter'] = $this->ViewData['Filter'];
 					$this->Object = $ClassName::GetObject($PD,$this->ObjectID);
 				}
-				else
+				elseif ($ClassName == 'WorkBlockList')
+                {
+                    $this->Object = $ClassName::GetObject($this->ViewData,$this->ObjectID);
+                }
+                else
 				{
 					$this->Object = $ClassName::GetObject($null,$this->ObjectID);
 				}
