@@ -26,19 +26,19 @@
 			<table  border="0" cellspacing="0" cellpadding="0" class="Task">       
 				<tr>
 					<td class="LeftColDark">Постановщик</td>
-					<td class="CenterRowTop">{?Object=this&Var=this(User)}&nbsp;</td>
+					<td class="CenterRowTop">{?Object=this&Var=this(Manager)}&nbsp;</td>
 					<td class="ButtonRowTop">&nbsp;</td>
 				</tr>  
 				<tr>
 					<td class="LeftColLight">Название</td>
 					<td class="CenterRow">
-						<input class="input_text"  id="Description" value="{?Object=this&Var=this(Description)}"><br>
-						<div id='ContractorDiv' class="DivSelectForm"></div>
-					</td>
+						<input type="hidden" id="TPEClass" value="{?Object=this&Var=GET(TypeID)}">
+						<input class="input_text"  id="Description" value="{?Object=TPEClass&Form=description&ID=GET(TypeID)}"><br>
+				</td>
 					<td class="ButtonRow">&nbsp;</td>
 				</tr>
 				<tr>
-					<td class="LeftColLight">Заказчик</td>
+					<td class="LeftColLight">Контрагент</td>
 					<td class="CenterRow">
 						<input type=hidden name='ContractorID' id='ContractorID' value="{?Object=this&Var=this(ContractorID)}"> 
 						<input class="input_text"  onkeyup="AutoSelectInText(this,event,'Contractor',this.value);" id="Contractor" onBlur="CloseWindow('ContractorDiv');" value="{?Object=this&Var=this(Contractor)}"><br> 

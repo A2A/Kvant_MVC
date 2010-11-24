@@ -14,8 +14,10 @@
 
 		protected $DBTableName = 'projects';
 
-		protected $UserID;
-		protected $User;
+		public $ManagerID;
+		public $Manager;
+		public $ContractorID;
+		public $Contractor;
 
 		public $InitDate;
 		public $StartDate = null;
@@ -38,9 +40,10 @@
 				$hSql = DBMySQL::Query($sql);
 				while ($fetch = DBMySQL::FetchObject($hSql)) 
 				{
-					$this->UserID = $fetch->USERID;
-					$this->User = new User($null,$null,$this->DataBase,$this->UserID);
-					$this->User->Refresh();
+					$DRU = DRU::GetObject($null,$fetch->DRUID);
+					$this->ManagerID = $fetch->USERID;
+					$this->Manager = new User($null,$null,$this->DataBase,$this->UserID);
+					$this->Manager->Refresh();
 
 					$this->Description = $fetch->DESCRIPTION;
 					$this->FullDescription = $fetch->FULL_DESCR;
