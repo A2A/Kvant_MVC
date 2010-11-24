@@ -19,12 +19,7 @@
 		{
 			$System = System::GetObject();
 			$null = null;
-			$sql_base = '
-				SELECT 
-				  `ID`,
-				  `DESCRIPTION`
-				FROM 
-				  `roles`';
+			$sql_base = 'SELECT `ID` FROM `roles`';
 			
 			if (isset($this->ViewData['Filter']) and is_array($this->ViewData['Filter']))
 			{
@@ -35,8 +30,6 @@
 				}
 				if ($Conditions != '') $sql .= ' where '.$Conditions;
 			}
-			// TODO 10 -o N -c Сообщение для отладки: SQL
-			//	ErrorHandle::ErrorHandle($sql);
 
             $sql = '
             Select temp_buf.* 
