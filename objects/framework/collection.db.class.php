@@ -11,6 +11,7 @@
 			{
 				$ClassName = $this->_ValueType;
 				$this->EncodingNedeed = 0;
+				// TODO 1 -o Nata -c Ошибки: проверить перекодирование полученых параметров.
 				$Val = $this->EncodingNedeed ? (iconv("windows-1251","UTF-8",  $FilterRec['Val'])) : $FilterRec['Val'];
 
 				if ($SQLField = $ClassName::GetSQLField($FilterRec['Field']))
@@ -42,7 +43,7 @@
 							case '!lt': $Condition = ' '.$SQLField. ' >= "'.$Val.'" ' ; break;
 							case 'gt': $Condition = ' '.$SQLField. ' > "'.$Val.'" ' ; break;
 							case '!gt': $Condition = ' '.$SQLField. ' <= "'.$Val.'" ' ; break;
-							case 'like': $Condition = ' '.$SQLField. ' like ("%'.$Val.'%") ' ; break;
+							//case 'like': $Condition = ' '.$SQLField. ' like ("%'.$Val.'%") ' ; break;
 							case '!like': $Condition = ' '.$SQLField. ' not like ("%'.$Val.'%") ' ; break;
 							default : $Condition = '';
 						}

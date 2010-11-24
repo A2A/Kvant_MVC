@@ -119,9 +119,9 @@
 		{
 			parent::SetActionData();
 
-			if (isset($this->ProcessData['FullDescr']))
+			if (isset($this->ProcessData['FullDescription']))
 			{
-				$this->FullDescr = $this->ProcessData['FullDescr'];
+				$this->FullDescription = $this->ProcessData['FullDescription'];
 				$this->Modified = true;
 			}
 
@@ -285,6 +285,18 @@
 
 		}
 
+		public function SaveAction()
+		{
+			if ($this->SetActionData()) 
+			{
+				$Result = $this->Save(); 
+			}
+			else 
+				$Result = true;
+				
+			return $Result;
+		}
+		
 		public function Save()
 		{
 			if (!intval($this->ID))
@@ -294,7 +306,9 @@
 				FULL_DESCR,DRUID,MANAGERID,READY_STATE) 
 				values (NULL,"'.$this->Description.'","'.DateTimeToMySQL($this->InitDate).'","'.DateTimeToMySQL($this->StartDate).'","'.DateTimeToMySQL($this->FinishDate).'",
 				"'.$this->FullDescription.'",'.(intval($this->Owner)?intval($this->Owner):'null').',"'.(intval($this->UserID)?intval($this->UserID):'null').',"'.$this->ReadyState.'")';
-
+	/*    `ID`  `DESCRIPTION``PARENTID` `PROJECTID`  `DATE_INIT`  `DATE_START``DATE_FINISH`
+`FULL_DESCR`  `MANAGERID` `DRUID`   `READY_STATE`  `STATUSID` `CLASSID` `CONTRCTORID`
+*/
 				// TODO 4 -o Natali -c сообщение для отладки: SQL  
 				ErrorHandle::ErrorHandle($sql);   
 
@@ -324,9 +338,10 @@
 				DATE_FINISH="'.DateTimeToMySQL($this->FinishDate).'",
 				FULL_DESCR="'.$this->FullDescription.'", 
 				READY_STATE="'.$this->ReadyState.'", 
-				MANAGERID='.(intval($this->OwnerID)?intval($this->OwnerID):'null').', 
+				CONTRCTORID='.(intval($this->ContractorID)?intval($this->ContractorID):'null').', 
 				DRUID='.(intval($this->DRUID)?intval($this->DRUID):'null').' 
 				where ID = '.$this->ID;
+			 
 
 				ErrorHandle::ErrorHandle($sql);
 				$hSql = DBMySQL::Query($sql);
@@ -341,6 +356,7 @@
 					$Result = true;
 				}
 			}
+			return $Result;
 		}      
 
 		public function GetLevel()

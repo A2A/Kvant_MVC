@@ -75,7 +75,7 @@
 					<td class="LeftColLight">Роль исполнителя</td>
 					<td class="CenterRow">
 						<input type=hidden name='RoleID' id='RoleID' value="{?Object=DRU&Var=ID&ID=GET(DRUID)}"> 
-						<input class="input_text"  onkeyup="AutoSelectInText(this,event,'Role',this.value);" id="Contractor" onBlur="CloseWindow('RoleDiv');" value="{?Object=DRU&Form=description&ID=GET(DRUID)}"><br> 
+						<input class="input_text"  onkeyup="AutoSelectInText(this,event,'Role',this.value);" id="Role" onBlur="CloseWindow('RoleDiv');" value="{?Object=DRU&Form=description&ID=GET(DRUID)}"><br> 
 						<div id='RoleDiv' class="DivSelectForm"></div> 
 					</td>
 					<td class="ButtonRow"><img src="images/button-forms-select.png" OnClick="AutoSelectInText(document.getElementById('Role'),event,'Role');"  class="ButtonCheckForm"></td>
@@ -108,11 +108,11 @@
 				<tr> 
 					<td class="LeftColLight">Длительность</td> 
 					<td class="CenterRow"><input class="input_text" id="Duration" value="{?Object=this&Var=this(Duration)}"></td> 
-					<td class="ButtonRow"><img src="images/button-forms-timeline.png" OnClick="alert('Установка длительности')" class="ButtonCheckForm"></td> 
+					<td class="ButtonRow"><img src="images/button-forms-timeline.png" class="ButtonCheckForm"></td> 
 				</tr> 
 				<tr> 
 					<td class="LeftColLight">Описание</td> 
-					<td class="CellTextarea" colspan="2"><textarea class="input_textarea" id="FullDescr">{?Object=this&Var=this(FullDescr)}</textarea></td> 
+					<td class="CellTextarea" colspan="2"><textarea class="input_textarea" id="FullDescription">{?Object=this&Var=this(FullDescription)}</textarea></td> 
 				</tr> 
 			</table>
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">  
@@ -121,7 +121,7 @@
 						<div class="ButtonLightBlue"><nobr><img src="images/button-blue-1.png" class="img" align="left" hspace="0"><img src="images/button-blue-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonLightBlue"  onClick="CloseModalWindow();">Отмена</a></nobr></div>
 					</td>
 					<td align="right" width="80px">
-						<div class="ButtonOrange"><nobr><img src="images/button-orange-1.png" class="img" align="left" hspace="0"><img src="images/button-orange-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonOrange"  onClick="SaveProject();">Сохранить</a></nobr></div>
+						<div class="ButtonOrange"><nobr><img src="images/button-orange-1.png" class="img" align="left" hspace="0"><img src="images/button-orange-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonOrange"  onClick="SaveTask();">Сохранить</a></nobr></div>
 					</td>
 				</tr>
 			</table>

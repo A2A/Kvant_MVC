@@ -91,13 +91,7 @@ function SelectStaff(Text)
 function SelectContractor(Text)
 {
 	document.getElementById('ContractorDiv').style.display = 'block'; 
-	document.getElementById('ContractorDiv').innerHTML = '<table border="0" cellspacing=0 cellpadding=0 id="ListUsers" width="100%">'+ 
-   '<tr><td class="CellLeft" id="td0"></td><tr><td id="ValueTd1">1</td><td class="CellLeft" id="td1" onclick="SetSelectValue(1,\'Contractor\')">Вася Васичкин</td> '+
-	'    <td class="Cell" onclick="SetSelectValue(1,\'Contractor\')">Программист, бухгалтер</td> </tr>'+ 
-	'<tr><td id="ValueTd2">2</td><td class="CellLeft" id="td2" onclick="SetSelectValue(2,\'Contractor\')">Молев Д.В.</td> '+
-	'    <td class="Cell" onclick="SetSelectValue(2,\'Contractor\')">разработчик</td></tr>    '+
-   ' <tr><td id="ValueTd3">3</td><td class="CellLeft" id="td3" onclick="SetSelectValue(3,\'Contractor\')">Куликов А.А,</td>   '+
-	'    <td class="Cell" onclick="SetSelectValue(3,\'Contractor\')">секретарь</td </tr>  </table> ' + Text;
+	document.getElementById('ContractorDiv').innerHTML = Text;
 	//alert("form.js SelectContractor()");       
 }
 
@@ -125,7 +119,7 @@ function AutoSelectInText(ObjId,event,ObjectName,Filtered)
 		}
 		if (ObjectName == 'Contractor')
 		{
-			Url = "?Ajax=1&Object=UserList&Form=selectbox&Enc=Рус";
+			Url = "?Ajax=1&Object=ContractorList&Form=selectbox&Enc=Рус";
 			if (Filtered) Url = Url + "&Filter[1][Field]=Description&Filter[1][Oper]=like&Filter[1][Val]=" + ObjId.value;
 			if (Filtered || document.getElementById('ContractorDiv').style.display!='block') 
 			{
@@ -217,7 +211,7 @@ function CloseModalWindow()
 	//MainPage
 }
 
-		  function CatchTaskOpen(Text)
+function CatchTaskOpen(Text)
 {
 	ModalWindowOpen = 'Task';
 	document.getElementById('NoActionDesktop').style.display = "block"; 
@@ -274,17 +268,19 @@ function ListTaskEvent(TaskID)
 
 function SaveTask()
 {
-	params = "Object=Task&Action=save&ID=" + document.getElementById('ID').value;
+	params = "Object=Task&Action=save";
+	if (document.getElementById('ID')) params = params + "&ID="            + document.getElementById('ID').value;
 	params = params + "&UserID="            + document.getElementById('UserID').value;
 	params = params +  "&ProjectID="    + document.getElementById('ProjectID').value ;
 	params = params + "&ParentID="       + document.getElementById('ParentID').value;
 	params = params  + "&ContractorID="       + document.getElementById('ContractorID').value;
 	params = params  + "&StartDateValue="     + document.getElementById('StartDateValue').value;
 	params = params  + "&FinishDateValue="    + document.getElementById('FinishDateValue').value;
-	params = params  + "&FullDescription="      + document.getElementById('TaskFullDescr').value;
-	params = params  + "&ReadyState="      + document.getElementById('ReadyState').value;
+	params = params  + "&FullDescription="      + document.getElementById('FullDescription').value;
+	if (document.getElementById('ReadyState')) params = params  + "&ReadyState="      + document.getElementById('ReadyState').value;
+	if (document.getElementById('Description')) params = params  + "&Description="      + document.getElementById('Description').value;
 	params = params  + "";
- 
+   
 	Text = AjaxSendPOSTSync(params);
 	Res = ParseStatusXML(Text,'Сохранение задачи');
 	return 1;
@@ -521,7 +517,10 @@ function ClickEvent(ID,Continue)
 	}
 } 
 
-
+function NewEvent()
+{
+	location.href = "?Object=System&Form=event";      
+}
 
 function VisibleControlBlock(BlockId)
 {   

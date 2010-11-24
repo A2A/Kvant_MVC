@@ -12,7 +12,17 @@
 		'view' => 'objects/model/contractor/view.html',
 		'userlist' => 'objects/model/contractor/userlist.html',
 		);
+		
+		protected static $SQLFields = array(
+		'Description' => 'DESCRIPTION'
+		);
 
+		static public function GetSQLField($Field)
+		{
+			return Contractor::$SQLFields[$Field];
+		}
+
+		
 		public function Save()
 		{
 			return true;

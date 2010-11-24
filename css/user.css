@@ -146,6 +146,7 @@ input
 	text-align:left;
 	padding-left: 5px;
 	cursor: pointer;
+	font-size: 11px;
 }
 hr.modal
 {
