@@ -212,7 +212,6 @@
 		{
 			$system = System::GetObject();
 			return $system->IsUserAuthorized();
-			return false;
 		}
 
 		public static function GetObject(&$ProcessData)
