@@ -10,6 +10,7 @@
 		<td class="RoundLeft">&nbsp;</td>
 		<td class="RoundCenter" valign="top">
 
+			<img src="images/status-{?Object=this&Var=this(CurrentStatusID)}.png" class="img" alt="{?Object=this&Var=this(CurrentStatus)}" hspace="3" align="left"  onMouseOver="VisibleStatusEditProject('{?Object=this&Var=this(ID)}',event);">&nbsp;
 			<h2 class="{?Object=this&Var=this(State)}"><input type=hidden name='ID' id='ID' value="{?Object=this&Var=this(ID)}">{?Object=this&Var=this(Description)}</h2> <br />
 			<br>
 			<table  border="0" cellspacing="0" cellpadding="0" class="Task">       
@@ -22,7 +23,7 @@
 				<tr>
 					<td class="LeftColLight">Контрагент</td>
 					<td class="CenterRow">
-						<input type=hidden1 name='ContractorID' id='ContractorID' value="{?Object=this&Var=this(ContractorID)}"> 
+						<input type=hidden name='ContractorID' id='ContractorID' value="{?Object=this&Var=this(ContractorID)}"> 
 						<input class="input_text"  onkeyup="AutoSelectInText(this,event,'Contractor',this.value);" id="Contractor" onBlur="CloseWindow('ContractorDiv');" value="{?Object=this&Var=this(Contractor)}"><br> 
 						<div id='ContractorDiv' class="DivSelectForm"></div> 
 					</td>

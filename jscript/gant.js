@@ -23,26 +23,26 @@ function VisibleNewProject(event)
 {
 	SetEvent(event.clientX + document.body.scrollLeft, event.clientY + document.body.scrollTop);     
 	document.getElementById('ModalWindow').innerHTML =
-	'<table border="0" cellspacing=0 cellpadding=0>'+
+		'<table border="0" cellspacing=0 cellpadding=0>'+
 	'<tr>'+
-	'<td><img src="images/modal-top-left.png" hspace="0" vspace="0" border="0"></td>'+
-	'<td class="RoundTop" >&nbsp;</td>'+
-	'<td><img src="images/modal-top-right.png" hspace="0" vspace="0" border="0"></td>'+
+		'<td><img src="images/rect-top-left.png" hspace="0" vspace="0" border="0"></td>'+
+		'<td class="RectTop">&nbsp;</td>'+
+		'<td><img src="images/rect-top-right.png" hspace="0" vspace="0" border="0"></td>'+
 	'</tr>'+
 	'<tr>'+
-	'<td class="RoundLeft">&nbsp;</td> '+
-	'<td style="background: #ffffff;" valign="top" width="180px">'+
-	'<li><a href="#" onclick="NewTask();">Новую задачу</a></li>'+
-	'<li><a href="#" onclick="NewProject();">Новый проект</a></li>'+
-	'</td>'+
-	'<td class="RoundRight" >&nbsp;</td>'+
+		'<td class="RectLeft">&nbsp;</td>'+
+		'<td class="InfoBody" valign="top" style="padding:3px 10px;"> '+
+	'<a href="#" onclick="NewTask();">Новую задачу</a><br>'+
+	'<a href="#" onclick="NewProject();">Новый проект</a>'+
+		'</td> '+
+		'<td  class="RectRight">&nbsp;</td> '+
+	'</tr> '+
+	'<tr>  '+
+		'<td><img src="images/rect-bottom-left.png" hspace="0" vspace="0" border="0"></td> '+
+		'<td  class="RectBottom">&nbsp;</td> '+
+		'<td><img src="images/rect-bottom-right.png" hspace="0" vspace="0" border="0"></td>'+
 	'</tr>'+
-	'<tr>'+
-	'<td><img src="images/modal-bottom-left.png" hspace="0" vspace="0" border="0"></td>'+
-	'<td class="RoundBottom" >&nbsp;</td>'+
-	'<td><img src="images/modal-bottom-right.png" hspace="0" vspace="0" border="0"></td>'+
-	'</tr>'+
-	'</table>';
+'</table>';
 
 	OpenModalWindow();
 }
@@ -140,7 +140,7 @@ function SetStatusProject(StatusID,ProjectID)
 
 function SetProcentTask(Procent,TaskID)
 {
-	Url = "?Ajax=1&Object=Task&Action=SetProcent&TaskID=" + TaskID + "&Procent=" + Procent;
+	params = "?Ajax=1&Object=Task&Action=save&ID=" + TaskID + "&ReadyState=" + Procent;
 	Text = AjaxSendPOSTSync(params);
 	Res = ParseStatusXML(Text,'');
 	return 1;
