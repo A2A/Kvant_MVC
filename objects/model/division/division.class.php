@@ -98,7 +98,7 @@
             if (intval($this->ID) >0)
             {
                 $this->Modified = false;
-                echo $sql = '
+                $sql = '
                 Select division.* from 
                 division cross join 
                 ( select OBJECTID from ur_division where ID = "'.intval($_SESSION['CurrentUserID']).'" and ur_division.`WRITE`) as FLTR  
