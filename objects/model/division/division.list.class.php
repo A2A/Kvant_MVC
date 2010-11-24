@@ -40,7 +40,7 @@
             $sql = '
             Select temp_buf.* 
             from ('.$sql_base.' ) as temp_buf 
-                cross join  (select OBJECTID from ur_division where ID = "'.$System->CurrentUserID.'") as right_filter
+                cross join  (select OBJECTID from ur_division where ID = "'.$System->CurrentUserID.' and `READ`") as right_filter
                 on   temp_buf.ID =  right_filter.OBJECTID
             ';          
             
