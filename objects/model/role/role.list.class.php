@@ -3,7 +3,7 @@
 	{
 		protected $DBTableName = 'roles';
 		public static $Forms = array(
-		'list' => 'objects/model/role/list_menu.html',
+		'list' => 'objects/model/role/list.html',
 		'rolelistwithactive' => 'objects/model/role/roles_list_with_active.html',
 		'event_creat' => 'objects/model/role/event_creat.html',
 		);
@@ -14,61 +14,17 @@
 		'UserDescr' => 'UserDescr',
 		'RoleDescr' => 'RoleDescr'
 		);
-		/*
-		public function Refresh()
-		{
-			$sql = "SELECT 
-			`users`.`ID` as UserID,
-			`users`.`DESCRIPTION` as UserDescr,
 
-			`roles`.`ID` as RoleID,
-			`roles`.`DESCRIPTION` as RoleDescr
-
-			FROM `user_roles`INNER JOIN 
-			`roles` ON `user_roles`.`RoleID` = `roles`.`ID`  INNER JOIN
-			`users` ON `user_roles`.`UserID` = `users`.`ID`";
-			// TODO 3 -o Natali -c Заглушка: Заглушка заполнения
-			$sql = "SELECT 
-			`users`.`ID` as UserID,
-			`users`.`DESCRIPTION` as UserDescr,
-
-			`roles`.`ID` as RoleID,
-			`roles`.`DESCRIPTION` as RoleDescr
-
-			FROM `roles`";
-			
-			// DONE 5 -o Molev -c Category: Написать рефреш
-
-			if (isset($this->ViewData['Filter']) and is_array($this->ViewData['Filter']))
-			{
-				$Conditions = '';
-				foreach ($this->ViewData['Filter'] as $FilterRec)
-				{
-					$Conditions = $Conditions.($Conditions==''?'':' and ').$this->CreateQueryFilter($FilterRec);
-				}
-				if ($Conditions != '') $sql .= ' where '.$Conditions;
-			}
-
-			$hSql = $this->DataBase->Query($sql);
-
-			while ($fetch = $this->DataBase->FetchObject($hSql)) 
-			{
-				$ClassName = $this->_ValueType;
-				$this->add($ClassName::GetObject($null,$null,$this->DataBase,$fetch->UserID));
-			}
-		}
-		*/
-		
 		protected function Refresh()
 		{
 			$System = System::GetObject();
 			$null = null;
-			$sql = '
+			$sql_base = '
 				SELECT 
-				  `roles` .`ID`,
-				  `roles`.`DESCRIPTION`
+				  `ID`,
+				  `DESCRIPTION`
 				FROM 
-				  `roles` CROSS JOIN `dru` on `dru`.`ROLEID` = `roles`.`ID` and `dru`.`USERID`="'.$System->CurrentUserID.'"';
+				  `roles`';
 			
 			if (isset($this->ViewData['Filter']) and is_array($this->ViewData['Filter']))
 			{
@@ -82,12 +38,28 @@
 			// TODO 10 -o N -c Сообщение для отладки: SQL
 			//	ErrorHandle::ErrorHandle($sql);
 
-			$hSql = DBMySQL::Query($sql);
-			while ($fetch = DBMySQL::FetchObject($hSql)) 
-			{
-				$ClassName = $this->_ValueType;
-				$this->add($ClassName::GetObject($null,$fetch->ID));
-			}
+            $sql = '
+            Select temp_buf.* 
+            from ('.$sql_base.' ) as temp_buf 
+                cross join  (select OBJECTID from ur_roles where ID = "'.$System->CurrentUserID.'") as right_filter
+                on   temp_buf.ID =  right_filter.OBJECTID
+            ';          
+            
+            if (!($hSql = DBMySQL::Query($sql)))
+            {
+                ErrorHandle::ErrorHandle("Ошибка при получении списка подразделений.");
+            }
+            else
+            {
+                while ($fetch = DBMySQL::FetchObject($hSql)) 
+                {
+                    $ClassName = $this->_ValueType;
+                    if ($obj = $ClassName::GetObject($null,$fetch->ID))
+                    {
+                        $this->add($obj);
+                    }
+                }
+            }
 		}
 
 		public function __construct($ProcessData)

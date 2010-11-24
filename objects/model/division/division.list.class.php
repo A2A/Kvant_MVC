@@ -23,6 +23,7 @@
         protected function Refresh()
         {
             
+            $System = System::GetObject();
             $null = null;
             $sql_base = 'Select ID from division ';
             if (isset($this->ProcessData['Filter']) and is_array($this->ProcessData['Filter']))
@@ -43,16 +44,20 @@
                 on   temp_buf.ID =  right_filter.OBJECTID
             ';          
             
-            
-            
-            // TODO 10 -o N -c Сообщение для отладки: SQL  
-            // ErrorHandle::ErrorHandle($sql);     
-            //$sql .= " limit 4";
-            $hSql = DBMySQL::Query($sql);
-            while ($fetch = DBMySQL::FetchObject($hSql)) 
+            if (!($hSql = DBMySQL::Query($sql)))
             {
-                $ClassName = $this->_ValueType;
-                $this->add($ClassName::GetObject($null,$fetch->ID));
+                ErrorHandle::ErrorHandle("Ошибка при получении списка подразделений.");
+            }
+            else
+            {
+                while ($fetch = DBMySQL::FetchObject($hSql)) 
+                {
+                    $ClassName = $this->_ValueType;
+                    if ($obj = $ClassName::GetObject($null,$fetch->ID))
+                    {
+                        $this->add($obj);
+                    }
+                }
             }
         }
         

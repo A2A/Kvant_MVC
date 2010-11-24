@@ -116,10 +116,11 @@
 
         public function __get($FieldName)
         {
+            $null = null;
             switch ($FieldName)
             {
-                case 'Parent' : $result = Division::GetObject(null,$this->ParentID); break;
-                case 'Manager' : $result = User::GetObject(null,$this->ManagerID); break;
+                case 'Parent' : $result = Division::GetObject($null,$this->ParentID); break;
+                case 'Manager' : $result = User::GetObject($null,$this->ManagerID); break;
                 default: $result = parent::__get($FieldName);
             }
             return $result;
