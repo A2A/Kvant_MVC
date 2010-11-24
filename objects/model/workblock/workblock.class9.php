@@ -37,13 +37,13 @@
 			{
 				case 'duration' : 
 				{
-					$int = Interval::GetObject($null,$null,$this->DataBase,$_SESSION['CurrentInt']);
+					$int = Interval::GetObject($null,$null,$this->DataBase,$_SESSION['CurrentIntID']);
 					$res = $int->Duration;
 					break;
 				}
 				case 'start' : 
 				{
-					$int = Interval::GetObject($null,$null,$this->DataBase,$_SESSION['CurrentInt']);  
+					$int = Interval::GetObject($null,$null,$this->DataBase,$_SESSION['CurrentIntID']);  
 
 					if (isset($_SESSION['CurrentWPTime'])) $StartWPTime = $_SESSION['CurrentWPTime'];
 					else $StartWPTime = time() - 8*$int->Duration;
@@ -52,7 +52,7 @@
 				}
 				case 'finish' : 
 				{
-					$int = Interval::GetObject($null,$null,$this->DataBase,$_SESSION['CurrentInt']);  
+					$int = Interval::GetObject($null,$null,$this->DataBase,$_SESSION['CurrentIntID']);  
 
 					if (isset($_SESSION['CurrentWPTime'])) $StartWPTime = $_SESSION['CurrentWPTime'];
 					else $StartWPTime = time() - 8*$int->Duration;
@@ -75,14 +75,14 @@
 
 				case 'text' : 
 				{
-					$int = Interval::GetObject($null,$null,$this->DataBase,$_SESSION['CurrentInt']);  
+					$int = Interval::GetObject($null,$null,$this->DataBase,$_SESSION['CurrentIntID']);  
 
 					if (isset($_SESSION['CurrentWPTime'])) 
 						$StartWPTime = $_SESSION['CurrentWPTime'];
 					else 
 						$StartWPTime = time() - 8*$int->Duration;
 
-					if ($_SESSION['CurrentInt'] <= 3)
+					if ($_SESSION['CurrentIntID'] <= 3)
 						$res = date('H:i',$StartWPTime + $int->Duration*($this->ID-1));
 					else
 						$res = date('d.m',$StartWPTime + $int->Duration*($this->ID-1));
@@ -141,7 +141,7 @@
 
 					if (!is_null($Obj))
 					{
-						//$int = new Interval($null,$null,$this->DataBase,$_SESSION['CurrentInt']);  
+						//$int = new Interval($null,$null,$this->DataBase,$_SESSION['CurrentIntID']);  
 
 						$Step = $this->Duration;
 						$StartInt = 0;

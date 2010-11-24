@@ -58,7 +58,7 @@
 			{
 				case 'state' : 
 				{
-					$res = (intval($_SESSION['CurrentInt']) == $this->ID)?'active':'passive';
+					$res = (intval($_SESSION['CurrentIntID']) == $this->ID)?'active':'passive';
 					break;
 				}
 				default: $res = null;

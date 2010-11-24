@@ -302,7 +302,7 @@
 						return "None";
 				}
 				case 'stateend'         :{   
-					$int = new Interval($null,$null,$this->DataBase,$_SESSION['CurrentInt']);     
+					$int = new Interval($null,$null,$this->DataBase,$_SESSION['CurrentIntID']);     
 					$EndTime = $_SESSION['CurrentWPTime'] + 16 * $int->Duration; 
 
 					if ($this->InitDate < $EndTime and $EndTime < $this->FinishDate)

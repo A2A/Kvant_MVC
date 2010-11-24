@@ -11,8 +11,8 @@
 
 			if (property_exists(get_class($this),'ID'))
 			{
-				if (is_numeric($id)) $this->ID = $id;
-				elseif (isset($ProcessData['ID']) and is_numeric($ProcessData['ID'])) $this->ID = $ProcessData['ID'];
+				if (intval($id)>0) $this->ID = $id;
+				elseif (isset($ProcessData['ID']) and intval($ProcessData['ID'])>0) $this->ID = $ProcessData['ID'];
 			}
 		}    
 

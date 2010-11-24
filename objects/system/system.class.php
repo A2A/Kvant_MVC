@@ -56,11 +56,10 @@
         protected function __construct(&$ProcessData)  
         {   
             parent::__construct($ProcessData);
-            if (!isset($_SESSION['CurrentInt'])) $_SESSION['CurrentInt'] = 1;
-            $this->CurrentInt = intval($_SESSION['CurrentInt']);
+            if (!isset($_SESSION['CurrentIntID'])) $_SESSION['CurrentIntID'] = 1;
             if (!isset($_SESSION['CurrentWPTime'])) 
             {
-                $int = Interval::GetObject($null,$null,$this->DataBase,$_SESSION['CurrentInt']);  
+                $int = Interval::GetObject($null,$null,$this->DataBase,$_SESSION['CurrentIntID']);  
                 $_SESSION['CurrentWPTime'] =  time() - 8 * $int->Duration;
             }                
             $this->InitCurrentUser();
@@ -77,7 +76,8 @@
             $null = null;
             switch ($FieldName)
             {
-                case 'CurrentInt'	: return isset($_SESSION['CurrentInt'])?intval($_SESSION['CurrentInt']):null; break;
+                case 'CurrentIntID' : return isset($_SESSION['CurrentIntID'])?intval($_SESSION['CurrentIntID']):null; break;
+                case 'CurrentInt'  : return is_null($this->CurrentIntID)?null:(Interval::GetObject($null,$_SESSION['CurrentIntID'])); 
                 case 'CurrentWPTime': return isset($_SESSION['CurrentWPTime'])?intval($_SESSION['CurrentWPTime']):null; break;
                 case 'CurrentUserID': return (isset($_SESSION['CurrentUserID']) and intval($_SESSION['CurrentUserID']) >0)?$_SESSION['CurrentUserID']:null; break;
                 case 'CurrentUser'  : return is_null($this->CurrentUserID)?null:(User::GetObject($null,$_SESSION['CurrentUserID'])); 
@@ -92,7 +92,8 @@
         {
             switch ($FieldName)
             {
-                case 'CurrentInt'   : $_SESSION['CurrentInt'] = $Value; break;
+                case 'CurrentIntID' : $_SESSION['CurrentIntID'] = $Value; break;
+                case 'CurrentInt'   : $_SESSION['CurrentIntID'] = $Value->ID; break;
                 case 'CurrentWPTime': $_SESSION['CurrentWPTime'] = $Value; break;
                 case 'CurrentUserID': $_SESSION['CurrentUserID'] = $Value; break;
                 case 'CurrentUser'  : $_SESSION['CurrentUserID'] = $Value->ID; break;
@@ -225,18 +226,22 @@
         {
             if (isset($this->ProcessData['ID']) and intval($this->ProcessData['ID'])>0)
             {
-                $_SESSION['CurrentInt'] = $this->ProcessData['ID'];     
+                $int_bak = $this->CurrentInt;
+                $_SESSION['CurrentIntID'] = $this->ProcessData['ID'];     
 
-                $int_new = Interval::GetObject($null,$this->CurrentInt);
+                $int_new = $this->CurrentInt;
                 $NewCurrentWPTime = $this->CurrentWPTime + 8 * $int_bak->Duration - 8 * $int_new->Duration;
                 $_SESSION['CurrentWPTime'] = $NewCurrentWPTime - ($NewCurrentWPTime % $int_new->Duration);
 
+                ErrorHandle::ActionErrorHandle('произведено изменение интервала. Текущяя длительность - '.$int_new->Duration.' Текущее время - '.$_SESSION['CurrentWPTime']);
                 $result = true;
             }
             else
             {
+                ErrorHandle::ActionErrorHandle('Недостаточно данных для изменения интервала.',2);
                 $result = false;
             }
+            return $result;
         }
 
         public function SetDRUAction()
@@ -300,6 +305,20 @@
             }
             return $result;
         }
+        
+        public function ShiftInterval()
+        {
+            if ($result = is_numeric($this->ProcessData['Direction']))
+            {
+                $_SESSION['CurrentWPTime'] = $_SESSION['CurrentWPTime'] + $this->ProcessData['Direction'] * $this->CurrentInt->Duration;
+            }
+            else
+            {
+                $this->ErrorHandle('Не передано направление сдвига интервала.',1);
+            }
+            return $result;
+        }
+        
 
     }
 
