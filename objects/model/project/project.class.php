@@ -18,18 +18,17 @@
 		public $Manager;
 		public $ContractorID;
 		public $Contractor;
+		public $DRUID;
 
 		public $InitDate;
 		public $StartDate = null;
 		public $FinishDate = null;
 
 		public $ReadyState = 0;
-		protected $FullDescription;
+		public $FullDescription;
 		public $CurrentStatusID = 1;
 		public $CurrentStatus = 'Поставлена';
 
-
-		// TODO 4 -o Natali -c Перенести: коректно работает  Refresh()
 
 		protected function Refresh()
 		{
@@ -60,8 +59,33 @@
 						$this->ReadyState = 0;
 					else
 						$this->ReadyState = $fetch->READY_STATE;
+					
+					if (isset($fetch->CONTRACTORID) and $this->ContractorID != intval($fetch->CONTRACTORID))
+					{
+						$this->ContractorID = intval($fetch->CONTRACTORID);
+						if (!is_null($this->ContractorID))
+						{
+							$ClassName =  'Contractor';
+							$this->Contractor = $ClassName::GetObject($null,$this->ContractorID);
+						}
+						else
+						{
+							$this->Contractor = null;
+						}
+					}
+				
 
 				}
+			}
+			else
+			{
+				$this->Manager = User::GetObject($null,$this->CurrentUserID);
+				$this->ManagerID = $this->CurrentUserID;
+				
+				$tmpDate = mktime();
+				$this->InitDate = $tmpDate;
+				$this->InitDateText = DateTimeToStr($this->InitDate);
+
 			}
 		}
 
@@ -70,9 +94,10 @@
 		protected function SetActionData()
 		{
 			parent::SetActionData();
-			if (isset($this->ProcessData['UserID']) and ($this->ProcessData['UserID'] != $this->UserID))
+			if (isset($this->ProcessData['DRUID']) and ($this->ProcessData['DRUID'] != $this->DRUID))
 			{
-				$this->UserID = $this->ProcessData['UserID'];
+				$this->DRUID = $this->ProcessData['DRUID'];
+				
 				$this->Modified = true;
 			}
 			if (isset($this->ProcessData['Description']) and ($this->ProcessData['Description'] != $this->Description))
@@ -105,21 +130,35 @@
 				$this->ReadyState = $this->ProcessData['ReadyState'];
 				$this->Modified = true;
 			}
+			if (isset($this->ProcessData['ContractorID']) and ($this->ProcessData['ContractorID'] != $this->ContractorID))
+			{
+				$this->ContractorID = $this->ProcessData['ContractorID'];
+				$this->Contractor = null;
+				$this->Modified = true;
+			}
+			if (isset($this->ProcessData['TPEClass']) and ($this->ProcessData['TPEClass'] != $this->TPEClass))
+			{
+				$this->TPEClass = $this->ProcessData['TPEClass'];
+				$this->Modified = true;
+			}
+			
 			return $this->Modified; 
 		}
 
 		// TODO 4 -o Natali -c Перенести: коректно работает  Save()
 
-		public function Save()
+		public function SaveAction()
 		{
+			$this->SetActionData();
 			if (!intval($this->ID))
 			{
 				// TODO 4 -o Natali -c Ошибка формирования SQL запроса: при создании если не установлен пользователь, надо получить текущего для $this->UserID
-				$sql = 'insert into '.$this->DBTableName.' (ID, DESCRIPTION,DATE_INIT,DATE_START,DATE_FINISH,
-				FULL_DESCR,USERID,READY_STATE) 
-				values (NULL,"'.$this->Description.'","'.DateTimeToMySQL($this->InitDate).'","'.DateTimeToMySQL($this->StartDate).'","'.DateTimeToMySQL($this->FinishDate).'",
-				"'.$this->FullDescription.'",'.(intval($this->UserID)?intval($this->UserID):'null').',"'.$this->ReadyState.'")';
-				
+				$sql = 'insert into '.$this->DBTableName.' (ID,`CLASSID`,`STATUSID`,`DESCRIPTION`,`DATE_INIT`,`DATE_START`,
+				`DATE_FINISH`,`FULL_DESCR`,`DRUID`,`READY_STATE`,`CONTRACTORID`) 
+				values (NULL,'.(intval($this->TPEClass)?intval($this->TPEClass):'null').',1,"'.$this->Description.'","'.DateTimeToMySQL($this->InitDate).'","'.DateTimeToMySQL($this->StartDate).'",
+				"'.DateTimeToMySQL($this->FinishDate).'",
+					"'.$this->FullDescription.'",'.(intval($this->DRUID)?intval($this->DRUID):'null').',"'.$this->ReadyState.'",'.(intval($this->ContractorID)?intval($this->ContractorID):'null').')';
+		
 				// TODO 4 -o Natali -c сообщение для отладки: SQL  
 				ErrorHandle::ErrorHandle($sql);    
 
@@ -128,41 +167,43 @@
 				{
 					$this->ID = DBMySQL::InsertID($hSql);
 					$this->ChangedFields[] = array('name' => 'ID','value' => $this->ID);
-					ErrorHandle::ErrorHandle('Объект типа '.get_class($this).' успешно сохранен.',0);
+					ErrorHandle::ActionErrorHandle('Объект типа '.get_class($this).' успешно сохранен.',0);
 					$Result = true;
 				}
 				else
 				{
-					ErrorHandle::ErrorHandle('Ошибка сохранения объекта типа '.get_class($this).'.',2);
+					ErrorHandle::ActionErrorHandle('Ошибка сохранения объекта типа '.get_class($this).'.',2);
 					$Result = true;
 				}
 			}
 			else
 			{
 				$sql = 'update '.$this->DBTableName.' set 
-					DESCRIPTION="'.$this->Description.'",
-					DATE_INIT="'.DateTimeToMySQL($this->InitDate).'",
-					DATE_START="'.DateTimeToMySQL($this->StartDate).'",
-					DATE_FINISH="'.DateTimeToMySQL($this->FinishDate).'",
-					FULL_DESCR="'.$this->FullDescription.'", 
-					READY_STATE="'.$this->ReadyState.'", 
-					USERID='.(intval($this->UserID)?intval($this->UserID):'null').' 
+					`STATUSID` = "'.$this->StatusID.'",
+					`DESCRIPTION` = "'.$this->Description.'",
+					`DATE_START` = "'.DateTimeToMySQL($this->StartDate).'",
+					`DATE_FINISH` = "'.DateTimeToMySQL($this->FinishDate).'",
+					`FULL_DESCR` = "'.$this->FullDescription.'", 
+					`READY_STATE` = "'.$this->ReadyState.'", 
+					`CONTRACTORID` '.(intval($this->ContractorID)?"=".intval($this->ContractorID):'is null').' 
 					where ID = '.$this->ID;
+					
 				// TODO 4 -o Natali -c сообщение для отладки: SQL 
 				ErrorHandle::ErrorHandle($sql);       
 				
 				$hSql = DBMySQL::Query($sql);
 				if ($hSql)
 				{
-					ErrorHandle::ErrorHandle('Объект типа '.get_class($this).' успешно сохранен.',0);
+					ErrorHandle::ActionErrorHandle('Объект типа '.get_class($this).' успешно сохранен.',0);
 					$Result = true;
 				}
 				else
 				{
-					ErrorHandle::ErrorHandle('Ошибка сохранения объекта типа '.get_class($this).'.',2);
+					ErrorHandle::ActionErrorHandle('Ошибка сохранения объекта типа '.get_class($this).'.',2);
 					$Result = true;
 				}
 			}
+			return false;
 
 		}
 
@@ -312,6 +353,9 @@
 		public function __construct(&$ProcessData,$ID=null)  
 		{   
 			parent::__construct($ProcessData,$ID);
+			$System = System::GetObject();
+			$this->CurrentUserID = $System->CurrentUserID;
+			unset($System);
 			$this->Refresh();     
 		}
 		

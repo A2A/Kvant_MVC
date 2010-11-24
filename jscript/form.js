@@ -187,6 +187,7 @@ function SelectScroll(event,ObjectName)
 function SetSelectValue(ElementId,ObjectName)
 {
 	document.getElementById(ObjectName).value = document.getElementById('td'+ElementId).innerHTML;   
+	alert(ObjectName);
 	document.getElementById(ObjectName+'ID').value = document.getElementById('ValueTd'+ElementId).innerHTML;   
 	document.getElementById(ObjectName+'Div').style.display = 'none'; 
 	document.getElementById(ObjectName+'Div').innerHTML = ""; 
@@ -369,17 +370,23 @@ function FillFieldProject(ID)
 function SaveProject()
 {
 	params = "?Ajax=1&Object=Project&Action=save";
-	if (document.getElementById('ID')) params = params + "&ID="            + document.getElementById('ID').value;
-	if (document.getElementById('UserID')) params = params + "&UserID="            + document.getElementById('UserID').value;
-	params = params  + "&ContractorID="       + document.getElementById('ContractorID').value;
-	params = params  + "&StartDateValue="     + document.getElementById('StartDateValue').value;
-	params = params  + "&FinishDateValue="    + document.getElementById('FinishDateValue').value;
+	if (document.getElementById('ID')) 
+		params = params + "&ID="            	+ document.getElementById('ID').value;
+	if (document.getElementById('DRUID')) 
+		params = params + "&DRUID="           	+ document.getElementById('DRUID').value;
+	params = params  + "&ContractorID="       	+ document.getElementById('ContractorID').value;
+	params = params  + "&StartDateValue="    	+ document.getElementById('StartDateValue').value;
+	params = params  + "&FinishDateValue="    	+ document.getElementById('FinishDateValue').value;
 	params = params  + "&FullDescription="      + document.getElementById('FullDescription').value;
-	if (document.getElementById('ReadyState')) params = params  + "&ReadyState="      + document.getElementById('ReadyState').value;
-	if (document.getElementById('Description')) params = params  + "&Description="      + document.getElementById('Description').value;
+	if (document.getElementById('ReadyState')) 
+		params = params  + "&ReadyState="      	+ document.getElementById('ReadyState').value;
+	if (document.getElementById('TPEClass')) 
+		params = params  + "&TPEClass="      	+ document.getElementById('TPEClass').value;
+	if (document.getElementById('Description')) 
+		params = params  + "&Description="      + document.getElementById('Description').value;
 	params = params  + "";
  
-	
+	//alert(params);
 	Text = AjaxSendPOSTSync(params);     
 	
 	Res = ParseStatusXML(Text,'Сохранение проекта');
