@@ -1,7 +1,40 @@
-<div class="Role">
-<!-- Element Begin -->  
-<div class="leftcol">  
-        <a onclick="ChangeRole({?Object=this&Var=this(ID)});" class="left-{?Object=this&Var=this(State)}"  href="#">{?Object=this&Var=this(Description)}</a>
-</div>     
-<!-- Element End -->
-</div>
+<div class="Role"><nobr> 
+<a href="#" class="NoAction" onmousemove="document.getElementById('CurrentDRU').style.display='block';">Роли:</a> {?Object=System&Var=ActiveDRU}
+</nobr></div>
+<table border="0" cellspacing="0" cellpadding="0" id="CurrentDRU" style="position: absolute;display: none;" onmousemove="this.style.display='block';" onMouseout8="DivHide('CurrentDRU');">
+	<tr>
+		<td><img src="images/rect-top-left.png" hspace="0" vspace="0" border="0"></td>
+		<td class="Recttop" valign="top">&nbsp;</td>
+		<td><img src="images/rect-top-right.png" hspace="0" vspace="0" border="0"></td>
+	</tr>
+	<tr>
+		<td class="RectLeft">&nbsp;</td>
+		<td  class="RectCenter" valign="top">
+			<table border="0" cellspacing="0" cellpadding="4"> 
+				<tr>                                        
+					<td class="TextForm" valign="top">
+						<hr class="modal">
+						{?Object=DRUList&Form=menu_current_user}
+						<hr class="modal">
+						{?Object=DRUList&Form=menu_user}
+						<hr class="modal">
+						{?Object=DRUList&Form=menu_division}
+						<hr class="modal">
+						{?Object=DRUList&Form=menu_role}
+						<hr class="modal">
+
+						
+					</td>
+				</tr>
+
+			</table>        
+
+		</td>
+		<td class="RectRight">&nbsp;</td>
+	</tr>
+	<tr>
+		<td><img src="images/rect-bottom-left.png" hspace="0" vspace="0" border="0"></td>
+		<td  class="RectBottom">&nbsp;</td>
+		<td><img src="images/rect-bottom-right.png" hspace="0" vspace="0" border="0"></td>
+	</tr>
+</table>
