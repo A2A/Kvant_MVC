@@ -20,17 +20,8 @@
 			<table  border="0" cellspacing="0" cellpadding="0" class="Task">       
 				<tr> 
 					<td class="LeftColDark">Постановщик</td> 
-					<td class="CenterRowTop">{?Object=this&Var=this(Owner)}&nbsp;</td> 
+					<td class="CenterRowTop">{?Object=this&Var=this(Manager)}&nbsp;</td> 
 					<td class="ButtonRowTop">&nbsp;</td> 
-				</tr>  
-				<tr> 
-					<td class="LeftColLight">Испольнитель</td> 
-					<td class="CenterRow"> 
-						<input type=hidden name='UserID' id='UserID' value="{?Object=this&Var=this(UserID)}"> 
-						<input class="input_text"  onkeyup="AutoSelectInText(this,event,'User',true);" id="User" onBlur="CloseWindow('UserDiv');" value="{?Object=this&Var=this(User)}"><br> 
-						<div id='UserDiv' class="DivSelectForm"></div> 
-					</td> 
-					<td class="ButtonRow"><img src="images/button-forms-select.png" OnClick="AutoSelectInText(document.getElementById('User'),event,'User');"  class="ButtonCheckForm"></td> 
 				</tr>  
 				<tr> 
 					<td class="LeftColLight">Проект</td> 
@@ -57,9 +48,24 @@
 					</td> 
 					<td class="ButtonRow"><img src="images/button-forms-select.png" OnClick="AutoSelectInText(this,event,'Contractor');"  class="ButtonCheckForm"></td> 
 				</tr> 
-
-
-				<tr> 
+				<tr>
+					<td class="LeftColLight">Исполнитель</td>
+					<td class="CenterRow">
+						<input type=hidden name='UserID' id='UserID' value="{?Object=this&Var=this(UserID)}"> 
+						<input class="input_text"  onkeyup="AutoSelectInText(this,event,'User',this.value);" id="User" onBlur="CloseWindow('UserDiv');" value="{?Object=this&Var=this(User)}"><br> 
+						<div id='UserDiv' class="DivSelectForm"></div> 
+					</td>
+					<td class="ButtonRow"><img src="images/button-forms-select.png" OnClick="AutoSelectInText(document.getElementById('User'),event,'User');"  class="ButtonCheckForm"></td>
+				</tr>
+				<tr>
+					<td class="LeftColLight">Роль исполнителя</td>
+					<td class="CenterRow">
+						<input type=hidden name='RoleID' id='RoleID' value="{?Object=DRU&Var=ID}"> 
+						<input class="input_text"  onkeyup="AutoSelectInText(this,event,'Role',this.value);" id="Role" onBlur="CloseWindow('RoleDiv');" value="{?Object=DRU&Var=RoleDescr}"><br> 
+						<div id='RoleDiv' class="DivSelectForm"></div> 
+					</td>
+					<td class="ButtonRow"><img src="images/button-forms-select.png" OnClick="AutoSelectInText(document.getElementById('Role'),event,'Role');"  class="ButtonCheckForm"></td>
+				</tr><tr> 
 					<td class="LeftColLight">Время постановки</td> 
 					<td class="CenterRow">
 						<input type=hidden value="{?Object=this&Var=this(InitDate)}" id='InitDateValue'> 
@@ -71,7 +77,7 @@
 				<tr> 
 					<td class="LeftColLight">Начало выполнения</td> 
 					<td class="CenterRow">
-						<input type=hidden1 value="{?Object=this&Var=this(StartDate)}" id='StartDateValue'>   
+						<input type=hidden value="{?Object=this&Var=this(StartDate)}" id='StartDateValue'>   
 						<span id="StartDate">&nbsp;</span>
 					</td>
 					<td class="ButtonRow"><img src="images/button-forms-calendar.png"  OnClick="Calendar(event, 'StartDateValue');"  class="ButtonCheckForm"></td> 
@@ -79,7 +85,7 @@
 				<tr> 
 					<td class="LeftColLight">Конец выполнения</td> 
 					<td class="CenterRow">
-						<input type=hidden1 value="{?Object=this&Var=this(FinishDate)}" id='FinishDateValue'>
+						<input type=hidden value="{?Object=this&Var=this(FinishDate)}" id='FinishDateValue'>
 						<span id="FinishDate">&nbsp;</span>
 					</td> 
 					<td class="ButtonRow"><img src="images/button-forms-calendar.png"  OnClick="Calendar(event, 'FinishDateValue');"  class="ButtonCheckForm"></td> 
@@ -99,7 +105,7 @@
 
 				<tr> 
 					<td class="LeftColLight">Описание</td> 
-					<td class="CellTextarea" colspan="2"><textarea class="input_textarea" id="TaskFullDescr">{?Object=this&Var=this(FullDescr)}</textarea></td> 
+					<td class="CellTextarea" colspan="2"><textarea class="input_textarea" id="FullDescription">{?Object=this&Var=this(FullDescription)}</textarea></td> 
 				</tr> 
 			</table> 
 			<table width="100%" border="0">  
@@ -113,7 +119,7 @@
 				</tr> 
 			</table> 
 
-			{?Object=task_status&Form=&ID=this(ID)}
+			{?Object=Status&Form=task&ID=this(ID)}
 		</td> 
 		<td style="background: url('images/modal-right.png') repeat-y right;">&nbsp;</td> 
 	</tr> 

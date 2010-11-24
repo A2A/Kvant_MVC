@@ -29,12 +29,12 @@
 		// TODO 4 -o Natali -c Замечание: форма edit и view_full, если запрошено форма редактирования, а пользователь не имеет рава редактировать этот проект, то надо отдавать форму view_full - полное описание 
 
 		public static  $Forms = array(
-		'edit' => 'objects/model/task/edit.html',
-		'ShortInfo' => 'objects/model/task/short_info.html',
-		'view_short' => 'objects/model/task/view_short.html',
-		'view_status' => 'objects/model/task/view_status.html',
-		'view_full' => 'objects/model/task/view_full.html',
-		'new' => 'objects/model/task/new.html',
+		'edit' 			=> 'objects/model/task/edit.html',
+		'shortinfo' 	=> 'objects/model/task/short_info.html',
+		'view_short' 	=> 'objects/model/task/view_short.html',
+		'view_status' 	=> 'objects/model/task/view_status.html',
+		'view_full' 	=> 'objects/model/task/view_full.html',
+		'new' 			=> 'objects/model/task/new.html',
 		);
 
 		public static  $SQLFields = array(
@@ -119,9 +119,9 @@
 		{
 			parent::SetActionData();
 
-			if (isset($this->ProcessData['FullDescr']))
+			if (isset($this->ProcessData['FullDescription']))
 			{
-				$this->FullDescr = $this->ProcessData['FullDescr'];
+				$this->FullDescription = $this->ProcessData['FullDescription'];
 				$this->Modified = true;
 			}
 
@@ -216,35 +216,49 @@
 
 					$this->FullDescription = $fetch->FULL_DESCR;
 
-					/*
-					if ($this->OwnerID != intval($fetch->MANAGERID))
+
+					if ($this->ManagerID != intval($fetch->MANAGERID))
 					{
-						$this->OwnerID = intval($fetch->MANAGERID);
-						if (!is_null($this->OwnerID))
+						$this->ManagerID = intval($fetch->MANAGERID);
+						if (!is_null($this->ManagerID))
 						{
-							$ClassName =  $this->OwnerType;
-							$this->Owner = $ClassName::GetObject($null,$null,$this->DataBase,$this->OwnerID);
+							$ClassName =  'User';
+							$this->Manager = $ClassName::GetObject($null,$this->ManagerID);
 						}
 						else
 						{
-							$this->Owner = null;
+							$this->Manager = null;
 						}
 					}
 
-					if ($this->UserID != intval($fetch->USERID))
+					if ($this->ContractorID != intval($fetch->CONTRCTORID))
 					{
-						$this->UserID = intval($fetch->USERID);
-						if (!is_null($this->UserID))
+						$this->ContractorID = intval($fetch->CONTRCTORID);
+						if (!is_null($this->ContractorID))
 						{
-							$ClassName = $this->OwnerType;
-							$this->User = $ClassName::GetObject($null,$null,$this->DataBase,$this->UserID);
+							$ClassName =  'Contractor';
+							$this->Contractor = $ClassName::GetObject($null,$this->ContractorID);
 						}
 						else
 						{
-							$this->User = null;
+							$this->Contractor = null;
 						}
 					}
-					*/
+					
+					if ($this->DRUID != intval($fetch->DRUID))
+					{
+						$this->DRUID = intval($fetch->DRUID);
+						if (!is_null($this->DRUID))
+						{
+							$ClassName = "DRU";
+							$this->DRU = $ClassName::GetObject($null,$this->DRUID);
+						}
+						else
+						{
+							$this->DRU = null;
+						}
+					}
+
 					if (is_null($fetch->READY_STATE) or $fetch->READY_STATE == "")
 						$this->ReadyState = 0;
 					else
@@ -257,7 +271,7 @@
 			{
 				$this->Manager = User::GetObject($null,$this->CurrentUserID);
 				$this->ManagerID = $this->CurrentUserID;
-				
+
 				$tmpDate = mktime();
 				$this->InitDate = $tmpDate;
 				$this->InitDateText = DateTimeToStr($this->InitDate);
@@ -268,9 +282,21 @@
 				//print_r($this); 
 
 			}
-			
+
 		}
 
+		public function SaveAction()
+		{
+			if ($this->SetActionData()) 
+			{
+				$Result = $this->Save(); 
+			}
+			else 
+				$Result = true;
+				
+			return $Result;
+		}
+		
 		public function Save()
 		{
 			if (!intval($this->ID))
@@ -280,7 +306,9 @@
 				FULL_DESCR,DRUID,MANAGERID,READY_STATE) 
 				values (NULL,"'.$this->Description.'","'.DateTimeToMySQL($this->InitDate).'","'.DateTimeToMySQL($this->StartDate).'","'.DateTimeToMySQL($this->FinishDate).'",
 				"'.$this->FullDescription.'",'.(intval($this->Owner)?intval($this->Owner):'null').',"'.(intval($this->UserID)?intval($this->UserID):'null').',"'.$this->ReadyState.'")';
-
+	/*    `ID`  `DESCRIPTION``PARENTID` `PROJECTID`  `DATE_INIT`  `DATE_START``DATE_FINISH`
+`FULL_DESCR`  `MANAGERID` `DRUID`   `READY_STATE`  `STATUSID` `CLASSID` `CONTRCTORID`
+*/
 				// TODO 4 -o Natali -c сообщение для отладки: SQL  
 				ErrorHandle::ErrorHandle($sql);   
 
@@ -310,9 +338,10 @@
 				DATE_FINISH="'.DateTimeToMySQL($this->FinishDate).'",
 				FULL_DESCR="'.$this->FullDescription.'", 
 				READY_STATE="'.$this->ReadyState.'", 
-				MANAGERID='.(intval($this->OwnerID)?intval($this->OwnerID):'null').', 
+				CONTRCTORID='.(intval($this->ContractorID)?intval($this->ContractorID):'null').', 
 				DRUID='.(intval($this->DRUID)?intval($this->DRUID):'null').' 
 				where ID = '.$this->ID;
+			 
 
 				ErrorHandle::ErrorHandle($sql);
 				$hSql = DBMySQL::Query($sql);
@@ -327,6 +356,7 @@
 					$Result = true;
 				}
 			}
+			return $Result;
 		}      
 
 		public function GetLevel()

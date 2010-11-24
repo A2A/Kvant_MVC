@@ -91,13 +91,7 @@ function SelectStaff(Text)
 function SelectContractor(Text)
 {
 	document.getElementById('ContractorDiv').style.display = 'block'; 
-	document.getElementById('ContractorDiv').innerHTML = '<table border="0" cellspacing=0 cellpadding=0 id="ListUsers" width="100%">'+ 
-   '<tr><td class="CellLeft" id="td0"></td><tr><td id="ValueTd1">1</td><td class="CellLeft" id="td1" onclick="SetSelectValue(1,\'Contractor\')">Вася Васичкин</td> '+
-	'    <td class="Cell" onclick="SetSelectValue(1,\'Contractor\')">Программист, бухгалтер</td> </tr>'+ 
-	'<tr><td id="ValueTd2">2</td><td class="CellLeft" id="td2" onclick="SetSelectValue(2,\'Contractor\')">Молев Д.В.</td> '+
-	'    <td class="Cell" onclick="SetSelectValue(2,\'Contractor\')">разработчик</td></tr>    '+
-   ' <tr><td id="ValueTd3">3</td><td class="CellLeft" id="td3" onclick="SetSelectValue(3,\'Contractor\')">Куликов А.А,</td>   '+
-	'    <td class="Cell" onclick="SetSelectValue(3,\'Contractor\')">секретарь</td </tr>  </table> ' + Text;
+	document.getElementById('ContractorDiv').innerHTML = Text;
 	//alert("form.js SelectContractor()");       
 }
 
@@ -125,7 +119,7 @@ function AutoSelectInText(ObjId,event,ObjectName,Filtered)
 		}
 		if (ObjectName == 'Contractor')
 		{
-			Url = "?Ajax=1&Object=UserList&Form=selectbox&Enc=Рус";
+			Url = "?Ajax=1&Object=ContractorList&Form=selectbox&Enc=Рус";
 			if (Filtered) Url = Url + "&Filter[1][Field]=Description&Filter[1][Oper]=like&Filter[1][Val]=" + ObjId.value;
 			if (Filtered || document.getElementById('ContractorDiv').style.display!='block') 
 			{
@@ -217,7 +211,7 @@ function CloseModalWindow()
 	//MainPage
 }
 
-		  function CatchTaskOpen(Text)
+function CatchTaskOpen(Text)
 {
 	ModalWindowOpen = 'Task';
 	document.getElementById('NoActionDesktop').style.display = "block"; 
@@ -267,19 +261,26 @@ function NewTask()
 	location.href ="?Object=System&Form=task";
 }
 
+function ListTaskEvent(TaskID)
+{
+	 location.href ="?Object=System&Form=event_list&Filter[0][Field]=TaskID&Filter[0][Oper]=eq&Filter[0][Val]="+TaskID;   
+}
+
 function SaveTask()
 {
-	params = "Object=Task&Action=save&ID=" + document.getElementById('ID').value;
+	params = "Object=Task&Action=save";
+	if (document.getElementById('ID')) params = params + "&ID="            + document.getElementById('ID').value;
 	params = params + "&UserID="            + document.getElementById('UserID').value;
 	params = params +  "&ProjectID="    + document.getElementById('ProjectID').value ;
 	params = params + "&ParentID="       + document.getElementById('ParentID').value;
 	params = params  + "&ContractorID="       + document.getElementById('ContractorID').value;
 	params = params  + "&StartDateValue="     + document.getElementById('StartDateValue').value;
 	params = params  + "&FinishDateValue="    + document.getElementById('FinishDateValue').value;
-	params = params  + "&FullDescription="      + document.getElementById('TaskFullDescr').value;
-	params = params  + "&ReadyState="      + document.getElementById('ReadyState').value;
+	params = params  + "&FullDescription="      + document.getElementById('FullDescription').value;
+	if (document.getElementById('ReadyState')) params = params  + "&ReadyState="      + document.getElementById('ReadyState').value;
+	if (document.getElementById('Description')) params = params  + "&Description="      + document.getElementById('Description').value;
 	params = params  + "";
- 
+   
 	Text = AjaxSendPOSTSync(params);
 	Res = ParseStatusXML(Text,'Сохранение задачи');
 	return 1;
@@ -406,9 +407,8 @@ function CatchTPECreate(Text)
 function CreateNewElement(EventTypeId)
 {
 	TPETypeId = EventTypeId;
-	Param = "&Filter[0][Field]=UserID&Filter[0][Oper]=eq&Filter[0][Val]=SESSION(CurrentUserID)";
-	Param = Param + "&Filter[1][Field]=RoleID&Filter[1][Oper]=!eq&Filter[1][Val]=";
-	AjaxSendGET("?Ajax=1&Object=DRUList&Form=tpe_create" + Param,CatchTPECreate);   
+	AjaxSendGET("?Ajax=1&Object=System&Form=current_list_role",CatchTPECreate);  
+	document.getElementById('FullListEventType').style.display = 'none';   
 }
 
 function ChangeDRU(DRUID)
@@ -426,7 +426,7 @@ function ChangeDRU(DRUID)
 	{
 		AjaxSendGET("?Ajax=1&Object=Task&Form=new&&DRUID="+DRUID+"&TypeID="+TPETypeId,CatchTaskOpen); 
 	}
-		alert(ModalWindowOpen);
+	//	alert(ModalWindowOpen);
 	
 }
 
@@ -517,7 +517,10 @@ function ClickEvent(ID,Continue)
 	}
 } 
 
-
+function NewEvent()
+{
+	location.href = "?Object=System&Form=event";      
+}
 
 function VisibleControlBlock(BlockId)
 {   

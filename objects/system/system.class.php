@@ -46,6 +46,7 @@
 		'ssp' 					=> 'objects/system/ssp.html',
 		'' 						=> 'objects/system/all_url.html',
 		'all_url' 				=> 'objects/system/all_url.html',
+		'current_list_role' 	=> 'objects/system/current_list_role.html',
 	);
 
 		public $meta = '';

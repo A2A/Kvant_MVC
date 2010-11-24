@@ -10,7 +10,7 @@
 		<td class="RoundLeft">&nbsp;</td>
 		<td class="RoundCenter" valign="top">
 
-			<img src="images/status-{?Object=this&Var=this(CurrentStatusID)}.png" class="img" alt="{?Object=this&Var=this(CurrentStatus)}" hspace="3" align="left">
+			<img src="images/status-{?Object=this&Var=this(CurrentStatusID)}.png" class="img" alt="{?Object=this&Var=this(CurrentStatus)}" hspace="3" align="left">&nbsp;
 			<h2 class="{?Object=this&Var=this(State)}">
 				<input type=hidden name='ID' id='ID' value="{?Object=this&Var=this(ID)}">{?Object=this&Var=this(Description)}</h2> 
 			<br>
@@ -19,7 +19,7 @@
 				<tr>
 					<td class="LeftColDark">Постановщик</td>
 					<td class="CenterRowTop">
-						{?Object=this&Var=this(User)}&nbsp; 
+						{?Object=this&Var=this(Manager)}&nbsp; 
 					</td>
 					<td class="ButtonRowTop">&nbsp;</td>
 				</tr>  
@@ -33,7 +33,7 @@
 				<tr> 
 					<td class="LeftColLight">Задача-владелец</td> 
 					<td class="CenterRow">
-						{?Object=this&Var=this(Parent)}
+						{?Object=this&Var=this(Parent)}&nbsp;
 					</td> 
 					<td class="ButtonRow">&nbsp;</td> 
 				</tr> 
@@ -41,10 +41,18 @@
 				<tr>
 					<td class="LeftColLight">Контрагент</td>
 					<td class="CenterRow">
-						{?Object=this&Var=this(Contractor)}
+						{?Object=this&Var=this(Contractor)}&nbsp;
 					</td>
 					<td class="ButtonRow">&nbsp;</td>
 				</tr>
+				<tr>
+					<td class="LeftColLight">Исполнитель</td>
+					<td class="CenterRow">
+						{?Object=this&Var=this(DRU)}&nbsp; 
+					</td>
+					<td class="ButtonRow">&nbsp;</td>
+				</tr>
+			
 				<tr> 
 					<td class="LeftColLight">Время создания</td> 
 					<td class="CenterRow">
@@ -82,7 +90,7 @@
 				</tr> 
 				<tr> 
 					<td class="LeftColLight">Описание</td> 
-					<td class="CellTextarea" colspan="2">{?Object=this&Var=this(FullDescr)}</td> 
+					<td class="CellTextarea" colspan="2">{?Object=this&Var=this(FullDescription)}&nbsp;</td> 
 				</tr> 
 			</table>
 
@@ -94,7 +102,7 @@
 					</td>
 					<td align="right" width="210px">
 						<div class="ButtonLightBlue BigButton"><nobr><img src="images/button-blue-1.png" class="img" align="left" hspace="0"><img src="images/button-blue-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonLightBlue BigButton"  onClick="ListTaskEvent({?Object=this&Var=this(ID)});">Список событий по задаче</a></nobr></div>
-						<div class="ButtonOrange BigButton"><nobr><img src="images/button-orange-1.png" class="img" align="left" hspace="0"><img src="images/button-orange-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonOrange BigButton"  onClick="NewTaskEvent({?Object=this&Var=this(ID)});">Добавить событие к задаче</a></nobr></div>
+						<div class="ButtonOrange BigButton"><nobr><img src="images/button-orange-1.png" class="img" align="left" hspace="0"><img src="images/button-orange-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonOrange BigButton"  onClick="NewEvent();">Добавить событие к задаче</a></nobr></div>
 						<div class="ButtonOrange BigButton"><nobr><img src="images/button-orange-1.png" class="img" align="left" hspace="0"><img src="images/button-orange-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonOrange BigButton"  onClick="NewTask({?Object=this&Var=this(ID)});">Создать новую задачу</a></nobr></div>
 					</td>
 				</tr>

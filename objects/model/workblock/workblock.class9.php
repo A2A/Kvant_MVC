@@ -1,32 +1,26 @@
 <?php
-	class WorkBlock extends BaseClass
+	class WorkBlock extends AbstractTemplate
 	{
 		public $ID;
 		public $ProjectID;
 		public $TaskID;
 
-		public static  $Forms = array(
-		'gant_header' => 'objects/model/workblock/gh.html',
-		'td_status' => 'objects/model/workblock/td_status.html',
+		protected $Forms = array(
+		'gant_header' => 'html/workblock/gh.html',
 		);
 
-		public function __construct($ProcessData,$ID)
+		public function __construct(&$ProcessData,&$ViewData,&$DataBase,$ID)
 		{
-			if (isset($ProcessData['ProjectID']))
-			{
-				//print_R($ProcessData); 
-				//echo "<hr>";
-			}
-			parent::__construct($ProcessData,$ID);
-		
+			parent::__construct($ProcessData,$ViewData,$DataBase);
+
 			if (isset($ID) and (intval($ID)>0)) $this->ID = intval($ID);
-			elseif (isset($ProcessData['ID']) and (intval($ProcessData['ID'])>0)) $this->ID = intval($ProcessData['ID']);
+			elseif (isset($ViewData['ID']) and (intval($ViewData['ID'])>0)) $this->ID = intval($ViewData['ID']);
 			else
 				$this->ID = 1;
 
-			if (isset($ProcessData['ProjectID'])) $this->ProjectID = $this->ProcessData['ProjectID'] = $ProcessData['ProjectID'];
-			if (isset($ProcessData['TaskID'])) $this->TaskID = $this->ProcessData['TaskID'] = $ProcessData['TaskID'];
-			//print_r($this);
+			if (isset($this->ViewData['ProjectID'])) $this->ProjectID = $this->ViewData['ProjectID'];
+			if (isset($this->ViewData['TaskID'])) $this->TaskID = $this->ViewData['TaskID'];
+
 		}
 
 
@@ -43,13 +37,13 @@
 			{
 				case 'duration' : 
 				{
-					$int = Interval::GetObject($null,$_SESSION['CurrentInt']);
+					$int = Interval::GetObject($null,$null,$this->DataBase,$_SESSION['CurrentInt']);
 					$res = $int->Duration;
 					break;
 				}
 				case 'start' : 
 				{
-					$int = Interval::GetObject($null,$_SESSION['CurrentInt']);  
+					$int = Interval::GetObject($null,$null,$this->DataBase,$_SESSION['CurrentInt']);  
 
 					if (isset($_SESSION['CurrentWPTime'])) $StartWPTime = $_SESSION['CurrentWPTime'];
 					else $StartWPTime = time() - 8*$int->Duration;
@@ -58,7 +52,7 @@
 				}
 				case 'finish' : 
 				{
-					$int = Interval::GetObject($null,$_SESSION['CurrentInt']);  
+					$int = Interval::GetObject($null,$null,$this->DataBase,$_SESSION['CurrentInt']);  
 
 					if (isset($_SESSION['CurrentWPTime'])) $StartWPTime = $_SESSION['CurrentWPTime'];
 					else $StartWPTime = time() - 8*$int->Duration;
@@ -81,7 +75,7 @@
 
 				case 'text' : 
 				{
-					$int = Interval::GetObject($null,$_SESSION['CurrentInt']);  
+					$int = Interval::GetObject($null,$null,$this->DataBase,$_SESSION['CurrentInt']);  
 
 					if (isset($_SESSION['CurrentWPTime'])) 
 						$StartWPTime = $_SESSION['CurrentWPTime'];
@@ -97,12 +91,9 @@
 				}
 				case 'state': 
 				{   // все правильно расчитывает
-					//echo "state - ".$this->ProjectID."=".$this->ProcessData['TaskID']."="; 
-					
-					if (is_numeric($this->ProjectID))
-					{   
-						$Obj = Project::GetObject($null,intval($this->ProcessData['ProjectID']));
-						//print_r($Obj);
+					if (isset($this->ViewData['ProjectID']) and is_numeric($this->ViewData['ProjectID']))
+					{
+						$Obj = Project::GetObject($null,$null,$this->DataBase,intval($this->ViewData['ProjectID']));
 						if (($Obj->StartDate > $this->Finish) or (!is_null($Obj->FinishDate) and $Obj->FinishDate <= $this->Start))
 						{
 							$res = 'None';
@@ -112,9 +103,9 @@
 							$res = $Obj->State;
 						}
 					}
-					elseif (isset($this->ProcessData['TaskID']))
+					elseif (isset($this->ViewData['TaskID']))
 					{
-						$Obj = Task::GetObject($null,intval($this->ProcessData['TaskID']));
+						$Obj = Task::GetObject($null,$null,$this->DataBase,intval($this->ViewData['TaskID']));
 						if (($Obj->StartDate > $this->Finish) or ((!is_null($Obj->FinishDate)) and $Obj->FinishDate < $this->Start))
 						{
 							$res = 'None';
@@ -135,13 +126,13 @@
 
 				case 'readystate':
 				{
-					if (isset($this->ProcessData['ProjectID']) and is_numeric($this->ProcessData['ProjectID']))
+					if (isset($this->ViewData['ProjectID']) and is_numeric($this->ViewData['ProjectID']))
 					{
-						$Obj = Project::GetObject($null,intval($this->ProcessData['ProjectID']));
+						$Obj = Project::GetObject($null,$null,$this->DataBase,intval($this->ViewData['ProjectID']));
 					}
-					elseif (isset($this->ProcessData['TaskID']))
+					elseif (isset($this->ViewData['TaskID']))
 					{
-						$Obj = Task::GetObject($null,intval($this->ProcessData['TaskID']));
+						$Obj = Task::GetObject($null,$null,$this->DataBase,intval($this->ViewData['TaskID']));
 					}
 					else
 					{
@@ -188,17 +179,17 @@
 				}
 				case 'readystatetext':
 				{
-					if (isset($this->ProcessData['ProjectID']) and is_numeric($this->ProcessData['ProjectID']))
+					if (isset($this->ViewData['ProjectID']) and is_numeric($this->ViewData['ProjectID']))
 					{
-						$Obj = Project::GetObject($null,intval($this->ProcessData['ProjectID']));
+						$Obj = Project::GetObject($null,$null,$this->DataBase,intval($this->ViewData['ProjectID']));
 						if ($this->readystate == 'stop' and $this->state != 'None') 
 							$res = $Obj->ReadyState.'<small>%</small>';
 						else 
 							$res = '&nbsp;';
 					}
-					elseif (isset($this->ProcessData['TaskID']))
+					elseif (isset($this->ViewData['TaskID']))
 					{
-						$Obj = Task::GetObject($null,intval($this->ProcessData['TaskID']));
+						$Obj = Task::GetObject($null,$null,$this->DataBase,intval($this->ViewData['TaskID']));
 						if ($this->readystate == 'stop' and $this->state != 'None') 
 							$res = $Obj->ReadyState.'<small>%</small>';
 						else 
@@ -206,7 +197,7 @@
 					}
 					else
 					{
-						$res = '&nbsp;';    
+						$res = '';    
 					}
 
 					break;
@@ -216,10 +207,9 @@
 			return $res;
 		}
 		
-		static public function GetObject(&$ProcessData,$id=null)
+		static public function GetObject(&$ProcessData,&$ViewData,&$DataBase,$id=null)
 		{
-			return new WorkBlock($ProcessData,$id);
+			return static::GetObjectInstance($ProcessData,$ViewData,$DataBase,$id,__CLASS__);
 		}
-
 	} 
 ?>

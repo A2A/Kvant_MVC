@@ -8,7 +8,7 @@
 		'view_full' 	=> 'objects/model/project/view_full.html',
 		'new' 			=> 'objects/model/project/new.html',
 		'view_status' 	=> 'objects/model/project/view_status.html',
-		'ShortInfo' => 'objects/model/task/short_info.html',
+		'shortinfo' 	=> 'objects/model/project/short_info.html',
 		
 		);
 
