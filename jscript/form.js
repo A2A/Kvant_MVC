@@ -34,7 +34,7 @@ function SendLogout()
 
 function SetDRU(ID)
 {
-	params = "Object=System&Action=SetDRU&DRUID="+ID;
+	params = "Object=System&Action=SetDRU&ID="+ID;
 	
 	Text = AjaxSendPOSTSync(params);
 	Res = ParseStatusXML(Text,'');
