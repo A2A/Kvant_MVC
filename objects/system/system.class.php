@@ -10,7 +10,7 @@
         'changepassword'=>'ChangePassword',
         'checksession'=>'IsUserAuthorized',
         'setinterval'=>'SetInterval',
-        'setdru'=>'SetDRU',
+        'setdru'=>'SetDRUAction',
         'shiftinterval'=>'ShiftInterval'
         );
         public static $UnAuthActions = array(
@@ -82,9 +82,9 @@
                 case 'CurrentUserID': return (isset($_SESSION['CurrentUserID']) and intval($_SESSION['CurrentUserID']) >0)?$_SESSION['CurrentUserID']:null; break;
                 case 'CurrentUser'  : return is_null($this->CurrentUserID)?null:(User::GetObject($null,$_SESSION['CurrentUserID'])); 
                 case 'CurrentRoleID': return (isset($_SESSION['CurrentRoleID']) and intval($_SESSION['CurrentRoleID']) >0)?$_SESSION['CurrentRoleID']:null; break;
-                case 'CurrentRole'  : return is_null($this->CurrentRoleID)?null:(User::GetObject($null,$_SESSION['CurrentRoleID'])); 
+                case 'CurrentRole'  : return is_null($this->CurrentRoleID)?null:(Role::GetObject($null,$_SESSION['CurrentRoleID'])); 
                 case 'CurrentDRUID' : return (isset($_SESSION['CurrentDRUID']) and intval($_SESSION['CurrentDRUID']) >0)?$_SESSION['CurrentDRUID']:null; break;
-                case 'CurrentDRU'   : return is_null($this->CurrentDRUID)?null:(User::GetObject($null,$_SESSION['CurrentDRUID'])); 
+                case 'CurrentDRU'   : return is_null($this->CurrentDRUID)?null:(DRU::GetObject($null,$_SESSION['CurrentDRUID'])); 
             }
         }
 
@@ -248,11 +248,11 @@
             }
             elseif (intval($this->ProcessData['ID'])<=0)
             {
-                ErrorHandle::ActionErrorHandle('Переданs неверные данные для смены текущего элемента Подразделение/Роль/Сотрудник',2);
+                ErrorHandle::ActionErrorHandle('Переданы неверные данные для смены текущего элемента Подразделение/Роль/Сотрудник',2);
             }
             else
             {
-                $result = SetDRU($this->ProcessData['ID']);
+                $result = $this->SetDRUID($this->ProcessData['ID']);
             }
             return $result;
         }

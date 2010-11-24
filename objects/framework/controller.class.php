@@ -115,7 +115,7 @@
 				$Action = strtolower($Data['Action']);
 				if (!class_exists($ClassName))
 				{
-					ErrorHandle::ErrorHandle('Отсутствует класс '.$ClassName.' для обработки события '.$Action.'.', 0);					
+					ErrorHandle::ErrorHandle('Отсутствует класс '.$ClassName.' для обработки события '.$Action.'.', 3);					
 				}
 				elseif (!isset($ClassName::$Actions[$Action]))
 				{
@@ -127,11 +127,11 @@
 
 					if (!method_exists($ClassName,$MethodName))
 					{
-						ErrorHandle::ActionErrorHandle('Метод '.$MethodName.' обработки события '.$Action.' не определен в объекте '.$ClassName.'.', 0);
+						ErrorHandle::ActionErrorHandle('Метод '.$MethodName.' обработки события '.$Action.' не определен в объекте '.$ClassName.'.', 1);
 					}
 					elseif (!Controller::CheckActionAccess($Action,$ClassName))
 					{
-						ErrorHandle::ActionErrorHandle('Нарушение прав доступа к обработчику события '.$Action.' класса '.$ClassName.'.', 0);
+						ErrorHandle::ActionErrorHandle('Нарушение прав доступа к обработчику события '.$Action.' класса '.$ClassName.'.', 1);
 					}
 					else
 					{
