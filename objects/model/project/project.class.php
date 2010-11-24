@@ -154,9 +154,6 @@
 
 		public function SaveAction()
 		{
-			print_r($this);
-			echo "<hr>";
-			print_r($this);
 			$this->SetActionData();
 			if (!intval($this->ID))
 			{

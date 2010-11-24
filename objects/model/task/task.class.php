@@ -304,9 +304,9 @@
 				// TODO 4 -o Natali -c Ошибка формирования SQL запроса: при создании если не установлен пользователь, надо получить текущего для $this->UserID
 				// TODO 4 -o Natali -c Ошибка формирования SQL запроса: при создании если указываем в поле Manager выбранное DRU текущего пользователя
 				$sql = 'insert into '.$this->DBTableName.' (ID, DESCRIPTION,DATE_INIT,DATE_START,DATE_FINISH,
-				FULL_DESCR,DRUID,MANAGERID,READY_STATE) 
+				FULL_DESCR,DRUID,MANAGERID,READY_STATE,CONTRACTORID) 
 				values (NULL,"'.$this->Description.'","'.DateTimeToMySQL($this->InitDate).'","'.DateTimeToMySQL($this->StartDate).'","'.DateTimeToMySQL($this->FinishDate).'",
-				"'.$this->FullDescription.'",'.(intval($this->Owner)?intval($this->Owner):'null').',"'.(intval($this->UserID)?intval($this->UserID):'null').',"'.$this->ReadyState.'")';
+				"'.$this->FullDescription.'",'.(intval($this->Owner)?intval($this->Owner):'null').',"'.(intval($this->UserID)?intval($this->UserID):'null').',"'.$this->ReadyState.'",'.(intval($this->ContractorID)?intval($this->ContractorID):'null').')';
 	
 				// TODO 4 -o Natali -c сообщение для отладки: SQL  
 				ErrorHandle::ErrorHandle($sql);   
@@ -336,8 +336,8 @@
 				DATE_START="'.DateTimeToMySQL($this->StartDate).'",
 				DATE_FINISH="'.DateTimeToMySQL($this->FinishDate).'",
 				FULL_DESCR="'.$this->FullDescription.'", 
-				READY_STATE="'.$this->ReadyState.'", 
-				CONTRCTORID='.(intval($this->ContractorID)?intval($this->ContractorID):'null').', 
+				READY_STATE="'.intval($this->ReadyState).'", 
+				CONTRACTORID='.(intval($this->ContractorID)?intval($this->ContractorID):'null').', 
 				DRUID='.(intval($this->DRUID)?intval($this->DRUID):'null').' 
 				where ID = '.$this->ID;
 			 

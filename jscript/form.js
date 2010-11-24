@@ -190,7 +190,6 @@ function SelectScroll(event,ObjectName)
 function SetSelectValue(ElementId,ObjectName)
 {
 	document.getElementById(ObjectName).value = document.getElementById('td'+ElementId).innerHTML;   
-	alert(ObjectName);
 	document.getElementById(ObjectName+'ID').value = document.getElementById('ValueTd'+ElementId).innerHTML;   
 	document.getElementById(ObjectName+'Div').style.display = 'none'; 
 	document.getElementById(ObjectName+'Div').innerHTML = ""; 
@@ -242,9 +241,9 @@ function ClickTaskView(ID)
 	
 }
 
-function ClickTask(ID)
+function ClickTask(ID,event)
 {
-	
+	alert(ModalWindowOpen);
 	if (ModalWindowOpen == 'none') 
 	{
 		Url = "?Ajax=1&Object=Task&Form=edit&ID=" + ID;
@@ -253,11 +252,43 @@ function ClickTask(ID)
 	}
 	else
 	{
-		Url = "?Ajax=1&Object=Task&Form=ShortInfo&ID=" + ID;
-		AjaxSendGET(Url,CatchTaskShortInfo);
-		return 1;
+		document.getElementById('SelectAction').style.display = "block"; 
+		document.getElementById('SelectAction').style.position = "absolute"; 
+		document.getElementById('SelectAction').style.top = (event.clientY + document.body.scrollTop - 10); 
+		document.getElementById('SelectAction').style.left = (event.clientX + document.body.scrollLeft - 50); 
+		document.getElementById('SelectAction').style.zIndex = 2000; 
+		document.getElementById('SelectAction').innerHTML = 
+		'<table border="0" cellspacing=0 cellpadding=0>'+
+	'<tr>'+
+		'<td><img src="images/rect-top-left.png" hspace="0" vspace="0" border="0"></td>'+
+		'<td class="RectTop">&nbsp;</td>'+
+		'<td><img src="images/rect-top-right.png" hspace="0" vspace="0" border="0"></td>'+
+	'</tr>'+
+	'<tr>'+
+		'<td class="RectLeft">&nbsp;</td>'+
+		'<td class="InfoBody" valign="top"> '+
+			'<a href="#" OnClick="FillFieldTask(' + ID + ');document.getElementById(\'SelectAction\').style.display = \'none\';">Заполнить поле "Задача"</a> <br>'+
+			'<a href="#" OnClick="ModalWindowOpen=\'none\';ClickTask(' + ID + ');document.getElementById(\'SelectAction\').style.display = \'none\';">Открыть</a> '+
+		'</td> '+
+		'<td  class="RectRight">&nbsp;</td> '+
+	'</tr> '+
+	'<tr>  '+
+		'<td><img src="images/rect-bottom-left.png" hspace="0" vspace="0" border="0"></td> '+
+		'<td  class="RectBottom">&nbsp;</td> '+
+		'<td><img src="images/rect-bottom-right.png" hspace="0" vspace="0" border="0"></td>'+
+	'</tr>'+
+'</table>';      
+		
 	}
 }
+
+function FillFieldTask(ID)
+{
+	 Url = "?Ajax=1&Object=Task&Form=ShortInfo&ID=" + ID;
+	 AjaxSendGET(Url,CatchTaskShortInfo);
+	 return 1;
+}
+
 function NewTask()
 {
 	location.href ="?Object=System&Form=task";
@@ -317,7 +348,7 @@ function ClickProjectView(ID)
 	
 }
 
-function ClickProject(ID)
+function ClickProject(ID,event)
 {
 	
 	if (ModalWindowOpen == 'none') 
@@ -330,8 +361,9 @@ function ClickProject(ID)
 	{
 		document.getElementById('SelectAction').style.display = "block"; 
 		document.getElementById('SelectAction').style.position = "absolute"; 
-		document.getElementById('SelectAction').style.top = "200"; 
-		document.getElementById('SelectAction').style.left = "0"; 
+		document.getElementById('SelectAction').style.top = (event.clientY + document.body.scrollTop - 10); 
+		document.getElementById('SelectAction').style.left = (event.clientX + document.body.scrollLeft - 50); 
+		document.getElementById('SelectAction').style.zIndex = 2000; 
 		document.getElementById('SelectAction').innerHTML = 
 		'<table border="0" cellspacing=0 cellpadding=0>'+
 	'<tr>'+
@@ -342,7 +374,7 @@ function ClickProject(ID)
 	'<tr>'+
 		'<td class="RectLeft">&nbsp;</td>'+
 		'<td class="InfoBody" valign="top"> '+
-			'<a href="#" OnClick="FillFieldProject(' + ID + ');document.getElementById(\'SelectAction\').style.display = \'none\';">Заполнить поле "Проект"</a> '+
+			'<a href="#" OnClick="FillFieldProject(' + ID + ');document.getElementById(\'SelectAction\').style.display = \'none\';">Заполнить поле "Проект"</a> <br>'+
 			'<a href="#" OnClick="ModalWindowOpen=\'none\';ClickProject(' + ID + ');document.getElementById(\'SelectAction\').style.display = \'none\';">Открыть</a> '+
 		'</td> '+
 		'<td  class="RectRight">&nbsp;</td> '+
@@ -503,7 +535,7 @@ function EventConfirm()
 function EventBlockRefresh()
 {
 	// TODO 10 -o Natali -c JS: подумать над тем, что перегружаем при создании события, нужен ли полный рефрешь страницы.
-	//location.href="?Object=Event&Form=desktop"; 
+	location.href="?Object=System&Form=event"; 
 }
 
 function ClickEvent(ID,Continue)

@@ -10,7 +10,7 @@
 		<td class="RoundLeft">&nbsp;</td>
 		<td class="RoundCenter" valign="top">
 
-			<img src="images/status-{?Object=this&Var=this(CurrentStatusID)}.png" class="img" alt="{?Object=this&Var=this(CurrentStatus)}" hspace="3" align="left">
+			<img src="images/status-{?Object=this&Var=this(CurrentStatusID)}.png" class="img" alt="{?Object=this&Var=this(CurrentStatus)}" hspace="3" align="left"  onMouseOver="VisibleStatusEditProject('{?Object=this&Var=this(ID)}',event);">&nbsp;
 			<h2 class="{?Object=this&Var=this(State)}">
 				<input type=hidden name='ID' id='ID' value="{?Object=this&Var=this(ID)}">{?Object=this&Var=this(Description)}</h2> 
 			<br>
