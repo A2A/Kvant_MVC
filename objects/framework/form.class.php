@@ -173,7 +173,7 @@
 						case "GET":     return @$_GET[$ArgName];
 						case "COOKIE":  return @$_COOKIE[$ArgName];
 						case "SESSION": return @$_SESSION[$ArgName];
-						case "INDEX":   return $this->Index;
+						case "INDEX":   return $this->Object->Index;
 						case "COUNT":   return $this->count();
 						case "THIS":    return $Object->$ArgName; 
 						default :      
