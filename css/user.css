@@ -260,3 +260,20 @@ A.accessRole
 	display: none;
    
 }
+
+div.list_pt
+{
+	height: 25px; 
+	font-size: 10px;
+	border: 1px solid #ffffff;
+}
+
+span.list_pt
+{
+	display: block; 
+	margin-top: 7px;
+	padding:0px;
+	overflow: hidden;
+	width: 250px; 
+	height: 14px;
+}

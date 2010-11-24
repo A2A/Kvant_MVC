@@ -31,9 +31,9 @@ function OnPressKeyBody(event)
 
 function OnClickBody(event)
 {
-	if (document.getElementById('FullListEventType').style.display == 'block')
+	//if (document.getElementById('FullListEventType').style.display == 'block')
 	{
-		alert('FullListEventType');
+		//alert('FullListEventType');
 		//DivHide('FullListEventType');
 		return 1;
 	} 

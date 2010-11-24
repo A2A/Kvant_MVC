@@ -124,7 +124,7 @@ function ShiftInterval(Direction)
 
 function SetStatusTask(StatusID,TaskID)
 {
-	params = "?Ajax=1&Object=Task&Action=SetStatus&TaskID=" + TaskID + "&StatusID=" + StatusID;
+	params = "?Ajax=1&Object=TPStatus&Action=Save&TaskID=" + TaskID + "&StatusID=" + StatusID;
 	Text = AjaxSendPOSTSync(params);
 	Res = ParseStatusXML(Text,'');
 	return 1;
@@ -132,7 +132,7 @@ function SetStatusTask(StatusID,TaskID)
 
 function SetStatusProject(StatusID,ProjectID)
 {
-	Url = "?Ajax=1&Object=Project&Action=SetStatus&ProjectID=" + ProjectID + "&StatusID=" + StatusID;
+	params = "?Ajax=1&Object=TPStatus&Action=Save&ProjectID=" + ProjectID + "&StatusID=" + StatusID;
 	Text = AjaxSendPOSTSync(params);
 	Res = ParseStatusXML(Text,'');
 	return 1;

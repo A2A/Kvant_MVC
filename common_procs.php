@@ -55,6 +55,9 @@
 	
 			case 'WorkBlock'       		: $ClassFileName = 'objects/model/workblock/workblock.class.php'; break;
 			case 'WorkBlockList'        : $ClassFileName = 'objects/model/workblock/workblock.list.class.php'; break;
+			
+			case 'TPStatus'       		: $ClassFileName = 'objects/model/tp_status/tp_status.class.php'; break;
+			case 'TPStatusList'         : $ClassFileName = 'objects/model/tp_status/tp_status.list.class.php'; break;
 
 
 			default                     : $ClassFileName = 'objects/'.strtolower($ClassName).'.class.php';

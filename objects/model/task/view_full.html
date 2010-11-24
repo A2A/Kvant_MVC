@@ -98,7 +98,7 @@
 			<table width="505px" border="0">  
 				<tr>
 					<td align="left">
-						<p>{?Object=StatusList&Form=Change&TaskID=this(ID)}</p>
+							{?Object=TPStatusList&Form=list_pt&Filter[0][Field]=TaskID&Filter[0][Oper]=eq&Filter[0][Val]=this(ID)}
 					</td>
 					<td align="right" width="210px">
 						<div class="ButtonLightBlue BigButton"><nobr><img src="images/button-blue-1.png" class="img" align="left" hspace="0"><img src="images/button-blue-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonLightBlue BigButton"  onClick="ListTaskEvent({?Object=this&Var=this(ID)});">Список событий по задаче</a></nobr></div>

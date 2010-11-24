@@ -227,8 +227,24 @@
 					$this->FinishDate = $tmpDate ;
 
 					$this->FullDescription = $fetch->FULL_DESCR;
+					$this->CurrentStatusID = (is_numeric($fetch->STATUSID)?$fetch->STATUSID:1);
 
-
+					/*
+					// TODO 4 -o Natali -c Логика создания и хранения: выбрали ДРУ постановщика - оно нам важно в показателях или нет?
+					$sql="select USERID from `dru` where ID=".intval($fetch->DRUID);
+					$UserSql = DBMySQL::Query($sql);
+					if ($Userfetch = DBMySQL::FetchObject($UserSql) and is_numeric($Userfetch->USERID))
+					{
+						$this->ManagerID = $Userfetch->USERID;
+						$this->Manager = new User($null,$this->ManagerID);
+						$this->Manager->Refresh();
+					}
+					else
+					{
+						$this->ManagerID = null;
+						$this->Manager   = "Постановщик не установлен";
+					}
+					*/  
 					if ($this->ManagerID != intval($fetch->MANAGERID))
 					{
 						$this->ManagerID = intval($fetch->MANAGERID);
@@ -242,6 +258,7 @@
 							$this->Manager = null;
 						}
 					}
+					
 
 					if (isset($fetch->CONTRACTORID) and $this->ContractorID != intval($fetch->CONTRACTORID))
 					{

@@ -24,10 +24,10 @@
 		public $StartDate = null;
 		public $FinishDate = null;
 
-		public $ReadyState = 0;
+		public $ReadyState;
 		public $FullDescription;
-		public $CurrentStatusID = 1;
-		public $CurrentStatus = 'Поставлена';
+		public $CurrentStatusID;
+		public $CurrentStatus;
 
 
 		protected function Refresh()
@@ -39,16 +39,28 @@
 				$hSql = DBMySQL::Query($sql);
 				while ($fetch = DBMySQL::FetchObject($hSql)) 
 				{
-					$DRU = DRU::GetObject($null,$fetch->DRUID);
-					$this->ManagerID = $DRU->UserID;
-					$this->Manager = new User($null,$this->ManagerID);
-					$this->Manager->Refresh();
+					$sql="select USERID from `dru` where ID=".intval($fetch->DRUID);
+					$UserSql = DBMySQL::Query($sql);
+					if ($Userfetch = DBMySQL::FetchObject($UserSql) and is_numeric($Userfetch->USERID))
+					{
+						$this->ManagerID = $Userfetch->USERID;
+						$this->Manager = new User($null,$this->ManagerID);
+						$this->Manager->Refresh();
+					}
+					else
+					{
+						$this->ManagerID = null;
+						$this->Manager   = "Постановщик не установлен";
+					}
 
 					$this->Description = $fetch->DESCRIPTION;
+					$this->FullDescription = $fetch->FULL_DESCR;
 					$this->FullDescription = $fetch->FULL_DESCR;
 
 					$this->InitDate = strtotime($fetch->DATE_INIT);
 					$this->StartDate = strtotime($fetch->DATE_START);
+					
+					$this->CurrentStatusID = intval($fetch->STATUSID);
 
 					if (is_null($fetch->DATE_FINISH) or $fetch->DATE_FINISH == 0 or $fetch->DATE_FINISH == "")
 						$this->FinishDate = time() + 24*3600*180;     
@@ -89,8 +101,7 @@
 			}
 		}
 
-		// TODO 4 -o Natali -c Перенести: коректно работает  SetActionData()
-
+		
 		protected function SetActionData()
 		{
 			parent::SetActionData();
@@ -150,8 +161,7 @@
 			return $this->Modified; 
 		}
 
-		// TODO 4 -o Natali -c Перенести: коректно работает  Save()
-
+		
 		public function SaveAction()
 		{
 			$this->SetActionData();
