@@ -1,7 +1,5 @@
 <!-- Element Begin -->  
-<div class="leftcol"  onMouseOut="DivHide('ModalWindow');">  
-	<li class="left-{?Object=this&Var=this(State)}">
-		<a onclick="ClickProject({?Object=this&Var=this(ID)});" class="left-{?Object=this&Var=this(State)}"  onMouseOver="GetProjectInfo('{?Object=this&Var=this(ID)}',event);" href="#">{?Object=this&Var=this(Description)}</a>
-	</li>
-</div>     
+<li>
+	<a href="?Object=Division&Form=Edit&ID={?Object=this&Var=this(ID)}">{?Object=this&Var=INDEX()} {?Object=this&Var=this(Description)}</a>
+</li>
 <!-- Element End -->
