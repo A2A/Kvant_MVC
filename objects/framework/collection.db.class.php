@@ -75,7 +75,7 @@
 			}
 			
 			// TODO 10 -o N -c Сообщение для отладки: SQL    		
-			ErrorHandle::ErrorHandle($sql);	
+			//ErrorHandle::ErrorHandle($sql);	
 			
 			//$sql .= " limit 4";
 			$hSql = DBMySQL::Query($sql);

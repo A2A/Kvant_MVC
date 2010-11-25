@@ -174,7 +174,7 @@ li.event
 	margin: 0px;
 	padding: 0px;     
 	color: #000000;  
-	overflow: hidden;
+	
 	width: 196px; 
 	height: 16px;
 }
@@ -754,7 +754,7 @@ A.ButtonLightBlueBig
 	width:53px;  
 	height:17px;
 	padding:0px;
-	margin-left: 1px; 
+	margin-left: 3px; 
 }
 
 A.ButtonBlackBlueSmall, A.ButtonLightBlueSmall, A.ButtonpassiveBlueSmall, A.ButtonactiveBlueSmall
