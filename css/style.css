@@ -949,7 +949,6 @@ li.CaptionType
 div#123Desktop321
 {
 	width: 790px;
-	height: 500px;
 	vertical-align: middle;   
 }
 div#NoActionDesktop
@@ -957,8 +956,7 @@ div#NoActionDesktop
 	position: absolute;
 	z-index: 100;
 	width: 790px;
-	height: 500px;
-	min-height: 500px;
+	min-height: 800px;
 	background: gray;
 	float: left;
 	opacity: 0.1;
@@ -971,8 +969,7 @@ div#NoActionDesktop
 	position: absolute;
 	z-index: 102;
 	width: 790px;
-	height: 500px;
-	min-height: 500px;
+	min-height: 800px;
 	display: none;
 	vertical-align: middle;   
 }

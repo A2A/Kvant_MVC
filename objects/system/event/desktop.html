@@ -19,11 +19,11 @@
 						<h2>Список  событий</h2>
 					</td>
 					<td width="120px">
-						<div class="ButtonLightBlueBig BigButton"><nobr><img src="images/button-blue-1.png" class="img" align="left" hspace="0"><img src="images/button-blue-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonLightBlueBig BigButton" href="?Object=System&Form=event_list">Перейти к списоку событий</a></nobr></div>
+						<div class="ButtonLightBlueBig BigButton"><nobr><img src="images/button-blue-1.png" class="img" align="left" hspace="0"><img src="images/button-blue-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonLightBlueBig BigButton" href="?Object=System&Form=event_list">Все события</a></nobr></div>
 					</td>
 				</tr>
 			</table>
-
+			
 			<table border="0" cellspacing=0 cellpadding=0 width="770px" id="EventList" align="center">
 				<tr>
 					<td class="CellTopDrak" style="width:20px;">&nbsp;</td>
@@ -40,7 +40,7 @@
 				<tr>
 					<td class="CellTopLeft" colspan="10" style="font-size: 5px;">&nbsp;</td>
 				</tr>
-				{?Object=EventList&Form=list_block&Filter[0][Field]=Continue&Filter[0][Oper]=eq&Filter[0][Val]=1}  
+				{?Object=EventList&Form=list_block&Filter[0][Field]=DateInit&Filter[0][Oper]=like&Filter[0][Val]=System(Date)}  
 			</table>           
 
 		</td>

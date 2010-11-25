@@ -85,6 +85,8 @@
 				case 'CurrentRole'  : return is_null($this->CurrentRoleID)?null:(Role::GetObject($null,$_SESSION['CurrentRoleID'])); 
 				case 'CurrentDRUID' : return (isset($_SESSION['CurrentDRUID']) and intval($_SESSION['CurrentDRUID']) >0)?$_SESSION['CurrentDRUID']:null; break;
 				case 'CurrentDRU'   : return is_null($this->CurrentDRUID)?null:(DRU::GetObject($null,$_SESSION['CurrentDRUID'])); 
+				case 'Date'   		: return date('Y-m-d'); 
+				case 'DateText'   	: return date('d.m.Y'); 
 			}
 		}
 

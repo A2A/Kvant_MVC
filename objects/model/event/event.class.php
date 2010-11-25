@@ -43,6 +43,7 @@
 		'TaskID' => '`TASKID`',
 		'ProjectID' => '`PROJECTID`',
 		'Continue' => '`CONTINUE`',
+		'DateInit' => '`DATE_INIT`',
 		);
 
 		protected function SetActionData()

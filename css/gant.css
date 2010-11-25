@@ -33,7 +33,7 @@ td.Red-TimeLine-stop
 	padding-left: 0px; 
 	font-size: 9px;
 }
-.Red-TimeLine-next,.Red-TimeLine-next-line
+.Red-TimeLine-next, .Red-TimeLine-next-line
 {
 	background: #e44343 url('../images/gant-line-red.png') repeat-x;
 }
@@ -142,6 +142,7 @@ td.HeaderTr
 {
 	border-top: 1px solid #c0d3e9;
 	border-bottom: 1px solid #dce7f7;
+	border-left: 1px solid #dce7f7;
 }
 td.TimeLine, td.PolsunokLeftTimeLine, td.PolsunokRightTimeLine
 {
@@ -186,15 +187,22 @@ td.ProjectCaption, td.ProjectCaptionLine, td.ProjectCaptionStatus
 	font-family: Tahoma;	
 	background: #e8f1ff;
 	border-bottom: 1px solid #dce7f7;
+	border-right: 1px solid #dce7f7;   
 	text-align: left;
 	height: 26px;
 	overflow: hidden;
 	vertical-align: middle; 
 	padding-left: 3px;
 	padding-right: 4px;
-	width: 160px;   
 }
 
+td.ProjectCaption nobr
+{
+	overflow: hidden;
+	vertical-align: middle; 
+	width: 166px; 
+	display: block;
+}
 
 td.ProjectCaptionLine,
 	.Red-TimeLine-next-line,.Red-TimeLine-prev-line,.Red-TimeLine-stop-line,
@@ -271,11 +279,26 @@ td.TaskStatus-3, td.TaskStatus-4, td.TaskStatus-5, td.TaskStatus-6, td.TaskStatu
 	background: #ffffff;
 }
 
-
 .MarginLeft
 {
 	padding-left: 10px;
 	padding-right: 10px;
 }
 
-
+span.HeaderList
+{
+	 
+	height:20px;
+	border:0px;
+	border-right:1px solid #8298b3; 
+	display:block; 
+	float:left; 
+	margin: 0px;
+	padding : 0px;
+	padding-top: 4px; 
+	
+	width:207px;\  
+	[width:208px;
+	width:207px;]
+	width:208px;  
+}

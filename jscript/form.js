@@ -259,9 +259,9 @@ function CatchTaskOpen(Text)
 	
    
 	TraceDate(); 
-	heig = ( (typeof window.innerHeight != 'undefined')? window.innerHeight : document.body.offsetHeight) - 100;
-	
-	document.getElementById('PageMain').style.height = heig+"px"; 
+	heig = ( (typeof window.innerHeight != 'undefined')? window.innerHeight : document.body.offsetHeight);
+	//heig = document.body.clientHeight;
+	//document.getElementById('PageMain').style.height = heig+"px"; 
 	
 }
 
@@ -372,7 +372,7 @@ function CatchProjectOpen(Text)
 	TraceDate(); 
 	heig = ( (typeof window.innerHeight != 'undefined')? window.innerHeight : document.body.offsetHeight) - 100;
 	
-	document.getElementById('PageMain').style.height = heig+"px"; 
+	//document.getElementById('PageMain').style.height = heig+"px"; 
 	
 }
 
@@ -490,7 +490,7 @@ function CatchTPECreate(Text)
    
 	heig = ( (typeof window.innerHeight != 'undefined')? window.innerHeight : document.body.offsetHeight) - 100;
 	
-	document.getElementById('PageMain').style.height = heig+"px"; 
+	//document.getElementById('PageMain').style.height = heig+"px"; 
 }
 
 function CreateNewElement(EventTypeId)

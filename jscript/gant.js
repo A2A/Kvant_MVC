@@ -97,37 +97,69 @@ function GetEventInfo(ID,event)
 }
 
 var ElenentClose;
-var ElenentOpen;
+var ElenentCloseArray = new Array();
+var ElenentOpen = new Array();
+
+
 function DivHide(DivId)
-{
-	ElenentClose = DivId; 
-	document.getElementById(DivId).style.display = 'none';   
+{   
+	//if( '"+DivId+"' == ElenentClose) 
+	setTimeout("document.getElementById('" + DivId + "').style.display = 'none';", 700);
 }
 
-function DivOpen(DivId)
+function DivHideMenu(DivId,Num)
 {
-	ElenentOpen = DivId; 
-	setTimeout("if('" + DivId + "' == ElenentOpen) document.getElementById('" + DivId + "').style.display = 'block';", 400);
-	//document.getElementById(DivId).style.display = 'block';   
-}
-
-function DivOpenMenu(DivId)
-{
-	
-	document.getElementById('DRUCurrentUser').style.display = 'none';   
-	document.getElementById('DRUUser').style.display = 'none';   
-	document.getElementById('DRUDivision').style.display = 'none';      
-	document.getElementById('DRURole').style.display = 'none'; 
-	document.getElementById(DivId).style.display = 'block';
-}
-
-function DivHideMenu(DivId)
-{
-	alert();
-	ElenentClose = DivId; 
-	//setTimeout("if('" + DivId + "' == ElenentClose) document.getElementById('" + DivId + "').style.display = 'none';", 500);
+	ElenentCloseArray[Num] = DivId; 
+	setTimeout("TextInfoEchoWarning('" + DivId + "',"+Num+");", 500);
 	//document.getElementById(DivId).style.display = 'none';   
 }
+
+function TextInfoEchoWarning(DivId,Num)
+{
+	document.getElementById('TextInfoEchoWarning').innerHTML = document.getElementById('TextInfoEchoWarning').innerHTML
+		+ "<br>'" + DivId + "' == "+ElenentClose+" &&  '" + DivId + "' != "+ElenentOpen[Num] ; 
+	
+	if(DivId == ElenentCloseArray[Num] && DivId != ElenentOpen[Num]) 
+		document.getElementById(DivId).style.display = 'none';
+	
+}
+
+function DivOpen(DivId,Num)
+{
+	ElenentOpen[Num] = DivId; 
+	ElenentClose = DivId;  
+	setTimeout("DivOpenTime('" + DivId + "',"+Num+");", 300);
+}
+
+function DivOpenTime(DivId,Num)
+{
+	if(DivId == ElenentOpen[Num]) 
+	{
+		document.getElementById(DivId).style.display = 'block'; 
+	}
+}
+var ElenentOpenMenu;
+function DivOpenMenu(DivId)
+{
+	 ElenentOpenMenu = DivId; 
+	 //ElenentClose = DivId;  
+	
+	 setTimeout("DivOpenMenuTime('" + DivId + "');", 480);
+	
+}
+function DivOpenMenuTime(DivId)
+{
+	if(DivId == ElenentOpenMenu) 
+	{
+		document.getElementById('CurrentDRU').style.display = 'block';  
+		document.getElementById('DRUCurrentUser').style.display = 'none';   
+		document.getElementById('DRUUser').style.display = 'none';   
+		document.getElementById('DRUDivision').style.display = 'none';      
+		document.getElementById('DRURole').style.display = 'none'; 
+		document.getElementById(DivId).style.display = 'block';
+	}
+}
+
 
 
 function SetInterval(ID)
