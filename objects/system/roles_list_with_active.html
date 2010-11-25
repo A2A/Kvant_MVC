@@ -1,7 +1,7 @@
 <div class="Role"><nobr> 
 <a href="#" class="NoAction" onmousemove="document.getElementById('CurrentDRU').style.display='block';">Активная роль:</a> {?Object=System&Var=ActiveDRU}
 </nobr></div>
-<table border="0" cellspacing="0" cellpadding="0" id="CurrentDRU" style="position: absolute;display: none;" onmousemove="this.style.display='block';" onMouseout8="DivHide('CurrentDRU');">
+<table border="0" cellspacing="0" cellpadding="0" id="CurrentDRU" style="position: absolute;display: none;" onmousemove="this.style.display='block';" onMouseout="DivHide('CurrentDRU');">
 	<tr>
 		<td><img src="images/rect-top-left.png" hspace="0" vspace="0" border="0"></td>
 		<td class="Recttop" valign="top">&nbsp;</td>
@@ -13,21 +13,26 @@
 			<table border="0" cellspacing="0" cellpadding="4"> 
 				<tr>                                        
 					<td class="TextForm" valign="top">
-						<hr class="modal">
-						{?Object=DRUList&Form=menu_current_user&Filter[0][Field]=UserID&Filter[0][Oper]=eq&Filter[0][Val]=SESSION(CurrentUserID)&Filter[1][Field]=RoleID&Filter[1][Oper]=!eq&Filter[1][Val]=}
-						<hr class="modal">
-						{?Object=DRUList&Form=menu_user&Filter[0][Field]=UserID&Filter[0][Oper]=!eq&Filter[0][Val]=SESSION(CurrentUserID)&Filter[1][Field]=UserID&Filter[1][Oper]=!eq&Filter[1][Val]=}
-						<hr class="modal">
-						{?Object=DRUList&Form=menu_division&Filter[0][Field]=UserID&Filter[0][Oper]=eq&Filter[0][Val]=&Filter[1][Field]=RoleID&Filter[1][Oper]=!eq&Filter[1][Val]=}
-						<hr class="modal">
-						{?Object=DRUList&Form=menu_role&Filter[0][Field]=UserID&Filter[0][Oper]=eq&Filter[0][Val]=&Filter[1][Field]=DivisionID&Filter[1][Oper]=!eq&Filter[1][Val]=&Filter[3][Field]=RoleID&Filter[3][Oper]=!eq&Filter[3][Val]=}
-						<hr class="modal">
-
-						
+						<div class="ButtonDRU" onmousemove="DivOpenMenu('DRUCurrentUser');"><a href="#">Свои роли</a></div>
+						<div id="DRUCurrentUser" class="RoleList">
+							{?Object=DRUList&Form=menu_role&Filter[0][Field]=UserID&Filter[0][Oper]=eq&Filter[0][Val]=system(CurrentUserID)}
+						</div>
+						<div class="ButtonDRU" onmousemove="DivOpenMenu('DRUUser');"><a href="#">Сотрудники</a></div>
+						<div id="DRUUser" class="DRUList" onmousemove="this.style.display='block';">
+							{?Object=DRUList&Form=menu_user}
+						</div>
+						<div class="ButtonDRU" onmousemove="DivOpenMenu('DRUDivision');"><a href="#">Подразделния</a></div>
+						<div id="DRUDivision" class="DRUList">
+							{?Object=DRUList&Form=menu_division}
+						</div>
+						<div class="ButtonDRU" onmousemove="DivOpenMenu('DRURole');"><a href="#">Роли</a></div>
+						<div id="DRURole" class="DRUList">
+							{?Object=DRUList&Form=menu_role}
+						</div>
 					</td>
 				</tr>
 
-			</table>        
+			</table>           
 
 		</td>
 		<td class="RectRight">&nbsp;</td>
@@ -36,5 +41,8 @@
 		<td><img src="images/rect-bottom-left.png" hspace="0" vspace="0" border="0"></td>
 		<td  class="RectBottom">&nbsp;</td>
 		<td><img src="images/rect-bottom-right.png" hspace="0" vspace="0" border="0"></td>
+	</tr>
+	<tr>
+		<td colspan="3" height="60px">&nbsp;</td>
 	</tr>
 </table>

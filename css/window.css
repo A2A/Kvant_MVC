@@ -248,3 +248,39 @@ div#Filter
 	font-family: Tahoma;
 	font-size: 11px;	
 }
+
+.DRUList, .RoleList
+{
+	background: #ffffff;
+	padding-right:5px;
+	padding-left:5px;
+	padding-bottom:5px;
+	font-size: 11px;
+	font-family: Tahoma;
+	width: 208px;
+	  
+}
+.DRUList
+{
+	display: none;  
+}
+
+.ButtonDRU
+{
+	width:208px; 
+	height:30px;
+	padding:0px;
+	background: #e5e6e6 url('../images/button-project.png') no-repeat;
+}
+.ButtonDRU a
+{
+	width:180px; 
+	height:30px;
+	display: block;
+	padding-left: 30px;
+	padding-top: 5px;
+	font-size: 13px;
+	font-weight: bold;
+	font-family: Tahoma;
+	text-decoration: none;
+}

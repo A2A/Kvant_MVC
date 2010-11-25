@@ -102,6 +102,21 @@ function DivHide(DivId)
 	document.getElementById(DivId).style.display = 'none';   
 }
 
+function DivOpen(DivId)
+{
+	document.getElementById(DivId).style.display = 'block';   
+}
+
+function DivOpenMenu(DivId)
+{
+	
+	document.getElementById('DRUCurrentUser').style.display = 'none';   
+	document.getElementById('DRUUser').style.display = 'none';   
+	document.getElementById('DRUDivision').style.display = 'none';      
+	document.getElementById('DRURole').style.display = 'none'; 
+	document.getElementById(DivId).style.display = 'block';
+}
+
 
 
 function SetInterval(ID)
