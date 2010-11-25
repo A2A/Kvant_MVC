@@ -258,6 +258,7 @@
             else
             {
                 $result = $this->SetDRUID($this->ProcessData['ID']);
+                ErrorHandle::ActionErrorHandle('Произошла смена текущего элемента Подразделение/Роль/Сотрудник',0);
             }
             return $result;
         }
@@ -290,6 +291,7 @@
                 $_SESSION['CurrentDRU'] = $this->ProcessData['ID'];     
                 $result = true;
             }
+            return $result;
         }
         
         protected function SetDRU($DRU)
