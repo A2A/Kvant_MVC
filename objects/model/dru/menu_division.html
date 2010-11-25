@@ -1,7 +1,8 @@
 <!-- Element Begin -->
-	<a href="#" class="accessRole" onClick="SetDRU({?Object=this&Var=this(ID)});" onmousemove="DivOpenMenu(DivId)">{?Object=this&Var=this(DivDescr)}</a>
-	<div class="DRUList">
-		{}
+	<a href="#" class="accessRole" onClick="SetDRU({?Object=this&Var=this(ID)});" onmousemove="DivOpen('MainDivision{?Object=this&Var=this(ID)}')">{?Object=this&Var=this(DivDescr)}</a>
+	<div class="DRUList level2" id="MainDivision{?Object=this&Var=this(ID)}"  onmousemove="this.style.display='block';"  onMouseout="DivHide('MainDivision{?Object=this&Var=this(ID)}');"> 
+		<a href="#" class="ButtonSmallDRU">Сотрудники</a>
+		<a href="#" class="ButtonSmallDRU">Роли</a>
 	</div>
 <!-- Element End -->
 				

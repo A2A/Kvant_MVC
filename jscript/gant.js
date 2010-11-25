@@ -96,10 +96,12 @@ function GetEventInfo(ID,event)
 	AjaxSendGET(Url,CatchProjectInfo);
 }
 
-
+var ElenentClose;
 function DivHide(DivId)
 {
-	document.getElementById(DivId).style.display = 'none';   
+	ElenentClose = DivId; 
+	setTimeout("if('" + DivId + "' == ElenentClose) document.getElementById('" + DivId + "').style.display = 'none';", 500);
+	// document.getElementById(DivId).style.display = 'none';   
 }
 
 function DivOpen(DivId)

@@ -264,6 +264,11 @@ div#Filter
 {
 	display: none;  
 }
+.level2
+{
+	padding-left:10px;  
+	background: #d0d0d0; 
+}
 
 .ButtonDRU
 {
@@ -283,4 +288,16 @@ div#Filter
 	font-weight: bold;
 	font-family: Tahoma;
 	text-decoration: none;
+}
+
+a.ButtonSmallDRU
+{
+	width:180px; 
+	height:18px;
+	display: block;
+	font-size: 10px;
+	font-weight: bold;
+	font-family: Tahoma;
+	text-decoration: none;
+	display: block;
 }
