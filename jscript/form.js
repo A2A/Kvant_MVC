@@ -474,7 +474,8 @@ function SaveProject()
 function GantRefresh()
 {
 	// TODO 10 -o Natali -c JS: подумать над тем, что перегружаем при создании события, нужен ли полный рефрешь страницы.
-	location.href="?Object=System&Form=gant"; 
+	TempHref = location.href;
+	location.href = TempHref;
 }
 //===============================================================================
 

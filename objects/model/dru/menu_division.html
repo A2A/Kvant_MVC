@@ -1,13 +1,13 @@
 <!-- Element Begin -->
-	<a href="#" class="accessRole" onClick="SetDRU({?Object=this&Var=this(ID)});" onmousemove="DivOpen('MainDivision{?Object=this&Var=this(ID)}')">{?Object=this&Var=this(DivDescr)}</a>
-	<div class="DRUList level2" id="MainDivision{?Object=this&Var=this(ID)}"  onmousemove="this.style.display='block';"  onMouseout="DivHide('MainDivision{?Object=this&Var=this(ID)}');"> 
-		<a href="#" class="ButtonSmallDRU">Сотрудники</a>
-		<div  class="DRUList level3" >
-			{?Object=DRUList&Form=menu_user_level2&Filter[0][Field]=UserID&Filter[0][Oper]=!eq&Filter[0][Val]=&Filter[1][Field]=RoleID&Filter[0][Group]=1&Filter[1][Oper]=!eq&Filter[1][Val]=&Filter[2][Field]=DivisionID&Filter[2][Oper]=eq&Filter[2][Val]=this(DivID)&Group=RoleID}
+	<a href="#" class="accessRole" onClick="SetDRU({?Object=this&Var=this(ID)});" onmousemove="DivOpenMenu('MainDivision{?Object=this&Var=this(ID)}')">{?Object=this&Var=this(DivDescr)}</a>
+	<div class="DRUList level2" id="MainDivision{?Object=this&Var=this(ID)}"  onmousemove="this.style.display='block';"> 
+		<a href="#" class="ButtonSmallDRU" onmousemove="DivOpen('MainUser{?Object=this&Var=this(ID)}')">Сотрудники</a>
+		<div  class="DRUList level3" id="MainUser{?Object=this&Var=this(ID)}">
+			{?Object=DRUList&Form=menu_user_level2&Filter[0][Field]=UserID&Filter[0][Oper]=!eq&Filter[0][Val]=&Filter[1][Field]=RoleID&Filter[0][Group]=1&Filter[1][Oper]=eq&Filter[1][Val]=&Filter[2][Field]=DivisionID&Filter[2][Oper]=eq&Filter[2][Val]=this(DivID)&Group=RoleID}
 		</div>
-		<a href="#" class="ButtonSmallDRU">Роли</a>
-		<div  class="DRUList level3" >
-			{?Object=DRUList&Form=menu_role_level2&Filter[0][Field]=UserID&Filter[0][Oper]=!eq&Filter[0][Val]=&Filter[1][Field]=RoleID&Filter[1][Group]=1&Filter[1][Oper]=!eq&Filter[1][Val]=&Filter[2][Field]=DivisionID&Filter[2][Oper]=eq&Filter[2][Val]=this(DivID)&Group=RoleID}
+		<a href="#" class="ButtonSmallDRU" onmousemove="DivOpen('MainRole{?Object=this&Var=this(ID)}')">Роли</a>
+		<div  class="DRUList level3" id="MainRole{?Object=this&Var=this(ID)}">
+			{?Object=DRUList&Form=menu_role_level2&Filter[0][Field]=UserID&Filter[0][Oper]=eq&Filter[0][Val]=&Filter[1][Field]=RoleID&Filter[1][Group]=1&Filter[1][Oper]=!eq&Filter[1][Val]=&Filter[2][Field]=DivisionID&Filter[2][Oper]=eq&Filter[2][Val]=this(DivID)&Group=RoleID}
 		</div>
 	
 	</div>

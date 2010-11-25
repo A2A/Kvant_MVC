@@ -1,7 +1,7 @@
 <div class="Role"><nobr> 
 <a href="#" class="NoAction" onmousemove="document.getElementById('CurrentDRU').style.display='block';">Активная роль:</a> {?Object=DRU&ID=System(CurrentDRUID)&Form=Description}
 </nobr></div>
-<table border="0" cellspacing="0" cellpadding="0" id="CurrentDRU" style="position: absolute;display: none;z-index: 2000;" onmousemove="this.style.display='block';" onMouseout0="DivHide('CurrentDRU');">
+<table border="0" cellspacing="0" cellpadding="0" id="CurrentDRU" style="position: absolute;display: none;z-index: 2000;" onmousemove="this.style.display='block';" onMouseout="DivHide('CurrentDRU');">
 	<tr>
 		<td><img src="images/rect-top-left.png" hspace="0" vspace="0" border="0"></td>
 		<td class="Recttop" valign="top">&nbsp;</td>
@@ -22,11 +22,11 @@
 							{?Object=DRUList&Form=menu_user&Filter[0][Field]=UserID&Filter[0][Oper]=!eq&Filter[0][Val]=&Filter[1][Field]=RoleID&Filter[1][Oper]=eq&Filter[1][Val]=&Filter[2][Field]=DivisionID&Filter[2][Oper]=eq&Filter[2][Val]=}
 						</div>
 						<div class="ButtonDRU" onmousemove="DivOpenMenu('DRUDivision');"><a href="#">Подразделния</a></div>
-						<div id="DRUDivision" class="DRUList">
+						<div id="DRUDivision" class="DRUList" onmousemove="this.style.display='block';">
 							{?Object=DRUList&Form=menu_division&Filter[0][Field]=UserID&Filter[0][Oper]=eq&Filter[0][Val]=&Filter[1][Field]=RoleID&Filter[1][Oper]=eq&Filter[1][Val]=&Filter[2][Field]=DivisionID&Filter[2][Oper]=!eq&Filter[2][Val]=}
 						</div>
 						<div class="ButtonDRU" onmousemove="DivOpenMenu('DRURole');"><a href="#">Роли</a></div>
-						<div id="DRURole" class="DRUList">
+						<div id="DRURole" class="DRUList" onmousemove="this.style.display='block';">
 							{?Object=DRUList&Form=menu_role&Filter[0][Field]=UserID&Filter[0][Oper]=eq&Filter[0][Val]=&Filter[1][Field]=RoleID&Filter[1][Oper]=!eq&Filter[1][Val]=&Filter[2][Field]=DivisionID&Filter[2][Oper]=eq&Filter[2][Val]=}
 						</div>
 					</td>
@@ -43,6 +43,6 @@
 		<td><img src="images/rect-bottom-right.png" hspace="0" vspace="0" border="0"></td>
 	</tr>
 	<tr>
-		<td colspan="3" height="60px">&nbsp;</td>
+		<td colspan="3" height="200px">&nbsp;</td>
 	</tr>
 </table>

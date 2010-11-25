@@ -101,14 +101,13 @@ var ElenentOpen;
 function DivHide(DivId)
 {
 	ElenentClose = DivId; 
-	//setTimeout("if('" + DivId + "' == ElenentClose) document.getElementById('" + DivId + "').style.display = 'none';", 500);
-	// document.getElementById(DivId).style.display = 'none';   
+	document.getElementById(DivId).style.display = 'none';   
 }
 
 function DivOpen(DivId)
 {
 	ElenentOpen = DivId; 
-	setTimeout("if('" + DivId + "' == ElenentOpen) document.getElementById('" + DivId + "').style.display = 'block';", 500);
+	setTimeout("if('" + DivId + "' == ElenentOpen) document.getElementById('" + DivId + "').style.display = 'block';", 400);
 	//document.getElementById(DivId).style.display = 'block';   
 }
 
@@ -122,6 +121,13 @@ function DivOpenMenu(DivId)
 	document.getElementById(DivId).style.display = 'block';
 }
 
+function DivHideMenu(DivId)
+{
+	alert();
+	ElenentClose = DivId; 
+	//setTimeout("if('" + DivId + "' == ElenentClose) document.getElementById('" + DivId + "').style.display = 'none';", 500);
+	//document.getElementById(DivId).style.display = 'none';   
+}
 
 
 function SetInterval(ID)

@@ -268,13 +268,19 @@ div#Filter
 .level2
 {
 	padding-left:10px;  
-	background: #d0d0d0; 
+	background: #ffffff; 
 }
 
 .level3
 {
 	padding-left:15px;  
-	background: #fff0d0; 
+	background: #ffffff; 
+}
+
+.level4
+{
+	padding-left:20px;  
+	background: #ffffff; 
 }
 
 .ButtonDRU
@@ -302,7 +308,7 @@ a.ButtonSmallDRU
 	width:180px; 
 	height:18px;
 	display: block;
-	font-size: 10px;
+	font-size: 12px;
 	font-weight: bold;
 	font-family: Tahoma;
 	text-decoration: none;
