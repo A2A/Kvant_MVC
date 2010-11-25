@@ -1,22 +1,5 @@
-﻿# SQL Manager 2007 Lite for MySQL 4.2.1.1
-# ---------------------------------------
-# Host     : localhost
-# Port     : 3306
-# Database : test
-
-
-SET FOREIGN_KEY_CHECKS=0;
-
-DROP DATABASE IF EXISTS `test`;
-
-CREATE DATABASE `test`
-    CHARACTER SET 'utf8'
-    COLLATE 'utf8_general_ci';
-
-USE `test`;
-
-#
-# Structure for the `cards` table : 
+﻿#
+# Structure for the `cards` table :
 #
 
 DROP TABLE IF EXISTS `cards`;
@@ -32,7 +15,7 @@ CREATE TABLE `cards` (
 # Data for the `cards` table  (LIMIT 0,500)
 #
 
-INSERT INTO `cards` (`ID`, `DESCRIPTION`, `CATID`) VALUES 
+INSERT INTO `cards` (`ID`, `DESCRIPTION`, `CATID`) VALUES
   (1,'Архив баг-листов',NULL),
   (2,'Архив документации',NULL),
   (3,'Архив проектной документации по ПО',NULL),
@@ -143,7 +126,7 @@ INSERT INTO `cards` (`ID`, `DESCRIPTION`, `CATID`) VALUES
 COMMIT;
 
 #
-# Structure for the `cards_types` table : 
+# Structure for the `cards_types` table :
 #
 
 DROP TABLE IF EXISTS `cards_types`;
@@ -159,13 +142,13 @@ CREATE TABLE `cards_types` (
 # Data for the `cards_types` table  (LIMIT 0,500)
 #
 
-INSERT INTO `cards_types` (`ID`, `DESCRIPTION`) VALUES 
+INSERT INTO `cards_types` (`ID`, `DESCRIPTION`) VALUES
   (1,'Качество');
 
 COMMIT;
 
 #
-# Structure for the `contractors` table : 
+# Structure for the `contractors` table :
 #
 
 DROP TABLE IF EXISTS `contractors`;
@@ -180,7 +163,7 @@ CREATE TABLE `contractors` (
 # Data for the `contractors` table  (LIMIT 0,500)
 #
 
-INSERT INTO `contractors` (`ID`, `DESCRIPTION`) VALUES 
+INSERT INTO `contractors` (`ID`, `DESCRIPTION`) VALUES
   (1,0xD090D0BDD0B4D180D0B5D0B9),
   (2,0xD09CD0B0D180D0B8D0BDD0B0),
   (3,0xD092D0BBD0B0D0B4),
@@ -189,7 +172,7 @@ INSERT INTO `contractors` (`ID`, `DESCRIPTION`) VALUES
 COMMIT;
 
 #
-# Structure for the `division` table : 
+# Structure for the `division` table :
 #
 
 DROP TABLE IF EXISTS `division`;
@@ -205,7 +188,7 @@ CREATE TABLE `division` (
 # Data for the `division` table  (LIMIT 0,500)
 #
 
-INSERT INTO `division` (`ID`, `MANAGERID`, `DESCRIPTION`, `PARENTID`) VALUES 
+INSERT INTO `division` (`ID`, `MANAGERID`, `DESCRIPTION`, `PARENTID`) VALUES
   (10,10,0xD09AD0BED0BCD0BFD0B0D0BDD0B8D18F,NULL),
   (100,11,0xD0A3D0BFD180D0B0D0B2D0BBD0B5D0BDD0B8D0B5,10),
   (101,12,0xD09FD180D0BED0B4D0B0D0B6D0B8,100),
@@ -224,7 +207,7 @@ INSERT INTO `division` (`ID`, `MANAGERID`, `DESCRIPTION`, `PARENTID`) VALUES
 COMMIT;
 
 #
-# Structure for the `dru` table : 
+# Structure for the `dru` table :
 #
 
 DROP TABLE IF EXISTS `dru`;
@@ -242,7 +225,7 @@ CREATE TABLE `dru` (
 # Data for the `dru` table  (LIMIT 0,500)
 #
 
-INSERT INTO `dru` (`DIVISIONID`, `ROLEID`, `USERID`, `ID`, `COLOR`) VALUES 
+INSERT INTO `dru` (`DIVISIONID`, `ROLEID`, `USERID`, `ID`, `COLOR`) VALUES
   (10,4,10,1,NULL),
   (100,7,11,2,NULL),
   (101,9,11,3,NULL),
@@ -372,7 +355,7 @@ INSERT INTO `dru` (`DIVISIONID`, `ROLEID`, `USERID`, `ID`, `COLOR`) VALUES
 COMMIT;
 
 #
-# Structure for the `dru_sc` table : 
+# Structure for the `dru_sc` table :
 #
 
 DROP TABLE IF EXISTS `dru_sc`;
@@ -390,7 +373,7 @@ CREATE TABLE `dru_sc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #
-# Structure for the `dru_sc_tl` table : 
+# Structure for the `dru_sc_tl` table :
 #
 
 DROP TABLE IF EXISTS `dru_sc_tl`;
@@ -402,7 +385,7 @@ CREATE TABLE `dru_sc_tl` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 3072 kB';
 
 #
-# Structure for the `event_log` table : 
+# Structure for the `event_log` table :
 #
 
 DROP TABLE IF EXISTS `event_log`;
@@ -415,7 +398,7 @@ CREATE TABLE `event_log` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #
-# Structure for the `event_status_tl` table : 
+# Structure for the `event_status_tl` table :
 #
 
 DROP TABLE IF EXISTS `event_status_tl`;
@@ -427,7 +410,7 @@ CREATE TABLE `event_status_tl` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 3072 kB';
 
 #
-# Structure for the `events` table : 
+# Structure for the `events` table :
 #
 
 DROP TABLE IF EXISTS `events`;
@@ -445,13 +428,13 @@ CREATE TABLE `events` (
   `CONTINUE` tinyint(1) default '1',
   `CONTRACTORID` int(11) default NULL,
   PRIMARY KEY  (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 #
 # Data for the `events` table  (LIMIT 0,500)
 #
 
-INSERT INTO `events` (`ID`, `DESCRIPTION`, `CLASSID`, `PROJECTID`, `DATE_INIT`, `DATE_FINISH`, `DRUID`, `DURATION_PAUSE`, `TASKID`, `CONTINUE`, `CONTRACTORID`) VALUES 
+INSERT INTO `events` (`ID`, `DESCRIPTION`, `CLASSID`, `PROJECTID`, `DATE_INIT`, `DATE_FINISH`, `DRUID`, `DURATION_PAUSE`, `TASKID`, `CONTINUE`, `CONTRACTORID`) VALUES
   (1,'Ð—Ð²Ð¾Ð½Ð¾Ðº 1   3 Ð´Ð½Ñ',2,1,'2010-11-18 22:05:00','2010-11-22 12:25:54',101,21704,1,0,NULL),
   (2,'??????? 2 Ð¸Ñ‚Ñ‚ÑÑ‚Ð¼Ñ',8,1,'2010-11-19 09:00:00','2010-11-22 11:59:21',3,11118,3,0,2),
   (5,'hdryey',3,1,'2010-11-21 09:32:24','2010-11-23 23:15:33',29,147136,NULL,1,NULL),
@@ -459,15 +442,16 @@ INSERT INTO `events` (`ID`, `DESCRIPTION`, `CLASSID`, `PROJECTID`, `DATE_INIT`, 
   (7,'Ð’Ñ€ÐµÐ¼Ñ 22:05 Ð¿Ð¾ 22:14',12,1,'2010-11-21 19:05:53','2010-11-21 19:14:44',1,20000,1,0,1),
   (8,'hkjgjkk',13,NULL,'2010-11-22 08:19:37','2010-11-23 22:57:34',14,139074,NULL,0,3),
   (9,'Ñ€Ð°Ð²Ñ€Ð²Ð°Ñ€Ð°',12,NULL,'2010-11-22 15:32:55','2010-11-22 15:33:13',12,15,3,0,4),
-  (10,'Ð°Ð»Ð¿Ñ€Ð»Ñ€Ð¿Ð¾Ð¿',2,NULL,'2010-11-22 15:33:42','2010-11-23 22:59:34',22,113150,NULL,1,1),
+  (10,'Ð°Ð»Ð¿Ñ€Ð»Ñ€Ð¿Ð¾Ð¿',2,NULL,'2010-11-22 15:33:42','2010-11-25 00:45:08',22,205884,NULL,0,1),
   (11,'dgsgdsgdsg',16,2,'2010-11-24 16:47:44','2010-11-24 16:47:57',8,0,NULL,0,NULL),
   (12,'fsdfasfsdf',12,NULL,'2010-11-24 20:24:57','2010-11-24 20:25:08',11,0,-1,0,4),
-  (13,'jlkjlkj',11,NULL,'2010-11-24 20:26:34','2010-11-24 20:26:40',11,0,-1,1,NULL);
+  (13,'jlkjlkj',11,NULL,'2010-11-24 20:26:34','2010-11-24 20:26:40',11,0,-1,1,NULL),
+  (14,'',16,NULL,'2010-11-25 18:56:11','2010-11-25 18:56:13',12,0,NULL,0,NULL);
 
 COMMIT;
 
 #
-# Structure for the `project_status_tl` table : 
+# Structure for the `project_status_tl` table :
 #
 
 DROP TABLE IF EXISTS `project_status_tl`;
@@ -480,7 +464,23 @@ CREATE TABLE `project_status_tl` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 3072 kB';
 
 #
-# Structure for the `projects` table : 
+# Data for the `project_status_tl` table  (LIMIT 0,500)
+#
+
+INSERT INTO `project_status_tl` (`PROJECTID`, `STATUSID`, `CHANGEDATE`, `USERID`) VALUES
+  (5,3,'2010-11-24 23:34:41',3),
+  (1,3,'2010-11-24 23:38:59',101),
+  (1,3,'2010-11-24 23:39:26',101),
+  (1,3,'2010-11-24 23:39:28',101),
+  (3,4,'2010-11-24 23:44:48',101),
+  (2,2,'2010-11-24 23:45:32',101),
+  (2,6,'2010-11-24 23:48:32',101),
+  (1,4,'2010-11-25 00:33:07',101);
+
+COMMIT;
+
+#
+# Structure for the `projects` table :
 #
 
 DROP TABLE IF EXISTS `projects`;
@@ -498,23 +498,24 @@ CREATE TABLE `projects` (
   `READY_STATE` int(11) default NULL,
   `CONTRACTORID` int(11) default NULL,
   PRIMARY KEY  (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 #
 # Data for the `projects` table  (LIMIT 0,500)
 #
 
-INSERT INTO `projects` (`ID`, `CLASSID`, `STATUSID`, `DESCRIPTION`, `DATE_INIT`, `DATE_START`, `DATE_FINISH`, `FULL_DESCR`, `DRUID`, `READY_STATE`, `CONTRACTORID`) VALUES 
-  (1,NULL,NULL,0xD0BFD180D0BED0B5D0BAD182,'1969-12-31 18:00:00','2010-11-17 15:46:15','2010-11-24 15:00:44','Ð²Ð°Ð¿Ð²Ñ‹Ð¿Ð²Ñ‹Ð¿',NULL,56,NULL),
-  (2,2,1,0xD0A1D0BFD0B5D186D0B8D184D0B8D0BAD0B0D186D0B8D18F20D0BA20D0B4D0BED0B3D0BED0B2D0BED180D183,'2010-11-24 16:21:02','2010-11-17 16:20:52','2010-11-28 16:20:55','dfhdfhdfh',34,67,3),
-  (3,NULL,1,0xD09ED182D0BAD0BBD0BED0BDD0B5D0BDD0B8D0B520D0BED18220D181D0BFD0B5D186D0B8D184D0B8D0BAD0B0D186D0B8D0B8,'2010-11-24 16:57:07','2010-11-09 16:57:03','1970-01-01 03:00:00','jgvcjjg',NULL,0,NULL),
+INSERT INTO `projects` (`ID`, `CLASSID`, `STATUSID`, `DESCRIPTION`, `DATE_INIT`, `DATE_START`, `DATE_FINISH`, `FULL_DESCR`, `DRUID`, `READY_STATE`, `CONTRACTORID`) VALUES
+  (1,NULL,4,0xD0BFD180D0BED0B5D0BAD182,'1969-12-31 18:00:00','2010-11-17 15:46:15','2010-11-24 15:00:44','Ð²Ð°Ð¿Ð²Ñ‹Ð¿Ð²Ñ‹Ð¿',NULL,56,NULL),
+  (2,2,6,0xD0A1D0BFD0B5D186D0B8D184D0B8D0BAD0B0D186D0B8D18F20D0BA20D0B4D0BED0B3D0BED0B2D0BED180D183,'2010-11-24 16:21:02','2010-11-17 16:20:52','2010-11-28 16:20:55','dfhdfhdfh',34,67,3),
+  (3,NULL,4,0xD09ED182D0BAD0BBD0BED0BDD0B5D0BDD0B8D0B520D0BED18220D181D0BFD0B5D186D0B8D184D0B8D0BAD0B0D186D0B8D0B8,'2010-11-24 16:57:07','2010-11-09 16:57:03','1970-01-01 03:00:00','jgvcjjg',NULL,0,NULL),
   (4,12,1,0xD0A1D0BFD0B5D186D0B8D184D0B8D0BAD0B0D186D0B8D18F20D0BA20D0B4D0BED0B3D0BED0B2D0BED180D183,'2010-11-24 17:14:17','2010-11-01 17:14:01','2011-01-28 17:14:05','fhdfhd',12,56,2),
-  (5,12,1,0xD0A1D0BFD0B5D186D0B8D184D0B8D0BAD0B0D186D0B8D18F20D0BA20D0B4D0BED0B3D0BED0B2D0BED180D183,'2010-11-24 20:59:57','2010-11-08 20:59:48','2010-11-27 20:59:51','dsfsfasdfsd',11,0,2);
+  (5,12,3,0xD0A1D0BFD0B5D186D0B8D184D0B8D0BAD0B0D186D0B8D18F20D0BA20D0B4D0BED0B3D0BED0B2D0BED180D183,'2010-11-24 20:59:57','2010-11-08 20:59:48','2010-11-27 20:59:51','dsfsfasdfsd',11,0,2),
+  (6,NULL,1,'','2010-11-24 23:34:04','1970-01-01 03:00:00','1970-01-01 03:00:00','',NULL,0,NULL);
 
 COMMIT;
 
 #
-# Structure for the `roles` table : 
+# Structure for the `roles` table :
 #
 
 DROP TABLE IF EXISTS `roles`;
@@ -529,7 +530,7 @@ CREATE TABLE `roles` (
 # Data for the `roles` table  (LIMIT 0,500)
 #
 
-INSERT INTO `roles` (`ID`, `DESCRIPTION`) VALUES 
+INSERT INTO `roles` (`ID`, `DESCRIPTION`) VALUES
   (-1,0xD090D0B4D0BCD0B8D0BDD0B8D181D182D180D0B0D182D0BED180),
   (1,0xD091D183D185D0B3D0B0D0BBD182D0B5D180),
   (2,0xD092D0BED0B4D0B8D182D0B5D0BBD18C),
@@ -565,7 +566,7 @@ INSERT INTO `roles` (`ID`, `DESCRIPTION`) VALUES
 COMMIT;
 
 #
-# Structure for the `task_status` table : 
+# Structure for the `task_status` table :
 #
 
 DROP TABLE IF EXISTS `task_status`;
@@ -580,7 +581,7 @@ CREATE TABLE `task_status` (
 # Data for the `task_status` table  (LIMIT 0,500)
 #
 
-INSERT INTO `task_status` (`ID`, `DESCRIPTION`) VALUES 
+INSERT INTO `task_status` (`ID`, `DESCRIPTION`) VALUES
   (1,'Назначена'),
   (2,'Начата'),
   (3,'Не подтверждении'),
@@ -590,7 +591,7 @@ INSERT INTO `task_status` (`ID`, `DESCRIPTION`) VALUES
 COMMIT;
 
 #
-# Structure for the `task_status_tl` table : 
+# Structure for the `task_status_tl` table :
 #
 
 DROP TABLE IF EXISTS `task_status_tl`;
@@ -606,15 +607,19 @@ CREATE TABLE `task_status_tl` (
 # Data for the `task_status_tl` table  (LIMIT 0,500)
 #
 
-INSERT INTO `task_status_tl` (`TASKID`, `STATUSID`, `CHANGEDATE`, `USERID`) VALUES 
-  (1,1,'2010-11-01',1),
-  (1,2,'2010-11-02',3),
-  (1,3,'2010-11-15 17:05:47',1);
+INSERT INTO `task_status_tl` (`TASKID`, `STATUSID`, `CHANGEDATE`, `USERID`) VALUES
+  (1,1,'2010-11-01',10),
+  (1,2,'2010-11-02',12),
+  (1,3,'2010-11-15 17:05:47',110),
+  (3,2,'2010-11-24 23:45:39',101),
+  (2,4,'2010-11-24 23:45:43',101),
+  (16,5,'2010-11-24 23:45:47',101),
+  (1,6,'2010-11-25 00:41:24',101);
 
 COMMIT;
 
 #
-# Structure for the `task_tstatus` table : 
+# Structure for the `task_tstatus` table :
 #
 
 DROP TABLE IF EXISTS `task_tstatus`;
@@ -622,21 +627,22 @@ DROP TABLE IF EXISTS `task_tstatus`;
 CREATE TABLE `task_tstatus` (
   `TASKID` int(11) default NULL,
   `STATUSID` int(11) default NULL,
-  `CHANGEDATE` datetime default NULL
+  `CHANGEDATE` datetime default NULL,
+  `USERID` int(11) default NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #
 # Data for the `task_tstatus` table  (LIMIT 0,500)
 #
 
-INSERT INTO `task_tstatus` (`TASKID`, `STATUSID`, `CHANGEDATE`) VALUES 
-  (1,1,'2009-10-10'),
-  (1,2,'2010-11-01');
+INSERT INTO `task_tstatus` (`TASKID`, `STATUSID`, `CHANGEDATE`, `USERID`) VALUES
+  (1,1,'2009-10-10',NULL),
+  (1,2,'2010-11-01',NULL);
 
 COMMIT;
 
 #
-# Structure for the `tasks` table : 
+# Structure for the `tasks` table :
 #
 
 DROP TABLE IF EXISTS `tasks`;
@@ -663,14 +669,14 @@ CREATE TABLE `tasks` (
 # Data for the `tasks` table  (LIMIT 0,500)
 #
 
-INSERT INTO `tasks` (`ID`, `DESCRIPTION`, `PARENTID`, `PROJECTID`, `DATE_INIT`, `DATE_START`, `DATE_FINISH`, `FULL_DESCR`, `MANAGERID`, `DRUID`, `READY_STATE`, `STATUSID`, `CLASSID`, `CONTRACTORID`) VALUES 
-  (1,0x4446535344464B3B4C564E4B53,NULL,1,'2010-11-16','2010-11-17','2010-11-25','',NULL,101,0,3,NULL,1),
-  (2,0xD097D0B0D0B4D0B0D187D0B02031,NULL,1,'2010-11-17','2010-11-10','2010-11-27','????????',NULL,30,80,NULL,NULL,2),
-  (3,0xD097D0B0D0B4D0B0D187D0B02032,2,1,'1970-01-01 03:00:00','2010-11-10 03:40:41','2010-11-27 03:40:45','Ñ€Ñ€Ñ€Ñ€Ñ€Ñ€Ñ€Ñ€Ñ€Ñ€Ñ€',101,67,100,NULL,NULL,3),
+INSERT INTO `tasks` (`ID`, `DESCRIPTION`, `PARENTID`, `PROJECTID`, `DATE_INIT`, `DATE_START`, `DATE_FINISH`, `FULL_DESCR`, `MANAGERID`, `DRUID`, `READY_STATE`, `STATUSID`, `CLASSID`, `CONTRACTORID`) VALUES
+  (1,0x4446535344464B3B4C564E4B53,NULL,1,'2010-11-16','2010-11-17','2010-11-25','',39,101,0,6,NULL,1),
+  (2,0xD097D0B0D0B4D0B0D187D0B02031,NULL,1,'2010-11-17','2010-11-10','2010-11-27','????????',89,30,80,4,NULL,2),
+  (3,0xD097D0B0D0B4D0B0D187D0B02032,2,1,'1970-01-01 03:00:00','2010-11-10 03:40:41','2010-11-27 03:40:45','Ñ€Ñ€Ñ€Ñ€Ñ€Ñ€Ñ€Ñ€Ñ€Ñ€Ñ€',101,67,100,2,NULL,3),
   (4,0xD094D0BBD0B8D0BDD0BDD0BED0B52C20D0BED187D0B5D0BDD18C20D0B4D0BBD0B8D0BDD0BDD0BED0B520D0BDD0B0D0B7D0B2D0B0D0BDD0B8D0B520D0B7D0B0D0B4D0B0D187D0B8205F5F5F5F20D0BBD18F20D0BBD18F20,NULL,2,'1970-01-01 03:00:00','1970-01-01 03:00:00','1970-01-01 03:00:00','???????????',102,78,0,NULL,NULL,4),
-  (5,0xD09FD0B8D181D18CD0BCD0BE20D0BAD0BAD183D0B5D183D186D0B5D183D0BA,NULL,NULL,'1970-01-01 03:00:00','1970-01-01 03:00:00','1970-01-01 03:00:00','ÐºÐºÑƒÑƒÐµÑƒÐºÐµÐºÑƒ',NULL,NULL,0,NULL,NULL,NULL),
-  (6,0xD097D0B0D0BAD180D18BD182D0B8D0B520D0B4D0BED0B3D0BED0B2D0BED180D0B020E28496313233,NULL,2,'1970-01-01 03:00:00','1970-01-01 03:00:00','1970-01-01 03:00:00','',NULL,NULL,0,NULL,NULL,NULL),
-  (7,0xD0A1D0BFD0B5D186D0B8D184D0B8D0BAD0B0D186D0B8D18F20D0BA20D0B4D0BED0B3D0BED0B2D0BED180D183,NULL,3,'1970-01-01 03:00:00','1970-01-01 03:00:00','1970-01-01 03:00:00','kljlj',NULL,NULL,0,NULL,NULL,4),
+  (5,0xD09FD0B8D181D18CD0BCD0BE20D0BAD0BAD183D0B5D183D186D0B5D183D0BA,NULL,NULL,'1970-01-01 03:00:00','1970-01-01 03:00:00','1970-01-01 03:00:00','ÐºÐºÑƒÑƒÐµÑƒÐºÐµÐºÑƒ',10,NULL,0,NULL,NULL,NULL),
+  (6,0xD097D0B0D0BAD180D18BD182D0B8D0B520D0B4D0BED0B3D0BED0B2D0BED180D0B020E28496313233,NULL,2,'1970-01-01 03:00:00','1970-01-01 03:00:00','1970-01-01 03:00:00','',11,NULL,0,NULL,NULL,NULL),
+  (7,0xD0A1D0BFD0B5D186D0B8D184D0B8D0BAD0B0D186D0B8D18F20D0BA20D0B4D0BED0B3D0BED0B2D0BED180D183,6,2,'1970-01-01 03:00:00','1970-01-01 03:00:00','1970-01-01 03:00:00','kljlj',23,NULL,60,NULL,NULL,4),
   (8,0xD092D18BD181D182D0B0D0B2D0BBD0B5D0BDD0B8D0B520D181D187D0B5D182D0B0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
   (9,0xD09ED0BFD0BED0B7D0B4D0B0D0BDD0B8D0B520D0BA20D0BAD0BBD0B8D0B5D0BDD182D183,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
   (10,0xD09ED0BFD0BED0B7D0B4D0B0D0BDD0B8D0B520D0BDD0B020D180D0B0D0B1D0BED182D183,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
@@ -679,12 +685,12 @@ INSERT INTO `tasks` (`ID`, `DESCRIPTION`, `PARENTID`, `PROJECTID`, `DATE_INIT`, 
   (13,0xD0A1D0BFD0B5D186D0B8D184D0B8D0BAD0B0D186D0B8D18F20D0BA20D0B4D0BED0B3D0BED0B2D0BED180D183,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
   (14,0xD0A1D0BFD0B5D186D0B8D184D0B8D0BAD0B0D186D0B8D18F20D0BA20D0B4D0BED0B3D0BED0B2D0BED180D183,-1,3,'2010-11-24 21:18:20','2010-11-24 09:18:05','2010-11-24 21:18:05','bkgkjg',101,NULL,0,1,NULL,NULL),
   (15,0xD0A1D0BFD0B5D186D0B8D184D0B8D0BAD0B0D186D0B8D18F20D0BA20D0B4D0BED0B3D0BED0B2D0BED180D183,-1,2,'2010-11-24 21:20:30','2010-11-24 20:30:12','2010-11-24 21:20:12','jhkhkj',101,NULL,0,1,NULL,NULL),
-  (16,0xD092D181D182D180D0B5D187D0B0,NULL,3,'2010-11-24 21:23:54','2010-11-24 20:53:43','2010-11-24 21:23:43','jhjkhjkhkj',101,NULL,0,1,NULL,NULL);
+  (16,0xD092D181D182D180D0B5D187D0B0,NULL,3,'2010-11-24 21:23:54','2010-11-24 20:53:43','2010-11-24 21:23:43','jhjkhjkhkj',101,NULL,0,5,NULL,NULL);
 
 COMMIT;
 
 #
-# Structure for the `tp_status` table : 
+# Structure for the `tp_status` table :
 #
 
 DROP TABLE IF EXISTS `tp_status`;
@@ -699,7 +705,7 @@ CREATE TABLE `tp_status` (
 # Data for the `tp_status` table  (LIMIT 0,500)
 #
 
-INSERT INTO `tp_status` (`ID`, `DESCRIPTION`) VALUES 
+INSERT INTO `tp_status` (`ID`, `DESCRIPTION`) VALUES
   (1,'Поставлено'),
   (2,'Принято к исполнению'),
   (3,'Выполнено, требует подтверждения'),
@@ -710,7 +716,7 @@ INSERT INTO `tp_status` (`ID`, `DESCRIPTION`) VALUES
 COMMIT;
 
 #
-# Structure for the `tpe_class` table : 
+# Structure for the `tpe_class` table :
 #
 
 DROP TABLE IF EXISTS `tpe_class`;
@@ -733,7 +739,7 @@ CREATE TABLE `tpe_class` (
 # Data for the `tpe_class` table  (LIMIT 0,500)
 #
 
-INSERT INTO `tpe_class` (`ID`, `DESCRIPTION`, `PROJECTUSE`, `TASKUSE`, `EVENTUSE`, `TYPEID`, `CONSTRUCTOR`, `ONCREATE`, `ONCLOSE`, `ONCHANGE`) VALUES 
+INSERT INTO `tpe_class` (`ID`, `DESCRIPTION`, `PROJECTUSE`, `TASKUSE`, `EVENTUSE`, `TYPEID`, `CONSTRUCTOR`, `ONCREATE`, `ONCLOSE`, `ONCHANGE`) VALUES
   (2,0xD097D0B2D0BED0BDD0BED0BA,0,0,1,1,'cccc1','dfdsfsdf',NULL,NULL),
   (3,0xD09FD0B8D181D18CD0BCD0BE,0,0,1,1,NULL,NULL,NULL,NULL),
   (4,0xD0A4D0B0D0BAD181,0,0,1,1,NULL,NULL,NULL,NULL),
@@ -753,7 +759,7 @@ INSERT INTO `tpe_class` (`ID`, `DESCRIPTION`, `PROJECTUSE`, `TASKUSE`, `EVENTUSE
 COMMIT;
 
 #
-# Structure for the `tpe_types` table : 
+# Structure for the `tpe_types` table :
 #
 
 DROP TABLE IF EXISTS `tpe_types`;
@@ -771,7 +777,7 @@ CREATE TABLE `tpe_types` (
 # Data for the `tpe_types` table  (LIMIT 0,500)
 #
 
-INSERT INTO `tpe_types` (`ID`, `DESCRIPTION`, `PROJECTUSE`, `TASKUSE`, `EVENTUSE`) VALUES 
+INSERT INTO `tpe_types` (`ID`, `DESCRIPTION`, `PROJECTUSE`, `TASKUSE`, `EVENTUSE`) VALUES
   (1,0xD0A0D0B0D0B1D0BED182D0B020D18120D0BAD0BBD0B8D0B5D0BDD182D0BED0BC,NULL,1,1),
   (2,0xD094D0BED0B3D0BED0B2D0BED180,1,1,1),
   (3,0xD09FD180D0BED186D0B5D181D181D18B,1,1,1),
@@ -780,7 +786,7 @@ INSERT INTO `tpe_types` (`ID`, `DESCRIPTION`, `PROJECTUSE`, `TASKUSE`, `EVENTUSE
 COMMIT;
 
 #
-# Structure for the `ur_division` table : 
+# Structure for the `ur_division` table :
 #
 
 DROP TABLE IF EXISTS `ur_division`;
@@ -797,7 +803,21 @@ CREATE TABLE `ur_division` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #
-# Structure for the `ur_dru` table : 
+# Data for the `ur_division` table  (LIMIT 0,500)
+#
+
+INSERT INTO `ur_division` (`ID`, `OBJECTID`, `READ`, `WRITE`, `CREATE`) VALUES
+  (101,1001,1,1,0),
+  (101,1002,1,1,0),
+  (101,1001,1,1,1),
+  (101,1001,1,1,1),
+  (101,1001,1,1,1),
+  (101,1001,1,1,1);
+
+COMMIT;
+
+#
+# Structure for the `ur_dru` table :
 #
 
 DROP TABLE IF EXISTS `ur_dru`;
@@ -814,7 +834,63 @@ CREATE TABLE `ur_dru` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #
-# Structure for the `ur_roles` table : 
+# Data for the `ur_dru` table  (LIMIT 0,500)
+#
+
+INSERT INTO `ur_dru` (`ID`, `OBJECTID`, `READ`, `WRITE`, `CREATE`) VALUES
+  (101,86,1,NULL,NULL),
+  (101,5,1,1,1),
+  (101,6,1,1,1),
+  (101,7,1,1,1),
+  (101,8,1,1,1),
+  (101,9,1,1,1),
+  (101,10,1,1,1),
+  (101,11,1,1,1),
+  (101,12,1,1,1),
+  (101,13,1,1,1),
+  (101,14,1,1,1),
+  (101,15,1,1,1),
+  (101,16,1,1,1),
+  (101,17,1,1,1),
+  (101,18,1,1,1),
+  (101,19,1,1,1),
+  (101,20,1,1,1),
+  (101,21,1,1,1),
+  (101,22,1,1,1),
+  (101,23,1,1,1),
+  (101,24,1,1,1),
+  (101,25,1,1,1),
+  (101,26,1,1,1),
+  (101,27,1,1,1),
+  (101,28,1,1,1),
+  (101,29,1,1,1),
+  (101,30,1,1,1),
+  (101,31,1,1,1),
+  (101,32,1,1,1),
+  (101,35,1,1,1),
+  (101,36,1,1,1),
+  (101,77,1,1,1),
+  (101,78,1,1,1),
+  (101,79,1,1,1),
+  (101,80,1,1,1),
+  (101,81,1,1,1),
+  (101,82,1,1,1),
+  (101,83,1,1,1),
+  (101,84,1,1,1),
+  (101,85,1,1,1),
+  (101,87,1,1,1),
+  (101,88,1,1,1),
+  (101,89,1,1,1),
+  (101,90,1,1,1),
+  (101,92,1,1,1),
+  (101,93,1,1,1),
+  (101,96,1,1,1),
+  (101,97,1,1,1);
+
+COMMIT;
+
+#
+# Structure for the `ur_roles` table :
 #
 
 DROP TABLE IF EXISTS `ur_roles`;
@@ -831,7 +907,27 @@ CREATE TABLE `ur_roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #
-# Structure for the `ur_users` table : 
+# Data for the `ur_roles` table  (LIMIT 0,500)
+#
+
+INSERT INTO `ur_roles` (`ID`, `OBJECTID`, `READ`, `WRITE`, `CREATE`) VALUES
+  (101,10,1,0,0),
+  (101,11,1,0,0),
+  (101,14,1,0,0),
+  (101,15,1,0,0),
+  (101,1001,1,1,1),
+  (101,1001,1,1,1),
+  (101,1001,1,1,1),
+  (101,1001,1,1,1),
+  (101,10,1,1,1),
+  (101,11,1,1,1),
+  (101,14,1,1,1),
+  (101,15,1,1,1);
+
+COMMIT;
+
+#
+# Structure for the `ur_users` table :
 #
 
 DROP TABLE IF EXISTS `ur_users`;
@@ -848,7 +944,7 @@ CREATE TABLE `ur_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #
-# Structure for the `user_sessions` table : 
+# Structure for the `user_sessions` table :
 #
 
 DROP TABLE IF EXISTS `user_sessions`;
@@ -859,25 +955,9 @@ CREATE TABLE `user_sessions` (
   `EXPIREDATE` datetime default NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-#
-# Data for the `user_sessions` table  (LIMIT 0,500)
-#
-
-INSERT INTO `user_sessions` (`USERID`, `SESSIONID`, `EXPIREDATE`) VALUES 
-  (1596,'50759a95aaa41412ae6d65d1ed0bc9a8','2010-11-16 12:53:37'),
-  (1596,'76868c553872a5dde24d9cd11549b636','2010-11-16 13:20:35'),
-  (1596,'65583c42d783353998aacedc52609ff4','2010-11-16 15:30:16'),
-  (101,'a80bd9bf170ecc756d4ef302c4f0e712','2010-11-17 19:16:34'),
-  (101,'e52ff15f1c6cff78c4e54fd19026256d','2010-11-17 19:52:13'),
-  (101,'8466f9ace6a9acbe71f75762ffc890f1','2010-11-24 14:49:19'),
-  (1596,'76868c553872a5dde24d9cd11549b636','2010-11-24 14:49:35'),
-  (101,'7d37940a0260eac65b7a04df9f8abeaf','2010-11-24 14:50:17'),
-  (101,'2b1d520ee7fa77e7ff90488dcd7b3467','2010-11-24 15:24:39');
-
-COMMIT;
 
 #
-# Structure for the `users` table : 
+# Structure for the `users` table :
 #
 
 DROP TABLE IF EXISTS `users`;
@@ -900,7 +980,7 @@ CREATE TABLE `users` (
 # Data for the `users` table  (LIMIT 0,500)
 #
 
-INSERT INTO `users` (`ID`, `LOGIN`, `PASSWORD`, `EMAIL`, `DESCRIPTION`, `MARK`, `OWNERID`, `PARENTID`, `CODE`) VALUES 
+INSERT INTO `users` (`ID`, `LOGIN`, `PASSWORD`, `EMAIL`, `DESCRIPTION`, `MARK`, `OWNERID`, `PARENTID`, `CODE`) VALUES
   (10,'kubasov','687904b66b2b64ae5e1a9ebb0273e7f4','kubasov.v.a@kvant-pkf.ru',0xD09AD183D0B1D0B0D181D0BED0B220D092D0B0D0BBD0B5D180D0B8D0B920D090D0BDD0B4D180D0B5D0B5D0B2D0B8D187,0,NULL,NULL,NULL),
   (11,'krasnoperov','be22c9ffff572441ec8544608e2c3464','krasnoperov.a.g@kvant-pkf.ru',0xD09AD180D0B0D181D0BDD0BED0BFD0B5D180D0BED0B220D090D0BDD0B4D180D0B5D0B920D093D0B5D0BDD0BDD0B0D0B4D18CD0B5D0B2D0B8D187,0,NULL,NULL,NULL),
   (12,'lubimcev','66cf62cd274dca218b498ae264e4e41d','lubimcev.v.v@kvant-pkf.ru',0xD09BD18ED0B1D0B8D0BCD186D0B5D0B220D092D0BBD0B0D0B4D0B8D181D0BBD0B0D0B220D092D0BBD0B0D0B4D0B8D0BCD0B8D180D0BED0B2D0B8D187,0,NULL,NULL,NULL),
@@ -935,200 +1015,4 @@ INSERT INTO `users` (`ID`, `LOGIN`, `PASSWORD`, `EMAIL`, `DESCRIPTION`, `MARK`, 
   (1597,'sasa','f45731e3d39a1b2330bbf93e9b3de59e',NULL,NULL,NULL,NULL,NULL,NULL);
 
 COMMIT;
-
-#
-# Definition for the `GET_HANDLER` function : 
-#
-
-DROP FUNCTION IF EXISTS `GET_HANDLER`;
-
-CREATE DEFINER = 'root'@'localhost' FUNCTION `GET_HANDLER`(ElementID_ BIGINT, ElementType_ CHAR(20))
-    RETURNS char(40) CHARSET utf8
-    NOT DETERMINISTIC
-    CONTAINS SQL
-    SQL SECURITY DEFINER
-    COMMENT ''
-BEGIN
-  declare Constructor_ char(40);
-  declare OnCreate_ char(40);
-  
-  CASE ElementType_ 
-  	WHEN 'Event' THEN 
-    	BEGIN        
-        	select `tpe_class`.CONSTRUCTOR, `tpe_class`.ONCREATE into Constructor_,OnCreate_
-            from `events` 
-            left join `tpe_class` on `tpe_class`.ID = `events`.CLASSID and `tpe_class`.EVENTUSE = 1
-            where `events`.ID = ElementID_;
-    	END;
-    
-    WHEN 'Task' THEN 
-    	BEGIN
-    	END;
-  	
-  	WHEN 'Project' THEN 
-    	BEGIN
-    	END;
-  
-  END CASE;
-  RETURN Constructor_;
-END;
-
-#
-# Definition for the `SET_DRUSC_STATUS` function : 
-#
-
-DROP FUNCTION IF EXISTS `SET_DRUSC_STATUS`;
-
-CREATE DEFINER = 'root'@'localhost' FUNCTION `SET_DRUSC_STATUS`(
-        ID INTEGER(11),
-        STATUS TINYINT(4)
-    )
-    RETURNS tinyint(4)
-    NOT DETERMINISTIC
-    CONTAINS SQL
-    SQL SECURITY DEFINER
-    COMMENT ''
-BEGIN
-
-REPLACE INTO
-`event_status_tl`  (`EVENTID`,`STATUS`,`CHANGEDATE`)
-VALUE 
-(ID,STATUS,NOW());
-
-UPDATE 
-	`events` 
-SET 
-	`events`.`STATUSID` = 
-	(SELECT `STATUS` FROM `event_status_tl` WHERE `EVENTID` = ID AND `CHANGEDATE` = 
-		(SELECT MAX(`CHANGEDATE`) FROM `event_status_tl` WHERE `EVENTID`= ID)) 
-WHERE
-	`events`.`ID` = ID ;
-    
-RETURN 1;
-
-END;
-
-#
-# Definition for the `SET_EVENT_STATUS` function : 
-#
-
-DROP FUNCTION IF EXISTS `SET_EVENT_STATUS`;
-
-CREATE DEFINER = 'root'@'localhost' FUNCTION `SET_EVENT_STATUS`(
-        ID INTEGER(11),
-        STATUS TINYINT(4)
-    )
-    RETURNS tinyint(4)
-    NOT DETERMINISTIC
-    CONTAINS SQL
-    SQL SECURITY DEFINER
-    COMMENT ''
-BEGIN
-
-REPLACE INTO
-`event_status_tl`  (`EVENTID`,`STATUS`,`CHANGEDATE`)
-VALUE 
-(ID,STATUS,NOW());
-
-UPDATE 
-	`events` 
-SET 
-	`events`.`STATUSID` = 
-	(SELECT `STATUS` FROM `event_status_tl` WHERE `EVENTID` = ID AND `CHANGEDATE` = 
-		(SELECT MAX(`CHANGEDATE`) FROM `event_status_tl` WHERE `EVENTID`= ID)) 
-WHERE
-	`events`.`ID` = ID ;
-    
-RETURN 1;
-
-END;
-
-#
-# Definition for the `SET_PROJECT_STATUS` function : 
-#
-
-DROP FUNCTION IF EXISTS `SET_PROJECT_STATUS`;
-
-CREATE DEFINER = 'root'@'localhost' FUNCTION `SET_PROJECT_STATUS`(
-        PROJECTID INTEGER(11),
-        STATUSID INTEGER(11),
-        USERID INTEGER(11)
-    )
-    RETURNS tinyint(4)
-    NOT DETERMINISTIC
-    CONTAINS SQL
-    SQL SECURITY DEFINER
-    COMMENT ''
-BEGIN
-
-REPLACE INTO
-`project_status_tl`  (`PROJECTID`,`STATUSID`,`CHANGEDATE`,`USERID`)
-VALUE 
-(PROJECTID,STATUSID,NOW(),USERID);
-
-UPDATE 
-	`projects` 
-SET 
-	`projects`.`STATUSID` = 
-	(SELECT `project_status_tl`.`STATUSID` FROM `project_status_tl` WHERE `project_status_tl`.`PROJECTID` =PROJECTID AND `project_status_tl`.`CHANGEDATE` = 
-	(SELECT MAX(`project_status_tl`.`CHANGEDATE`) FROM `project_status_tl` WHERE `project_status_tl`.`PROJECTID`=PROJECTID)) 
-WHERE
-	`projects`.`ID` = PROJECTID ;
-    
-RETURN 1;
-
-END;
-
-#
-# Definition for the `SET_TASK_STATUS` function : 
-#
-
-DROP FUNCTION IF EXISTS `SET_TASK_STATUS`;
-
-CREATE DEFINER = 'root'@'localhost' FUNCTION `SET_TASK_STATUS`(
-        TASKID INTEGER(11),
-        STATUSID INTEGER(11),
-        USERID INTEGER(11)
-    )
-    RETURNS tinyint(4)
-    NOT DETERMINISTIC
-    CONTAINS SQL
-    SQL SECURITY DEFINER
-    COMMENT ''
-BEGIN
-
-REPLACE INTO
-`task_status_tl`  (`TASKID`,`STATUSID`,`CHANGEDATE`,`USERID`)
-VALUE 
-(TASKID,STATUSID,NOW(),USERID);
-
-UPDATE 
-	`tasks` 
-SET 
-	`tasks`.`STATUSID` = 
-	(SELECT `task_status_tl`.`STATUSID` FROM `task_status_tl` WHERE `task_status_tl`.`TASKID`=TASKID AND `task_status_tl`.`CHANGEDATE` = 
-	(SELECT MAX(`task_status_tl`.`CHANGEDATE`) FROM `task_status_tl` WHERE `task_status_tl`.`TASKID`=TASKID)) 
-WHERE
-	`tasks`.`ID` = TASKID ;
-    
-RETURN 1;
-
-END;
-
-#
-# Definition for the `current_task_status` view : 
-#
-
-DROP VIEW IF EXISTS `current_task_status`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `current_task_status` AS 
-  select 
-    `tasks`.`DESCRIPTION` AS `DESCRIPTION`,
-    `task_status`.`DESCRIPTION` AS `TSTATUS`,
-    max(`task_tstatus`.`CHANGEDATE`) AS `currentdate`,
-    `task_tstatus`.`TASKID` AS `TASKID` 
-  from 
-    ((`task_tstatus` join `tasks` on((`task_tstatus`.`TASKID` = `tasks`.`ID`))) join `task_status` on((`task_status`.`ID` = `task_tstatus`.`STATUSID`))) 
-  group by 
-    `task_tstatus`.`TASKID`;
 
