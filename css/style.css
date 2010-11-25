@@ -139,17 +139,16 @@ a.left, a.left-red, a.left-green, a.left-yellow, a.event
 	color: #006415;   
 	text-decoration: none;
 	font-family: Verdana;
-	
 }
+
 
 li.left, li.left-red, li.left-green, li.left-yellow
 {
-	overflow: hidden;
-	width: 190px; 
-	height: 16px;
+	list-style-type: disc; 
 	margin: 0px;
-	padding: 0px;  
-	list-style-type: disc;    
+	padding: 0px; 	
+	width: 190px; 
+	height: 16px; 
 				   
 }
 
@@ -189,7 +188,7 @@ li.event
 	padding-bottom: 1px;
 	width: 195px;
 	font-size: 11px;  
-	border-bottom:1px solid #eaedf0;  
+	 
 }
 
 div.level-1, div.level-
@@ -199,6 +198,7 @@ div.level-1, div.level-
 	width: 196px; 
 	height: 16px;
 	list-style-type: disc; 
+	border-bottom:1px solid #eaedf0;  
 	
 }
 div.level-2
@@ -208,6 +208,7 @@ div.level-2
 	width: 183px; 
 	height: 16px;
 	list-style-type: disc; 
+	border-bottom:1px solid #eaedf0;  
 	
 }
 div.level-3, div.level-4, div.level-5, div.level-6, div.level-7, div.level-8, div.level-9, div.level-10, div.level-11
@@ -216,7 +217,8 @@ div.level-3, div.level-4, div.level-5, div.level-6, div.level-7, div.level-8, di
 	overflow: hidden;
 	width: 170px; 
 	height: 16px;
-	list-style-type: disc; 
+	list-style-type: disc;  
+	border-bottom:1px solid #eaedf0;  
 }
 
 div.LeftButtonProject

@@ -1,3 +1,10 @@
+
+li.left, li.left-red, li.left-green, li.left-yellow, li.event
+{
+	overflow: hidden;  
+				   
+}
+
 .ButtonRow, .ButtonRowTop  
 {
 	height: 29px;
