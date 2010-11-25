@@ -76,6 +76,8 @@ function SetDRU(ID)
 	Res = ParseStatusXML(Text,'');
 	//if (Res['ActionStatus'] == 0) location.reload();
 	document.getElementById('CurrentDRU').style.display='none';
+	if(Res)
+		GantRefresh();
 }
 
 
@@ -472,7 +474,7 @@ function SaveProject()
 function GantRefresh()
 {
 	// TODO 10 -o Natali -c JS: подумать над тем, что перегружаем при создании события, нужен ли полный рефрешь страницы.
-	//location.href="?Object=System&Form=gant"; 
+	location.href="?Object=System&Form=gant"; 
 }
 //===============================================================================
 

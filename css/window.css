@@ -257,12 +257,12 @@ div#Filter
 	padding-bottom:5px;
 	font-size: 11px;
 	font-family: Tahoma;
-	width: 208px;
+	/*width: 208px; */
 	  
 }
 .DRUList
 {
-	displa0y: none;  
+	display: none;  
 }
 
 .level2

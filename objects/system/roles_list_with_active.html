@@ -1,7 +1,7 @@
 <div class="Role"><nobr> 
-<a href="#" class="NoAction" onmousemove="document.getElementById('CurrentDRU').style.display='block';">Активная роль:</a> {?Object=System&Var=ActiveDRU}
+<a href="#" class="NoAction" onmousemove="document.getElementById('CurrentDRU').style.display='block';">Активная роль:</a> {?Object=DRU&ID=System(CurrentDRUID)&Form=Description}
 </nobr></div>
-<table border="0" cellspacing="0" cellpadding="0" id="CurrentDRU" style7="position: absolute;display: none;z-index: 2000;" onmousemove="this.style.display='block';" onMouseout0="DivHide('CurrentDRU');">
+<table border="0" cellspacing="0" cellpadding="0" id="CurrentDRU" style="position: absolute;display: none;z-index: 2000;" onmousemove="this.style.display='block';" onMouseout0="DivHide('CurrentDRU');">
 	<tr>
 		<td><img src="images/rect-top-left.png" hspace="0" vspace="0" border="0"></td>
 		<td class="Recttop" valign="top">&nbsp;</td>
@@ -15,7 +15,7 @@
 					<td class="TextForm" valign="top">
 						<div class="ButtonDRU" onmousemove="DivOpenMenu('DRUCurrentUser');"><a href="#">Свои роли</a></div>
 						<div id="DRUCurrentUser" class="RoleList">
-							{?Object=DRUList&Form=menu_role&Filter[0][Field]=UserID&Filter[0][Oper]=eq&Filter[0][Val]=SESSION(CurrentUserID)&Filter[1][Field]=RoleID&Filter[1][Oper]=!eq&Filter[1][Val]=}
+							{?Object=DRUList&Form=menu_current_user&Filter[0][Field]=UserID&Filter[0][Oper]=eq&Filter[0][Val]=SESSION(CurrentUserID)&Filter[1][Field]=RoleID&Filter[1][Oper]=!eq&Filter[1][Val]=}
 						</div>
 						<div class="ButtonDRU" onmousemove="DivOpenMenu('DRUUser');"><a href="#">Сотрудники</a></div>
 						<div id="DRUUser" class="DRUList" onmousemove="this.style.display='block';">
