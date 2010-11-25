@@ -21,42 +21,41 @@
 		
 		);
 		
-        protected function Refresh()
-        {
-            $System = System::GetObject();
-            $null = null;
-            $sql_base = 'SELECT `ID` FROM `dru`';
-            
-            if (isset($this->ViewData['Filter']) and is_array($this->ViewData['Filter']))
-            {
-                $Conditions = '';
-                foreach ($this->ViewData['Filter'] as $FilterRec)
-                {
-                    $Conditions = $Conditions.($Conditions==''?'':' and ').$this->CreateQueryFilter($FilterRec);
-                }
-                if ($Conditions != '') $sql .= ' where '.$Conditions;
-            }
-
-            $sql_filter = 'select OBJECTID from ur_DRU where ID = "'.$System->CurrentUserID.'" and `READ`';
-            
-            $sql = 'Select buf.* from ('.$sql_base.') as buf cross join  ('.$sql_filter.') as perms on buf.ID =  perms.OBJECTID';          
-            
-            if (!($hSql = DBMySQL::Query($sql)))
-            {
-                ErrorHandle::ErrorHandle("Ошибка при получении списка DRU.");
-            }
-            else
-            {
-                while ($fetch = DBMySQL::FetchObject($hSql)) 
-                {
-                    $ClassName = $this->_ValueType;
-                    if ($obj = $ClassName::GetObject($null,$fetch->ID))
-                    {
-                        $this->add($obj);
-                    }
-                }
-            }
-        }
+		protected function Refresh()
+		{
+			$System = System::GetObject();
+			$null = null;
+			$sql_base = 'SELECT `ID` FROM `dru`';
+			
+			if (isset($this->ProcessData['Filter']) and is_array($this->ProcessData['Filter']))
+			{
+				$Conditions = '';
+				foreach ($this->ProcessData['Filter'] as $FilterRec)
+				{
+					$Conditions = $Conditions.($Conditions==''?'':' and ').$this->CreateQueryFilter($FilterRec);
+				}
+				if ($Conditions != '') $sql_base .= ' where '.$Conditions;
+			}
+			$sql_filter = 'select OBJECTID from ur_DRU where ID = "'.$System->CurrentUserID.'" and `READ`';
+			
+			$sql = 'Select buf.* from ('.$sql_base.') as buf cross join  ('.$sql_filter.') as perms on buf.ID =  perms.OBJECTID';          
+			
+			if (!($hSql = DBMySQL::Query($sql)))
+			{
+				ErrorHandle::ErrorHandle("Ошибка при получении списка DRU.");
+			}
+			else
+			{
+				while ($fetch = DBMySQL::FetchObject($hSql)) 
+				{
+					$ClassName = $this->_ValueType;
+					if ($obj = $ClassName::GetObject($null,$fetch->ID))
+					{
+						$this->add($obj);
+					}
+				}
+			}
+		}
 
 		public function __construct($ProcessData)
 		{

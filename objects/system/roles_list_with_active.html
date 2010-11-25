@@ -15,19 +15,19 @@
 					<td class="TextForm" valign="top">
 						<div class="ButtonDRU" onmousemove="DivOpenMenu('DRUCurrentUser');"><a href="#">Свои роли</a></div>
 						<div id="DRUCurrentUser" class="RoleList">
-							{?Object=DRUList&Form=menu_role&Filter[0][Field]=UserID&Filter[0][Oper]=eq&Filter[0][Val]=system(CurrentUserID)}
+							{?Object=DRUList&Form=menu_role&Filter[0][Field]=UserID&Filter[0][Oper]=eq&Filter[0][Val]=SESSION(CurrentUserID)&Filter[1][Field]=RoleID&Filter[1][Oper]=!eq&Filter[1][Val]=}
 						</div>
 						<div class="ButtonDRU" onmousemove="DivOpenMenu('DRUUser');"><a href="#">Сотрудники</a></div>
 						<div id="DRUUser" class="DRUList" onmousemove="this.style.display='block';">
-							{?Object=DRUList&Form=menu_user}
+							{?Object=DRUList&Form=menu_user&Filter[0][Field]=UserID&Filter[0][Oper]=!eq&Filter[0][Val]=&Filter[1][Field]=RoleID&Filter[1][Oper]=eq&Filter[1][Val]=&Filter[2][Field]=DivisionID&Filter[2][Oper]=eq&Filter[2][Val]=}
 						</div>
 						<div class="ButtonDRU" onmousemove="DivOpenMenu('DRUDivision');"><a href="#">Подразделния</a></div>
 						<div id="DRUDivision" class="DRUList">
-							{?Object=DRUList&Form=menu_division}
+							{?Object=DRUList&Form=menu_division&Filter[0][Field]=UserID&Filter[0][Oper]=eq&Filter[0][Val]=&Filter[1][Field]=RoleID&Filter[1][Oper]=eq&Filter[1][Val]=&Filter[2][Field]=DivisionID&Filter[2][Oper]=!eq&Filter[2][Val]=}
 						</div>
 						<div class="ButtonDRU" onmousemove="DivOpenMenu('DRURole');"><a href="#">Роли</a></div>
 						<div id="DRURole" class="DRUList">
-							{?Object=DRUList&Form=menu_role}
+							{?Object=DRUList&Form=menu_role&Filter[0][Field]=UserID&Filter[0][Oper]=eq&Filter[0][Val]=&Filter[1][Field]=RoleID&Filter[1][Oper]=!eq&Filter[1][Val]=&Filter[2][Field]=DivisionID&Filter[2][Oper]=eq&Filter[2][Val]=}
 						</div>
 					</td>
 				</tr>
