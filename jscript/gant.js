@@ -97,16 +97,19 @@ function GetEventInfo(ID,event)
 }
 
 var ElenentClose;
+var ElenentOpen;
 function DivHide(DivId)
 {
 	ElenentClose = DivId; 
-	setTimeout("if('" + DivId + "' == ElenentClose) document.getElementById('" + DivId + "').style.display = 'none';", 500);
+	//setTimeout("if('" + DivId + "' == ElenentClose) document.getElementById('" + DivId + "').style.display = 'none';", 500);
 	// document.getElementById(DivId).style.display = 'none';   
 }
 
 function DivOpen(DivId)
 {
-	document.getElementById(DivId).style.display = 'block';   
+	ElenentOpen = DivId; 
+	setTimeout("if('" + DivId + "' == ElenentOpen) document.getElementById('" + DivId + "').style.display = 'block';", 500);
+	//document.getElementById(DivId).style.display = 'block';   
 }
 
 function DivOpenMenu(DivId)
