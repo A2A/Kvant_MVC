@@ -26,8 +26,7 @@
 			FROM `user_roles`INNER JOIN 
 			`role` ON `user_roles`.`RoleID` = `role`.`ID`  INNER JOIN
 			`users` ON `user_roles`.`UserID` = `users`.`ID`";
-			// DONE 5 -o Molev -c Category: Написать рефреш
-
+			
 			if (isset($this->ViewData['Filter']) and is_array($this->ViewData['Filter']))
 			{
 				$Conditions = '';

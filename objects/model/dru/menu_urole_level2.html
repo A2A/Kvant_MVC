@@ -1,0 +1,8 @@
+ <!-- Element Begin -->
+	<a href="#" class="accessRole" onClick="SetDRU({?Object=this&Var=this(ID)});"  onmousemove="DivOpen('urUser{?Object=this&Var=this(ID)}',3)">{?Object=this&Var=this(RoleDescr)}</a>
+	<div  class="DRUList level4"  id="urUser{?Object=this&Var=this(ID)}" onmousemove="DivOpen('urUser{?Object=this&Var=this(ID)}',3);" onMouseout=";">
+			{?Object=DRUList&Form=menu_division_level3&Filter[0][Field]=UserID&Filter[0][Oper]=eq&Filter[0][Val]=this(UserID)&Filter[1][Field]=RoleID&Filter[1][Oper]=eq&Filter[1][Val]=this(RoleID)&Filter[2][Field]=DivisionID&Filter[2][Oper]=!eq&Filter[2][Val]=}
+	</div>
+	
+<!-- Element End --> 
+				

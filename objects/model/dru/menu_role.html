@@ -1,4 +1,17 @@
  <!-- Element Begin -->
-	<a href="#" class="accessRole" onClick="SetDRU({?Object=this&Var=this(ID)});">{?Object=this&Var=this(RoleDescr)}</a>
+	<a href="#" class="accessRole" onClick="SetDRU({?Object=this&Var=this(ID)});"  onmousemove="DivOpen('rMainDivision{?Object=this&Var=this(ID)}',1)">{?Object=this&Var=this(RoleDescr)}</a>
+	
+		
+	<div class="DRUList level2" id="rMainDivision{?Object=this&Var=this(ID)}"  onmousemove="DivOpen('rMainDivision{?Object=this&Var=this(ID)}',1)"  onMouseout="DivHideMenu('rMainDivision{?Object=this&Var=this(ID)}',1);"> 
+		<a href="#" class="ButtonSmallDRU" onmousemove="DivOpen('rMainRole{?Object=this&Var=this(ID)}',2)"  onMouseout=";">Сотрудники</a>
+		<div  class="DRUList level3" id="rMainRole{?Object=this&Var=this(ID)}"  onmousemove="DivOpen('rMainRole{?Object=this&Var=this(ID)}',2)"   onMouseout="DivHideMenu('rMainUser{?Object=this&Var=this(ID)}',2);">
+			{?Object=DRUList&Form=menu_ruser_level2&Filter[0][Field]=UserID&Filter[0][Oper]=!eq&Filter[0][Val]=&Filter[1][Field]=RoleID&Filter[1][Oper]=eq&Filter[1][Val]=this(RoleID)&Filter[2][Field]=DivisionID&Filter[2][Oper]=eq&Filter[2][Val]=}
+		</div>
+		<a href="#" class="ButtonSmallDRU" onmousemove="DivOpen('rMainDiv{?Object=this&Var=this(ID)}',2)"  onMouseout=";">Подразделения</a>
+		<div  class="DRUList level3" id="rMainDiv{?Object=this&Var=this(ID)}"  onmousemove="DivOpen('rMainDiv{?Object=this&Var=this(ID)}',2)"   onMouseout="DivHideMenu('rMainDiv{?Object=this&Var=this(ID)}',2);">
+			{?Object=DRUList&Form=menu_rdivision_level2&Filter[0][Field]=UserID&Filter[0][Oper]=eq&Filter[0][Val]=&Filter[1][Field]=RoleID&Filter[1][Oper]=eq&Filter[1][Val]=this(RoleID)&Filter[2][Field]=DivisionID&Filter[2][Oper]=!eq&Filter[2][Val]=}
+		</div>
+		
+	</div>
 <!-- Element End --> 
 				

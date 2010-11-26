@@ -103,23 +103,23 @@ var ElenentOpen = new Array();
 
 function DivHide(DivId)
 {   
-	//if( '"+DivId+"' == ElenentClose) 
 	setTimeout("document.getElementById('" + DivId + "').style.display = 'none';", 700);
 }
 
 function DivHideMenu(DivId,Num)
 {
 	ElenentCloseArray[Num] = DivId; 
-	setTimeout("TextInfoEchoWarning('" + DivId + "',"+Num+");", 500);
-	//document.getElementById(DivId).style.display = 'none';   
+	setTimeout("DivCloseTime('" + DivId + "',"+Num+");", 500);
 }
 
-function TextInfoEchoWarning(DivId,Num)
+function HideCurrentDRU()
 {
-	document.getElementById('TextInfoEchoWarning').innerHTML = document.getElementById('TextInfoEchoWarning').innerHTML
-		+ "<br>'" + DivId + "' == "+ElenentClose+" &&  '" + DivId + "' != "+ElenentOpen[Num] ; 
-	
-	if(DivId == ElenentCloseArray[Num] && DivId != ElenentOpen[Num]) 
+	setTimeout("DivHide('CurrentDRU')",500);
+}
+
+function DivCloseTime(DivId,Num)
+{
+	if(DivId == ElenentCloseArray[Num] && DivId != ElenentOpen[Num])  ;
 		document.getElementById(DivId).style.display = 'none';
 	
 }
@@ -128,6 +128,7 @@ function DivOpen(DivId,Num)
 {
 	ElenentOpen[Num] = DivId; 
 	ElenentClose = DivId;  
+	
 	setTimeout("DivOpenTime('" + DivId + "',"+Num+");", 300);
 }
 
@@ -159,7 +160,21 @@ function DivOpenMenuTime(DivId)
 		document.getElementById(DivId).style.display = 'block';
 	}
 }
+var AllDRUOpen = 0;
+function CatchGetAllDRU(Text)
+{
+	document.getElementById('BlockAllDRU').style.display = "block"; 
+	document.getElementById('BlockAllDRU').innerHTML = Text;
+	AllDRUOpen = 1;
+}
 
+function GetAllDRU()
+{
+	Url = "?Ajax=1&Object=System&Form=list_all_dru";
+	if (AllDRUOpen == 0) 
+		setTimeout("AjaxSendGET('"+Url+"',CatchGetAllDRU);", 1000);   
+		
+}
 
 
 function SetInterval(ID)

@@ -6,10 +6,20 @@
 		'list' => 'objects/model/dru/list.html',
 		'menu_current_user' => 'objects/model/dru/menu_current_user.html',
 		'menu_user' => 'objects/model/dru/menu_user.html',
+		'menu_duser_level2' => 'objects/model/dru/menu_duser_level2.html',
+		'menu_ruser_level2' => 'objects/model/dru/menu_ruser_level2.html',
 		'menu_user_level2' => 'objects/model/dru/menu_user_level2.html',
+		'menu_user_level3' => 'objects/model/dru/menu_user_level3.html',
 		'menu_division' => 'objects/model/dru/menu_division.html',
+		'menu_division_level2' => 'objects/model/dru/menu_division_level2.html',
+		'menu_udivision_level2' => 'objects/model/dru/menu_udivision_level2.html',
+		'menu_rdivision_level2' => 'objects/model/dru/menu_rdivision_level2.html',
+		'menu_division_level3' => 'objects/model/dru/menu_division_level3.html',
 		'menu_role' => 'objects/model/dru/menu_role.html',
 		'menu_role_level2' => 'objects/model/dru/menu_role_level2.html',
+		'menu_urole_level2' => 'objects/model/dru/menu_urole_level2.html',
+		'menu_drole_level2' => 'objects/model/dru/menu_drole_level2.html',
+		'menu_role_level3' => 'objects/model/dru/menu_role_level3.html',
 		'tpe_create' => 'objects/model/dru/tpe_create.html',
 		);
 
@@ -46,11 +56,11 @@
 			}
 			
 			
-			//ErrorHandle::ErrorHandle($sql_base);  
 			
 			$sql_filter = 'select OBJECTID from ur_DRU where ID = "'.$System->CurrentUserID.'" and `READ`';
 			
 			$sql = 'Select buf.* from ('.$sql_base.') as buf cross join  ('.$sql_filter.') as perms on buf.ID =  perms.OBJECTID';          
+			ErrorHandle::ErrorHandle($sql);  
 			
 			if (!($hSql = DBMySQL::Query($sql)))
 			{

@@ -25,6 +25,7 @@
 		protected $Modified = false;
 		protected $SystemMark = false;
 
+		
 		protected function Refresh()
 		{
 			if (intval($this->ID) >0)
@@ -163,13 +164,13 @@
 		{
 			return $this->Description;
 		}
-        
-        public function __get($FieldName)
-        {
-            ErrorHandle::ErrorHandle('Обращение к несуществующему полю '.$FieldName.' объекта '.get_class($this).'.',2);
-        }
-        
-        
-        
+		
+		public function __get($FieldName)
+		{
+			ErrorHandle::ErrorHandle('Обращение к несуществующему полю '.$FieldName.' объекта '.get_class($this).'.',2);
+		}
+		
+		
+		
 	}
 ?>

@@ -78,17 +78,26 @@
 			$null = null;
 			switch ($FieldName)
 			{
-				case 'UserDescr': $result = is_null($this->UserID)      ?'Все сотрудники'   : (''.User::GetObject($null,$this->UserID)); break;
-				case 'RoleDescr': $result = is_null($this->RoleID)      ?'Все роли'         : (''.Role::GetObject($null,$this->RoleID)); break;
-				case 'DivDescr': $result = is_null($this->DivisionID)   ?'Все подразделения': (''.Division::GetObject($null,$this->DivisionID)); break;
+				case 'UserDescr': {
+									$result = ""; 
+									if (is_numeric($this->UserID) and $this->UserID > 0)
+									{
+										$result = $this->User->Description;
+									}
+									else
+											$result = 'Все сотрудники'; 
+									}
+									break;
+				case 'RoleDescr': $result = is_null($this->RoleID)      ?'Все роли'         : ($this->Role->Description); break;
+				case 'DivDescr': $result = is_null($this->DivisionID)   ?'Все подразделения': ($this->Division->Description); break;
 
 				case 'User': $result = is_null($this->UserID)      ?null: User::GetObject($null,$this->UserID); break;
 				case 'Role': $result = is_null($this->RoleID)      ?null: Role::GetObject($null,$this->RoleID); break;
-				case 'Div': $result = is_null($this->DivisionID)   ?null: Division::GetObject($null,$this->DivisionID); break;
+				case 'Division': $result = is_null($this->DivisionID)   ?null: Division::GetObject($null,$this->DivisionID); break;
 				
 				case 'UserID': $result = $this->UserID; break;
 				case 'RoleID': $result = $this->RoleID; break;
-				case 'DivID': $result = $this->DivisionID; break;
+				case 'DivisionID': $result = $this->DivisionID; break;
 
 				case 'DRUType': 
 				{

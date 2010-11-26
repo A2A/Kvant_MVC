@@ -48,6 +48,7 @@
 		'' 						=> 'objects/system/all_url.html',
 		'all_url' 				=> 'objects/system/all_url.html',
 		'current_list_role' 	=> 'objects/system/current_list_role.html',
+		'list_all_dru' 			=> 'objects/system/list_all_dru.html',
 		);
 
 		public $meta = '';

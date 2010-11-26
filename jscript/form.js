@@ -1,3 +1,13 @@
+function GantRefresh()
+{
+	TempHref = window.location.href;
+	
+	if( TempHref.search(/\?/) > 0) TempHref = TempHref.replace("#", "&"); 
+	else  TempHref = TempHref.replace("#", "\?&");  
+	
+	location.href = TempHref;
+}
+
 function OnPressEnterLogIn(event)
 {
 	if(event.keyCode==13) 
@@ -76,8 +86,7 @@ function SetDRU(ID)
 	Res = ParseStatusXML(Text,'');
 	//if (Res['ActionStatus'] == 0) location.reload();
 	document.getElementById('CurrentDRU').style.display='none';
-	if(Res)
-		GantRefresh();
+	GantRefresh();
 }
 
 
@@ -471,12 +480,7 @@ function SaveProject()
 	return 1;
 }
 
-function GantRefresh()
-{
-	// TODO 10 -o Natali -c JS: подумать над тем, что перегружаем при создании события, нужен ли полный рефрешь страницы.
-	TempHref = location.href;
-	location.href = TempHref;
-}
+
 //===============================================================================
 
 var TPETypeId;
@@ -584,7 +588,8 @@ function EventConfirm()
 function EventBlockRefresh()
 {
 	// TODO 10 -o Natali -c JS: подумать над тем, что перегружаем при создании события, нужен ли полный рефрешь страницы.
-	location.href="?Object=System&Form=event"; 
+	GantRefresh();
+	//location.href="?Object=System&Form=event"; 
 }
 
 function ClickEvent(ID,Continue)

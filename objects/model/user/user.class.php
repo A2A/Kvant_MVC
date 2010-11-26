@@ -19,7 +19,7 @@
 		'edit' => 'objects/user/edit.html',
 		'view' => 'objects/user/view.html',
 		);
-
+			
 		protected function SetActionData()
 		{
 			parent::SetActionData();
@@ -102,7 +102,7 @@
 		public function __construct(&$ProcessData,$ID=null)  
 		{   
 			parent::__construct($ProcessData,$ID);
-            $this->Refresh();
+			$this->Refresh();
 			
 		}
 

@@ -332,7 +332,6 @@
 			if (!intval($this->ID))
 			{
 				// TODO 4 -o Natali -c Ошибка формирования SQL запроса: при создании если не установлен пользователь, надо получить текущего для $this->UserID
-				// TODO 4 -o Natali -c Ошибка формирования SQL запроса: при создании если указываем в поле Manager выбранное DRU текущего пользователя
 				$sql = 'insert into '.$this->DBTableName.' (
 				`ID`,`DESCRIPTION`,`PARENTID`,`PROJECTID`,
 				`DATE_INIT`,`DATE_START`,`DATE_FINISH`,
