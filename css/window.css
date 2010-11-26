@@ -319,3 +319,9 @@ a.ButtonSmallDRU
 	text-decoration: none;
 	display: block;
 }
+
+#DRUListCurrentUserCheck
+{
+	position: absolute;
+	display: block;
+}

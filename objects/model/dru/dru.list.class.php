@@ -60,7 +60,7 @@
 			$sql_filter = 'select OBJECTID from ur_DRU where ID = "'.$System->CurrentUserID.'" and `READ`';
 			
 			$sql = 'Select buf.* from ('.$sql_base.') as buf cross join  ('.$sql_filter.') as perms on buf.ID =  perms.OBJECTID';          
-			ErrorHandle::ErrorHandle($sql);  
+			//ErrorHandle::ErrorHandle($sql);  
 			
 			if (!($hSql = DBMySQL::Query($sql)))
 			{

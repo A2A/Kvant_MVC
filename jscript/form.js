@@ -495,6 +495,10 @@ function CatchTPECreate(Text)
 	heig = ( (typeof window.innerHeight != 'undefined')? window.innerHeight : document.body.offsetHeight) - 100;
 	
 	//document.getElementById('PageMain').style.height = heig+"px"; 
+	
+	document.getElementById('DRUListCurrentUserCheck').style.top =  document.body.scrollTop + 80;
+	document.getElementById('DRUListCurrentUserCheck').style.left =  document.body.scrollLeft + 150;
+	
 }
 
 function CreateNewElement(EventTypeId)

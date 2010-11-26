@@ -162,3 +162,27 @@ A.BigButton
 	padding-top: 2px;
 	padding-left: 4px;
 }
+
+
+div#NoActionDesktop
+{
+	position: absolute;
+	z-index: 100;
+	width: 790px;
+	height: 800px;
+	background: gray;
+	float: left;
+	opacity: 0.1;
+	filter: alpha(opacity=30);
+	display: none;
+	vertical-align: middle;   
+}
+#ActionDesktop
+{
+	position: absolute;
+	z-index: 102;
+	width: 790px;
+	height: 800px;
+	display: none;
+	vertical-align: middle;   
+}
