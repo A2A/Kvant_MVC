@@ -103,18 +103,18 @@ var ElenentOpen = new Array();
 
 function DivHide(DivId)
 {   
-	setTimeout("document.getElementById('" + DivId + "').style.display = 'none';", 700);
+	setTimeout("document.getElementById('" + DivId + "').style.display = 'none';", 300);
 }
 
 function DivHideMenu(DivId,Num)
 {
 	ElenentCloseArray[Num] = DivId; 
-	setTimeout("DivCloseTime('" + DivId + "',"+Num+");", 500);
+	setTimeout("DivCloseTime('" + DivId + "',"+Num+");", Num*500);
 }
 
 function HideCurrentDRU()
 {
-	setTimeout("DivHide('CurrentDRU')",500);
+	//setTimeout("DivHide('CurrentDRU')",500);
 }
 
 function DivCloseTime(DivId,Num)

@@ -41,13 +41,23 @@ function OnPressKeyBody(event)
 
 function OnClickBody(event)
 {
-	//if (document.getElementById('FullListEventType').style.display == 'block')
-	{
-		//alert('FullListEventType');
-		//DivHide('FullListEventType');
-		return 1;
-	} 
+	ElmID = 'body'; 
+	if (event.target)   ElmID = event.target.id;
+	else if (event) ElmID = event.srcElement.id;
+	else ElmID = 'body';
 	
+	if (document.getElementById('FullListEventType'))
+	{
+		if(document.getElementById('FullListEventType').style.display == 'block' && ElmID != "NoHide")	
+			DivHide('FullListEventType');
+	}
+	if (document.getElementById('CurrentDRU'))
+	{
+		//alert("CurrentDRU");
+		if(document.getElementById('CurrentDRU').style.display == 'block')
+			DivHide('CurrentDRU');
+	} 
+	DivHide('ModalWindow');       
 }
 
 function SendLogIn()
