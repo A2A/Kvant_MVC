@@ -30,7 +30,7 @@ function OnPressKeyBody(event)
 		} 
 		if (document.getElementById('NoActionDesktop').style.display == 'block')
 		{
-			CloseModalWindow();
+			//CloseModalWindow();
 			return 1;
 		} 
 

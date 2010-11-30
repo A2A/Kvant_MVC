@@ -1,3 +1,15 @@
+
+<OwnerDiv>{?Object=this&Var=get(DivID)}</OwnerDiv>
+
+<Text>
+<table  border="0" cellspacing="0" cellpadding="0">
 <!-- Element Begin -->  
-    <a href="?Object=Division&Form=Edit&ID={?Object=this&Var=this(ID)}">{?Object=this&Var=INDEX()}. {?Object=this&Var=this(Description)}</a><br />
+			<tr>
+				<td> 
+					<div class="IndicatorCategor-{?Object=this&Var=this(ColorValue)}">&nbsp;</div>
+					<nobr onClick="FactorListShow('{?Object=this&Var=this(ID)}', '{?Object=this&Var=get(DivID)}List{?Object=this&Var=this(ID)}', '{?Object=this&Var=this(DRUID)}');" class="CategorName">&nbsp;{?Object=this&Var=this(Description)}</nobr>
+					<div id="{?Object=this&Var=get(DivID)}List{?Object=this&Var=this(ID)}" class="FactorList"></div>     
+				</td>
+			</tr>
 <!-- Element End -->
+</table></Text>

@@ -23,7 +23,7 @@ function VisibleNewProject(event)
 {
 	SetEvent(event.clientX + document.body.scrollLeft, event.clientY + document.body.scrollTop);     
 	document.getElementById('ModalWindow').innerHTML =
-		'<table border="0" cellspacing=0 cellpadding=0>'+
+		'<table border="0" cellspacing=0 cellpadding=0   onmousemove="OpenModalWindow();" >'+
 	'<tr>'+
 		'<td><img src="images/rect-top-left.png" hspace="0" vspace="0" border="0"></td>'+
 		'<td class="RectTop">&nbsp;</td>'+

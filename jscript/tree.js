@@ -197,21 +197,21 @@ function CatchUnitShow(Messages)
 				countUnit++;
 				if (Count == 3) 
 				{
-					Tr2 = Tr2 + '<td class="NoneLineBegin" width="80px">&nbsp;</td><td class="NoneLineEnd">&nbsp;</td>';  
+					Tr2 = Tr2 + '<td class="NoneLineBegin"><img src="images/none.png" class="treeimage"></td><td class="NoneLineEnd">&nbsp;</td>';  
 				}
 				else
 				if (countUnit == 1)
 				{
-					Tr2 = Tr2 + '<td class="NoneLineBegin style="width:80px;background:#f0d5f2;" id="TempTdForIE-'+OwnerID+'"><img src="images/status-2.png" class="treeimage"></td><td class="LineLeftTop">&nbsp;</td>';  
+					Tr2 = Tr2 + '<td class="NoneLineBegin"><img src="images/none.png" class="treeimage"></td><td class="LineLeftTop">&nbsp;</td>';  
 				}
 				else
 				if (i<Count-2)
 				{
-					Tr2 = Tr2 + '<td class="LineTop"><img src="images/status-2.png" class="treeimage"></td><td class="LineLeftTop">&nbsp;</td>';  
+					Tr2 = Tr2 + '<td class="LineTop"><img src="images/none.png" class="treeimage"></td><td class="LineLeftTop">&nbsp;</td>';  
 				}
 				else
 				{
-					Tr2 = Tr2 + '<td class="LineTop"><img src="images/status-2.png" class="treeimage"></td><td class="NoneLineEnd">&nbsp;</td>';  
+					Tr2 = Tr2 + '<td class="LineTop"><img src="images/none.png" class="treeimage"></td><td class="NoneLineEnd">&nbsp;</td>';  
 				}
 				
 			} 
@@ -326,8 +326,7 @@ function CatchRoleShow(Messages)
 		
 		RoleBlock.innerHTML =   table + "<tr>" + Tr1 + "</tr><tr>" + Tr2 + '</tr></table>';
 		RoleBlock.style.display = 'block';  
-		
-		document.getElementById("TdUnitRole-"+OwnerID).style.width = (220*countRole - 60 - 130) + "px";
+		SetRoleLineWidthTd(OwnerID); 
 		   
 		regexpName     	= null; 
 		regexpId     	= null; 
@@ -341,12 +340,11 @@ function CatchRoleShow(Messages)
 
 function SetRoleLineWidthTd(KeyArray)
 {
-	OwnerID = TreeUnit[KeyArray]['ID'];
-	if (TreeUnit[KeyArray]['Role'] == 1 && TreeRole[OwnerID]) 
+	if (TreeUnit[KeyArray]['Role'] == 1 && TreeRole[KeyArray]) 
 	{
-		countRole = TreeRole[OwnerID].length;
+		countRole = TreeRole[KeyArray].length;
 	
-		Block2 = document.getElementById('UnitOpenBlock-'+OwnerID);
+		Block2 = document.getElementById('UnitOpenBlock-'+KeyArray);
 		if (Block2.style.display == 'block')
 		{
 			
@@ -390,6 +388,7 @@ function RoleShow(KeyArray)
 			TreeUnit[KeyArray]['Role']  = 1;   // открыты роли
 			//TreeUnit[OwnerID]['ChildOpen']  = 0;   // открыты подчиненный подразделения
 			document.getElementById("TdUnitRole-"+KeyArray).style.backgroundImage = "url('images-tree/line-unit-role.png')";  
+			SetRoleLineWidthTd(OwnerID); 
 		}  
 		
 	} 
@@ -461,16 +460,18 @@ function CatchStaffShow(Messages)
 		var Sablon2 = document.getElementById('ShablonStaff2').innerHTML  
 		table = '<table border="0" cellspacing="0" cellpadding="0" bordercolor="#00ff00"><tr>'
 		var StaffBlock = document.getElementById('Role.'+OwnerID+'-Staff');
-	
-		for(i=0; i < Count; i++)
+		TreeStaff[OwnerID] = new Array(); 
+		for(i=0; i < Count - 1; i++)
 		{
+			TreeStaff[OwnerID][i] = new Array();
+				
 			if(regexpId.test(ElementList[i]))
 			{
 				ID = regexpId.exec(ElementList[i])[1];  
 				
-				TreeStaff[ID] = new Array();
-				TreeStaff[ID]['Problem'] = regexpProblem.exec(ElementList[i])[1];  // Является проблемной
-				
+				TreeStaff[OwnerID][i]['Problem'] = regexpProblem.exec(ElementList[i])[1];  // Является проблемной
+				TreeStaff[OwnerID][i]['ID'] = ID;  // Является проблемной
+						
 				Name = regexpName.exec(ElementList[i])[1];
 				Indicator = regexpIndicator.exec(ElementList[i])[1];
 				
@@ -526,8 +527,7 @@ function CatchCategorShow(Message)
 		regexpResultStatus  = null;
 		regexpText    = /<Text>(.+)<\/Text>/ ; 
 		
-		//alert(regexpText.exec(Message)[1]);
-	
+		
 		if(regexpText.test(Message))
 		{
 			 document.getElementById(OwnerDiv).innerHTML = regexpText.exec(Message)[1]; 
@@ -537,34 +537,35 @@ function CatchCategorShow(Message)
 	 
 }
 
-function UnitCategorShow(ID)
+function UnitCategorShow(OwnerID)
 {
-	var Block = document.getElementById('UnitCategory-'+ID);
+	var Block = document.getElementById('UnitCategory-'+OwnerID);
 	if (Block.innerHTML == '') 
 	{
-		Url = "index_tree_test.php?Ajax=1&Object=Categor&Form=List&Fork=Unit&ID=" + ID;
+		Url = "?Ajax=1&Object=CategoryList&Form=list&Filter[0][Field]=DRUID&Filter[0][Oper]=eq&Filter[0][Val]="+
+		TreeUnit[OwnerID]['ID']+"&DivID=" + 'UnitCategory-'+ OwnerID;
 		//alert(Url);   
 	
 		AjaxSendGET(Url,CatchCategorShow);
 	}
 	
-	Block1 = document.getElementById('UnitHiddenBlock-'+ID);
-	Block2 = document.getElementById('UnitOpenBlock-'+ID);
-	Block3 = document.getElementById('TableUnitCategory-'+ID);
+	Block1 = document.getElementById('UnitHiddenBlock-'+OwnerID);
+	Block2 = document.getElementById('UnitOpenBlock-'+OwnerID);
+	Block3 = document.getElementById('TableUnitCategory-'+OwnerID);
 	
 	if (Block2.style.display == 'block')
 	{
 		Block2.style.display = 'none';
 		Block3.style.display = 'none';
 		Block1.style.display = 'block';
-		SetRoleLineWidthTd(ID);
+		SetRoleLineWidthTd(OwnerID);
 	}
 	else
 	{
 		Block2.style.display = 'block'; 
 		Block3.style.display = 'block'; 
 		Block1.style.display = 'none';
-		SetRoleLineWidthTd(ID); 
+		SetRoleLineWidthTd(OwnerID); 
 	}   
 }
 
@@ -573,7 +574,8 @@ function RoleCategorShow(ID)
 	var Block = document.getElementById('RoleCategory-'+ID);
 	if (Block.innerHTML == '') 
 	{
-		Url = "index_tree_test.php?Ajax=1&Object=Categor&Form=List&Fork=Role&ID=" + ID;
+		Url = "?Ajax=1&Object=CategoryList&Form=list&Filter[0][Field]=DRUID&Filter[0][Oper]=eq&Filter[0][Val]="+
+		ID+"&DivID=" + 'RoleCategory-'+ ID;
 		//alert(Url);   
 	
 		AjaxSendGET(Url,CatchCategorShow);
@@ -604,7 +606,8 @@ function StaffCategorShow(ID)
 	var Block = document.getElementById('StaffCategory-'+ID);
 	if (Block.innerHTML == '') 
 	{
-		Url = "index_tree_test.php?Ajax=1&Object=Categor&Form=List&Fork=Staff&ID=" + ID;
+		Url = "?Ajax=1&Object=CategoryList&Form=list&Filter[0][Field]=DRUID&Filter[0][Oper]=eq&Filter[0][Val]="+
+		ID+"&DivID=" + 'StaffCategory-'+ ID;
 		//alert(Url);   
 	
 		AjaxSendGET(Url,CatchCategorShow);
@@ -641,8 +644,7 @@ function CatchFactorListShow(Message)
 		regexpResultStatus  = null;
 		regexpText    = /<Text>(.+)<\/Text>/ ; 
 		
-		//alert(regexpText.exec(Message)[1]);
-	
+		
 		if(regexpText.test(Message))
 		{
 			 document.getElementById(OwnerDiv).innerHTML = regexpText.exec(Message)[1]; 
@@ -651,14 +653,15 @@ function CatchFactorListShow(Message)
 	};
 }
 
-function FactorListShow(CatID,DivID,OwnerID,TypeOwner)
+function FactorListShow(CatID,DivID,DRUID)
 {
 	var Block = document.getElementById(DivID);
 	if (Block.innerHTML == '') 
 	{
-		Url = "index_tree_test.php?Ajax=1&Object=Categor&Form=FactorList&ID=" + CatID+ "&Div=" + "Categor"+TypeOwner+"-"+OwnerID+"-"+CatID;
-		//alert(Url);   
-	
+		Url = "?Ajax=1&Object=ScoreCardList&Form=list&Filter[0][Field]=DRUID&Filter[0][Oper]=eq&Filter[0][Val]="+
+		DRUID+"&Filter[0][Field]=CategoryID&Filter[0][Oper]=eq&Filter[0][Val]="+
+		CatID+"&DivID=" + DivID;
+		
 		AjaxSendGET(Url,CatchFactorListShow);
 	}
 	
@@ -725,10 +728,10 @@ function ZoomUnit(KeyArray)
 	// TODO 1 -o N -c JS: поменять привязку всего на KeyArray, для подразделений, ролей и сотрудников
 }
 
-function ZoomProblemUnit(ID)
+function ZoomProblemUnit(KeyArray)
 {
-	RoleShow(ID);
-	if (TreeUnit[ID]['Child'] == 1) UnitShow(ID);
+	RoleShow(KeyArray);
+	if (TreeUnit[KeyArray]['Child'] == 1) UnitShow(KeyArray);
 }
 
 function ZoomRole(ID)
@@ -757,7 +760,6 @@ function ClickUnit(ID)
 function ShowUnitAll()
 {
 	count = TreeUnit.length;
-	// TreeUnit[OwnerID]['ChildOpen'] = 1;    - открыты подчиненные   
 	for (i=1;i<count;i++)
 	{
 		if (TreeUnit[i]['ChildOpen'] != 1 && TreeUnit[i]['Child'] == 1) 
@@ -767,8 +769,8 @@ function ShowUnitAll()
 			setTimeout("ShowUnitAll()", 300+i);      
 		}  
 		document.getElementById('RoleBlock-'+i).style.display = 'none';
-				TreeUnit[i]['Role']  = 0;   // закрыть роли
-			document.getElementById("TdUnitRole-"+i).style.backgroundImage = "url('')";  
+		TreeUnit[i]['Role']  = 0;   // закрыть роли
+		document.getElementById("TdUnitRole-"+i).style.backgroundImage = "url('')";  
 	
 	
 	}
@@ -778,7 +780,6 @@ function ShowUnitAll()
 function ShowRoleAll()
 {
 	count = TreeUnit.length;
-	// TreeUnit[key]['Role']  = 1;   // открыты роли           
 	for (i=1;i<count;i++)
 	{
 		if (TreeUnit[i]['Role'] != 1) 
@@ -791,7 +792,6 @@ function ShowRoleAll()
 function ShowStaffAll()
 {
 	count = TreeUnit.length;
-	// TreeUnit[key]['Role']  = 1;   // открыты роли           
 	var ii;      
 	for (ii=1;ii<count;ii++)
 	{
@@ -809,19 +809,18 @@ function ShowCategorAll()
 	{
 		UnitID = TreeUnit[ki]['ID'];
 		UnitCategorShow(ki);
-		if (TreeUnit[ki]['Role'] == 1 && TreeRole[UnitID]) 
+		if (TreeUnit[ki]['Role'] == 1 && TreeRole[ki]) 
 		{	
-			for (ri=0;ri<TreeRole[UnitID].length;ri++)
+			for (ri=0;ri<TreeRole[ki].length;ri++)
 			{
-				RoleID = TreeRole[UnitID][ri]['ID'];
+				RoleID = TreeRole[ki][ri]['ID'];
 				RoleCategorShow(RoleID); 
-				alert('RoleID ' + UnitID + "|" + RoleID); 
-				if (TreeRole[UnitID][ri]['Staff'] == 1 && TreeStaff[RoleID]) 
-				{	
+				if (TreeStaff[RoleID]) 
+				{		
 					for (ui=0;ui<TreeStaff[RoleID].length;ui++)
 					{
-						StaffCategorShow(TreeStaff[RoleID][ui]['ID']); 
-						alert('RoleID ' + UnitID + "|" + TreeRole[UnitID][ri]['ID']); 
+						if(TreeStaff[RoleID][ui]['ID'])  StaffCategorShow(TreeStaff[RoleID][ui]['ID']); 
+						
 					}  
 				} 
 			}  

@@ -1,7 +1,7 @@
 <?php
 	class CategoryList extends CollectionDB
 	{
-		protected $DBTableName = 'roles';
+		protected $DBTableName = 'cards_types';
 		public static $Forms = array(
 		'list' => 'objects/model/category/list.html',
 		);
@@ -13,48 +13,22 @@
 		'RoleDescr' => 'RoleDescr'
 		);
 
-		protected function Refresh()
-		{
-			$System = System::GetObject();
-			$null = null;
-			$sql_base = 'SELECT `ID` FROM `roles`';
-			
-			if (isset($this->ViewData['Filter']) and is_array($this->ViewData['Filter']))
-			{
-				$Conditions = '';
-				foreach ($this->ViewData['Filter'] as $FilterRec)
-				{
-					$Conditions = $Conditions.($Conditions==''?'':' and ').$this->CreateQueryFilter($FilterRec);
-				}
-				if ($Conditions != '') $sql .= ' where '.$Conditions;
-			}
-
-			$sql_filter = 'select OBJECTID from ur_roles where ID = "'.$System->CurrentUserID.'" and `READ`';
-			
-			$sql = 'Select buf.* from ('.$sql_base.') as buf cross join  ('.$sql_filter.') as perms on buf.ID =  perms.OBJECTID';          
-			
-			if (!($hSql = DBMySQL::Query($sql)))
-			{
-				ErrorHandle::ErrorHandle("Ошибка при получении списка подразделений.");
-			}
-			else
-			{
-				while ($fetch = DBMySQL::FetchObject($hSql)) 
-				{
-					$ClassName = $this->_ValueType;
-					if ($obj = $ClassName::GetObject($null,$fetch->ID))
-					{
-						$this->add($obj);
-					}
-				}
-			}
-		}
-
 		public function __construct($ProcessData)
 		{
 
-			parent::__construct($ProcessData,'Role');
+			parent::__construct($ProcessData,'Category');
 			$this->Refresh();
+			//print_r($this);
+		}
+		
+		public function __get($FieldName)
+		{
+			/*switch($FieldName)
+			{
+				case "" : return "";
+				case "" : return "";
+				case "" : return "";
+			} */
 		}
 
 		static public function GetObject(&$ProcessData,$id=null)

@@ -187,8 +187,8 @@ td#TdUnit-1
 
 .treeimage
 {
-	width: 1px;
-	height: 1px;
+	width: 10px;
+	height: 5px;
 }
 
 .NoneLineBegin
@@ -197,7 +197,7 @@ td#TdUnit-1
 	height: 5px;
 	border: 0px;
 	font-size: 10px;
-	display: block;
+
 	/*border:1px solid #f0f0f0;   
 	layout: true;    width: 80px;            */ 
 	width: 80px;
@@ -296,4 +296,17 @@ td#TdUnit-1
 	border-left: 1px solid transparent; 
 	border: 0px solid red; 
 	float: left;
+}
+
+.CategorName
+{
+	overflow: hidden;
+	width: 110px; 
+	
+}
+
+.UnitNext
+{
+	text-align: left;
+	vertical-align: top;
 }

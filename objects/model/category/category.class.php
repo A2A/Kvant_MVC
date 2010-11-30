@@ -1,11 +1,24 @@
 <?php
 	class Category extends Entity
 	{
-		protected $DBTableName = 'category';    
+		protected $DBTableName = 'cards_types';    
 		public static $Forms = array(
 		'edit' => 'objects/model/category/edit.html',
 		'view' => 'objects/model/category/view.html',
 		);
+
+		public $ColorValue = "green";
+		public $DRUID;
+		
+		protected static $SQLFields = array(
+		'Description' => 'DESCRIPTION'
+		);
+		
+		
+		static public function GetSQLField($Field)
+		{
+			return @ Category::$SQLFields[$Field];
+		}
 
 		public function __construct(&$ProcessData,$ID=null)  
 		{   
@@ -13,42 +26,23 @@
 			$this->Refresh();     
 		}
 
-		protected function Refresh()
+		public function Refresh()
 		{
-			$System = System::GetObject();
-			if (intval($this->ID) >0)
+			$null = null;
+			if (intval($this->ID))
 			{
-				$this->Modified = false;
-				$sql_base = 'Select * from roles  where ID = '.intval($this->ID);
-				$sql_filter = 'select OBJECTID from ur_roles where ID = "'.$System->CurrentUserID.'" and `READ` and OBJECTID = '.intval($this->ID);
+				$sql = 'Select * from '.$this->DBTableName.' where ID = '.$this->ID;
 
-				$sql = 'Select buf.* from ('.$sql_base.') as buf cross join  ('.$sql_filter.') as perms on buf.ID =  perms.OBJECTID';          
-				if (!($hSql = DBMySQL::Query($sql)))
-				{
-					ErrorHandle::ErrorHandle('Ошибка при получении данных о роли № '.$this->ID,1);
-				}
-				elseif (!($fetch = DBMySQL::FetchObject($hSql)))
-				{
-					ErrorHandle::ErrorHandle('Попытка получения несуществующей роли или недостаточно прав на просмотр роли №'.$this->ID,1);
-				}
-				else
+				$hSql = DBMySQL::Query($sql);
+				while ($fetch = DBMySQL::FetchObject($hSql)) 
 				{
 					$this->Description = $fetch->DESCRIPTION;
 				}
 			}
+			// TODO 1 -o Natali -c Заглушка Переписать: возврат DRUID
+			$this->DRUID = $_GET['Filter'][0]['Val'];
 		}
 
-
-		public function __get($FieldName)
-		{
-			switch ($FieldName)
-			{
-				case 'Active': $result = ($this->ID == $_SESSION['CurrentRoleID']?'Active':'NoActive'); break;
-				default: $result = parent::__get($FieldName);
-			}
-			return $result;
-		}
-		
 		static public function GetObject(&$ProcessData,$ID=null)
 		{
 			return static::GetObjectInstance($ProcessData,$ID,__CLASS__);
