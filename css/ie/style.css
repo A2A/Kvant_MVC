@@ -186,3 +186,55 @@ div#NoActionDesktop
 	display: none;
 	vertical-align: middle;   
 }
+
+
+.treeimage
+{
+	width: 80px;
+	height: 5px;
+}
+
+.NoneLineBegin
+{
+	padding: 0px;
+	height: 5px;
+	border: 0px;
+	font-size: 10px;
+	display: block;
+	/*border:1px solid #f0f0f0;   
+	layout: true;    width: 80px;            */ 
+	width: 1%;
+	
+}
+
+
+.NoneLineEnd
+{
+	padding: 0px;
+	height: 5px;
+	border: 0px;
+	font-size: 10px;
+	border-left:1px solid #c0c0c0;
+	
+}
+
+ .LineLeftTop
+{
+	padding: 0px;
+	height: 5px;
+	border: 0px;
+	width: auto; 
+	font-size: 10px;
+	border-left:1px solid #c0c0c0;    
+	border-top:1px solid #c0c0c0;    
+}
+
+.LineTop
+{
+	padding: 0px;
+	width: 1%;
+	height: 5px;
+	border: 0px;
+	font-size: 10px;
+	border-top:1px solid #c0c0c0;    
+}

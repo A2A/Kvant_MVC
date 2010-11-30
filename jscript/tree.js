@@ -202,16 +202,16 @@ function CatchUnitShow(Messages)
 				else
 				if (countUnit == 1)
 				{
-					Tr2 = Tr2 + '<td class="NoneLineBegin style="width:80px;background:#f0d5f2;" id="TempTdForIE-'+OwnerID+'">&nbsp;</td><td class="LineLeftTop">&nbsp;</td>';  
+					Tr2 = Tr2 + '<td class="NoneLineBegin style="width:80px;background:#f0d5f2;" id="TempTdForIE-'+OwnerID+'"><img src="images/status-2.png" class="treeimage"></td><td class="LineLeftTop">&nbsp;</td>';  
 				}
 				else
 				if (i<Count-2)
 				{
-					Tr2 = Tr2 + '<td class="LineTop">&nbsp;</td><td class="LineLeftTop">&nbsp;</td>';  
+					Tr2 = Tr2 + '<td class="LineTop"><img src="images/status-2.png" class="treeimage"></td><td class="LineLeftTop">&nbsp;</td>';  
 				}
 				else
 				{
-					Tr2 = Tr2 + '<td class="LineTop">&nbsp;</td><td class="NoneLineEnd">&nbsp;</td>';  
+					Tr2 = Tr2 + '<td class="LineTop"><img src="images/status-2.png" class="treeimage"></td><td class="NoneLineEnd">&nbsp;</td>';  
 				}
 				
 			} 
