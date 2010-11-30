@@ -27,6 +27,8 @@
 			case 'User'                 : $ClassFileName = 'objects/model/user/user.class.php'; break;
 			case 'DRU'                  : $ClassFileName = 'objects/model/dru/dru.class.php'; break;
 			case 'DRUList'              : $ClassFileName = 'objects/model/dru/dru.list.class.php'; break;
+			case 'DRUDivisionList'      : $ClassFileName = 'objects/model/dru/drudivision.list.class.php'; break;
+			case 'DRUUserList'      	: $ClassFileName = 'objects/model/dru/druuser.list.class.php'; break;
 
 			case 'Project'              : $ClassFileName = 'objects/model/project/project.class.php'; break;
 			case 'ProjectList'          : $ClassFileName = 'objects/model/project/project.list.class.php'; break;
@@ -58,6 +60,12 @@
 			
 			case 'TPStatus'       		: $ClassFileName = 'objects/model/tp_status/tp_status.class.php'; break;
 			case 'TPStatusList'         : $ClassFileName = 'objects/model/tp_status/tp_status.list.class.php'; break;
+
+			case 'Category'       		: $ClassFileName = 'objects/model/category/category.class.php'; break;
+			case 'CategoryList'         : $ClassFileName = 'objects/model/category/category.list.class.php'; break;
+	
+			case 'ScoreCard'       		: $ClassFileName = 'objects/model/scorecard/scorecard.class.php'; break;
+			case 'ScoreCardList'         : $ClassFileName = 'objects/model/scorecard/scorecard.list.class.php'; break;
 
 
 			default                     : $ClassFileName = 'objects/'.strtolower($ClassName).'.class.php';

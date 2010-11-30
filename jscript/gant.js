@@ -106,6 +106,11 @@ function DivHide(DivId)
 	setTimeout("document.getElementById('" + DivId + "').style.display = 'none';", 300);
 }
 
+function DivHideNow(DivId)
+{
+	document.getElementById(DivId).style.display = 'none';
+}
+
 function DivHideMenu(DivId,Num)
 {
 	ElenentCloseArray[Num] = DivId; 

@@ -8,6 +8,7 @@
 		<link rel="stylesheet" type="text/css" href='css/user.css'>
 		<link rel="stylesheet" type="text/css" href='css/window.css'>
 		<link rel="stylesheet" type="text/css" href='css/gant.css'>
+		<link rel="stylesheet" type="text/css" href='css/tree.css'>
 		<!--[if IE ]>
 		<link rel="stylesheet" type="text/css" href='css/ie/style.css'>
 		<![endif]-->
@@ -28,9 +29,9 @@
 		<div id="InfoWindow">
 			<div class="ButtonLightBlue BigButton" align="right"><nobr><img src="images/button-blue-1.png" class="img" align="left" hspace="0"><img src="images/button-blue-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonLightBlue BigButton" onClick="ShowAllMessages();">Показать все сообщения</a></nobr></div> 
 		</div>
-		<div id="ModalWindow"  onmousemove="this.style.display='block';" onMouseout="DivHide('ModalWindow');">
+		<div id="ModalWindow"  onmousemove="this.style.display='block';" onMouseout="DivHideNow('ModalWindow');">
 		</div>
-		<div id="SelectAction"  onmousemove="this.style.display='block';" onMouseout="DivHide('SelectAction');">
+		<div id="SelectAction"  onmousemove="this.style.display='block';" onMouseout="DivHideNow('SelectAction');">
 		</div>
 		<div id="Calendar" style="position: absolute;z-index:1002;"  onmousemove="this.style.display='block';"></div>
 
@@ -48,7 +49,7 @@
 						<a href="?Object=ssp">
 							<img src="images/button-ssp.png"  alt="Дерево Показателей" align="right" border=0 hspace="3" vspace="0">
 						</a>
-						<a href="?Object=ssp" class="TopMenu">
+						<a href="?Object=System&Form=ssp" class="TopMenu">
 							Система Сбалансированных Показателей
 						</a>
 					</div>

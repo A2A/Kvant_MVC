@@ -21,6 +21,9 @@
 		'menu_drole_level2' => 'objects/model/dru/menu_drole_level2.html',
 		'menu_role_level3' => 'objects/model/dru/menu_role_level3.html',
 		'tpe_create' => 'objects/model/dru/tpe_create.html',
+		
+		'unit' => 'objects/model/dru/unit.html',
+		'role' => 'objects/model/dru/role.html',
 		);
 
 		public static $SQLFields = array(
@@ -55,7 +58,7 @@
 				if ($group != '') $sql_base .= ' group by '.$group;
 			}
 			
-			
+			//echo $sql_base;
 			
 			$sql_filter = 'select OBJECTID from ur_DRU where ID = "'.$System->CurrentUserID.'" and `READ`';
 			

@@ -630,6 +630,11 @@ function NewEvent()
 	location.href = "?Object=System&Form=event";      
 }
 
+function FiltrEvent()
+{
+	alert('FiltrEvent');
+}
+
 function VisibleControlBlock(BlockId)
 {   
 	if (document.getElementById(BlockId).style.display == 'block') 

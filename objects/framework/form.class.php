@@ -61,8 +61,11 @@
 				else
 				{
 					$this->Content['footer'] = strstr($Content,'<!-- Element End -->',false); 
+					$this->Content['footer'] = str_replace('<!-- Element End -->', '', $this->Content['footer']);
 
 					$ElementContent = strstr(strstr($Content,'<!-- Element End -->',true),'<!-- Element Begin -->',false);
+					$ElementContent = str_replace('<!-- Element Begin -->', '', $ElementContent);
+
 					$LoopBound = $this->Object->count();
 					for ($i = 0;$i<$LoopBound;$i++)
 					{
@@ -203,7 +206,7 @@
 				{
 					if (isset($Record['FieldName'])) 
 					{
-                        $SubObject = $ClassName::GetObject($Record['Params'],null);
+						$SubObject = $ClassName::GetObject($Record['Params'],null);
 						$result = $SubObject->$Record['FieldName'];
 					}
 					else
@@ -374,10 +377,10 @@
 					$this->Object = $ClassName::GetObject($PD,$this->ObjectID);
 				}
 				elseif ($ClassName == 'WorkBlockList')
-                {
-                    $this->Object = $ClassName::GetObject($this->ViewData,$this->ObjectID);
-                }
-                else
+				{
+					$this->Object = $ClassName::GetObject($this->ViewData,$this->ObjectID);
+				}
+				else
 				{
 					$this->Object = $ClassName::GetObject($null,$this->ObjectID);
 				}

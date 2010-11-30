@@ -752,7 +752,7 @@ A.ButtonLightBlueBig
 {
 	display:block; 
 	width:53px;  
-	height:17px;
+	height:15px;
 	padding:0px;
 	margin-left: 3px; 
 }
@@ -761,7 +761,7 @@ A.ButtonBlackBlueSmall, A.ButtonLightBlueSmall, A.ButtonpassiveBlueSmall, A.Butt
 {
 	color: #1f3652;
 	display:block;
-	height:13px;
+	height:12px;
 	padding-top:1px;
 	padding-bottom:2px;
 	margin:0px; 

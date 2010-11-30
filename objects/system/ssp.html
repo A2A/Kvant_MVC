@@ -1,0 +1,250 @@
+<script src="jscript/tree.js"></script>
+<div id="menu">
+	<img src="images-tree/tree-unit-all.png" onclick="ShowUnitAll();">
+	<img src="images-tree/tree-unit-and-role-all.png" onclick="ShowRoleAll();">
+	<img src="images-tree/tree-unit-role-staff-all.png" onclick="ShowStaffAll();">
+	<img src="images-tree/tree-categor-open.png" onclick="ShowCategorAll();">
+	<img src="images-tree/tree-facror-open.png" onclick="ShowFactorAll();">
+
+</div>
+<br><br>
+<script>
+// TODO 1 -o Natali -c JS: dfdhdfhd
+ 
+</script> 
+
+<div id="MenuUnit"  onmousemove="this.style.display='block';" onMouseout="DivHideNow('MenuUnit');">
+	<img src="images-tree/categor-this.png" class="ssp-icon" title="Детализировать до категорий показателей" onclick="UnitCategorShow(ElementID);">
+	<img src="images-tree/factor-this.png" class="ssp-icon" title="Детализировать до показателей"  onclick="UnitFactorShow(ElementID);">
+	<img src="images-tree/zoom-in-all.png" class="ssp-icon" title="Раскрыть структурную единицу" id="IconUnitZoomAll"  onclick="ZoomUnit(ElementID);">
+	<img src="images-tree/zoom-in-problem.png" class="ssp-icon" title="Раскрыть проблемные точки структурной единицы" id="IconUnitZoomProblem"  onclick="ZoomProblemUnit(ElementID);">
+	<img src="images-tree/problem-open.png" class="ssp-icon" title="Раскрыть проблемные точки"  onclick="ZoomProblem(ElementID);">
+
+</div>
+
+<div id="MenuRole"  onmousemove="this.style.display='block';" onMouseout="DivHideNow('MenuRole');">
+	<img src="images-tree/tree-staff-this.png" class="ssp-icon" title="Роль по сотрудникам" onclick="ShowRoleOffStaff(ElementID);">
+	<img src="images-tree/categor-this.png" class="ssp-icon" title="Детализировать до категорий показателей" onclick="RoleCategorShow(ElementID);">
+	<img src="images-tree/factor-this.png" class="ssp-icon" title="Детализировать до показателей"  onclick="RoleFactorShow(ElementID);">
+	<img src="images-tree/zoom-in-all.png" class="ssp-icon" title="Раскрыть роль" id="IconRoleZoomAll"  onclick="ZoomRole(ElementID);">
+	<img src="images-tree/zoom-in-problem.png" class="ssp-icon" title="Раскрыть проблемные точки" id="IconRoleZoomProblem"  onclick="ZoomProblemRole(ElementID);">
+	<img src="images-tree/problem-open.png" class="ssp-icon" title="Раскрыть проблемные точки"  onclick="ZoomProblemRole(ElementID);">
+
+</div>
+
+<div id="MenuStaff"  onmousemove="this.style.display='block';" onMouseout="DivHideNow('MenuStaff');">
+	<img src="images-tree/tree-role-this.png" class="ssp-icon"  title="Сотрудник по ролям" onclick="ShowStaffOffRole(ElementID);">
+	<img src="images-tree/categor-this.png" class="ssp-icon" title="Детализировать до категорий показателей" onclick="StaffCategorShow(ElementID);">
+	<img src="images-tree/factor-this.png" class="ssp-icon" title="Детализировать до показателей"  onclick="StaffFactorShow(ElementID);">
+	
+
+</div>
+<div id="Tree">
+
+<table  border="0" cellspacing="0" cellpadding="0" bordercolor="#000000"  width="100px" align="center">
+	<tr>
+		<td align="left">
+			<table  border="0" cellspacing="0" cellpadding="0" width="100px" bordercolor="#f0f000" id="TableUnit-1">
+				<tr>
+					<td class="TdUnit" id="TdUnit-1">
+							<div class="GreenFork" id="UnitHiddenBlock-1">
+								<img src="images-tree/unit-green.png" class="icon"  onMouseOver="MenuUnit('1',event);"><nobr onClick="ClickUnit(1);">Компания КВАНТ</nobr>
+							</div>   
+							<div class="GreenForkVisible" id="UnitOpenBlock-1">
+								<img src="images-tree/unit-green.png" class="icon"  onMouseover="MenuUnit('1',event);"><nobr onClick="ClickUnit(1);">Компапания Квант</nobr>
+							</div>
+					</td>
+					<td class="LineUnitRole" id="TdUnitRole-1">
+						&nbsp;
+					</td>
+					<td class="TdZakryvaetLishniyFon">
+						&nbsp;
+					</td>
+				</tr>
+				<tr>
+					<td colspan=3 class="VerticalLineUnitUnit"  id="TdUnitVertical-1">
+						<table id="TableUnitCategory-1" border="0" cellspacing="0" cellpadding="0" class="BlockFactor">       
+								<tr>
+									<td class="Categor" valign="top"> 
+										<div id="UnitCategory-1"></div>
+									</td>
+									<td class="RightMenu">
+	<img src="images-tree/categor-this.png" class="ssp-icon"  title="Скрыть деталезацию до категорий показателей" onclick="UnitCategorShow(1);">
+	<img src="images-tree/factor-this.png" class="ssp-icon"  title="Детализировать до показателей"  onclick="UnitFactorShow(1);">
+	<img src="images-tree/zoom-in-all.png" class="ssp-icon" title="Раскрыть структурную единицу" id="IconUnitZoomAll"  onclick="ZoomUnit(1);">
+	<img src="images-tree/zoom-in-problem.png" class="ssp-icon" title="Раскрыть проблемные точки структурной единицы" id="IconUnitZoomProblem"  onclick="ZoomProblemUnit(1);">
+	<img src="images-tree/problem-open.png" class="ssp-icon" title="Раскрыть проблемные точки"  onclick="ZoomProblem(1);">
+
+									</td>
+								</tr>
+								<tr>
+									<td colspan=2 class="ForkOpenBottom"> 
+										<img src="images-tree/fork-open-bottom.png"> 
+									</td>
+								</tr>
+						</table>
+							
+							<div class="UnitBlockRole" id="RoleBlock-1"></div>
+					</td>
+				</tr>
+			</table>
+
+		</td>
+	</tr>
+	<tr>
+		<td id="NextLevel-1"></td>
+	</tr>
+</table>
+
+
+</div>
+<script>
+	// Структурная единица, компания
+	TreeUnit[1] = new Array();
+	TreeUnit[1]['Problem'] = 1;  // Является проблемной
+	TreeUnit[1]['Child']  = 1;   // Есть подчиненный подразделения
+	TreeUnit[1]['ChildOpen']  = 0;   // Есть подчиненный подразделения
+	TreeUnit[1]['ID']  = 1;   // Есть подчиненный подразделения
+	
+	 // Есть подчиненный подразделения
+</script>
+
+
+<div id='MainUnit' style="display:none;">
+	<table  border="0" cellspacing="0" cellpadding="0" bordercolor="#00ff00"  width="100px" align="center">
+		<tr>
+			<td align="left">
+			<table  border="0" cellspacing="0" cellpadding="0"  width="100px" id="TableUnit-NewDivId">
+				<tr>
+					<td class="TdUnit" id="TdUnit-NewDivId" title="NewName">
+							<div class="IndicatorFork" id="UnitHiddenBlock-NewDivId">
+								<img src="images-tree/unit-Indicator.png" class="icon"  onMouseOver="MenuUnit(NewDivId,event);"><nobr onClick="ClickUnit(NewDivId);">NewName</nobr>
+							</div>   
+							<div class="IndicatorForkVisible" id="UnitOpenBlock-NewDivId">
+								<img src="images-tree/unit-Indicator.png" class="icon"  onMouseover="MenuUnit(NewDivId,event);"><nobr onClick="ClickUnit(NewDivId);">NewName</nobr>
+							</div>
+					</td>
+					<td class="LineUnitRole" id="TdUnitRole-NewDivId">
+						&nbsp;
+					</td>
+					<td class="TdZakryvaetLishniyFon">
+						&nbsp;
+					</td>
+				</tr>
+				<tr>
+					<td colspan=3 class="VerticalLineUnitUnit"  id="TdUnitVertical-NewDivId">
+						<table id="TableUnitCategory-NewDivId" border="0" cellspacing="0" cellpadding="0" class="BlockFactor">       
+								<tr>
+									<td class="Categor" valign="top"> 
+										<div id="UnitCategory-NewDivId"></div>
+									</td>
+									<td class="RightMenu">
+	<img src="images-tree/categor-this.png" class="ssp-icon" title="Скрыть деталезацию до категорий показателей" onclick="UnitCategorShow(NewDivId);">
+	<img src="images-tree/factor-this.png" class="ssp-icon" title="Детализировать до показателей"  onclick="UnitFactorShow(NewDivId);">
+	<img src="images-tree/zoom-in-all.png" class="ssp-icon" title="Раскрыть структурную единицу" id="IconUnitZoomAll"  onclick="ZoomUnit(NewDivId);">
+	<img src="images-tree/zoom-in-problem.png" class="ssp-icon" title="Раскрыть проблемные точки структурной единицы" id="IconUnitZoomProblem"  onclick="ZoomProblemUnit(NewDivId);">
+	<img src="images-tree/problem-open.png" class="ssp-icon" title="Раскрыть проблемные точки"  onclick="ZoomProblem(NewDivId);">
+
+									</td>
+								</tr>
+								<tr>
+									<td colspan=2 class="ForkOpenBottom"> 
+										<img src="images-tree/fork-open-bottom.png"> 
+									</td>
+								</tr>
+						</table>
+							
+							<div class="UnitBlockRole" id="RoleBlock-NewDivId"></div>
+					</td>
+				</tr>
+			</table>
+			</td>
+		</tr>
+		<tr>
+			<td id="NextLevel-NewDivId"></td>
+		</tr>
+	</table>
+</div>
+
+
+
+<div style="display:none;">
+
+	<div id="ShablonRole1">
+		<div id="RoleHiddenBlock-NewDivId" class="BlockRole">
+			<div class="IndicatorFork" title="NewName">
+				<img src="images-tree/role-Indicator.png" class="icon"  onMouseover="MenuRole(NewDivId,ParentDivId,event);"><nobr onClick="ClickRole(NewDivId);">NewName</nobr>
+			</div>   
+		</div>
+
+	</div>
+
+	<div id="ShablonRole2">
+		<div id="RoleOpenBlock-NewDivId"  style="display:none;" class="BlockRole">
+			<div class="IndicatorForkVisible" title="NewName">
+				<img src="images-tree/role-Indicator.png" class="icon"  onMouseover="MenuRole(NewDivId,ParentDivId,event);"><nobr onClick="ClickRole(NewDivId);">NewName</nobr>
+			</div>
+			<table  border="0" cellspacing="0" id="TableRoleCategory-NewDivId" cellpadding="0"  class="BlockFactor">       
+				<tr>
+					<td class="Categor"> 
+						<div id="RoleCategory-NewDivId"></div>
+					</td>
+					<td class="RightMenu">
+	<img src="images-tree/categor-this.png" class="ssp-icon" title="Скрыть деталезацию до категорий показателей" onclick="RoleCategorShow(NewDivId);">
+	<img src="images-tree/factor-this.png" class="ssp-icon" title="Детализировать до показателей"  onclick="RoleFactorShow(NewDivId);">
+	<img src="images-tree/zoom-in-all.png" class="ssp-icon" title="Раскрыть структурную единицу" id="IconUnitZoomAll"  onclick="ZoomRole(NewDivId);">
+	<img src="images-tree/zoom-in-problem.png" class="ssp-icon" title="Раскрыть проблемные точки структурной единицы" id="IconUnitZoomProblem"  onclick="ZoomProblemRole(NewDivId);">
+	<img src="images-tree/problem-open.png" class="ssp-icon" title="Раскрыть проблемные точки"  onclick="ZoomProblemRole(NewDivId);">
+
+					</td>
+				</tr>
+				<tr>
+					<td colspan=2 class="ForkOpenBottom"> 
+						<img src="images-tree/fork-open-bottom.png"> 
+					</td>
+				</tr>
+			</table>
+
+		</div>
+
+
+	</div>
+	------------------------------------------------------------------------------------------------------------    
+
+
+	<div id="ShablonStaff1">
+		<div id="StaffHiddenBlock-NewDivId">
+			<div class="IndicatorFork" title="NewName">
+				<img src="images-tree/staff-Indicator.png"  onMouseover="MenuStaff(NewDivId,event);" class='icon'><nobr onClick="ClickStaff(NewDivId);">NewName</nobr>  
+			</div>   
+		</div>
+	</div>
+
+
+	<div id="ShablonStaff2">
+		<div id="StaffOpenBlock-NewDivId" style="display:none;">
+			<div class="IndicatorForkVisible" title="NewName">
+				<img src="images-tree/staff-Indicator.png"   onMouseover="MenuStaff(NewDivId,event);"  class="icon"><nobr onClick="ClickStaff(NewDivId);">NewName</nobr>  
+			</div><table  border="0" cellspacing="0" cellpadding="0"  id="TableStaffCategory-NewDivId"  class="BlockFactor">       
+				<tr>
+					<td class="Categor"> 
+						<div id="StaffCategory-NewDivId"></div>
+					</td>
+					<td class="RightMenu">
+	<img src="images-tree/categor-this.png" class="ssp-icon" title="Детализировать до категорий показателей" onclick="StaffCategorShow(NewDivId);">
+	<img src="images-tree/factor-this.png" class="ssp-icon" title="Детализировать до показателей"  onclick="StaffFactorShow(NewDivId);">
+	
+					</td>
+				</tr>
+				<tr>
+					<td colspan=2 class="ForkOpenBottom"> 
+						<img src="images-tree/fork-open-bottom.png"> 
+					</td>
+				</tr>
+			</table>
+
+		</div>
+	</div>
+
+
+		</div>  

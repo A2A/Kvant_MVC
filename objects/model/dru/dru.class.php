@@ -33,6 +33,7 @@
 				$System = System::GetObject();
 
 				$this->Modified = false;
+				
 				$sql_base = 'SELECT `DIVISIONID`,`ROLEID`,`USERID`,`ID`,`COLOR` FROM '.$this->DBTableName.' where ID = '.intval($this->ID);
 				$sql_filter = 'select OBJECTID from ur_dru where ID = "'.$System->CurrentUserID.'" and `READ` and OBJECTID = '.intval($this->ID);
 				$sql = 'Select buf.* from ('.$sql_base.') as buf cross join  ('.$sql_filter.') as perms on buf.ID =  perms.OBJECTID';          
@@ -63,8 +64,8 @@
 			$UCondition = (stripos($DRUType,'U')===false) ? ' USERID is null '      : ' USERID = "'.$this->UserID.'" ';
 
 			$Sql = 'select ID from dru where '.$DCondition.' and '.$RCondition.' and '.$UCondition;
-			$hSql = $this->DataBase->Query($sql);
-			if ($fetch = $this->DataBase->FetchObject($hSql)) 
+			$hSql = DBMySQL::Query($Sql);
+			if ($fetch = DBMySQL::FetchObject($hSql)) 
 			{
 				$result = $fetch->ID;
 			}
@@ -108,12 +109,23 @@
 					break;
 				}
 
-				case 'DR_Parent'    : $result = GetParentDRU('DR'); break;
-				case 'DU_Parent'    : $result = GetParentDRU('DU'); break;
-				case 'RU_Parent'    : $result = GetParentDRU('RU'); break;
-				case 'D_Parent'     : $result = GetParentDRU('D');  break;
-				case 'R_Parent'     : $result = GetParentDRU('R');  break;
-				case 'U_Parent'     : $result = GetParentDRU('U');  break;
+				case 'DR_Parent'    : $result = $this->GetParentDRU('DR'); break;
+				case 'DU_Parent'    : $result = $this->GetParentDRU('DU'); break;
+				case 'RU_Parent'    : $result = $this->GetParentDRU('RU'); break;
+				case 'D_Parent'     : $result = $this->GetParentDRU('D');  break;
+				case 'R_Parent'     : $result = $this->GetParentDRU('R');  break;
+				case 'U_Parent'     : $result = $this->GetParentDRU('U');  break;
+				
+				case 'ColorValue'   : 
+										if($this->Color == 1) $result = "red";
+										else if($this->Color == 2) $result = "yellow";
+										else if($this->Color == 3) $result = "green";
+										else $result = "red";   	  
+										break;
+				case 'Problem'     	: if($this->Color == 1 or $this->Color == 2) $result = "1";
+									  else $result = "0";  
+									  break;
+				case 'DivChild'     : $result = "1";   break;
 
 				default: $result = parent::__get($FieldName);
 			}

@@ -1,0 +1,25 @@
+<table border=0 cellspacing=0 cellpadding=2 class="textform"> 
+	<input type=hidden name='Object' value='role' />
+	<input type=hidden name='Action' value='save' />
+	<tr>                                        
+		<td>ИД</td> 
+		<td class='input_text'>{?object=this?Var=this(ID)}</td>
+		<td colspan='2' class='input_text'>Список пользователей роли</td>
+	</tr>
+	<tr>
+		<td>Название</td> 
+		<td class='input_text'>{?object=this?Var=this(Description)}</td>
+	</tr>
+	<tr>                                        
+		<td colspan='2' class='input_text'>Список пользователей роли
+		<ul>
+		{?Object=this?Form=UserList}
+		<li>
+		</li>
+		</ul>
+		</td>
+	</tr>
+</table>         
+						   
+ 
+	

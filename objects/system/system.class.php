@@ -96,12 +96,12 @@
 			switch ($FieldName)
 			{
 				case 'CurrentIntID' : $_SESSION['CurrentIntID'] = $Value; break;
-				case 'CurrentInt'   : $_SESSION['CurrentIntID'] = $Value->ID; break;
+				case 'CurrentInt'   : @ $_SESSION['CurrentIntID'] = $Value->ID; break;
 				case 'CurrentWPTime': $_SESSION['CurrentWPTime'] = $Value; break;
 				case 'CurrentUserID': $_SESSION['CurrentUserID'] = $Value; break;
-				case 'CurrentUser'  : $_SESSION['CurrentUserID'] = $Value->ID; break;
+				case 'CurrentUser'  : @ $_SESSION['CurrentUserID'] = $Value->ID; break;
 				case 'CurrentRoleID': $_SESSION['CurrentRoleID'] = $Value; break;
-				case 'CurrentRole'  : $_SESSION['CurrentRoleID'] = $Value->ID; break;
+				case 'CurrentRole'  : @ $_SESSION['CurrentRoleID'] = $Value->ID; break;
 				case 'CurrentDRUID' : $this->SetDRUID($Value); break;
 				case 'CurrentDRU'   : $this->SetDRU($Value); break;
 			}
