@@ -25,9 +25,9 @@
 				$this->ID = 1;
 
 			if (isset($ProcessData['ProjectID']) and (intval($ProcessData['ProjectID'])>0)) 
-            {
-                $this->ProjectID = intval($ProcessData['ProjectID']);
-            }
+			{
+				$this->ProjectID = intval($ProcessData['ProjectID']);
+			}
 			if (isset($ProcessData['TaskID'])) $this->TaskID = $this->ProcessData['TaskID'] = $ProcessData['TaskID'];
 			//print_r($this);
 		}
@@ -99,13 +99,10 @@
 					break;
 				}
 				case 'state': 
-				{   // все правильно расчитывает
-					//echo "state - ".$this->ProjectID."=".$this->ProcessData['TaskID']."="; 
-					
+				{  
 					if (intval($this->ProjectID)>0)
 					{   
 						$Obj = Project::GetObject($null,intval($this->ProcessData['ProjectID']));
-						//print_r($Obj);
 						if (($Obj->StartDate > $this->Finish) or (!is_null($Obj->FinishDate) and $Obj->FinishDate <= $this->Start))
 						{
 							$res = 'None';
@@ -153,8 +150,7 @@
 
 					if (!is_null($Obj))
 					{
-						//$int = new Interval($null,$null,$this->DataBase,$_SESSION['CurrentIntID']);  
-
+					
 						$Step = $this->Duration;
 						$StartInt = 0;
 						$FinishInt = 16;
@@ -166,22 +162,46 @@
 							if (($Obj->StartDate < $BlockFin) and ($BlockFin <= $Obj->FinishDate))  
 								$FinishInt = $i;
 						}
-
-
-						$DrawLength = $FinishInt - $StartInt + 1;
-						$CurLength =  $this->ID - $StartInt + 1;
-						//echo "||".$Obj->ReadyState."<br>";
-						//echo $Obj->ReadyState." >= (100 / ".$DrawLength." * ".$CurLength.") = ".($Obj->ReadyState >= (100 / $DrawLength * $CurLength)) ."<br>";
-
 						
-						if ($Obj->ReadyState >= (100 / $DrawLength * ($CurLength - 1)))
-						{
-							$res = ($Obj->ReadyState >= (100 / $DrawLength * ($CurLength)) and $CurLength < $DrawLength) ? 'prev '.$CurLength:'stop';
+						$DrawLength = $FinishInt - $StartInt + 1; 
+						$CurLength =  $this->ID - $StartInt + 1;
+						
+						if ($Obj->ReadyState == 100) 
+						{  
+							
+							if ($Obj->ReadyState > (100 / $DrawLength * ($CurLength-2)))
+							{   
+								if($Obj->ReadyState > (100 / $DrawLength * ($CurLength-1)) and ($this->ID <= $FinishInt and 16 != $this->ID))
+								{
+									 $res = 'prev'; 
+								}
+								else
+								{
+									$res = 'stop';    
+								}
+							}
+							elseif($DrawLength!=17)
+							{
+								$res = 'next';
+							}
+							else
+							   $res = 'stop';
 						}
 						else
 						{
-							$res = 'next '.$CurLength;
+							if ($Obj->ReadyState >= (100 / $DrawLength * ($CurLength-1)) and $StartInt>0)
+							{
+								$res = ($Obj->ReadyState >= (100 / $DrawLength * ($CurLength)) and $CurLength < $DrawLength) ? 'prev':'stop';
+							}
+							elseif($DrawLength!=17)
+							{
+								$res = 'next';
+							}
+							else
+							   $res = 'stop';
 						}
+						
+						
 					}
 					else
 					{

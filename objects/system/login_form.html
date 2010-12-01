@@ -25,7 +25,7 @@
 
 					<tr> 
 						<td align="left" valign="middle"><label class="LabelText"><input type="checkbox" name="Memor" id="Memor">Запомнить</label></td> 
-						<td align="right"><img src="images/button-ok.png" alt="Вход" vspace="3" hspace="0" style="cursor:pointer;" onClick="SendLogIn();"></td> 
+						<td align="right"><a href="javascript:SendLogIn();" onkeyup = " if(event.keyCode==32 || event.keyCode==13) SendLogIn();"><img src="images/button-ok.png" alt="Вход" vspace="3" hspace="0" class="CursorHand" onClick="SendLogIn();"></a></td> 
 					</tr> 
 					<tr>                                        
 						<td colspan="2" align="center"><a href="#" onClick="UpdatePassword();">Получить пароль</a></td> 

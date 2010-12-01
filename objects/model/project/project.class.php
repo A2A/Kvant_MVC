@@ -312,19 +312,20 @@
 						return "None";
 				}
 				case 'stateend'         :{   
-					$int = new Interval($null,$null,$this->DataBase,$_SESSION['CurrentIntID']);     
+					
+					$int = new Interval($null,$_SESSION['CurrentIntID']);     
 					$EndTime = $_SESSION['CurrentWPTime'] + 16 * $int->Duration; 
 
 					if ($this->InitDate < $EndTime and $EndTime < $this->FinishDate)
 					{   
-						return $this->State."-TimeLine-end";
+						return $this->State."-TimeLine-end $EndTime";
 					}
 					elseif ($EndTime < $this->InitDate and $EndTime < $this->StartDate)
 					{   
-						return $this->State."-TimeLine-begin"; 
+						return $this->State."-TimeLine-begin $EndTime"; 
 					} 
 					else
-						return "None";
+						return "None ".$_SESSION['CurrentWPTime'] ." ==".$int->Duration." < $EndTime <".$this->FinishDate;
 				}
 			}
 

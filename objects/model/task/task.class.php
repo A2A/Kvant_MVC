@@ -400,7 +400,7 @@
 			elseif (is_null($this->Parent))
 			{
 				$ClassName = get_class($this);                    
-				$this->Parent = $ClassName::GetObject(null,null,$this->DataBase,$this->ParentID);
+				$this->Parent = $ClassName::GetObject(null,$this->ParentID);
 			}
 			return $this->Parent->Level+1;
 		}
@@ -417,6 +417,30 @@
 				case 'startdatetext': return date('H.i d.m.y',$this->StartDate);
 				case 'finishdatetext': return date('H.i d.m.y',$this->FinishDate);
 				case 'initdatetext'	: return date('H.i d.m.y',$this->InitDate);
+				case 'statebegin'       :{    
+					if ($this->StartDate < $_SESSION['CurrentWPTime'] and $_SESSION['CurrentWPTime'] < $this->FinishDate)
+						return $this->State."-TimeLine-begin";
+					elseif ($_SESSION['CurrentWPTime'] > $this->FinishDate)
+						return $this->State."-TimeLine-end";  
+					else
+						return "None";
+				}
+				case 'stateend'         :{   
+					
+					$int = new Interval($null,$_SESSION['CurrentIntID']);     
+					$EndTime = $_SESSION['CurrentWPTime'] + 16 * $int->Duration; 
+
+					if ($this->InitDate < $EndTime and $EndTime < $this->FinishDate)
+					{   
+						return $this->State."-TimeLine-end $EndTime";
+					}
+					elseif ($EndTime < $this->InitDate and $EndTime < $this->StartDate)
+					{   
+						return $this->State."-TimeLine-begin $EndTime"; 
+					} 
+					else
+						return "None ".$_SESSION['CurrentWPTime'] ." ==".$int->Duration." < $EndTime <".$this->FinishDate;
+				}
 				default : return null;
 			}
 

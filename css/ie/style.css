@@ -238,3 +238,17 @@ div#NoActionDesktop
 	font-size: 10px;
 	border-top:1px solid #c0c0c0;    
 }
+
+
+
+.IndicatorFactor-red, .IndicatorFactor-yellow, .IndicatorFactor-green 
+{
+	display: inline;
+	float: none;   
+}
+
+.IndicatorCategor-red, .IndicatorCategor-yellow, .IndicatorCategor-green
+{
+	display: inline;
+	float: none; 
+}

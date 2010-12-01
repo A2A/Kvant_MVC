@@ -11,7 +11,8 @@
 
 		public static $Forms = array(
 		'edit' => 'objects/model/dru/edit.html',
-		'description' => 'objects/model/dru/description.html'      
+		'description' => 'objects/model/dru/description.html',
+		'tree' => 'objects/model/dru/tree.html'      
 		);
 
 		public static  $SQLFields = array(
@@ -125,7 +126,8 @@
 				case 'Problem'     	: if($this->Color == 1 or $this->Color == 2) $result = "1";
 									  else $result = "0";  
 									  break;
-				case 'DivChild'     : $result = "1";   break;
+				case 'DivChild'     : if(is_numeric($this->Division->Child)) $result = $this->Division->Child;  
+										else $result = "0";  break;
 
 				default: $result = parent::__get($FieldName);
 			}

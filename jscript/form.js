@@ -1,7 +1,7 @@
-function GantRefresh()
+
+function Refresh()
 {
 	TempHref = window.location.href;
-	
 	if( TempHref.search(/\?/) > 0) TempHref = TempHref.replace("#", "&"); 
 	else  TempHref = TempHref.replace("#", "\?&");  
 	
@@ -30,7 +30,7 @@ function OnPressKeyBody(event)
 		} 
 		if (document.getElementById('NoActionDesktop').style.display == 'block')
 		{
-			//CloseModalWindow();
+			CloseModalWindow();
 			return 1;
 		} 
 
@@ -57,7 +57,7 @@ function OnClickBody(event)
 		if(document.getElementById('CurrentDRU').style.display == 'block')
 			DivHide('CurrentDRU');
 	} 
-	DivHide('ModalWindow');       
+	if( ElmID != "NoHide")	 DivHide('ModalWindow');       
 }
 
 function SendLogIn()
@@ -67,16 +67,17 @@ function SendLogIn()
 	SavePassFlag = (document.getElementById('Memor').value='On'?1:0);
 	
 	params = "Object=System&Action=login&Login="+LoginText+"&Password="+PasswordText+"&SavePass="+SavePassFlag+"";
+	 
 	Text = AjaxSendPOSTSync(params);
 	Res = ParseStatusXML(Text,'');
 	if (Res['ActionStatus'] == 0) 
 	{
-		location.reload();
+		Refresh();
 	}
 	else
-	{
+	{    
 	}
-		
+		  
 }
 
 function SendLogout()
@@ -96,7 +97,7 @@ function SetDRU(ID)
 	Res = ParseStatusXML(Text,'');
 	//if (Res['ActionStatus'] == 0) location.reload();
 	document.getElementById('CurrentDRU').style.display='none';
-	GantRefresh();
+	Refresh();
 }
 
 
@@ -375,8 +376,8 @@ function SaveTask()
    
 	Text = AjaxSendPOSTSync(params);
 	Res = ParseStatusXML(Text,'Сохранение задачи');
-	if(Res)
-		GantRefresh();
+	if (Res['ActionStatus'] == 0)  
+		Refresh();
 	return 1;
 }
 
@@ -485,8 +486,8 @@ function SaveProject()
 	Text = AjaxSendPOSTSync(params);     
 	
 	Res = ParseStatusXML(Text,'Сохранение проекта');
-	if(Res)
-		GantRefresh();
+	if (Res['ActionStatus'] == 0)  
+		Refresh();
 	return 1;
 }
 
@@ -602,7 +603,7 @@ function EventConfirm()
 function EventBlockRefresh()
 {
 	// TODO 10 -o Natali -c JS: подумать над тем, что перегружаем при создании события, нужен ли полный рефрешь страницы.
-	GantRefresh();
+	Refresh();
 	//location.href="?Object=System&Form=event"; 
 }
 

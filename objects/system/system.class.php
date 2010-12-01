@@ -11,7 +11,8 @@
 		'checksession'=>'IsUserAuthorized',
 		'setinterval'=>'SetInterval',
 		'setdru'=>'SetDRUAction',
-		'shiftinterval'=>'ShiftInterval'
+		'shiftinterval'=>'ShiftInterval',
+		'shiftintervaldatetime'=>'ShiftIntervalDateTime',
 		);
 		public static $UnAuthActions = array(
 		'login'=>true,
@@ -60,7 +61,7 @@
 			if (!isset($_SESSION['CurrentIntID'])) $_SESSION['CurrentIntID'] = 1;
 			if (!isset($_SESSION['CurrentWPTime'])) 
 			{
-				$int = Interval::GetObject($null,$null,$this->DataBase,$_SESSION['CurrentIntID']);  
+				$int = Interval::GetObject($null,$_SESSION['CurrentIntID']);  
 				$_SESSION['CurrentWPTime'] =  time() - 8 * $int->Duration;
 			}                
 			$this->InitCurrentUser();
@@ -316,12 +317,21 @@
 			if ($result = is_numeric($this->ProcessData['Direction']))
 			{
 				$_SESSION['CurrentWPTime'] = $_SESSION['CurrentWPTime'] + $this->ProcessData['Direction'] * $this->CurrentInt->Duration;
+				$result = true;
 			}
 			else
 			{
 				$this->ErrorHandle('Не передано направление сдвига интервала.',1);
+				$result = false;
 			}
 			return $result;
+		}
+		
+		public function ShiftIntervalDateTime()
+		{
+			$int = Interval::GetObject($null,$_SESSION['CurrentIntID']);  
+			$_SESSION['CurrentWPTime'] =  intval($this->ProcessData['Interval']) - 8 * $int->Duration; 
+			return true;
 		}
 		
 

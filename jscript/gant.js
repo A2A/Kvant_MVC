@@ -21,7 +21,7 @@ function OpenModalWindow()
 }
 function VisibleNewProject(event)
 {
-	SetEvent(event.clientX + document.body.scrollLeft, event.clientY + document.body.scrollTop);     
+	SetEvent(event.clientX + document.body.scrollLeft-10, event.clientY + document.body.scrollTop-10);     
 	document.getElementById('ModalWindow').innerHTML =
 		'<table border="0" cellspacing=0 cellpadding=0   onmousemove="OpenModalWindow();" >'+
 	'<tr>'+
@@ -46,6 +46,21 @@ function VisibleNewProject(event)
 
 	OpenModalWindow();
 }
+
+function CatchGantRefresh(Text)
+{
+	document.getElementById('GantList').innerHTML = Text;  
+	document.getElementById('NoActionDesktop').style.display = "none"; 
+	
+}
+
+function GantRefresh()
+{
+	document.getElementById('NoActionDesktop').style.display = "block"; 
+	Url = "?Ajax=1&Object=System&Form=gant_body";
+	AjaxSendGET(Url,CatchGantRefresh);
+}
+
 
 
 function CatchProjectInfo(Text)
@@ -144,6 +159,7 @@ function DivOpenTime(DivId,Num)
 		document.getElementById(DivId).style.display = 'block'; 
 	}
 }
+
 var ElenentOpenMenu;
 function DivOpenMenu(DivId)
 {
@@ -196,8 +212,24 @@ function ShiftInterval(Direction)
 	params = "?Ajax=1&Object=System&Action=ShiftInterval&Direction=" + (Direction*5);
 	Text = AjaxSendPOSTSync(params);
 	Res = ParseStatusXML(Text,'');
-	if (Res['ActionStatus'] == 0) location.reload();
+	if (Res['ActionStatus'] == 0) GantRefresh();
 	return 1;
+}
+
+function ShiftIntervalTime(Interval)
+{ 
+	params = "?Ajax=1&Object=System&Action=ShiftIntervalDateTime&Interval="+Interval;
+	Text = AjaxSendPOSTSync(params);
+	alert(Text);
+	Res = ParseStatusXML(Text,'');
+	if (Res['ActionStatus'] == 0) GantRefresh();
+	return 1;
+}
+function ShiftIntervalNow()
+{ 
+	DateUn = new Date();
+	NowDateTime = Math.round(DateUn.getTime() / 1000);
+	ShiftIntervalTime(NowDateTime);  
 }
 
 function SetStatusTask(StatusID,TaskID)

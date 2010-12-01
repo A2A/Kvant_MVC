@@ -8,11 +8,7 @@
 
 </div>
 <br><br>
-<script>
-// TODO 1 -o Natali -c JS: dfdhdfhd
  
-</script> 
-
 <div id="MenuUnit"  onmousemove="this.style.display='block';" onMouseout="DivHideNow('MenuUnit');">
 	<img src="images-tree/categor-this.png" class="ssp-icon" title="Детализировать до категорий показателей" onclick="UnitCategorShow(ElementID);">
 	<img src="images-tree/factor-this.png" class="ssp-icon" title="Детализировать до показателей"  onclick="UnitFactorShow(ElementID);">
@@ -40,74 +36,11 @@
 
 </div>
 <div id="Tree">
-	<p id="testDiv"></p>
-<table  border="0" cellspacing="0" cellpadding="0" bordercolor="#000000"  width="100px" align="center">
-	<tr>
-		<td align="left">
-			<table  border="0" cellspacing="0" cellpadding="0" width="100px" bordercolor="#f0f000" id="TableUnit-1">
-				<tr>
-					<td class="TdUnit" id="TdUnit-1">
-							<div class="GreenFork" id="UnitHiddenBlock-1">
-								<img src="images-tree/unit-green.png" class="icon"  onMouseOver="MenuUnit('1',event);"><nobr onClick="ClickUnit(1);">Компания КВАНТ</nobr>
-							</div>   
-							<div class="GreenForkVisible" id="UnitOpenBlock-1">
-								<img src="images-tree/unit-green.png" class="icon"  onMouseover="MenuUnit('1',event);"><nobr onClick="ClickUnit(1);">Компапания Квант</nobr>
-							</div>
-					</td>
-					<td class="LineUnitRole" id="TdUnitRole-1">
-						&nbsp;
-					</td>
-					<td class="TdZakryvaetLishniyFon">
-						&nbsp;
-					</td>
-				</tr>
-				<tr>
-					<td colspan=3 class="VerticalLineUnitUnit"  id="TdUnitVertical-1">
-						<table id="TableUnitCategory-1" border="0" cellspacing="0" cellpadding="0" class="BlockFactor">       
-								<tr>
-									<td class="Categor" valign="top"> 
-										<div id="UnitCategory-1"></div>
-									</td>
-									<td class="RightMenu">
-	<img src="images-tree/categor-this.png" class="ssp-icon"  title="Скрыть деталезацию до категорий показателей" onclick="UnitCategorShow(1);">
-	<img src="images-tree/factor-this.png" class="ssp-icon"  title="Детализировать до показателей"  onclick="UnitFactorShow(1);">
-	<img src="images-tree/zoom-in-all.png" class="ssp-icon" title="Раскрыть структурную единицу" id="IconUnitZoomAll"  onclick="ZoomUnit(1);">
-	<img src="images-tree/zoom-in-problem.png" class="ssp-icon" title="Раскрыть проблемные точки структурной единицы" id="IconUnitZoomProblem"  onclick="ZoomProblemUnit(1);">
-	<img src="images-tree/problem-open.png" class="ssp-icon" title="Раскрыть проблемные точки"  onclick="ZoomProblem(1);">
-
-									</td>
-								</tr>
-								<tr>
-									<td colspan=2 class="ForkOpenBottom"> 
-										<img src="images-tree/fork-open-bottom.png"> 
-									</td>
-								</tr>
-						</table>
-							
-							<div class="UnitBlockRole" id="RoleBlock-1"></div>
-					</td>
-				</tr>
-			</table>
-
-		</td>
-	</tr>
-	<tr>
-		<td id="NextLevel-1" class="UnitNext" ></td>
-	</tr>
-</table>
+	 {?Object=DRU&Form=tree&ID=system(CurrentDRUID)}
 
 
 </div>
-<script>
-	// Структурная единица, компания
-	TreeUnit[1] = new Array();
-	TreeUnit[1]['Problem'] = 1;  // Является проблемной
-	TreeUnit[1]['Child']  = 1;   // Есть подчиненный подразделения
-	TreeUnit[1]['ChildOpen']  = 0;   // Есть подчиненный подразделения
-	TreeUnit[1]['ID']  = 1;   // Есть подчиненный подразделения
-	
-	 // Есть подчиненный подразделения
-</script>
+
 
 
 <div id='MainUnit' style="display:none;">

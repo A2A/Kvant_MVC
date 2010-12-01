@@ -983,5 +983,6 @@ div#NoActionDesktop
 .CursorHand
 {
 	cursor: pointer;
+	border: 0px;
 }
 

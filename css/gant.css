@@ -302,3 +302,9 @@ span.HeaderList
 	width:207px;]
 	width:208px;  
 }
+
+td.NoBorder
+{
+	border: 0px;
+} 
+	

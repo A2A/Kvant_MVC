@@ -301,8 +301,24 @@ td#TdUnit-1
 .CategorName
 {
 	overflow: hidden;
-	width: 110px; 
+	width: 124px;   
+	display: block;  
+	height: 20px;  
+	margin: 0px;
+	padding: 0px;  
+	vertical-align: top;
+	padding-top: 4px;
 	
+} 
+
+.CategorName nobr
+{
+	width: 112px; 
+	display: block;
+	overflow: hidden; 
+	height: 20px;  
+	margin: 0px;
+	padding: 0px; 
 }
 
 .UnitNext

@@ -74,11 +74,11 @@
 			}
 			
 			
-			echo $sql_base;
+			//echo $sql_base;
 			
-			//$sql_filter = 'select OBJECTID from ur_DRU where ID = "'.$System->CurrentUserID.'" and `READ`';
+			$sql_filter = 'select OBJECTID from ur_DRU where ID = "'.$System->CurrentUserID.'" and `READ`';
 			
-			$sql = $sql_base; //'Select buf.* from ('.$sql_base.') as buf cross join  ('.$sql_filter.') as perms on buf.ID =  perms.OBJECTID';          
+			$sql = 'Select buf.* from ('.$sql_base.') as buf cross join  ('.$sql_filter.') as perms on buf.ID =  perms.OBJECTID';          
 			//ErrorHandle::ErrorHandle($sql);  
 			
 			if (!($hSql = DBMySQL::Query($sql)))

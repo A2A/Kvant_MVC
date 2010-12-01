@@ -3,8 +3,10 @@
 	{
 		protected $DBTableName = 'division';    
 
-		protected $ParentID;
-		protected $ManagerID;
+		public $ParentID;
+		public $ManagerID;
+		public $Child;
+		
 		public static $Forms = array(
 		'edit' => 'objects/model/division/edit.html'
 		);
@@ -101,7 +103,13 @@
 				
 				$this->Modified = false;
 
-				$sql_base = 'Select * from division  where ID = '.intval($this->ID);
+				$sql_base = 'Select division.*,if(ChildDiv.CountDivision>0,1,0) as CHILD from division  
+				left join (select count(division.ID) as CountDivision, division.PARENTID
+								from division 
+								group by division.PARENTID) as ChildDiv
+					on division.ID = ChildDiv.PARENTID
+
+				where ID = '.intval($this->ID);
 				$sql_filter = 'select OBJECTID from ur_division where ID = "'.$System->CurrentUserID.'" and `READ` and OBJECTID = '.intval($this->ID);
 				$sql = 'Select buf.* from ('.$sql_base.') as buf cross join  ('.$sql_filter.') as perms on buf.ID =  perms.OBJECTID';          
 
@@ -118,6 +126,7 @@
 					$this->Description = $fetch->DESCRIPTION;
 					$this->ParentID = $fetch->PARENTID;
 					$this->ManagerID = $fetch->MANAGERID;
+					$this->Child = $fetch->CHILD;
 				}
 			}
 		}

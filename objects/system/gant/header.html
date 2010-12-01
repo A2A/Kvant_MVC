@@ -1,9 +1,16 @@
- <table border="0" cellspacing=0 cellpadding=0 class="Gant" width="780px">
+<table border="0" cellspacing=0 cellpadding=0 class="Gant" width="780px">
 	<tr>
 		<td class='HeaderTr'><span class="HeaderList">Задача и Проекты</span></td>
-		<td class='HeaderTr' style="text-align: left;">&nbsp;{?Object=this&Var=this(DateText)}</td>
-		<td class='HeaderTr'>
-		{?Object=IntervalList&Form=list}
+		<td class='HeaderTr' style="text-align: left; width: 200px;">
+			<table border="0" cellspacing=0 cellpadding=0>
+				<tr><td class='HeaderTr NoBorder'>
+						<div class="ButtonpassiveBlueSmall" align="left"><nobr><img src="images/button-bluepassive-1.png" class="img" align="left" hspace="0"><img src="images/button-bluepassive-3.png" class="img" hspace="0" vspace="0" align="right"><a class="ButtonpassiveBlueSmall"  onClick="ShiftIntervalNow();">Сейчас</a></nobr></div>
+					</td><td class='HeaderTr NoBorder'>&nbsp;{?Object=this&Var=this(DateText)}</td>
+				</tr>
+			</table>
+		</td>
+		<td class='HeaderTr'> 	
+			{?Object=IntervalList&Form=list}
 		</td>
 	</tr>
 </table>

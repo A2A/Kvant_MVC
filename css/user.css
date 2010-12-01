@@ -210,38 +210,40 @@ A.accessRole
 /* индикатор катгорий и показателей */
 .IndicatorCategor-red, .IndicatorCategor-yellow, .IndicatorCategor-green
 {
-	display: inline;
 	float: left;
 	width: 12px;
 	height: 12px;
 	font-size: 4px;
-	margin-top: 4px;
+	margin-top: 0px;
 	margin-bottom: 4px;
 }
 
 
 .IndicatorFactor-red, .IndicatorFactor-yellow, .IndicatorFactor-green 
 {
-	display: inline;
 	float: left;
 	width: 6px;
 	height: 12px;
 	font-size: 4px;
-	margin-top: 4px;
+	margin-top: 0px;
 	margin-bottom: 4px;
 	margin-left: 6px;
+  
 }
 .IndicatorCategor-red, .IndicatorFactor-red
 { 
 	background: #e44343;   
+	
 }
 .IndicatorCategor-yellow, .IndicatorFactor-yellow 
 { 
-	background: #ffd45c;   
+	background: #ffd45c; 
+	
 }
 .IndicatorCategor-green, .IndicatorFactor-green 
 { 
-	background: #6fda86;   
+	background: #6fda86;  
+	
 } 
 .CategorName
 {

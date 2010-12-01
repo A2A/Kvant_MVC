@@ -6,9 +6,13 @@
 <!-- Element Begin -->  
 			<tr>
 				<td> 
+					<div class="CategorName">
+					<nobr onClick="FactorListShow('{?Object=this&Var=this(ID)}', '{?Object=this&Var=get(DivID)}List{?Object=this&Var=this(ID)}', '{?Object=this&Var=this(DRUID)}');">
+					
 					<div class="IndicatorCategor-{?Object=this&Var=this(ColorValue)}">&nbsp;</div>
-					<nobr onClick="FactorListShow('{?Object=this&Var=this(ID)}', '{?Object=this&Var=get(DivID)}List{?Object=this&Var=this(ID)}', '{?Object=this&Var=this(DRUID)}');" class="CategorName">&nbsp;{?Object=this&Var=this(Description)}</nobr>
-					<div id="{?Object=this&Var=get(DivID)}List{?Object=this&Var=this(ID)}" class="FactorList"></div>     
+					&nbsp;{?Object=this&Var=this(Description)}
+					</nobr></div>
+					<div id="{?Object=this&Var=get(DivID)}List{?Object=this&Var=this(ID)}" class="FactorList"></div>   
 				</td>
 			</tr>
 <!-- Element End -->

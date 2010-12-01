@@ -1,13 +1,5 @@
-var T_eventX;
-var T_eventY;
+
 // TODO 2 -o Natali -c Интерфейс: олоса прокруктурки должна быть только горизонтальная и прижата к нижнему краю браузера, всегда отображатся на экране.
-function SetEvent(X,Y)
-{
-	//document.getElementById('ModalWindow').style.position = 'absolute';       
-	T_eventX = X;  
-	T_eventY = Y;  
-}
-//=================================================================
 
 function NewElem(Id,ParentID,Str,Indicator,NewName)
 {
@@ -365,7 +357,6 @@ function SetRoleLineWidthTd(KeyArray)
 
 function RoleShow(KeyArray)
 {
-	
 	var RoleBlock = document.getElementById('RoleBlock-'+KeyArray);
 	if (RoleBlock.innerHTML == '') 
 	{
@@ -376,35 +367,31 @@ function RoleShow(KeyArray)
 	}
 	else
 	{
-		if (RoleBlock.style.display == 'block')
-		{
-			RoleBlock.style.display = 'none';
-			TreeUnit[KeyArray]['Role']  = 0;   // закрыть роли
-			document.getElementById("TdUnitRole-"+KeyArray).style.backgroundImage = "url('')";  
-		}
-		else
-		{
-			RoleBlock.style.display = 'block'; 
-			TreeUnit[KeyArray]['Role']  = 1;   // открыты роли
-			//TreeUnit[OwnerID]['ChildOpen']  = 0;   // открыты подчиненный подразделения
-			document.getElementById("TdUnitRole-"+KeyArray).style.backgroundImage = "url('images-tree/line-unit-role.png')";  
-			SetRoleLineWidthTd(OwnerID); 
-		}  
-		
-	} 
+		RoleBlock.style.display = 'block'; 
+		TreeUnit[KeyArray]['Role']  = 1;   // открыты роли
+		document.getElementById("TdUnitRole-"+KeyArray).style.backgroundImage = "url('images-tree/line-unit-role.png')";  
 	
-	//alert(Url);
+		var i;
+		for (i=0; i<TreeRole[KeyArray].length; i++)
+		{
+			StaffHide(TreeRole[KeyArray][i]['ID']);   
+		} 
+	}
+	
 }
 
 function RoleStaffShowAll(KeyArray)
 {   
 	UnitID = KeyArray;
-//	alert(TreeRole[UnitID].length +"|"+TreeUnit[KeyArray]['ID']);
 	var i;
 	if (TreeRole[UnitID].length >= 1)
 	{
 		for(i=0;i<TreeRole[UnitID].length;i++)
+		{
 			StaffShow(TreeRole[UnitID][i]['ID'],UnitID);
+			document.getElementById("TdRole-"+TreeRole[UnitID][i]['ID']).style.backgroundImage = "url('images-tree/line-open-role.png')";  
+		}
+	
 	}
 	
 }
@@ -513,7 +500,13 @@ function StaffShow(RoleID,UnitKeyArray)
 	{
 		StaffBlock.style.display = 'block';    
 	}
-	//alert(Url);
+}
+
+function StaffHide(RoleID)
+{
+	var StaffBlock = document.getElementById('Role.'+RoleID+'-Staff');
+	StaffBlock.style.display = 'none'; 
+	document.getElementById("TdRole-"+RoleID).style.backgroundImage = "url('')";  
 }
 
 function CatchCategorShow(Message)
@@ -765,14 +758,11 @@ function ShowUnitAll()
 		if (TreeUnit[i]['ChildOpen'] != 1 && TreeUnit[i]['Child'] == 1) 
 		{	
 			UnitShow(i);
-			
 			setTimeout("ShowUnitAll()", 300+i);      
 		}  
 		document.getElementById('RoleBlock-'+i).style.display = 'none';
 		TreeUnit[i]['Role']  = 0;   // закрыть роли
 		document.getElementById("TdUnitRole-"+i).style.backgroundImage = "url('')";  
-	
-	
 	}
 	
 }
@@ -782,10 +772,7 @@ function ShowRoleAll()
 	count = TreeUnit.length;
 	for (i=1;i<count;i++)
 	{
-		if (TreeUnit[i]['Role'] != 1) 
-		{	
-			RoleShow(i);
-		}
+		RoleShow(i);
 	}
 }
 

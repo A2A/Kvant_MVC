@@ -3,9 +3,14 @@
 <table  border="0" cellspacing="0" cellpadding="0">
 <!-- Element Begin -->		
 <tr>
-		<td class="Cell"> 
-		<div class="IndicatorFactor-{?Object=this&Var=this(ColorValue)}">&nbsp;</div> 
-		<nobr onMouseOver="VisibleFactoryInfo('{?Object=this&Var=this(ID)}','{?Object=this&Var=this(DRUID)}');" onMouseOut="HiddenFactoryInfo();"  class="CategorName">&nbsp;{?Object=this&Var=this(Description)}</nobr>     
+		<td>
+		<div class="CategorName">  
+		<nobr onMouseOver="VisibleFactoryInfo('{?Object=this&Var=this(ID)}','{?Object=this&Var=this(DRUID)}');" 
+				onMouseOut="HiddenFactoryInfo();">
+				<div class="IndicatorFactor-{?Object=this&Var=this(ColorValue)}">&nbsp;</div>
+				&nbsp;{?Object=this&Var=this(Description)}
+		</nobr> 
+		</div>    
 		</td>
 		</tr> 
 <!-- Element End -->
